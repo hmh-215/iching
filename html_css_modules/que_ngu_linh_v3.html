@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quẻ Ngũ Linh — Đồ Thư Phi Bàn Độn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root[data-theme="dark"] {
+    --ink-900:#14151a;
+    --ink-850:#191b21;
+    --ink-800:#1d1f27;
+    --ink-750:#242631;
+    --paper:#e7dfc9;
+    --paper-dim:rgba(231,223,201,0.65);
+    --paper-faint:rgba(231,223,201,0.35);
+    --gold:#c19a4b;
+    --gold-dim:rgba(193,154,75,0.28);
+    --jade:#5b9686;
+    --jade-dim:rgba(91,150,134,0.28);
+    --cinnabar:#c24632;
+    --cinnabar-dim:rgba(194,70,50,0.25);
+    --line:rgba(231,223,201,0.12);
+    --line-strong:rgba(231,223,201,0.22);
+    --radius:4px;
+    --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(193,154,75,0.06), transparent 60%), #14151a;
+  }
+
+  :root[data-theme="light"] {
+    --ink-900:#f4f1ea;
+    --ink-850:#ffffff;
+    --ink-800:#fdfbf7;
+    --ink-750:#eae5d9;
+    --paper:#22252a;
+    --paper-dim:#555a64;
+    --paper-faint:#888e99;
+    --gold:#9e7526;
+    --gold-dim:rgba(158,117,38,0.15);
+    --jade:#3b7566;
+    --jade-dim:rgba(59,117,102,0.15);
+    --cinnabar:#b03420;
+    --cinnabar-dim:rgba(176,52,32,0.15);
+    --line:rgba(0,0,0,0.10);
+    --line-strong:rgba(0,0,0,0.20);
+    --radius:4px;
+    --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(158,117,38,0.08), transparent 60%), #f4f1ea;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    background: var(--bg-gradient);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:40px 20px 100px;
+    line-height:1.5;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .wrap{max-width:960px;margin:0 auto;}
+
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .theme-toggle-btn {
+    background: var(--ink-800);
+    border: 1px solid var(--line-strong);
+    color: var(--paper);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+  .theme-toggle-btn:hover { border-color: var(--gold); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+
+  h1{
+    font-family:'Spectral',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(34px,5.2vw,52px);
+    margin:0 0 10px;
+    letter-spacing:0.01em;
+    color:var(--paper);
+  }
+
+  .subtitle{
+    font-size:15px;
+    color:var(--paper-dim);
+    max-width:62ch;
+    margin:0 0 28px;
+  }
+
+  .rule{
+    height:1px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--line) 40%, transparent 100%);
+    margin:0 0 40px;
+  }
+
+  .console{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 28px 24px;
+    margin-bottom:44px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  .console-grid{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:14px;
+    margin-bottom:22px;
+  }
+
+  @media (max-width:900px){ .console-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:640px){ .console-grid{grid-template-columns:repeat(2,1fr);} }
+
+  .field label{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:8px;
+  }
+
+  .field select{
+    width:100%;
+    background:var(--ink-850);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:500;
+    padding:10px 12px;
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c19a4b'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    cursor:pointer;
+    transition:border-color .15s ease;
+  }
+  .field select:focus{ outline:none; border-color:var(--gold); }
+
+  .console-actions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+
+  .presets{display:flex;gap:8px;flex-wrap:wrap;}
+
+  .preset-btn{
+    background:transparent;
+    border:1px solid var(--line-strong);
+    color:var(--paper-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    padding:7px 12px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .preset-btn:hover{border-color:var(--jade);color:var(--paper);}
+
+  .cast-btn{
+    background:var(--cinnabar);
+    color:#fff;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    padding:13px 30px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, background .15s ease;
+    box-shadow:0 6px 18px -6px rgba(194,70,50,0.5);
+  }
+  .cast-btn:hover{ filter: brightness(1.1); }
+  .cast-btn:active{transform:scale(0.97);}
+
+  .error-msg{
+    display:none;
+    background:var(--cinnabar-dim);
+    border:1px solid var(--cinnabar);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+    color:var(--paper);
+    margin-bottom:32px;
+  }
+
+  .view-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--paper-dim);
+    cursor: pointer;
+  }
+
+  #result{display:none;}
+
+  .step-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .step-label.gold{color:var(--gold);}
+  .step-label.jade{color:var(--jade);}
+
+  .panels{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+    margin-bottom:28px;
+  }
+  @media (max-width:760px){ .panels{grid-template-columns:1fr;} }
+
+  .panel{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+
+  .panel-title{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:19px;
+    margin:0 0 4px;
+  }
+  .panel-desc{
+    font-size:12.5px;
+    color:var(--paper-dim);
+    margin:0 0 18px;
+    min-height:48px;
+  }
+
+  .grid-wrap{position:relative;width:100%;max-width:272px;margin:0 auto;}
+  .grid-svg{width:100%;height:auto;display:block;}
+
+  .panel-caption{
+    font-size:11px;
+    color:var(--paper-faint);
+    margin-top:14px;
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  .result-chip{
+    margin-top:16px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--paper-dim);
+  }
+  .result-chip .name{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--paper);
+  }
+  .result-chip .symbol{font-size:20px;}
+  .result-chip .sao{
+    margin-left:auto;
+    font-size:11px;
+    color:var(--paper-faint);
+  }
+
+  .step-by-step-box {
+    display: none;
+    background: var(--ink-850);
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--paper-dim);
+  }
+  .step-by-step-box.open { display: block; }
+  .step-btn {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--paper);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .step-btn:hover { border-color: var(--gold); }
+
+  .thientinh-panel{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin-bottom:28px;
+  }
+  .thientinh-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+  }
+  .thientinh-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    padding:6px 10px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .thientinh-table td{
+    padding:7px 10px;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--paper-dim);
+  }
+  .thientinh-table tr.hl-base td{background:var(--gold-dim);color:var(--paper);}
+  .thientinh-table tr.hl-final td{background:var(--jade-dim);color:var(--paper);}
+  .thientinh-table tr.hl-base.hl-final td{background:linear-gradient(90deg,var(--gold-dim),var(--jade-dim));}
+  .thientinh-table td.name-cell{font-family:'Inter',sans-serif;font-weight:500;}
+
+  .hexagram-section{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:36px 32px;
+    margin-bottom:28px;
+  }
+
+  .hexagram-header{
+    text-align:center;
+    margin-bottom:30px;
+  }
+  .hexagram-header .eyebrow{margin-bottom:8px;}
+  .hexagram-name{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:36px;
+    color:var(--paper);
+  }
+
+  .hexagram-dual-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .hexagram-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--ink-850);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    min-width: 260px;
+  }
+  .hexagram-card-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .hexagram-card-title {
+    font-family: 'Spectral', serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--paper);
+  }
+  .hexagram-card-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--paper-dim);
+    margin-bottom: 16px;
+  }
+
+  .bars{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:180px;
+  }
+
+  .bar-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:2px 0;
+  }
+
+  .bar-track{
+    flex:1;
+    height:14px;
+    display:flex;
+    gap:8px;
+  }
+  .bar-seg{
+    flex:1;
+    background:var(--paper);
+    border-radius:2px;
+    opacity:0.88;
+  }
+  .bar-row.thuong .bar-seg{background:var(--gold);}
+  .bar-row.ha .bar-seg{background:var(--jade);}
+  .bar-row.active .bar-seg{
+    background:var(--cinnabar);
+    opacity:1;
+    box-shadow:0 0 10px rgba(194,70,50,0.6);
+  }
+
+  .bar-idx{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--paper-faint);
+    width:16px;
+  }
+  .bar-row.active .bar-idx{color:var(--cinnabar); font-weight: bold;}
+
+  .info-meta {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    border-top: 1px dashed var(--line-strong);
+    padding-top: 20px;
+  }
+  @media(max-width: 600px){ .info-meta { grid-template-columns: 1fr; } }
+
+  .info-block .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:6px;
+  }
+  .info-block .value{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:22px;
+  }
+  .info-block .formula{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--paper-faint);
+    margin-top:4px;
+  }
+
+  footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--paper-faint);
+    font-family:'IBM Plex Mono',monospace;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  .hoanthoi-section{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:36px 32px;
+    margin-bottom:28px;
+  }
+  .hoanthoi-current{
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    color:var(--paper-dim);
+    margin-bottom:18px;
+  }
+  .hoanthoi-current b{color:var(--jade);font-size:15px;}
+  .hoanthoi-actions{text-align:center;margin-bottom:24px;}
+  .hoanthoi-btn{
+    background:var(--jade);
+    color:#fff;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    padding:12px 28px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:filter .12s ease, transform .12s ease, opacity .15s ease;
+    box-shadow:0 6px 18px -6px rgba(91,150,134,0.5);
+  }
+  .hoanthoi-btn:hover:not(:disabled){ filter:brightness(1.1); }
+  .hoanthoi-btn:active:not(:disabled){ transform:scale(0.97); }
+  .hoanthoi-btn:disabled {
+    background: var(--ink-750);
+    color: var(--paper-faint);
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+  }
+  .hoanthoi-log{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    max-height:520px;
+    overflow-y:auto;
+    padding-right:4px;
+  }
+  .hoanthoi-entry{
+    background:var(--ink-850);
+    border:1px solid var(--line);
+    border-left:3px solid var(--jade);
+    border-radius:var(--radius);
+    padding:14px 18px;
+  }
+  .hoanthoi-entry.is-master{ border-left-color:var(--gold); }
+  .hoanthoi-entry-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:8px;
+  }
+  .hoanthoi-entry-type{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .hoanthoi-entry.is-master .hoanthoi-entry-type{ color:var(--gold); }
+  .hoanthoi-entry-canchi{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:17px;
+    color:var(--paper);
+  }
+  .hoanthoi-entry-body{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    line-height:1.9;
+    color:var(--paper-dim);
+  }
+  .hoanthoi-entry-body b{ color:var(--paper); font-weight:500; }
+
+  details.steps{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 22px;
+    margin-bottom:28px;
+  }
+  details.steps summary{
+    cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    outline:none;
+  }
+  details.steps .steps-body{
+    margin-top:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--paper-dim);
+    line-height:1.9;
+  }
+  details.steps .steps-body b{color:var(--paper);font-weight:500;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header-bar">
+    <div>
+      <div class="eyebrow">Thuật toán lập quẻ · Ngũ Linh</div>
+      <h1>Quẻ Ngũ Linh</h1>
+    </div>
+    <button class="theme-toggle-btn" id="theme-btn">☀️ Giao diện Sáng</button>
+  </div>
+  
+  <p class="subtitle">Lập quẻ Ngũ Linh từ Giờ, Ngày, Tháng Âm lịch, Can của ngày và Chi của năm. Dựa trên bảng 4x4 Đồ Thư Phi Bàn Độn chuẩn thuật toán gốc.</p>
+  <div class="rule"></div>
+
+  <div class="console">
+    <div class="console-grid">
+      <div class="field">
+        <label for="sel-gio">Chi Giờ</label>
+        <select id="sel-gio"></select>
+      </div>
+      <div class="field">
+        <label for="sel-can">Can Ngày</label>
+        <select id="sel-can"></select>
+      </div>
+      <div class="field">
+        <label for="sel-ngay">Ngày Âm Lịch</label>
+        <select id="sel-ngay"></select>
+      </div>
+      <div class="field">
+        <label for="sel-thang">Tháng Âm Lịch</label>
+        <select id="sel-thang"></select>
+      </div>
+      <div class="field">
+        <label for="sel-namchi">Chi Năm Âm Lịch</label>
+        <select id="sel-namchi"></select>
+      </div>
+      <div class="field">
+        <label for="sel-gioitinh">Sự việc cần hỏi</label>
+        <select id="sel-gioitinh">
+          <option value="">Gieo quẻ hỏi việc</option>
+          <option value="Nam">Gieo quẻ đời người - Nam</option>
+          <option value="Nữ">Gieo quẻ đời người - Nữ</option>
+        </select>
+      </div>
+    </div>
+    <div class="console-actions">
+      <div class="presets">
+        <button class="preset-btn" data-preset="0">Ví dụ 1</button>
+        <button class="preset-btn" data-preset="1">Ví dụ 2</button>
+        <button class="preset-btn" data-preset="2">Ví dụ 3</button>
+      </div>
+      <button class="cast-btn" id="cast-btn">Lập Quẻ Ngũ Linh</button>
+    </div>
+  </div>
+
+  <div class="error-msg" id="error-msg"></div>
+
+  <div id="result">
+
+    <div class="view-controls">
+      <label class="toggle-label">
+        <input type="checkbox" id="toggle-arrows"> Hiển thị đường đi (mũi tên)
+      </label>
+    </div>
+
+    <div class="panels">
+      <!-- Panel 1: Hau Thien -->
+      <div class="panel">
+        <div class="step-label gold">Bước 1 · Quẻ Hậu Thiên</div>
+        <h3 class="panel-title">Lập quẻ Hậu Thiên</h3>
+        <p class="panel-desc" id="hauthien-desc"></p>
+        <div class="grid-wrap">
+          <svg class="grid-svg" id="svg-hauthien" viewBox="0 0 280 280"></svg>
+        </div>
+        <p class="panel-caption" id="hauthien-caption"></p>
+        <div class="result-chip">
+          <span class="symbol" id="hauthien-symbol"></span>
+          <span class="name" id="hauthien-name"></span>
+        </div>
+        <button class="step-btn" onclick="toggleStepBox('ht-steps')">🔍 Hiển thị các bước</button>
+        <div class="step-by-step-box" id="ht-steps"></div>
+      </div>
+
+      <!-- Panel 2: Tien Thien -->
+      <div class="panel">
+        <div class="step-label jade">Bước 2 · Quẻ Tiên Thiên</div>
+        <h3 class="panel-title">Lập quẻ Tiên Thiên</h3>
+        <p class="panel-desc" id="tienthien-desc"></p>
+        <div class="grid-wrap">
+          <svg class="grid-svg" id="svg-tienthien" viewBox="0 0 280 280"></svg>
+        </div>
+        <p class="panel-caption">* Ô (0,2) và (2,3) là ô đặc biệt — không tính vào khoảng cách di chuyển.</p>
+        <div class="result-chip">
+          <span class="symbol" id="tienthien-symbol"></span>
+          <span class="name" id="tienthien-name"></span>
+          <span class="sao" id="tienthien-sao"></span>
+        </div>
+        <button class="step-btn" onclick="toggleStepBox('tt-steps')">🔍 Hiển thị các bước</button>
+        <div class="step-by-step-box" id="tt-steps"></div>
+      </div>
+    </div>
+
+    <div class="thientinh-panel">
+      <div class="step-label gold">Tra cứu</div>
+      <h3 class="panel-title" style="margin-bottom:14px;">Bảng Chủ Thiên Tinh</h3>
+      <table class="thientinh-table" id="thientinh-table">
+        <thead>
+          <tr><th>Số hiệu</th><th>Quẻ đơn</th><th>Ngũ hành</th><th>Sao</th></tr>
+        </thead>
+        <tbody id="thientinh-tbody"></tbody>
+      </table>
+    </div>
+
+    <!-- Hexagram Graphic & Dual View (Gốc & Biến) -->
+    <div class="hexagram-section">
+      <div class="hexagram-header">
+        <div class="eyebrow" id="order-note">Quẻ Ngũ Linh</div>
+        <div class="hexagram-name" id="goc-fullname"></div>
+      </div>
+
+      <div class="hexagram-dual-container">
+        <!-- Quẻ Gốc -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag">Quẻ Gốc</div>
+          <div class="hexagram-card-title" id="card-goc-title"></div>
+          <div class="hexagram-card-sub" id="card-goc-symbols"></div>
+          <div class="bars" id="bars-goc"></div>
+        </div>
+
+        <!-- Quẻ Biến -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag" style="color:var(--cinnabar)">Quẻ Biến</div>
+          <div class="hexagram-card-title" id="card-bien-title"></div>
+          <div class="hexagram-card-sub" id="card-bien-symbols"></div>
+          <div class="bars" id="bars-bien"></div>
+        </div>
+
+        <!-- Quẻ Hỗ -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag" style="color:var(--jade)">Quẻ Hỗ</div>
+          <div class="hexagram-card-title" id="card-ho-title"></div>
+          <div class="hexagram-card-sub" id="card-ho-symbols"></div>
+          <div class="bars" id="bars-ho"></div>
+        </div>
+      </div>
+
+      <div class="info-meta">
+        <div class="info-block">
+          <div class="label">Hào Động</div>
+          <div class="value" id="haodong-value"></div>
+          <div class="formula" id="haodong-formula"></div>
+        </div>
+        <div class="info-block">
+          <div class="label">Mã Nhị Phân (Hào 1 → 6)</div>
+          <div class="formula">Quẻ Gốc: <b id="goc-binary"></b></div>
+          <div class="formula">Quẻ Biến: <b id="bien-binary" style="color:var(--cinnabar)"></b></div>
+          <div class="formula">Quẻ Hỗ: <b id="ho-binary" style="color:var(--jade)"></b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hoán Thời Pháp -->
+    <div class="hoanthoi-section" id="hoanthoi-section" style="display:none;">
+      <div class="hexagram-header">
+        <div class="eyebrow">Tính quẻ khách từ quẻ chủ - cho phép lập nhiều quẻ trong cùng một canh giờ</div>
+        <div class="hexagram-name">Hoán thời pháp</div>
+      </div>
+      <p class="hoanthoi-current" id="hoanthoi-current-label"></p>
+      <div class="hoanthoi-actions">
+        <button class="hoanthoi-btn" id="hoanthoi-btn">Hoán thời pháp</button>
+      </div>
+      <div class="hoanthoi-log" id="hoanthoi-log"></div>
+    </div>
+
+    <details class="steps">
+      <summary>Các bước tính trung gian (đối chiếu thuật toán Python gốc)</summary>
+      <div class="steps-body" id="steps-body"></div>
+    </details>
+
+  </div>
+
+  <footer>
+    <span>Quẻ Ngũ Linh — Thuật toán 4x4 chuẩn 100% bảo toàn</span>
+    <span id="input-echo"></span>
+  </footer>
+
+</div>
+
+<script>
+/* =========================================================================
+ * BẢNG 64 QUẺ DỊCH TRA CỨU THEO TRIGRAM HELPERS
+ * ========================================================================= */
+
+const TRIGRAM_TUONG = {
+  "Càn": "Thiên", "Đoài": "Trạch", "Ly": "Hỏa", "Chấn": "Lôi",
+  "Tốn": "Phong", "Khảm": "Thủy", "Cấn": "Sơn", "Khôn": "Địa"
+};
+
+const DICH_64_BY_PAIR = {
+  "Càn_Càn": "Thuần Càn", "Càn_Đoài": "Thiên Trạch Lý", "Càn_Ly": "Thiên Hỏa Đồng Nhân", "Càn_Chấn": "Thiên Lôi Vô Vọng",
+  "Càn_Tốn": "Thiên Phong Cấu", "Càn_Khảm": "Thiên Thủy Tụng", "Càn_Cấn": "Thiên Sơn Độn", "Càn_Khôn": "Thiên Địa Bĩ",
+
+  "Đoài_Càn": "Trạch Thiên Quải", "Đoài_Đoài": "Thuần Đoài", "Đoài_Ly": "Trạch Hỏa Cách", "Đoài_Chấn": "Trạch Lôi Tùy",
+  "Đoài_Tốn": "Trạch Phong Đại Quá", "Đoài_Khảm": "Trạch Thủy Khốn", "Đoài_Cấn": "Trạch Sơn Hàm", "Đoài_Khôn": "Trạch Địa Tụy",
+
+  "Ly_Càn": "Hỏa Thiên Đại Hữu", "Ly_Đoài": "Hỏa Trạch Khuê", "Ly_Ly": "Thuần Ly", "Ly_Chấn": "Hỏa Lôi Phệ Hạp",
+  "Ly_Tốn": "Hỏa Phong Đỉnh", "Ly_Khảm": "Hỏa Thủy Vị Tế", "Ly_Cấn": "Hỏa Sơn Lữ", "Ly_Khôn": "Hỏa Địa Tấn",
+
+  "Chấn_Càn": "Lôi Thiên Đại Tráng", "Chấn_Đoài": "Lôi Trạch Quy Muội", "Chấn_Ly": "Lôi Hỏa Phong", "Chấn_Chấn": "Thuần Chấn",
+  "Chấn_Tốn": "Lôi Phong Hằng", "Chấn_Khảm": "Lôi Thủy Giải", "Chấn_Cấn": "Lôi Sơn Tiểu Quá", "Chấn_Khôn": "Lôi Địa Dự",
+
+  "Tốn_Càn": "Phong Thiên Tiểu Súc", "Tốn_Đoài": "Phong Trạch Trung Phu", "Tốn_Ly": "Phong Hỏa Gia Nhân", "Tốn_Chấn": "Phong Lôi Ích",
+  "Tốn_Tốn": "Thuần Tốn", "Tốn_Khảm": "Phong Thủy Hoán", "Tốn_Cấn": "Phong Sơn Tiệm", "Tốn_Khôn": "Phong Địa Quan",
+
+  "Khảm_Càn": "Thủy Thiên Nhu", "Khảm_Đoài": "Thủy Trạch Tiết", "Khảm_Ly": "Thủy Hỏa Ký Tế", "Khảm_Chấn": "Thủy Lôi Truân",
+  "Khảm_Tốn": "Thủy Phong Tỉnh", "Khảm_Khảm": "Thuần Khảm", "Khảm_Cấn": "Thủy Sơn Kiển", "Khảm_Khôn": "Thủy Địa Tỷ",
+
+  "Cấn_Càn": "Sơn Thiên Đại Súc", "Cấn_Đoài": "Sơn Trạch Tổn", "Cấn_Ly": "Sơn Hỏa Bí", "Cấn_Chấn": "Sơn Lôi Di",
+  "Cấn_Tốn": "Sơn Phong Cổ", "Cấn_Khảm": "Sơn Thủy Mông", "Cấn_Cấn": "Thuần Cấn", "Cấn_Khôn": "Sơn Địa Bác",
+
+  "Khôn_Càn": "Địa Thiên Thái", "Khôn_Đoài": "Địa Trạch Lâm", "Khôn_Ly": "Địa Hỏa Minh Di", "Khôn_Chấn": "Địa Lôi Phục",
+  "Khôn_Tốn": "Địa Phong Thăng", "Khôn_Khảm": "Địa Thủy Sư", "Khôn_Cấn": "Địa Sơn Khiêm", "Khôn_Khôn": "Thuần Khôn"
+};
+
+function getTenQueDichFromTrigrams(upper, lower) {
+  const key = `${upper}_${lower}`;
+  if (DICH_64_BY_PAIR[key]) return DICH_64_BY_PAIR[key];
+  if (upper === lower) return `Thuần ${upper}`;
+  return `${TRIGRAM_TUONG[upper]} ${TRIGRAM_TUONG[lower]}`;
+}
+
+/* =========================================================================
+ * PHẦN 1 — LÕI THUẬT TOÁN NGŨ LINH
+ * ========================================================================= */
+
+const SO_TIEN_THIEN = { "Càn":1,"Đoài":2,"Ly":3,"Chấn":4,"Tốn":5,"Khảm":6,"Cấn":7,"Khôn":8 };
+const TRIGRAM_TO_BINARY = { "Càn":"111","Đoài":"110","Ly":"101","Chấn":"100","Tốn":"011","Khảm":"010","Cấn":"001","Khôn":"000" };
+const BINARY_TO_TRIGRAM = Object.fromEntries(Object.entries(TRIGRAM_TO_BINARY).map(([k,v]) => [v,k]));
+const TRIGRAM_SYMBOL = { "Càn":"☰","Đoài":"☱","Ly":"☲","Chấn":"☳","Tốn":"☴","Khảm":"☵","Cấn":"☶","Khôn":"☷" };
+
+const THIEN_TINH_MAP = [
+  { queDon:"Càn",  soHieu:1,  nguHanh:"Thủy+", sao:"Thiên Bồng" },
+  { queDon:"Đoài", soHieu:2,  nguHanh:"Thổ-",  sao:"Thiên Nhuế" },
+  { queDon:"Ly",   soHieu:3,  nguHanh:"Mộc+",  sao:"Thiên Xung" },
+  { queDon:"Chấn", soHieu:4,  nguHanh:"Mộc-",  sao:"Thiên Phụ" },
+  { queDon:"Tốn",  soHieu:5,  nguHanh:"Hỏa+",  sao:"Thiên Cầm" },
+  { queDon:"Khảm", soHieu:6,  nguHanh:"Kim+",  sao:"Thiên Tâm" },
+  { queDon:"Cấn",  soHieu:7,  nguHanh:"Kim-",  sao:"Thiên Trụ" },
+  { queDon:"Khôn", soHieu:8,  nguHanh:"Thổ+",  sao:"Thiên Nhậm" },
+  { queDon:"Càn",  soHieu:9,  nguHanh:"Hỏa-",  sao:"Thiên Anh" },
+  { queDon:"Đoài", soHieu:10, nguHanh:"Thủy-", sao:"Thiên Không" },
+];
+const SO_HIEU_BY_NGU_HANH = Object.fromEntries(THIEN_TINH_MAP.map(r => [r.nguHanh, r.soHieu]));
+const ROW_BY_SO_HIEU = Object.fromEntries(THIEN_TINH_MAP.map(r => [r.soHieu, r]));
+
+const NGU_LINH_TABLES = {
+  "Thân_Tý_Thìn": [
+    ["Cấn","Khôn","Chấn","Chấn"],
+    ["Cấn",null,null,"Ly"],
+    ["Khảm",null,null,"Đoài"],
+    ["Tốn","Tốn","Càn","Đoài"],
+  ],
+  "Dần_Ngọ_Tuất": [
+    ["Đoài","Càn","Tốn","Tốn"],
+    ["Đoài",null,null,"Khảm"],
+    ["Ly",null,null,"Cấn"],
+    ["Chấn","Chấn","Khôn","Cấn"],
+  ],
+  "Hợi_Mão_Mùi": [
+    ["Tốn","Khảm","Cấn","Cấn"],
+    ["Tốn",null,null,"Khôn"],
+    ["Càn",null,null,"Chấn"],
+    ["Đoài","Đoài","Ly","Chấn"],
+  ],
+  "Tỵ_Dậu_Sửu": [
+    ["Chấn","Ly","Đoài","Đoài"],
+    ["Chấn",null,null,"Càn"],
+    ["Khôn",null,null,"Tốn"],
+    ["Cấn","Cấn","Khảm","Tốn"],
+  ],
+};
+const GROUP_LABEL = {
+  "Thân_Tý_Thìn": "Thân – Tý – Thìn",
+  "Dần_Ngọ_Tuất": "Dần – Ngọ – Tuất",
+  "Hợi_Mão_Mùi": "Hợi – Mão – Mùi",
+  "Tỵ_Dậu_Sửu": "Tỵ – Dậu – Sửu",
+};
+
+const THIEN_CAN = ["Giáp","Ất","Bính","Đinh","Mậu","Kỷ","Canh","Tân","Nhâm","Quý"];
+const DIA_CHI = ["Tý","Sửu","Dần","Mão","Thìn","Tỵ","Ngọ","Mùi","Thân","Dậu","Tuất","Hợi"];
+const NGU_HANH_SEQUENCE = ["Kim+","Kim-","Thủy+","Thủy-","Hỏa+","Hỏa-","Thổ+","Thổ-","Mộc+","Mộc-"];
+const STARTING_NGU_HANH_MAP = {
+  "Tý":"Kim+","Sửu":"Kim+","Ngọ":"Kim+","Mùi":"Kim+",
+  "Dần":"Thủy+","Mão":"Thủy+","Thân":"Thủy+","Dậu":"Thủy+",
+  "Thìn":"Hỏa+","Tỵ":"Hỏa+","Tuất":"Hỏa+","Hợi":"Hỏa+",
+};
+const CAN_DUONG = ["Giáp","Bính","Mậu","Canh","Nhâm"];
+const CAN_AM = ["Ất","Đinh","Kỷ","Tân","Quý"];
+const CHI_DUONG_NAM = ["Tý","Dần","Thìn","Ngọ","Thân","Tuất"];
+
+const CAN_NGAY_TO_TY_CAN = {
+  "Giáp":"Giáp","Kỷ":"Giáp",
+  "Ất":"Bính","Canh":"Bính",
+  "Bính":"Mậu","Tân":"Mậu",
+  "Đinh":"Canh","Nhâm":"Canh",
+  "Mậu":"Nhâm","Quý":"Nhâm",
+};
+
+const DIA_CHI_TO_HOUR_INDEX = {
+  "Tý":0,"Sửu":1,"Dần":2,"Mão":3,"Thìn":4,"Tỵ":5,"Ngọ":6,"Mùi":7,"Thân":8,"Dậu":9,"Tuất":10,"Hợi":11,
+};
+
+const HAU_THIEN_PATH = [
+  [3,0],[2,0],[1,0],[0,0],
+  [0,1],[0,2],[0,3],[1,3],
+  [2,3],[3,3],[3,2],[3,1],
+];
+
+function coordEq(a, b) { return a[0] === b[0] && a[1] === b[1]; }
+function pathIndexOf(coord) {
+  for (let i = 0; i < HAU_THIEN_PATH.length; i++) if (coordEq(HAU_THIEN_PATH[i], coord)) return i;
+  return -1;
+}
+function pymod(n, m) { return ((n % m) + m) % m; }
+
+function calculateCanGio(canNgay, chiGio) {
+  const baseCanTy = CAN_NGAY_TO_TY_CAN[canNgay];
+  const baseIdx = THIEN_CAN.indexOf(baseCanTy);
+  const offset = DIA_CHI.indexOf(chiGio);
+  return THIEN_CAN[pymod(baseIdx + offset, THIEN_CAN.length)];
+}
+
+function calculateNguHanhGio(canGio, chiGio) {
+  const startNguHanh = STARTING_NGU_HANH_MAP[chiGio];
+  const startIdx = NGU_HANH_SEQUENCE.indexOf(startNguHanh);
+  const canOffset = THIEN_CAN.indexOf(canGio);
+  return NGU_HANH_SEQUENCE[pymod(startIdx + canOffset, NGU_HANH_SEQUENCE.length)];
+}
+
+function getYearTableForChi(chiNam) {
+  if (["Thân","Tý","Thìn"].includes(chiNam)) return { key:"Thân_Tý_Thìn", table:NGU_LINH_TABLES["Thân_Tý_Thìn"] };
+  if (["Dần","Ngọ","Tuất"].includes(chiNam)) return { key:"Dần_Ngọ_Tuất", table:NGU_LINH_TABLES["Dần_Ngọ_Tuất"] };
+  if (["Hợi","Mão","Mùi"].includes(chiNam)) return { key:"Hợi_Mão_Mùi", table:NGU_LINH_TABLES["Hợi_Mão_Mùi"] };
+  if (["Tỵ","Dậu","Sửu"].includes(chiNam)) return { key:"Tỵ_Dậu_Sửu", table:NGU_LINH_TABLES["Tỵ_Dậu_Sửu"] };
+  throw new Error(`Chi năm '${chiNam}' không hợp lệ.`);
+}
+
+function calculateHauThienQueDon(chiNam, month, day, chiGio) {
+  const { key, table } = getYearTableForChi(chiNam);
+  const hourIndex = DIA_CHI_TO_HOUR_INDEX[chiGio];
+  const totalSteps = (month + day + hourIndex) - 2;
+  const finalPathIndex = pymod(totalSteps, HAU_THIEN_PATH.length);
+  const finalCoords = HAU_THIEN_PATH[finalPathIndex];
+  const [row, col] = finalCoords;
+  const queDon = table[row][col];
+  return { queDon, coords: finalCoords, totalSteps, finalPathIndex, groupKey: key, table };
+}
+
+function calculateTienThienQueDon(canGio, chiGio, hauThienCoords) {
+  const nguHanhGio = calculateNguHanhGio(canGio, chiGio);
+  const baseSoHieu = SO_HIEU_BY_NGU_HANH[nguHanhGio];
+  const startCoords = [3, 2];
+  const startIndex = pathIndexOf(startCoords);
+
+  let targetCoordsForDistance = hauThienCoords;
+  if (coordEq(hauThienCoords, [0, 2])) targetCoordsForDistance = [3, 1];
+  else if (coordEq(hauThienCoords, [2, 3])) targetCoordsForDistance = [1, 0];
+
+  const targetIndex = pathIndexOf(targetCoordsForDistance);
+  let steps = 0, specialCount = 0, currentIndex = startIndex;
+  const traversed = [HAU_THIEN_PATH[startIndex]];
+
+  while (currentIndex !== targetIndex) {
+    currentIndex = (currentIndex + 1) % HAU_THIEN_PATH.length;
+    steps += 1;
+    traversed.push(HAU_THIEN_PATH[currentIndex]);
+    const cur = HAU_THIEN_PATH[currentIndex];
+    if (coordEq(cur, [0, 2]) || coordEq(cur, [2, 3])) specialCount += 1;
+  }
+  const distance = steps - specialCount;
+
+  let finalSoHieu = baseSoHieu + distance;
+  let wrapped = false;
+  if (finalSoHieu > 10) { finalSoHieu -= 10; wrapped = true; }
+
+  const row = ROW_BY_SO_HIEU[finalSoHieu];
+  return {
+    queDon: row.queDon, nguHanhGio, baseSoHieu, distance, finalSoHieu, wrapped,
+    startIndex, targetIndex, traversed, sao: row.sao,
+  };
+}
+
+/* =========================================================================
+ * CẬP NHẬT CHUẨN XÁC LOGIC XẾP QUẺ ĐỜI NGƯỜI VÀ HỎI VIỆC
+ * ========================================================================= */
+function orderQueByCanNgayAndGender(canNgay, chiNam, gioitinh, hauThienQueDon, tienThienQueDon) {
+  const isCanNgayDuong = CAN_DUONG.includes(canNgay);
+
+  // 1. Quẻ Hỏi Việc (Không chọn giới tính)
+  if (!gioitinh || gioitinh.trim() === "") {
+    if (isCanNgayDuong) return [tienThienQueDon, hauThienQueDon];
+    return [hauThienQueDon, tienThienQueDon];
+  }
+
+  // 2. Quẻ Đời Người (Phối hợp Giới tính + Năm Âm/Dương + Ngày Âm/Dương)
+  const isNam = gioitinh === "Nam";
+  const isNamDuong = CHI_DUONG_NAM.includes(chiNam);
+
+  if (isNam) {
+    if (isNamDuong && isCanNgayDuong) return [tienThienQueDon, hauThienQueDon];   // Nam, Năm Dương, Ngày Dương -> Tiên Thiên / Hậu Thiên
+    if (!isNamDuong && isCanNgayDuong) return [hauThienQueDon, tienThienQueDon];  // Nam, Năm Âm, Ngày Dương   -> Hậu Thiên / Tiên Thiên
+    if (isNamDuong && !isCanNgayDuong) return [hauThienQueDon, tienThienQueDon];  // Nam, Năm Dương, Ngày Âm   -> Hậu Thiên / Tiên Thiên
+    if (!isNamDuong && !isCanNgayDuong) return [tienThienQueDon, hauThienQueDon]; // Nam, Năm Âm, Ngày Âm     -> Tiên Thiên / Hậu Thiên
+  } else {
+    if (isNamDuong && isCanNgayDuong) return [hauThienQueDon, tienThienQueDon];  // Nữ, Năm Dương, Ngày Dương  -> Hậu Thiên / Tiên Thiên
+    if (!isNamDuong && isCanNgayDuong) return [tienThienQueDon, hauThienQueDon]; // Nữ, Năm Âm, Ngày Dương    -> Tiên Thiên / Hậu Thiên
+    if (isNamDuong && !isCanNgayDuong) return [tienThienQueDon, hauThienQueDon]; // Nữ, Năm Dương, Ngày Âm    -> Tiên Thiên / Hậu Thiên
+    if (!isNamDuong && !isCanNgayDuong) return [hauThienQueDon, tienThienQueDon]; // Nữ, Năm Âm, Ngày Âm      -> Hậu Thiên / Tiên Thiên
+  }
+}
+
+function flipBit(binaryStr, position) {
+  const idx = position - 1;
+  const chars = binaryStr.split("");
+  chars[idx] = chars[idx] === "1" ? "0" : "1";
+  return chars.join("");
+}
+
+function calculateQueHo(originalQueBinary) {
+  const queHoLowerBinary = originalQueBinary.slice(1, 4);
+  const queHoUpperBinary = originalQueBinary.slice(2, 5);
+
+  const lowerName = BINARY_TO_TRIGRAM[queHoLowerBinary];
+  const upperName = BINARY_TO_TRIGRAM[queHoUpperBinary];
+  const queHoName = `${upperName} / ${lowerName}`;
+  const queHoFullBinary = queHoLowerBinary + queHoUpperBinary;
+
+  return { queHoName, queHoFullBinary, upperName, lowerName };
+}
+
+const CHI_DUONG = ["Tý","Dần","Thìn","Ngọ","Thân","Tuất"];
+const CAN_TRANSFORMATION_MAP = {
+  "Giáp":"Kỷ", "Kỷ":"Nhâm",
+  "Ất":"Mậu",
+  "Mậu":"Quý",
+  "Bính":"Tân", "Tân":"Giáp",
+  "Đinh":"Canh", "Canh":"Ất",
+  "Nhâm":"Đinh", "Quý":"Bính",
+};
+
+function isDuong(item, itemType) {
+  if (itemType === "can") return CAN_DUONG.includes(item);
+  if (itemType === "chi") return CHI_DUONG.includes(item);
+  return null;
+}
+
+function hoanThoiPhap(currentCanGio, currentChiGio, originalCanNgay) {
+  const newCanGio = CAN_TRANSFORMATION_MAP[currentCanGio];
+  if (!newCanGio) throw new Error(`Can giờ '${currentCanGio}' không hợp lệ để hoán đổi.`);
+
+  const isCanNgayDuong = CAN_DUONG.includes(originalCanNgay);
+  const isChiGioDuong = CHI_DUONG.includes(currentChiGio);
+
+  let chiOffset = 0;
+  if (isChiGioDuong && isCanNgayDuong) chiOffset = -3;
+  else if (isChiGioDuong && !isCanNgayDuong) chiOffset = 3;
+  else if (!isChiGioDuong && isCanNgayDuong) chiOffset = 5;
+  else chiOffset = -5;
+
+  const curIdx = DIA_CHI.indexOf(currentChiGio);
+  const newChiGio = DIA_CHI[pymod(curIdx + chiOffset, DIA_CHI.length)];
+
+  if (isDuong(newCanGio, "can") !== isDuong(newChiGio, "chi")) {
+    const canPol = isDuong(newCanGio, "can") ? "Dương" : "Âm";
+    const chiPol = isDuong(newChiGio, "chi") ? "Dương" : "Âm";
+    throw new Error(
+      `Hoán Thời Pháp tạo ra giờ không hợp lệ: Can '${newCanGio}' (${canPol}) không khớp với Chi '${newChiGio}' (${chiPol}).`
+    );
+  }
+
+  return [newCanGio, newChiGio];
+}
+
+function calculateNguLinhQue(chiGio, canNgay, lunarDay, lunarMonth, chiNam, gioitinh) {
+  const calculatedCanGio = calculateCanGio(canNgay, chiGio);
+  const hauThien = calculateHauThienQueDon(chiNam, lunarMonth, lunarDay, chiGio);
+  const tienThien = calculateTienThienQueDon(calculatedCanGio, chiGio, hauThien.coords);
+
+  const [orderedUpper, orderedLower] = orderQueByCanNgayAndGender(canNgay, chiNam, gioitinh, hauThien.queDon, tienThien.queDon);
+  const finalNguLinhQueName = `${orderedUpper} / ${orderedLower}`;
+
+  const soTienThienHauThien = SO_TIEN_THIEN[hauThien.queDon];
+  let haoNguyenDuong = pymod(soTienThienHauThien + tienThien.finalSoHieu, 6);
+  if (haoNguyenDuong === 0) haoNguyenDuong = 6;
+
+  const chiGioIndex = DIA_CHI_TO_HOUR_INDEX[chiGio];
+  let haoDong = pymod(haoNguyenDuong + chiGioIndex, 6);
+  if (haoDong === 0) haoDong = 6;
+
+  const binaryUpper = TRIGRAM_TO_BINARY[orderedUpper];
+  const binaryLower = TRIGRAM_TO_BINARY[orderedLower];
+  const originalQueBinary = binaryLower + binaryUpper;
+
+  const transformedQueBinary = flipBit(originalQueBinary, haoDong);
+  const transformedLower = transformedQueBinary.slice(0, 3);
+  const transformedUpper = transformedQueBinary.slice(3, 6);
+  const transformedQueNameLower = BINARY_TO_TRIGRAM[transformedLower];
+  const transformedQueNameUpper = BINARY_TO_TRIGRAM[transformedUpper];
+  const transformedQueName = `${transformedQueNameUpper} / ${transformedQueNameLower}`;
+
+  const tenQueGocDich = getTenQueDichFromTrigrams(orderedUpper, orderedLower);
+  const tenQueBienDich = getTenQueDichFromTrigrams(transformedQueNameUpper, transformedQueNameLower);
+
+  const queHo = calculateQueHo(originalQueBinary);
+  const tenQueHoDich = getTenQueDichFromTrigrams(queHo.upperName, queHo.lowerName);
+
+  return {
+    finalNguLinhQueName, calculatedCanGio,
+    hauThien, tienThien,
+    soTienThienHauThien,
+    originalQueBinary, haoNguyenDuong, haoDong,
+    transformedQueBinary, transformedQueName,
+    orderedUpper, orderedLower,
+    transformedQueNameUpper, transformedQueNameLower,
+    tenQueGocDich, tenQueBienDich,
+    queHo, tenQueHoDich
+  };
+}
+
+/* =========================================================================
+ * PHẦN 2 — GIAO DIỆN & HIỂN THỊ
+ * ========================================================================= */
+
+const selGio = document.getElementById('sel-gio');
+const selCan = document.getElementById('sel-can');
+const selNgay = document.getElementById('sel-ngay');
+const selThang = document.getElementById('sel-thang');
+const selNamChi = document.getElementById('sel-namchi');
+const selGioiTinh = document.getElementById('sel-gioitinh');
+
+DIA_CHI.forEach(g => selGio.add(new Option(`Giờ ${g}`, g)));
+THIEN_CAN.forEach(c => selCan.add(new Option(c, c)));
+for (let d = 1; d <= 30; d++) selNgay.add(new Option(`Ngày ${d}`, d));
+for (let m = 1; m <= 12; m++) selThang.add(new Option(`Tháng ${m}`, m));
+DIA_CHI.forEach(g => selNamChi.add(new Option(`Năm ${g}`, g)));
+
+const PRESETS = [
+  { gio: "Dần", can: "Canh", ngay: 1, thang: 1, namchi: "Tý", gioitinh: "" },
+  { gio: "Tuất", can: "Mậu", ngay: 3, thang: 8, namchi: "Sửu", gioitinh: "Nam" },
+  { gio: "Tý", can: "Ất", ngay: 5, thang: 1, namchi: "Ngọ", gioitinh: "Nữ" },
+];
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const p = PRESETS[parseInt(btn.dataset.preset)];
+    selGio.value = p.gio; selCan.value = p.can;
+    selNgay.value = p.ngay; selThang.value = p.thang; selNamChi.value = p.namchi;
+    selGioiTinh.value = p.gioitinh;
+    cast();
+  });
+});
+
+const themeBtn = document.getElementById('theme-btn');
+themeBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  themeBtn.textContent = next === 'dark' ? '☀️ Giao diện Sáng' : '🌙 Giao diện Tối';
+  if (document.getElementById('result').style.display === 'block') cast();
+});
+
+const CELL = 64, GAP_ORIGIN = 6;
+function cellCenter(r, c) { return [GAP_ORIGIN + c * CELL + CELL/2, GAP_ORIGIN + r * CELL + CELL/2]; }
+function svgEl(tag, attrs) {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+function renderGrid4(svgId, opts) {
+  const svg = document.getElementById(svgId);
+  svg.innerHTML = "";
+  const size = GAP_ORIGIN * 2 + CELL * 4;
+  svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+
+  const defs = svgEl("defs", {});
+  const marker = svgEl("marker", {
+    id: svgId + "-arrow", markerWidth: 8, markerHeight: 8,
+    refX: 6, refY: 3, orient: "auto", markerUnits: "strokeWidth"
+  });
+  marker.appendChild(svgEl("path", { d: "M0,0 L6,3 L0,6 Z", fill: opts.pathColor }));
+  defs.appendChild(marker);
+  svg.appendChild(defs);
+
+  for (let i = 0; i <= 4; i++) {
+    svg.appendChild(svgEl("line", { x1: GAP_ORIGIN, y1: GAP_ORIGIN + i*CELL, x2: GAP_ORIGIN + 4*CELL, y2: GAP_ORIGIN + i*CELL, stroke: "var(--line-strong)", "stroke-width": 1 }));
+    svg.appendChild(svgEl("line", { x1: GAP_ORIGIN + i*CELL, y1: GAP_ORIGIN, x2: GAP_ORIGIN + i*CELL, y2: GAP_ORIGIN + 4*CELL, stroke: "var(--line-strong)", "stroke-width": 1 }));
+  }
+
+  if (opts.markSpecial) {
+    [[0,2],[2,3]].forEach(coord => {
+      const [cx, cy] = cellCenter(coord[0], coord[1]);
+      svg.appendChild(svgEl("rect", {
+        x: cx - CELL/2 + 3, y: cy - CELL/2 + 3, width: CELL - 6, height: CELL - 6,
+        fill: "none", stroke: "var(--paper-faint)", "stroke-width": 1, "stroke-dasharray": "3,3", rx: 2,
+      }));
+    });
+  }
+}
+
+function highlightCell(svg, coord, color) {
+  const [cx, cy] = cellCenter(coord[0], coord[1]);
+  const rect = svgEl("rect", {
+    x: cx - CELL/2 + 3, y: cy - CELL/2 + 3, width: CELL - 6, height: CELL - 6,
+    fill: color, opacity: 0.2, stroke: color, "stroke-width": 1.6, rx: 2,
+  });
+  svg.appendChild(rect);
+}
+
+function drawCellText(svg, r, c, text, opts) {
+  const [cx, cy] = cellCenter(r, c);
+  const dy = opts.dy || 0;
+  const t = svgEl("text", { x: cx, y: cy + dy, "text-anchor": "middle", "dominant-baseline": "middle", fill: opts.fill || "var(--paper)", "font-size": opts.size || 13, "font-weight": opts.weight || 500 });
+  t.textContent = text;
+  svg.appendChild(t);
+}
+
+function drawPathAnimated(svg, svgId, path, color, showArrows) {
+  if (!showArrows) return;
+  path.forEach((coord, i) => {
+    if (i === 0) return;
+    const [x1, y1] = cellCenter(path[i-1][0], path[i-1][1]);
+    const [x2, y2] = cellCenter(coord[0], coord[1]);
+    const line = svgEl("line", {
+      x1, y1, x2, y2, stroke: color, "stroke-width": 2.5,
+      "marker-end": `url(#${svgId}-arrow)`, opacity: 0.85
+    });
+    svg.appendChild(line);
+  });
+}
+
+function renderBarsToElement(elementId, binary6, activeHao = 0) {
+  const container = document.getElementById(elementId);
+  container.innerHTML = "";
+  for (let hao = 6; hao >= 1; hao--) {
+    const bit = binary6[hao - 1];
+    const row = document.createElement('div');
+    row.className = 'bar-row ' + (hao >= 4 ? 'thuong' : 'ha') + (hao === activeHao ? ' active' : '');
+
+    const idxLabel = document.createElement('span');
+    idxLabel.className = 'bar-idx';
+    idxLabel.textContent = hao;
+    row.appendChild(idxLabel);
+
+    const track = document.createElement('div');
+    track.className = 'bar-track';
+    if (bit === '1') {
+      const seg = document.createElement('div');
+      seg.className = 'bar-seg';
+      track.appendChild(seg);
+    } else {
+      const seg1 = document.createElement('div'); seg1.className = 'bar-seg';
+      const seg2 = document.createElement('div'); seg2.className = 'bar-seg';
+      track.appendChild(seg1); track.appendChild(seg2);
+    }
+    row.appendChild(track);
+    container.appendChild(row);
+  }
+}
+
+function toggleStepBox(id) {
+  const box = document.getElementById(id);
+  box.classList.toggle('open');
+}
+
+function cast() {
+  const gio = selGio.value, can = selCan.value, namchi = selNamChi.value;
+  const ngay = parseInt(selNgay.value), thang = parseInt(selThang.value);
+  const gioitinh = selGioiTinh.value;
+  const showArrows = document.getElementById('toggle-arrows').checked;
+
+  const errorBox = document.getElementById('error-msg');
+  const result = document.getElementById('result');
+
+  let r;
+  try {
+    r = calculateNguLinhQue(gio, can, ngay, thang, namchi, gioitinh);
+  } catch (e) {
+    result.style.display = 'none';
+    errorBox.style.display = 'block';
+    errorBox.textContent = 'Lỗi: ' + e.message;
+    return;
+  }
+
+  errorBox.style.display = 'none';
+  result.style.display = 'block';
+
+  const goldColor = getComputedStyle(document.documentElement).getPropertyValue('--gold').trim();
+  const jadeColor = getComputedStyle(document.documentElement).getPropertyValue('--jade').trim();
+
+  // --- Panel 1: Hậu Thiên ---
+  renderGrid4('svg-hauthien', { pathColor: goldColor });
+  const svgHT = document.getElementById('svg-hauthien');
+  const { table: htTable } = getYearTableForChi(namchi);
+  for (let rr = 0; rr < 4; rr++) for (let cc = 0; cc < 4; cc++) {
+    if (htTable[rr][cc]) drawCellText(svgHT, rr, cc, htTable[rr][cc], { size: 12.5, fill: "var(--paper-dim)" });
+  }
+  const forwardPath = HAU_THIEN_PATH.slice(0, r.hauThien.finalPathIndex + 1);
+  drawPathAnimated(svgHT, 'svg-hauthien', forwardPath, goldColor, showArrows);
+  highlightCell(svgHT, r.hauThien.coords, goldColor);
+
+  document.getElementById('hauthien-desc').innerHTML =
+    `Năm <b>${namchi}</b> (bàn 4x4 ${GROUP_LABEL[r.hauThien.groupKey]}) · Tháng ${thang} + Ngày ${ngay} + Giờ ${gio} (${DIA_CHI_TO_HOUR_INDEX[gio]}) − 2 = <b>${r.hauThien.totalSteps}</b> bước → vị trí index ${r.hauThien.finalPathIndex}.`;
+  document.getElementById('hauthien-caption').textContent = `Tọa độ đích: [${r.hauThien.coords[0]}, ${r.hauThien.coords[1]}]`;
+  document.getElementById('hauthien-symbol').textContent = TRIGRAM_SYMBOL[r.hauThien.queDon];
+  document.getElementById('hauthien-name').textContent = r.hauThien.queDon;
+
+  document.getElementById('ht-steps').innerHTML = `
+    <b>Chi tiết các bước Quẻ Hậu Thiên:</b><br>
+    1. Tổng số bước = Tháng(${thang}) + Ngày(${ngay}) + Chỉ số Giờ(${DIA_CHI_TO_HOUR_INDEX[gio]}) - 2 = <b>${r.hauThien.totalSteps}</b><br>
+    2. Vị trí trên đường biên 12 ô = ${r.hauThien.totalSteps} mod 12 = <b>${r.hauThien.finalPathIndex}</b><br>
+    3. Tọa độ tương ứng: <b>[${r.hauThien.coords[0]}, ${r.hauThien.coords[1]}]</b> → Quẻ: <b>${r.hauThien.queDon}</b>
+  `;
+
+  // --- Panel 2: Tiên Thiên ---
+  renderGrid4('svg-tienthien', { pathColor: jadeColor, markSpecial: true });
+  const svgTT = document.getElementById('svg-tienthien');
+  drawCellText(svgTT, 3, 2, String(r.tienThien.baseSoHieu), { size: 16, weight: 600, fill: goldColor });
+  if (!coordEq(r.tienThien.traversed[r.tienThien.traversed.length-1], [3,2])) {
+    const endC = r.tienThien.traversed[r.tienThien.traversed.length-1];
+    drawCellText(svgTT, endC[0], endC[1], String(r.tienThien.finalSoHieu), { size: 16, weight: 600, fill: jadeColor });
+  }
+  drawPathAnimated(svgTT, 'svg-tienthien', r.tienThien.traversed, jadeColor, showArrows);
+  highlightCell(svgTT, [3,2], goldColor);
+  highlightCell(svgTT, r.hauThien.coords, jadeColor);
+
+  document.getElementById('tienthien-desc').innerHTML =
+    `Ngũ hành giờ <b>${r.calculatedCanGio} ${gio}</b> = <b>${r.tienThien.nguHanhGio}</b> → Số hiệu gốc <b>${r.tienThien.baseSoHieu}</b> tại [3,2]. Di chuyển <b>${r.tienThien.distance}</b> bước → Số hiệu cuối = <b>${r.tienThien.finalSoHieu}</b>.`;
+  document.getElementById('tienthien-symbol').textContent = TRIGRAM_SYMBOL[r.tienThien.queDon];
+  document.getElementById('tienthien-name').textContent = r.tienThien.queDon;
+  document.getElementById('tienthien-sao').textContent = `Sao: ${r.tienThien.sao}`;
+
+  document.getElementById('tt-steps').innerHTML = `
+    <b>Chi tiết các bước Quẻ Tiên Thiên:</b><br>
+    1. Can Giờ = <b>${r.calculatedCanGio}</b> | Ngũ Hành Giờ = <b>${r.tienThien.nguHanhGio}</b><br>
+    2. Số hiệu gốc = <b>${r.tienThien.baseSoHieu}</b> (xuất phát tại ô [3,2])<br>
+    3. Khoảng cách thực tế (loại bỏ ô đặc biệt [0,2], [2,3]) = <b>${r.tienThien.distance}</b> bước<br>
+    4. Số hiệu cuối = ${r.tienThien.baseSoHieu} + ${r.tienThien.distance} = <b>${r.tienThien.finalSoHieu}</b> → Quẻ: <b>${r.tienThien.queDon}</b>
+  `;
+
+  // --- Bảng Thiên Tinh ---
+  const tbody = document.getElementById('thientinh-tbody');
+  tbody.innerHTML = "";
+  THIEN_TINH_MAP.forEach(row => {
+    const tr = document.createElement('tr');
+    if (row.soHieu === r.tienThien.baseSoHieu) tr.classList.add('hl-base');
+    if (row.soHieu === r.tienThien.finalSoHieu) tr.classList.add('hl-final');
+    tr.innerHTML = `<td>${row.soHieu}</td><td class="name-cell">${TRIGRAM_SYMBOL[row.queDon]} ${row.queDon}</td><td>${row.nguHanh}</td><td>${row.sao}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  // --- Hexagram Dual Section ---
+  const isCanDuong = CAN_DUONG.includes(can);
+  const isNamDuong = CHI_DUONG_NAM.includes(namchi);
+  let orderText = "";
+  if (!gioitinh || gioitinh.trim() === "") {
+    orderText = `Quẻ Hỏi Việc (Can ngày ${can} - ${isCanDuong ? "Dương" : "Âm"}) → Xếp Quẻ: ${isCanDuong ? "Tiên Thiên / Hậu Thiên" : "Hậu Thiên / Tiên Thiên"}`;
+  } else {
+    orderText = `Quẻ Đời Người (${gioitinh} · Năm ${namchi} - ${isNamDuong ? "Dương" : "Âm"} · Can ngày ${can} - ${isCanDuong ? "Dương" : "Âm"}) → Xếp Quẻ: ${r.orderedUpper === r.tienThien.queDon ? "Tiên Thiên / Hậu Thiên" : "Hậu Thiên / Tiên Thiên"}`;
+  }
+  document.getElementById('order-note').textContent = orderText;
+
+  document.getElementById('goc-fullname').textContent = `${r.tenQueGocDich} (${r.finalNguLinhQueName})`;
+
+  // Render Quẻ Gốc
+  document.getElementById('card-goc-title').textContent = r.tenQueGocDich;
+  document.getElementById('card-goc-symbols').textContent = `${r.finalNguLinhQueName} (${TRIGRAM_SYMBOL[r.orderedUpper]}${TRIGRAM_SYMBOL[r.orderedLower]})`;
+  renderBarsToElement('bars-goc', r.originalQueBinary, r.haoDong);
+
+  // Render Quẻ Biến
+  document.getElementById('card-bien-title').textContent = r.tenQueBienDich;
+  document.getElementById('card-bien-symbols').textContent = `${r.transformedQueName} (${TRIGRAM_SYMBOL[r.transformedQueNameUpper]}${TRIGRAM_SYMBOL[r.transformedQueNameLower]})`;
+  renderBarsToElement('bars-bien', r.transformedQueBinary, 0);
+
+  // Render Quẻ Hỗ
+  document.getElementById('card-ho-title').textContent = r.tenQueHoDich;
+  document.getElementById('card-ho-symbols').textContent = `${r.queHo.queHoName} (${TRIGRAM_SYMBOL[r.queHo.upperName]}${TRIGRAM_SYMBOL[r.queHo.lowerName]})`;
+  renderBarsToElement('bars-ho', r.queHo.queHoFullBinary, 0);
+
+  // Hexagram Info
+  document.getElementById('goc-binary').textContent = r.originalQueBinary;
+  document.getElementById('bien-binary').textContent = r.transformedQueBinary;
+  document.getElementById('ho-binary').textContent = r.queHo.queHoFullBinary;
+  document.getElementById('haodong-value').textContent = `Hào ${r.haoDong}`;
+  document.getElementById('haodong-formula').innerHTML =
+    `Nguyên Đường = (${r.soTienThienHauThien} + ${r.tienThien.finalSoHieu}) mod 6 = ${r.haoNguyenDuong}<br>Hào Động = (${r.haoNguyenDuong} + ${DIA_CHI_TO_HOUR_INDEX[gio]}) mod 6 = ${r.haoDong}`;
+
+  // Steps Summary
+  document.getElementById('steps-body').innerHTML = `
+    - Loại Quẻ: <b>${!gioitinh ? "Quẻ Hỏi Việc" : `Quẻ Đời Người (${gioitinh})`}</b><br>
+    - Can / Chi Giờ: <b>${r.calculatedCanGio} ${gio}</b><br>
+    - Ngũ hành giờ: <b>${r.tienThien.nguHanhGio}</b><br>
+    - Quẻ Hậu Thiên: <b>${r.hauThien.queDon}</b> (Tọa độ: [${r.hauThien.coords[0]}, ${r.hauThien.coords[1]}])<br>
+    - Quẻ Tiên Thiên: <b>${r.tienThien.queDon}</b> (Số hiệu gốc: ${r.tienThien.baseSoHieu} → Cuối: ${r.tienThien.finalSoHieu})<br>
+    - Mã nhị phân Quẻ Gốc: <b>${r.originalQueBinary}</b> → Tên quẻ Dịch: <b>${r.tenQueGocDich}</b><br>
+    - Hào Nguyên Đường: <b>${r.haoNguyenDuong}</b> | Hào Động: <b>${r.haoDong}</b><br>
+    - Mã nhị phân Quẻ Biến: <b>${r.transformedQueBinary}</b> → Tên quẻ Dịch: <b>${r.tenQueBienDich}</b><br>
+    - Mã nhị phân Quẻ Hỗ: <b>${r.queHo.queHoFullBinary}</b> → Tên quẻ Dịch: <b>${r.tenQueHoDich}</b>
+  `;
+
+  document.getElementById('input-echo').textContent = `Giờ ${gio} · Can ${can} · Ngày ${ngay} · Tháng ${thang} · Năm ${namchi}${gioitinh ? ` · ${gioitinh}` : ''}`;
+
+  // Trạng thái Hoán Thời Pháp
+  hoanThoiCurrentCanGio = r.calculatedCanGio;
+  hoanThoiCurrentChiGio = gio;
+  hoanThoiOriginalCanNgay = can;
+  hoanThoiHistory = [{
+    type: "Giờ chủ",
+    can: r.calculatedCanGio,
+    chi: gio,
+    nguHanhGio: r.tienThien.nguHanhGio,
+    hauThienCoords: r.hauThien.coords,
+    hauThienQueDon: r.hauThien.queDon,
+    tienThienQueDon: r.tienThien.queDon,
+    finalNguLinhQueName: r.finalNguLinhQueName,
+    tenQueGocDich: r.tenQueGocDich,
+    originalQueBinary: r.originalQueBinary,
+    transformedQueName: r.transformedQueName,
+    tenQueBienDich: r.tenQueBienDich,
+    queHoName: r.queHo.queHoName,
+    tenQueHoDich: r.tenQueHoDich,
+  }];
+
+  const hoanThoiBtn = document.getElementById('hoanthoi-btn');
+  const hoanThoiSection = document.getElementById('hoanthoi-section');
+
+  if (gioitinh && gioitinh.trim() !== "") {
+    hoanThoiSection.style.display = 'block';
+    hoanThoiBtn.disabled = true;
+    hoanThoiBtn.innerText = "Hoán thời pháp";
+    updateHoanThoiCurrentLabel();
+    renderHoanThoiLog();
+  } else {
+    hoanThoiSection.style.display = 'block';
+    hoanThoiBtn.disabled = false;
+    hoanThoiBtn.innerText = "Hoán thời pháp";
+    updateHoanThoiCurrentLabel();
+    renderHoanThoiLog();
+  }
+}
+
+/* =========================================================================
+ * PHẦN 3 — HOÁN THỜI PHÁP
+ * ========================================================================= */
+
+let hoanThoiCurrentCanGio = null;
+let hoanThoiCurrentChiGio = null;
+let hoanThoiOriginalCanNgay = null;
+let hoanThoiHistory = [];
+const MAX_HOAN_THOI = 59;
+
+function updateHoanThoiCurrentLabel() {
+  const hoanThoiCount = hoanThoiHistory.length - 1;
+  document.getElementById('hoanthoi-current-label').innerHTML =
+    `Can Giờ Hiện Tại: <b>${hoanThoiCurrentCanGio}</b> &nbsp;·&nbsp; Chi Giờ Hiện Tại: <b>${hoanThoiCurrentChiGio}</b> &nbsp;·&nbsp; Số lần hoán thời pháp: <b>${hoanThoiCount}/${MAX_HOAN_THOI}</b>`;
+}
+
+function renderHoanThoiLog() {
+  const container = document.getElementById('hoanthoi-log');
+  container.innerHTML = "";
+  hoanThoiHistory.forEach(entry => {
+    const card = document.createElement('div');
+    card.className = 'hoanthoi-entry' + (entry.type === "Giờ chủ" ? ' is-master' : '');
+    card.innerHTML = `
+      <div class="hoanthoi-entry-head">
+        <span class="hoanthoi-entry-type">${entry.type}</span>
+        <span class="hoanthoi-entry-canchi">${entry.can} ${entry.chi}</span>
+      </div>
+      <div class="hoanthoi-entry-body">
+        Ngũ hành giờ: <b>${entry.nguHanhGio}</b> · Tọa độ ô chủ thời lệnh: <b>[${entry.hauThienCoords[0]}, ${entry.hauThienCoords[1]}]</b><br>
+        Quẻ Hậu Thiên: <b>${entry.hauThienQueDon}</b> · Quẻ Tiên Thiên: <b>${entry.tienThienQueDon}</b><br>
+        Quẻ Gốc: <b>${entry.finalNguLinhQueName}</b> → <b>${entry.tenQueGocDich}</b> (Binary: ${entry.originalQueBinary})<br>
+        Quẻ Biến: <b>${entry.transformedQueName}</b> → <b>${entry.tenQueBienDich}</b><br>
+        Quẻ Hỗ: <b>${entry.queHoName}</b> → <b>${entry.tenQueHoDich}</b>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  container.scrollTop = container.scrollHeight;
+}
+
+function performHoanThoiPhap() {
+  if (selGioiTinh.value && selGioiTinh.value.trim() !== "") {
+    alert('Quẻ Đời Người không áp dụng Hoán Thời Pháp.');
+    return;
+  }
+
+  const currentCount = hoanThoiHistory.length - 1;
+  if (currentCount >= MAX_HOAN_THOI) {
+    alert('Đã đạt giới hạn tối đa 59 lần hoán thời pháp (tối đa 59 quẻ theo giờ khách).');
+    return;
+  }
+
+  if (hoanThoiCurrentCanGio === null || hoanThoiCurrentChiGio === null || hoanThoiOriginalCanNgay === null) {
+    alert('Vui lòng thực hiện Lập Quẻ Ngũ Linh trước để thiết lập giờ ban đầu.');
+    return;
+  }
+
+  let newCanGio, newChiGio;
+  try {
+    [newCanGio, newChiGio] = hoanThoiPhap(hoanThoiCurrentCanGio, hoanThoiCurrentChiGio, hoanThoiOriginalCanNgay);
+  } catch (e) {
+    alert('Lỗi Hoán Thời Pháp: ' + e.message);
+    return;
+  }
+
+  hoanThoiCurrentCanGio = newCanGio;
+  hoanThoiCurrentChiGio = newChiGio;
+
+  try {
+    const lastEntry = hoanThoiHistory[hoanThoiHistory.length - 1];
+    const prevCoords = lastEntry.hauThienCoords;
+    const prevIndex = pathIndexOf(prevCoords);
+    if (prevIndex === -1) throw new Error(`Tọa độ trước đó [${prevCoords[0]}, ${prevCoords[1]}] không nằm trên đường di chuyển Hậu Thiên.`);
+
+    const hourIndexNew = DIA_CHI_TO_HOUR_INDEX[newChiGio];
+    const newPathIndex = pymod(prevIndex + hourIndexNew, HAU_THIEN_PATH.length);
+    const transformedHauThienCoords = HAU_THIEN_PATH[newPathIndex];
+
+    const { table } = getYearTableForChi(selNamChi.value);
+    const [row, col] = transformedHauThienCoords;
+    const transformedHauThienQueDon = table[row][col];
+    if (!transformedHauThienQueDon) {
+      throw new Error(`Không tìm thấy Quẻ đơn tại tọa độ [${row}, ${col}] sau Hoán Thời Pháp.`);
+    }
+
+    const nguHanhGioNew = calculateNguHanhGio(newCanGio, newChiGio);
+    const tienThienNew = calculateTienThienQueDon(newCanGio, newChiGio, transformedHauThienCoords);
+
+    const [orderedUpperNew, orderedLowerNew] = orderQueByCanNgayAndGender(
+      hoanThoiOriginalCanNgay, selNamChi.value, selGioiTinh.value, transformedHauThienQueDon, tienThienNew.queDon
+    );
+    const finalNguLinhQueNameNew = `${orderedUpperNew} / ${orderedLowerNew}`;
+    const tenQueGocDichNew = getTenQueDichFromTrigrams(orderedUpperNew, orderedLowerNew);
+
+    const soTienThienHauThienNew = SO_TIEN_THIEN[transformedHauThienQueDon];
+    let haoNguyenDuongNew = pymod(soTienThienHauThienNew + tienThienNew.finalSoHieu, 6);
+    if (haoNguyenDuongNew === 0) haoNguyenDuongNew = 6;
+    let haoDongNew = pymod(haoNguyenDuongNew + hourIndexNew, 6);
+    if (haoDongNew === 0) haoDongNew = 6;
+
+    const binaryUpperNew = TRIGRAM_TO_BINARY[orderedUpperNew];
+    const binaryLowerNew = TRIGRAM_TO_BINARY[orderedLowerNew];
+    const originalQueBinaryNew = binaryLowerNew + binaryUpperNew;
+
+    const transformedQueBinaryNew = flipBit(originalQueBinaryNew, haoDongNew);
+    const transformedLowerNew = transformedQueBinaryNew.slice(0, 3);
+    const transformedUpperNew = transformedQueBinaryNew.slice(3, 6);
+    const transformedQueNameLowerNew = BINARY_TO_TRIGRAM[transformedLowerNew];
+    const transformedQueNameUpperNew = BINARY_TO_TRIGRAM[transformedUpperNew];
+    const transformedQueNameNew = `${transformedQueNameUpperNew} / ${transformedQueNameLowerNew}`;
+    const tenQueBienDichNew = getTenQueDichFromTrigrams(transformedQueNameUpperNew, transformedQueNameLowerNew);
+
+    const queHoNew = calculateQueHo(originalQueBinaryNew);
+    const tenQueHoDichNew = getTenQueDichFromTrigrams(queHoNew.upperName, queHoNew.lowerName);
+
+    const newEntry = {
+      type: `Giờ khách ${hoanThoiHistory.length}`,
+      can: newCanGio,
+      chi: newChiGio,
+      nguHanhGio: nguHanhGioNew,
+      hauThienCoords: transformedHauThienCoords,
+      hauThienQueDon: transformedHauThienQueDon,
+      tienThienQueDon: tienThienNew.queDon,
+      finalNguLinhQueName: finalNguLinhQueNameNew,
+      tenQueGocDich: tenQueGocDichNew,
+      originalQueBinary: originalQueBinaryNew,
+      transformedQueName: transformedQueNameNew,
+      tenQueBienDich: tenQueBienDichNew,
+      queHoName: queHoNew.queHoName,
+      tenQueHoDich: tenQueHoDichNew,
+    };
+
+    hoanThoiHistory.push(newEntry);
+    updateHoanThoiCurrentLabel();
+    renderHoanThoiLog();
+
+    if (hoanThoiHistory.length - 1 >= MAX_HOAN_THOI) {
+      const btn = document.getElementById('hoanthoi-btn');
+      btn.disabled = true;
+      btn.innerText = "Hoán thời pháp";
+    }
+
+  } catch (e) {
+    alert('Lỗi Hoán Thời Pháp: ' + e.message);
+  }
+}
+
+document.getElementById('cast-btn').addEventListener('click', cast);
+document.getElementById('hoanthoi-btn').addEventListener('click', performHoanThoiPhap);
+document.getElementById('toggle-arrows').addEventListener('change', () => {
+  if (document.getElementById('result').style.display === 'block') cast();
+});
+
+selGio.value = "Dần"; selCan.value = "Canh"; selNgay.value = "1"; selThang.value = "1"; selNamChi.value = "Tý"; selGioiTinh.value = "";
+</script>
+</body>
+</html>
