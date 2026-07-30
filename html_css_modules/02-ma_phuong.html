@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ma Phương — Đồ Thư Phi Tinh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root[data-theme="dark"] {
+    --ink-900:#14151a;
+    --ink-850:#191b21;
+    --ink-800:#1d1f27;
+    --ink-750:#242631;
+    --paper:#e7dfc9;
+    --paper-dim:rgba(231,223,201,0.65);
+    --paper-faint:rgba(231,223,201,0.35);
+    --gold:#c19a4b;
+    --gold-dim:rgba(193,154,75,0.28);
+    --jade:#5b9686;
+    --jade-dim:rgba(91,150,134,0.28);
+    --cinnabar:#c24632;
+    --cinnabar-dim:rgba(194,70,50,0.25);
+    --line:rgba(231,223,201,0.12);
+    --line-strong:rgba(231,223,201,0.22);
+    --radius:4px;
+    --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(193,154,75,0.06), transparent 60%), #14151a;
+  }
+
+  :root[data-theme="light"] {
+    --ink-900:#f4f1ea;
+    --ink-850:#ffffff;
+    --ink-800:#fdfbf7;
+    --ink-750:#eae5d9;
+    --paper:#22252a;
+    --paper-dim:#555a64;
+    --paper-faint:#888e99;
+    --gold:#9e7526;
+    --gold-dim:rgba(158,117,38,0.15);
+    --jade:#3b7566;
+    --jade-dim:rgba(59,117,102,0.15);
+    --cinnabar:#b03420;
+    --cinnabar-dim:rgba(176,52,32,0.15);
+    --line:rgba(0,0,0,0.10);
+    --line-strong:rgba(0,0,0,0.20);
+    --radius:4px;
+    --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(158,117,38,0.08), transparent 60%), #f4f1ea;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    background: var(--bg-gradient);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:40px 20px 100px;
+    line-height:1.5;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .wrap{max-width:960px;margin:0 auto;}
+
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .theme-toggle-btn {
+    background: var(--ink-800);
+    border: 1px solid var(--line-strong);
+    color: var(--paper);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+  .theme-toggle-btn:hover { border-color: var(--gold); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+
+  h1{
+    font-family:'Spectral',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(34px,5.2vw,52px);
+    margin:0 0 10px;
+    letter-spacing:0.01em;
+    color:var(--paper);
+  }
+
+  .subtitle{
+    font-size:15px;
+    color:var(--paper-dim);
+    max-width:64ch;
+    margin:0 0 28px;
+  }
+
+  .rule{
+    height:1px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--line) 40%, transparent 100%);
+    margin:0 0 40px;
+  }
+
+  .console{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 28px 24px;
+    margin-bottom:44px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  .console-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:22px;
+  }
+
+  @media (max-width:640px){ .console-grid{grid-template-columns:1fr;} }
+
+  .field label{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:8px;
+  }
+
+  .field select{
+    width:100%;
+    background:var(--ink-850);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:500;
+    padding:10px 12px;
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c19a4b'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    cursor:pointer;
+    transition:border-color .15s ease;
+  }
+  .field select:focus{ outline:none; border-color:var(--gold); }
+
+  .console-actions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+
+  .presets{display:flex;gap:8px;flex-wrap:wrap;}
+
+  .preset-btn{
+    background:transparent;
+    border:1px solid var(--line-strong);
+    color:var(--paper-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    padding:7px 12px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .preset-btn:hover{border-color:var(--jade);color:var(--paper);}
+
+  .cast-btn{
+    background:var(--cinnabar);
+    color:#fff;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    padding:13px 30px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, background .15s ease;
+    box-shadow:0 6px 18px -6px rgba(194,70,50,0.5);
+  }
+  .cast-btn:hover{ filter: brightness(1.1); }
+  .cast-btn:active{transform:scale(0.97);}
+
+  .error-msg{
+    display:none;
+    background:var(--cinnabar-dim);
+    border:1px solid var(--cinnabar);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+    color:var(--paper);
+    margin-bottom:32px;
+  }
+
+  .view-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--paper-dim);
+    cursor: pointer;
+  }
+
+  #result{display:none;}
+
+  .step-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .step-label.gold{color:var(--gold);}
+  .step-label.jade{color:var(--jade);}
+  .step-label.cinnabar{color:var(--cinnabar);}
+
+  .panels{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+    margin-bottom:28px;
+  }
+  @media (max-width:760px){ .panels{grid-template-columns:1fr;} }
+
+  .panel{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+
+  .panel-title{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:19px;
+    margin:0 0 4px;
+  }
+  .panel-desc{
+    font-size:12.5px;
+    color:var(--paper-dim);
+    margin:0 0 18px;
+    min-height:36px;
+  }
+
+  .grid-wrap{position:relative;width:100%;max-width:272px;margin:0 auto;}
+  .grid-wrap.small{max-width:230px;}
+  .grid-svg{width:100%;height:auto;display:block;}
+
+  .panel-caption{
+    font-size:11px;
+    color:var(--paper-faint);
+    margin-top:14px;
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  .result-chip{
+    margin-top:16px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--paper-dim);
+    flex-wrap:wrap;
+  }
+  .result-chip .name{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--paper);
+  }
+  .result-chip .symbol{font-size:20px;}
+  .result-chip .tag{
+    margin-left:auto;
+    font-size:11px;
+    color:var(--paper-faint);
+  }
+
+  .step-by-step-box {
+    display: none;
+    background: var(--ink-850);
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--paper-dim);
+  }
+  .step-by-step-box.open { display: block; }
+  .step-btn {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--paper);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .step-btn:hover { border-color: var(--gold); }
+
+  .wide-panel{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 28px;
+    margin-bottom:28px;
+  }
+
+  .final-section{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:36px 32px;
+    margin-bottom:28px;
+  }
+
+  .final-header{
+    text-align:center;
+    margin-bottom:26px;
+  }
+  .final-header .eyebrow{margin-bottom:8px;}
+  .final-name{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:30px;
+    color:var(--paper);
+  }
+
+  .final-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    max-width:420px;
+    margin:0 auto;
+  }
+  .final-cell{
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:var(--ink-850);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--paper);
+    padding:6px;
+    line-height:1.3;
+  }
+  .final-cell.center{
+    border:1px dashed var(--cinnabar);
+    color:var(--cinnabar);
+    font-family:'IBM Plex Mono',monospace;
+    font-style:normal;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    background:var(--cinnabar-dim);
+  }
+
+  .nap-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+    margin-top:6px;
+  }
+  .nap-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    padding:6px 10px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .nap-table td{
+    padding:7px 10px;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--paper-dim);
+  }
+  .nap-table tr.hl td{background:var(--gold-dim);color:var(--paper);}
+  .nap-table td.name-cell{font-family:'Inter',sans-serif;font-weight:500;}
+
+  footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--paper-faint);
+    font-family:'IBM Plex Mono',monospace;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  details.steps{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 22px;
+    margin-bottom:28px;
+  }
+  details.steps summary{
+    cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    outline:none;
+  }
+  details.steps .steps-body{
+    margin-top:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--paper-dim);
+    line-height:1.9;
+  }
+  details.steps .steps-body b{color:var(--paper);font-weight:500;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header-bar">
+    <div>
+      <div class="eyebrow">Thuật toán lập Ma Phương · Phi Tinh</div>
+      <h1>Ma Phương</h1>
+    </div>
+    <button class="theme-toggle-btn" id="theme-btn">☀️ Giao diện Sáng</button>
+  </div>
+
+  <p class="subtitle">Lập Ma Phương từ Quẻ Thượng, Quẻ Hạ và Hào Động: tra Nạp Chi → Sinh Thành → Họ của quẻ → Ma trận Phi Tinh cho từng quẻ đơn → ghép thành Ma phương hoàn chỉnh. Bảo toàn 100% thuật toán gốc.</p>
+  <div class="rule"></div>
+
+  <div class="console">
+    <div class="console-grid">
+      <div class="field">
+        <label for="sel-thuong">Quẻ Thượng</label>
+        <select id="sel-thuong"></select>
+      </div>
+      <div class="field">
+        <label for="sel-ha">Quẻ Hạ</label>
+        <select id="sel-ha"></select>
+      </div>
+      <div class="field">
+        <label for="sel-hao">Hào Động</label>
+        <select id="sel-hao"></select>
+      </div>
+    </div>
+    <div class="console-actions">
+      <div class="presets">
+        <button class="preset-btn" data-preset="0">Ví dụ 1</button>
+        <button class="preset-btn" data-preset="1">Ví dụ 2</button>
+        <button class="preset-btn" data-preset="2">Ví dụ 3</button>
+      </div>
+      <button class="cast-btn" id="cast-btn">Lập Ma Phương</button>
+    </div>
+  </div>
+
+  <div class="error-msg" id="error-msg"></div>
+
+  <div id="result">
+
+    <div class="view-controls">
+      <label class="toggle-label">
+        <input type="checkbox" id="toggle-arrows" checked> Hiển thị đường đi (mũi tên)
+      </label>
+    </div>
+
+    <div class="panels">
+      <!-- Panel 1: Nap Chi -->
+      <div class="panel">
+        <div class="step-label gold">Bước 1 · Nạp Chi</div>
+        <h3 class="panel-title">Tra Địa Chi của Hào Động</h3>
+        <p class="panel-desc" id="napchi-desc"></p>
+        <table class="nap-table" id="napchi-table"></table>
+        <div class="result-chip">
+          <span class="name" id="napchi-diachi"></span>
+          <span class="tag" id="napchi-tag"></span>
+        </div>
+        <button class="step-btn" onclick="toggleStepBox('napchi-steps')">🔍 Hiển thị các bước</button>
+        <div class="step-by-step-box" id="napchi-steps"></div>
+      </div>
+
+      <!-- Panel 2: Sinh Thanh -->
+      <div class="panel">
+        <div class="step-label jade">Bước 2 · Sinh Thành</div>
+        <h3 class="panel-title">Tra bảng Địa Chi — Sinh Thành</h3>
+        <p class="panel-desc" id="sinhthanh-desc"></p>
+        <div class="grid-wrap">
+          <svg class="grid-svg" id="svg-sinhthanh" viewBox="0 0 280 280"></svg>
+        </div>
+        <p class="panel-caption" id="sinhthanh-caption"></p>
+        <div class="result-chip">
+          <span class="tag" id="sinhthanh-tag" style="margin-left:0;"></span>
+        </div>
+        <button class="step-btn" onclick="toggleStepBox('st-steps')">🔍 Hiển thị các bước</button>
+        <div class="step-by-step-box" id="st-steps"></div>
+      </div>
+    </div>
+
+    <div class="wide-panel">
+      <div class="step-label cinnabar">Bước 3 · Họ Của Quẻ</div>
+      <h3 class="panel-title">Xác định Họ của Quẻ</h3>
+      <p class="panel-desc" id="ho-desc" style="min-height:auto;"></p>
+      <div class="result-chip" style="margin-top:0;">
+        <span class="symbol" id="ho-symbol"></span>
+        <span class="name" id="ho-name"></span>
+        <span class="tag" id="ho-tag"></span>
+      </div>
+      <button class="step-btn" onclick="toggleStepBox('ho-steps')">🔍 Hiển thị các bước</button>
+      <div class="step-by-step-box" id="ho-steps"></div>
+    </div>
+
+    <div class="wide-panel">
+      <div class="step-label gold">Bước 4 · Ma Trận Sinh Thành</div>
+      <h3 class="panel-title">Ma trận gốc (Trung cung = Sinh Thành, Quái = Họ của quẻ)</h3>
+      <p class="panel-desc" id="matsinhthanh-desc" style="min-height:auto;"></p>
+      <div class="grid-wrap">
+        <svg class="grid-svg" id="svg-matsinhthanh" viewBox="0 0 250 250"></svg>
+      </div>
+      <p class="panel-caption" id="matsinhthanh-caption"></p>
+    </div>
+
+    <div class="panels">
+      <!-- Panel: Que Thuong matrix -->
+      <div class="panel">
+        <div class="step-label gold">Bước 5a · Ma Trận Quẻ Thượng</div>
+        <h3 class="panel-title" id="thuong-title">Ma trận Quẻ Thượng</h3>
+        <p class="panel-desc" id="thuong-desc"></p>
+        <div class="grid-wrap small">
+          <svg class="grid-svg" id="svg-thuong" viewBox="0 0 250 250"></svg>
+        </div>
+        <p class="panel-caption" id="thuong-caption"></p>
+      </div>
+
+      <!-- Panel: Que Ha matrix -->
+      <div class="panel">
+        <div class="step-label jade">Bước 5b · Ma Trận Quẻ Hạ</div>
+        <h3 class="panel-title" id="ha-title">Ma trận Quẻ Hạ</h3>
+        <p class="panel-desc" id="ha-desc"></p>
+        <div class="grid-wrap small">
+          <svg class="grid-svg" id="svg-ha" viewBox="0 0 250 250"></svg>
+        </div>
+        <p class="panel-caption" id="ha-caption"></p>
+      </div>
+    </div>
+
+    <!-- Final combined magic square -->
+    <div class="final-section">
+      <div class="final-header">
+        <div class="eyebrow">Bước 6 · Ghép Ma Trận</div>
+        <div class="final-name">Ma Phương Hoàn Chỉnh</div>
+      </div>
+      <div class="final-grid" id="final-grid"></div>
+      <p class="panel-caption" style="margin-top:20px;">Mỗi ô = Quẻ (Hậu Thiên số Thượng) / Quẻ (Hậu Thiên số Hạ) · Ô trung tâm quy ước là <b style="color:var(--cinnabar)">null</b></p>
+    </div>
+
+    <details class="steps">
+      <summary>Các bước tính trung gian (đối chiếu thuật toán Python gốc)</summary>
+      <div class="steps-body" id="steps-body"></div>
+    </details>
+
+  </div>
+
+  <footer>
+    <span>Ma Phương — Thuật toán Phi Tinh 3×3 chuẩn 100% bảo toàn</span>
+    <span id="input-echo"></span>
+  </footer>
+
+</div>
+
+<script>
+/* =========================================================================
+ * PHẦN 1 — LÕI THUẬT TOÁN MA PHƯƠNG (BẢO TOÀN 100% CƠ CẤU GỐC TỪ Ma_phuong.ipynb)
+ * ========================================================================= */
+
+const TRIGRAM_SYMBOL = { "Càn":"☰","Đoài":"☱","Ly":"☲","Chấn":"☳","Tốn":"☴","Khảm":"☵","Cấn":"☶","Khôn":"☷" };
+const GUA_NAMES = ['Càn', 'Đoài', 'Ly', 'Chấn', 'Tốn', 'Khảm', 'Cấn', 'Khôn'];
+
+// --- Bước 5: flying_star_matrix (transform + shift) ---
+const KHAM_BASE = [
+  [2, 3, 7],
+  [6, 1, 5],
+  [4, 8, 9],
+];
+
+function pymod(n, m) { return ((n % m) + m) % m; }
+
+function transform(matrix, kind) {
+  const n = 3;
+  const result = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let r = 0; r < n; r++) {
+    for (let c = 0; c < n; c++) {
+      const r0 = r - 1, c0 = c - 1;
+      let nr0, nc0;
+      if (kind === 'e') { nr0 = r0; nc0 = c0; }
+      else if (kind === 'rot90') { nr0 = c0; nc0 = -r0; }
+      else if (kind === 'rot180') { nr0 = -r0; nc0 = -c0; }
+      else if (kind === 'rot270') { nr0 = -c0; nc0 = r0; }
+      else if (kind === 'flip_h') { nr0 = r0; nc0 = -c0; }
+      else if (kind === 'flip_v') { nr0 = -r0; nc0 = c0; }
+      else if (kind === 'transpose') { nr0 = c0; nc0 = r0; }
+      else if (kind === 'anti_transpose') { nr0 = -c0; nc0 = -r0; }
+      result[nr0 + 1][nc0 + 1] = matrix[r][c];
+    }
+  }
+  return result;
+}
+
+const GUA_TRANSFORM = {
+  'Khảm': 'flip_v',
+  'Đoài': 'anti_transpose',
+  'Ly':   'flip_h',
+  'Cấn':  'transpose',
+  'Khôn': 'rot270',
+  'Chấn': 'rot180',
+  'Tốn':  'e',
+  'Càn':  'rot90',
+};
+
+function flyingStarMatrix(gua, centerNumber) {
+  if (centerNumber === undefined) centerNumber = 1;
+  const base = transform(KHAM_BASE, GUA_TRANSFORM[gua]);
+  const shift = centerNumber - 1;
+  return base.map(row => row.map(v => pymod(v - 1 + shift, 9) + 1));
+}
+
+// --- Bước 2: Bảng Nạp Chi ---
+const NAP_CHI_DATA = {
+  'Càn':  { 1:'Tý',  2:'Dần', 3:'Thìn', 4:'Ngọ', 5:'Thân', 6:'Tuất' },
+  'Chấn': { 1:'Tý',  2:'Dần', 3:'Thìn', 4:'Ngọ', 5:'Thân', 6:'Tuất' },
+  'Khảm': { 1:'Dần', 2:'Thìn',3:'Ngọ',  4:'Thân',5:'Tuất', 6:'Tý'   },
+  'Cấn':  { 1:'Thìn',2:'Ngọ', 3:'Thân', 4:'Tuất',5:'Tý',   6:'Dần' },
+  'Đoài': { 1:'Tỵ',  2:'Mão', 3:'Sửu',  4:'Hợi', 5:'Dậu',  6:'Mùi' },
+  'Ly':   { 1:'Mão', 2:'Sửu', 3:'Hợi',  4:'Dậu', 5:'Mùi',  6:'Tỵ'  },
+  'Tốn':  { 1:'Sửu', 2:'Hợi', 3:'Dậu',  4:'Mùi', 5:'Tỵ',   6:'Mão' },
+  'Khôn': { 1:'Mùi', 2:'Tỵ',  3:'Mão',  4:'Sửu', 5:'Hợi',  6:'Dậu' },
+};
+
+// --- Bước 3: Bảng Địa chi -> tọa độ, Bảng Sinh - Thành ---
+const DIA_CHI_COORD_MAP = {
+  'Tỵ':[0,0], 'Ngọ':[0,1], 'Mùi':[0,2], 'Thân':[0,3],
+  'Thìn':[1,0], 'Dậu':[1,3],
+  'Mão':[2,0], 'Tuất':[2,3],
+  'Dần':[3,0], 'Sửu':[3,1], 'Tý':[3,2], 'Hợi':[3,3],
+};
+
+const SINH_THANH_TABLE = [
+  [3, 2, 5, 2],
+  [1, null, null, 4],
+  [9, null, null, 6],
+  [7, 5, 7, 8],
+];
+
+// --- Bước 4: Họ của quẻ ---
+const TIEN_THIEN_NUMBERS = { 'Càn':1,'Đoài':2,'Ly':3,'Chấn':4,'Tốn':5,'Khảm':6,'Cấn':7,'Khôn':8 };
+const TIEN_THIEN_NAMES = { 1:'Càn',2:'Đoài',3:'Ly',4:'Chấn',5:'Tốn',6:'Khảm',7:'Cấn',8:'Khôn' };
+const CUNG_NGHI_GUAS = new Set(['Càn', 'Đoài', 'Ly', 'Chấn']);
+const KHAC_NGHI_GUAS = new Set(['Tốn', 'Khảm', 'Cấn', 'Khôn']);
+
+function calcHoCuaQue(quatThuong, quaHa) {
+  const soTienThienThuong = TIEN_THIEN_NUMBERS[quatThuong];
+  const soTienThienHa = TIEN_THIEN_NUMBERS[quaHa];
+  const total = soTienThienThuong + soTienThienHa;
+  let hoCuaQue, nhanhTinh;
+  if (total % 2 !== 0) {
+    const resultNum = 9 - soTienThienHa;
+    hoCuaQue = TIEN_THIEN_NAMES[resultNum];
+    nhanhTinh = 'odd';
+  } else {
+    const thuongCungNghi = CUNG_NGHI_GUAS.has(quatThuong);
+    const haCungNghi = CUNG_NGHI_GUAS.has(quaHa);
+    if (thuongCungNghi === haCungNghi) {
+      hoCuaQue = quaHa;
+    } else {
+      hoCuaQue = quatThuong;
+    }
+    nhanhTinh = 'even';
+  }
+  return { soTienThienThuong, soTienThienHa, total, hoCuaQue, nhanhTinh };
+}
+
+// --- Bước 6: Lạc Thư mapping (bố cục thị giác) ---
+const LAC_THU_MAPPING = {
+  'Tốn':[0,0], 'Ly':[0,1], 'Khôn':[0,2],
+  'Chấn':[1,0], 'Đoài':[1,2],
+  'Cấn':[2,0], 'Khảm':[2,1], 'Càn':[2,2],
+};
+
+// --- Bước 7: Hậu Thiên Bát Quái số -> tên quẻ ---
+const HAU_THIEN_NUMBER_TO_GUA_NAME = {
+  1:'Khảm', 2:'Khôn', 3:'Chấn', 4:'Tốn', 5:'Trung Cung', 6:'Càn', 7:'Đoài', 8:'Cấn', 9:'Ly',
+};
+
+function reversedRows(m) { return [m[2], m[1], m[0]]; }
+
+function calculateMaPhuong(quatThuong, quaHa, haoDong) {
+  // Bước 1-2: Nạp Chi
+  const guaForNapChi = (haoDong >= 1 && haoDong <= 3) ? quaHa : quatThuong;
+  const diaChi = NAP_CHI_DATA[guaForNapChi][haoDong];
+
+  // Bước 3: Sinh Thành
+  const coord = DIA_CHI_COORD_MAP[diaChi];
+  const sinhThanhValue = SINH_THANH_TABLE[coord[0]][coord[1]];
+
+  // Bước 4: Họ của quẻ
+  const hoInfo = calcHoCuaQue(quatThuong, quaHa);
+  const hoCuaQue = hoInfo.hoCuaQue;
+
+  // Bước 5: Ma trận Sinh Thành gốc
+  const matrixSinhThanh = flyingStarMatrix(hoCuaQue, sinhThanhValue);
+
+  // Bước 6: Ma trận Quẻ Thượng
+  const posThuong = LAC_THU_MAPPING[quatThuong];
+  const centerThuong = matrixSinhThanh[2 - posThuong[0]][posThuong[1]];
+  let matrixQueThuong = flyingStarMatrix(quatThuong, centerThuong);
+  matrixQueThuong = matrixQueThuong.map(row => row.map(v => v === 5 ? centerThuong : v));
+
+  // Bước 6: Ma trận Quẻ Hạ
+  const posHa = LAC_THU_MAPPING[quaHa];
+  const centerHa = matrixSinhThanh[2 - posHa[0]][posHa[1]];
+  let matrixQueHa = flyingStarMatrix(quaHa, centerHa);
+  matrixQueHa = matrixQueHa.map(row => row.map(v => v === 5 ? centerHa : v));
+
+  // Bước 7: Ghép ma trận hoàn chỉnh
+  const finalMagicSquare = [];
+  for (let r = 0; r < 3; r++) {
+    const rowDisplay = [];
+    for (let c = 0; c < 3; c++) {
+      const numThuong = matrixQueThuong[r][c];
+      const numHa = matrixQueHa[r][c];
+      const nameThuong = HAU_THIEN_NUMBER_TO_GUA_NAME[numThuong] || ('Số ' + numThuong + ' không xác định');
+      const nameHa = HAU_THIEN_NUMBER_TO_GUA_NAME[numHa] || ('Số ' + numHa + ' không xác định');
+      rowDisplay.push(nameThuong + '/' + nameHa);
+    }
+    finalMagicSquare.push(rowDisplay);
+  }
+  finalMagicSquare[1][1] = 'null';
+
+  return {
+    guaForNapChi, diaChi, coord, sinhThanhValue,
+    hoInfo, hoCuaQue, matrixSinhThanh,
+    posThuong, centerThuong, matrixQueThuong,
+    posHa, centerHa, matrixQueHa,
+    finalMagicSquare,
+  };
+}
+
+/* =========================================================================
+ * PHẦN 2 — GIAO DIỆN & HIỂN THỊ
+ * ========================================================================= */
+
+const selThuong = document.getElementById('sel-thuong');
+const selHa = document.getElementById('sel-ha');
+const selHao = document.getElementById('sel-hao');
+
+GUA_NAMES.forEach(g => selThuong.add(new Option(g, g)));
+GUA_NAMES.forEach(g => selHa.add(new Option(g, g)));
+for (let h = 1; h <= 6; h++) selHao.add(new Option('Hào ' + h, h));
+
+const PRESETS = [
+  { thuong: 'Càn', ha: 'Khôn', hao: 1 },
+  { thuong: 'Chấn', ha: 'Khảm', hao: 4 },
+  { thuong: 'Ly', ha: 'Đoài', hao: 6 },
+];
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const p = PRESETS[parseInt(btn.dataset.preset)];
+    selThuong.value = p.thuong; selHa.value = p.ha; selHao.value = p.hao;
+    cast();
+  });
+});
+
+const themeBtn = document.getElementById('theme-btn');
+themeBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  themeBtn.textContent = next === 'dark' ? '☀️ Giao diện Sáng' : '🌙 Giao diện Tối';
+  if (document.getElementById('result').style.display === 'block') cast();
+});
+
+function svgEl(tag, attrs) {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+/* --- 4x4 grid (Bảng Sinh Thành) --- */
+const CELL4 = 64, ORIGIN4 = 6;
+function cellCenter4(r, c) { return [ORIGIN4 + c * CELL4 + CELL4 / 2, ORIGIN4 + r * CELL4 + CELL4 / 2]; }
+
+function renderSinhThanhGrid(svgId, highlightCoord) {
+  const svg = document.getElementById(svgId);
+  svg.innerHTML = "";
+  const size = ORIGIN4 * 2 + CELL4 * 4;
+  svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+
+  for (let i = 0; i <= 4; i++) {
+    svg.appendChild(svgEl("line", { x1: ORIGIN4, y1: ORIGIN4 + i*CELL4, x2: ORIGIN4 + 4*CELL4, y2: ORIGIN4 + i*CELL4, stroke: "var(--line-strong)", "stroke-width": 1 }));
+    svg.appendChild(svgEl("line", { x1: ORIGIN4 + i*CELL4, y1: ORIGIN4, x2: ORIGIN4 + i*CELL4, y2: ORIGIN4 + 4*CELL4, stroke: "var(--line-strong)", "stroke-width": 1 }));
+  }
+
+  const gold = getComputedStyle(document.documentElement).getPropertyValue('--gold').trim();
+
+  // Center 2x2 is unused in Sinh-Thanh table — mark it as void
+  [[1,1],[1,2],[2,1],[2,2]].forEach(([r,c]) => {
+    const [cx, cy] = cellCenter4(r, c);
+    svg.appendChild(svgEl("rect", { x: cx - CELL4/2 + 3, y: cy - CELL4/2 + 3, width: CELL4 - 6, height: CELL4 - 6, fill: "none", stroke: "var(--paper-faint)", "stroke-width": 1, "stroke-dasharray": "3,3", rx: 2 }));
+  });
+
+  for (const [chi, [r, c]] of Object.entries(DIA_CHI_COORD_MAP)) {
+    const val = SINH_THANH_TABLE[r][c];
+    const [cx, cy] = cellCenter4(r, c);
+    const isHl = highlightCoord && highlightCoord[0] === r && highlightCoord[1] === c;
+    if (isHl) {
+      svg.appendChild(svgEl("rect", { x: cx - CELL4/2 + 3, y: cy - CELL4/2 + 3, width: CELL4 - 6, height: CELL4 - 6, fill: gold, opacity: 0.2, stroke: gold, "stroke-width": 1.6, rx: 2 }));
+    }
+    const t1 = svgEl("text", { x: cx, y: cy - 10, "text-anchor": "middle", "dominant-baseline": "middle", fill: isHl ? "var(--paper)" : "var(--paper-dim)", "font-size": 11.5, "font-weight": 500 });
+    t1.textContent = chi;
+    svg.appendChild(t1);
+    const t2 = svgEl("text", { x: cx, y: cy + 12, "text-anchor": "middle", "dominant-baseline": "middle", fill: isHl ? gold : "var(--paper-faint)", "font-size": 15, "font-weight": 600 });
+    t2.textContent = val;
+    svg.appendChild(t2);
+  }
+}
+
+/* --- 3x3 grid (Ma trận Phi Tinh) --- */
+const CELL3 = 68, ORIGIN3 = 8;
+function cellCenter3(r, c) { return [ORIGIN3 + c * CELL3 + CELL3 / 2, ORIGIN3 + r * CELL3 + CELL3 / 2]; }
+
+function renderMatrixGrid(svgId, matrixDisplay, opts) {
+  opts = opts || {};
+  const svg = document.getElementById(svgId);
+  svg.innerHTML = "";
+  const size = ORIGIN3 * 2 + CELL3 * 3;
+  svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+  const color = opts.color || getComputedStyle(document.documentElement).getPropertyValue('--gold').trim();
+
+  const defs = svgEl("defs", {});
+  const marker = svgEl("marker", { id: svgId + "-arrow", markerWidth: 8, markerHeight: 8, refX: 6, refY: 3, orient: "auto", markerUnits: "strokeWidth" });
+  marker.appendChild(svgEl("path", { d: "M0,0 L6,3 L0,6 Z", fill: color }));
+  defs.appendChild(marker);
+  svg.appendChild(defs);
+
+  for (let i = 0; i <= 3; i++) {
+    svg.appendChild(svgEl("line", { x1: ORIGIN3, y1: ORIGIN3 + i*CELL3, x2: ORIGIN3 + 3*CELL3, y2: ORIGIN3 + i*CELL3, stroke: "var(--line-strong)", "stroke-width": 1 }));
+    svg.appendChild(svgEl("line", { x1: ORIGIN3 + i*CELL3, y1: ORIGIN3, x2: ORIGIN3 + i*CELL3, y2: ORIGIN3 + 3*CELL3, stroke: "var(--line-strong)", "stroke-width": 1 }));
+  }
+
+  if (opts.showPath) {
+    const coords = {};
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) {
+      if (coords[matrixDisplay[r][c]] === undefined) coords[matrixDisplay[r][c]] = [r, c];
+    }
+    const path = [];
+    for (let n = 1; n <= 9; n++) if (coords[n]) path.push(coords[n]);
+    for (let i = 1; i < path.length; i++) {
+      const [r1, c1] = path[i-1], [r2, c2] = path[i];
+      const [x1, y1] = cellCenter3(r1, c1), [x2, y2] = cellCenter3(r2, c2);
+      svg.appendChild(svgEl("line", { x1, y1, x2, y2, stroke: color, "stroke-width": 2, "marker-end": `url(#${svgId}-arrow)`, opacity: 0.8 }));
+    }
+    if (coords[9] && coords[1]) {
+      const [r9, c9] = coords[9], [r1c, c1c] = coords[1];
+      const [x1, y1] = cellCenter3(r9, c9), [x2, y2] = cellCenter3(r1c, c1c);
+      svg.appendChild(svgEl("line", { x1, y1, x2, y2, stroke: color, "stroke-width": 2, "stroke-dasharray": "4,4", "marker-end": `url(#${svgId}-arrow)`, opacity: 0.6 }));
+    }
+  }
+
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
+      const isCenter = (r === 1 && c === 1);
+      const [cx, cy] = cellCenter3(r, c);
+      if (isCenter) {
+        svg.appendChild(svgEl("rect", { x: cx - CELL3/2 + 4, y: cy - CELL3/2 + 4, width: CELL3 - 8, height: CELL3 - 8, fill: color, opacity: 0.16, stroke: color, "stroke-width": 1.5, rx: 3 }));
+      }
+      const t = svgEl("text", { x: cx, y: cy, "text-anchor": "middle", "dominant-baseline": "middle", fill: isCenter ? color : "var(--paper)", "font-size": 19, "font-weight": isCenter ? 700 : 500 });
+      t.textContent = matrixDisplay[r][c];
+      svg.appendChild(t);
+    }
+  }
+}
+
+function toggleStepBox(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function cast() {
+  const quatThuong = selThuong.value;
+  const quaHa = selHa.value;
+  const haoDong = parseInt(selHao.value);
+  const showArrows = document.getElementById('toggle-arrows').checked;
+
+  const errorBox = document.getElementById('error-msg');
+  const result = document.getElementById('result');
+
+  let r;
+  try {
+    r = calculateMaPhuong(quatThuong, quaHa, haoDong);
+  } catch (e) {
+    result.style.display = 'none';
+    errorBox.style.display = 'block';
+    errorBox.textContent = 'Lỗi: ' + e.message;
+    return;
+  }
+
+  errorBox.style.display = 'none';
+  result.style.display = 'block';
+
+  const goldColor = getComputedStyle(document.documentElement).getPropertyValue('--gold').trim();
+  const jadeColor = getComputedStyle(document.documentElement).getPropertyValue('--jade').trim();
+
+  // --- Panel 1: Nap Chi ---
+  const guaLabel = (haoDong >= 1 && haoDong <= 3) ? 'Quẻ Hạ' : 'Quẻ Thượng';
+  document.getElementById('napchi-desc').innerHTML =
+    `Hào Động <b>${haoDong}</b> thuộc <b>${guaLabel}</b> (Hào 1–3 tra Quẻ Hạ, Hào 4–6 tra Quẻ Thượng) → dùng quẻ <b>${r.guaForNapChi}</b> để tra Nạp Chi.`;
+
+  const napTable = document.getElementById('napchi-table');
+  const napRow = NAP_CHI_DATA[r.guaForNapChi];
+  let napHtml = '<tr><th>Hào</th>' + [1,2,3,4,5,6].map(h => `<th>${h}</th>`).join('') + '</tr>';
+  napHtml += '<tr class="name-row"><td class="name-cell">' + r.guaForNapChi + '</td>' +
+    [1,2,3,4,5,6].map(h => `<td${h === haoDong ? ' class="hl"' : ''}>${napRow[h]}</td>`).join('') + '</tr>';
+  napTable.innerHTML = napHtml;
+
+  document.getElementById('napchi-diachi').textContent = r.diaChi;
+  document.getElementById('napchi-tag').textContent = `Địa chi của Hào ${haoDong}`;
+
+  document.getElementById('napchi-steps').innerHTML = `
+    <b>Chi tiết Bước 1 — Nạp Chi:</b><br>
+    1. Quẻ Thượng = <b>${quatThuong}</b>, Quẻ Hạ = <b>${quaHa}</b>, Hào Động = <b>${haoDong}</b><br>
+    2. Hào ${haoDong} thuộc khoảng ${haoDong <= 3 ? '1–3 (Quẻ Hạ)' : '4–6 (Quẻ Thượng)'} → dùng quẻ <b>${r.guaForNapChi}</b><br>
+    3. Tra bảng Nạp Chi[${r.guaForNapChi}][${haoDong}] = <b>${r.diaChi}</b>
+  `;
+
+  // --- Panel 2: Sinh Thanh ---
+  renderSinhThanhGrid('svg-sinhthanh', r.coord);
+  document.getElementById('sinhthanh-desc').innerHTML =
+    `Địa chi <b>${r.diaChi}</b> nằm ở tọa độ [${r.coord[0]}, ${r.coord[1]}] trong bảng Sinh Thành. Tâm bảng (2×2 giữa) không dùng.`;
+  document.getElementById('sinhthanh-caption').textContent = `Tọa độ: [${r.coord[0]}, ${r.coord[1]}]`;
+  document.getElementById('sinhthanh-tag').textContent = `Giá trị Sinh Thành = ${r.sinhThanhValue}`;
+
+  document.getElementById('st-steps').innerHTML = `
+    <b>Chi tiết Bước 2 — Sinh Thành:</b><br>
+    1. Địa chi <b>${r.diaChi}</b> → tọa độ [${r.coord[0]}, ${r.coord[1]}]<br>
+    2. Bảng Sinh-Thành[${r.coord[0]}][${r.coord[1]}] = <b>${r.sinhThanhValue}</b>
+  `;
+
+  // --- Panel 3: Ho cua que ---
+  const hi = r.hoInfo;
+  let hoFormula;
+  if (hi.nhanhTinh === 'odd') {
+    hoFormula = `Tổng = ${hi.soTienThienThuong} + ${hi.soTienThienHa} = <b>${hi.total}</b> (lẻ) → Họ = quẻ có số Tiên Thiên (9 − ${hi.soTienThienHa}) = <b>${9 - hi.soTienThienHa}</b> → <b>${hi.hoCuaQue}</b>`;
+  } else {
+    const thuongLoai = CUNG_NGHI_GUAS.has(quatThuong) ? 'Cùng Nghi' : 'Khác Nghi';
+    const haLoai = CUNG_NGHI_GUAS.has(quaHa) ? 'Cùng Nghi' : 'Khác Nghi';
+    const sameGroup = thuongLoai === haLoai;
+    hoFormula = `Tổng = ${hi.soTienThienThuong} + ${hi.soTienThienHa} = <b>${hi.total}</b> (chẵn) → Quẻ Thượng thuộc ${thuongLoai}, Quẻ Hạ thuộc ${haLoai} → ${sameGroup ? 'cùng nhóm' : 'khác nhóm'} → Họ = <b>${sameGroup ? 'Quẻ Hạ' : 'Quẻ Thượng'}</b> = <b>${hi.hoCuaQue}</b>`;
+  }
+  document.getElementById('ho-desc').innerHTML =
+    `Số Tiên Thiên: ${quatThuong} = <b>${hi.soTienThienThuong}</b>, ${quaHa} = <b>${hi.soTienThienHa}</b>. ${hoFormula}`;
+  document.getElementById('ho-symbol').textContent = TRIGRAM_SYMBOL[hi.hoCuaQue];
+  document.getElementById('ho-name').textContent = hi.hoCuaQue;
+  document.getElementById('ho-tag').textContent = 'Họ của quẻ';
+
+  document.getElementById('ho-steps').innerHTML = `
+    <b>Chi tiết Bước 3 — Họ của quẻ:</b><br>
+    1. Số Tiên Thiên: ${quatThuong}=<b>${hi.soTienThienThuong}</b>, ${quaHa}=<b>${hi.soTienThienHa}</b><br>
+    2. Tổng = <b>${hi.total}</b> (${hi.nhanhTinh === 'odd' ? 'lẻ' : 'chẵn'})<br>
+    3. ${hoFormula}
+  `;
+
+  // --- Panel 4: Ma tran Sinh Thanh (base) ---
+  const displaySinhThanh = reversedRows(r.matrixSinhThanh);
+  renderMatrixGrid('svg-matsinhthanh', displaySinhThanh, { color: goldColor, showPath: showArrows });
+  document.getElementById('matsinhthanh-desc').innerHTML =
+    `Ma trận Phi Tinh của quẻ <b>${r.hoCuaQue}</b> với trung cung = <b>${r.sinhThanhValue}</b> (flying_star_matrix). Ma trận này là gốc để tra trung cung cho Quẻ Thượng và Quẻ Hạ qua bản đồ Lạc Thư.`;
+  document.getElementById('matsinhthanh-caption').textContent = `Họ của quẻ: ${r.hoCuaQue} · Trung cung: ${r.sinhThanhValue}`;
+
+  // --- Panel 5a: Que Thuong matrix ---
+  const displayThuong = reversedRows(r.matrixQueThuong);
+  renderMatrixGrid('svg-thuong', displayThuong, { color: goldColor, showPath: showArrows });
+  document.getElementById('thuong-title').textContent = `Ma trận Quẻ Thượng — ${quatThuong}`;
+  document.getElementById('thuong-desc').innerHTML =
+    `Vị trí <b>${quatThuong}</b> trong Lạc Thư: [${r.posThuong[0]}, ${r.posThuong[1]}] → trung cung = Ma trận Sinh Thành[${2 - r.posThuong[0]}][${r.posThuong[1]}] = <b>${r.centerThuong}</b>. Các ô có giá trị 5 (nếu có) được thay bằng trung cung.`;
+  document.getElementById('thuong-caption').textContent = `Trung cung: ${r.centerThuong}`;
+
+  // --- Panel 5b: Que Ha matrix ---
+  const displayHa = reversedRows(r.matrixQueHa);
+  renderMatrixGrid('svg-ha', displayHa, { color: jadeColor, showPath: showArrows });
+  document.getElementById('ha-title').textContent = `Ma trận Quẻ Hạ — ${quaHa}`;
+  document.getElementById('ha-desc').innerHTML =
+    `Vị trí <b>${quaHa}</b> trong Lạc Thư: [${r.posHa[0]}, ${r.posHa[1]}] → trung cung = Ma trận Sinh Thành[${2 - r.posHa[0]}][${r.posHa[1]}] = <b>${r.centerHa}</b>. Các ô có giá trị 5 (nếu có) được thay bằng trung cung.`;
+  document.getElementById('ha-caption').textContent = `Trung cung: ${r.centerHa}`;
+
+  // --- Final magic square ---
+  const finalGrid = document.getElementById('final-grid');
+  finalGrid.innerHTML = '';
+  const displayFinal = reversedRows(r.finalMagicSquare);
+  for (let rr = 0; rr < 3; rr++) {
+    for (let cc = 0; cc < 3; cc++) {
+      const cell = document.createElement('div');
+      const val = displayFinal[rr][cc];
+      cell.className = 'final-cell' + (val === 'null' ? ' center' : '');
+      cell.textContent = val;
+      finalGrid.appendChild(cell);
+    }
+  }
+
+  // --- Steps summary ---
+  document.getElementById('steps-body').innerHTML = `
+    - Quẻ Thượng: <b>${quatThuong}</b> · Quẻ Hạ: <b>${quaHa}</b> · Hào Động: <b>${haoDong}</b><br>
+    - Quẻ tra Nạp Chi: <b>${r.guaForNapChi}</b> → Địa chi: <b>${r.diaChi}</b><br>
+    - Tọa độ Địa chi: [${r.coord[0]}, ${r.coord[1]}] → Giá trị Sinh Thành: <b>${r.sinhThanhValue}</b><br>
+    - Họ của quẻ: <b>${r.hoCuaQue}</b> (Tổng Tiên Thiên = ${hi.total}, ${hi.nhanhTinh === 'odd' ? 'lẻ' : 'chẵn'})<br>
+    - Ma trận Sinh Thành (${r.hoCuaQue}, trung cung ${r.sinhThanhValue}): ${JSON.stringify(displaySinhThanh)}<br>
+    - Ma trận Quẻ Thượng (${quatThuong}, trung cung ${r.centerThuong}): ${JSON.stringify(displayThuong)}<br>
+    - Ma trận Quẻ Hạ (${quaHa}, trung cung ${r.centerHa}): ${JSON.stringify(displayHa)}<br>
+    - Ma phương hoàn chỉnh: ${JSON.stringify(displayFinal)}
+  `;
+
+  document.getElementById('input-echo').textContent = `Quẻ Thượng ${quatThuong} · Quẻ Hạ ${quaHa} · Hào Động ${haoDong}`;
+}
+
+document.getElementById('cast-btn').addEventListener('click', cast);
+document.getElementById('toggle-arrows').addEventListener('change', () => {
+  if (document.getElementById('result').style.display === 'block') cast();
+});
+
+// Load mặc định
+selThuong.value = 'Càn'; selHa.value = 'Khôn'; selHao.value = '1';
+</script>
+</body>
+</html>

@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đồ Thư Phi Bàn Độn — Lập Quẻ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-900:#14151a;
+    --ink-850:#191b21;
+    --ink-800:#1d1f27;
+    --ink-750:#242631;
+    --paper:#e7dfc9;
+    --paper-dim:rgba(231,223,201,0.58);
+    --paper-faint:rgba(231,223,201,0.32);
+    --gold:#c19a4b;
+    --gold-dim:rgba(193,154,75,0.28);
+    --jade:#5b9686;
+    --jade-dim:rgba(91,150,134,0.28);
+    --cinnabar:#c24632;
+    --cinnabar-dim:rgba(194,70,50,0.25);
+    --line:rgba(231,223,201,0.10);
+    --line-strong:rgba(231,223,201,0.18);
+    --radius:3px;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(193,154,75,0.06), transparent 60%),
+      var(--ink-900);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:56px 20px 100px;
+    line-height:1.5;
+  }
+
+  .wrap{max-width:960px;margin:0 auto;}
+
+  /* ---------- Header ---------- */
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+
+  h1{
+    font-family:'Spectral',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(34px,5.2vw,52px);
+    margin:0 0 10px;
+    letter-spacing:0.01em;
+    color:var(--paper);
+  }
+
+  .subtitle{
+    font-size:15px;
+    color:var(--paper-dim);
+    max-width:56ch;
+    margin:0 0 28px;
+  }
+
+  .rule{
+    height:1px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--line) 40%, transparent 100%);
+    margin:0 0 40px;
+  }
+
+  /* ---------- Input console ---------- */
+
+  .console{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 28px 24px;
+    margin-bottom:44px;
+  }
+
+  .console-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-bottom:22px;
+  }
+
+  @media (max-width:640px){
+    .console-grid{grid-template-columns:repeat(2,1fr);}
+  }
+
+  .field label{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:8px;
+  }
+
+  .field select{
+    width:100%;
+    background:var(--ink-850);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:500;
+    padding:10px 12px;
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c19a4b'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    cursor:pointer;
+    transition:border-color .15s ease;
+  }
+  .field select:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .field select:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+
+  .console-actions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+
+  .presets{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+
+  .arrow-toggle{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding-right:14px;
+    margin-right:6px;
+    border-right:1px solid var(--line);
+    cursor:pointer;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+  .arrow-toggle .switch{
+    position:relative;
+    width:34px;
+    height:19px;
+    background:var(--ink-750);
+    border:1px solid var(--line-strong);
+    border-radius:20px;
+    transition:background .15s ease, border-color .15s ease;
+    flex:0 0 auto;
+  }
+  .arrow-toggle .switch::after{
+    content:"";
+    position:absolute;
+    top:2px;
+    left:2px;
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:var(--paper-dim);
+    transition:transform .18s ease, background .15s ease;
+  }
+  .arrow-toggle input{
+    position:absolute;
+    opacity:0;
+    width:0;
+    height:0;
+  }
+  .arrow-toggle input:checked + .switch{
+    background:var(--gold-dim);
+    border-color:var(--gold);
+  }
+  .arrow-toggle input:checked + .switch::after{
+    transform:translateX(15px);
+    background:var(--gold);
+  }
+  .arrow-toggle input:focus-visible + .switch{
+    outline:2px solid var(--gold);
+    outline-offset:2px;
+  }
+  .arrow-toggle .toggle-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.03em;
+    color:var(--paper-dim);
+  }
+  @media (max-width:560px){
+    .arrow-toggle{border-right:none;padding-right:0;margin-right:0;}
+  }
+
+  .preset-btn{
+    background:transparent;
+    border:1px solid var(--line-strong);
+    color:var(--paper-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.04em;
+    padding:7px 12px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .preset-btn:hover{border-color:var(--jade);color:var(--paper);}
+
+  .cast-btn{
+    background:var(--cinnabar);
+    color:var(--paper);
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    letter-spacing:0.04em;
+    padding:13px 30px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, background .15s ease;
+    box-shadow:0 0 0 1px rgba(194,70,50,0.4), 0 6px 18px -6px rgba(194,70,50,0.5);
+  }
+  .cast-btn:hover{background:#d15139;}
+  .cast-btn:active{transform:scale(0.97);}
+  .cast-btn:focus-visible{outline:2px solid var(--paper);outline-offset:3px;}
+
+  .error-msg{
+    display:none;
+    background:var(--cinnabar-dim);
+    border:1px solid var(--cinnabar);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+    color:var(--paper);
+    margin-bottom:32px;
+  }
+
+  /* ---------- Result area ---------- */
+
+  #result{display:none;}
+
+  .step-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .step-label.gold{color:var(--gold);}
+  .step-label.jade{color:var(--jade);}
+
+  .panels{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+    margin-bottom:40px;
+  }
+  @media (max-width:700px){
+    .panels{grid-template-columns:1fr;}
+  }
+
+  .panel{
+    position:relative;
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+
+  .panel-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+  }
+
+  .panel-title{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:19px;
+    margin:0 0 4px;
+  }
+  .panel-desc{
+    font-size:12.5px;
+    color:var(--paper-dim);
+    margin:0 0 18px;
+    min-height:32px;
+  }
+
+  .grid-wrap{position:relative;width:100%;max-width:280px;margin:0 auto;}
+  .grid-svg{width:100%;height:auto;display:block;}
+
+  .result-chip{
+    margin-top:16px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--paper-dim);
+  }
+  .result-chip .name{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--paper);
+  }
+  .result-chip .symbol{font-size:20px;}
+
+  /* ---------- Hexagram Graphic & Dual View ---------- */
+
+  .hexagram-section{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:36px 32px;
+    margin-bottom:28px;
+  }
+
+  .hexagram-header{
+    text-align:center;
+    margin-bottom:30px;
+  }
+  .hexagram-header .eyebrow{margin-bottom:8px;}
+  .hexagram-name{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:36px;
+    color:var(--paper);
+  }
+
+  .hexagram-dual-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .hexagram-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--ink-850);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    min-width: 260px;
+  }
+  .hexagram-card-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .hexagram-card-title {
+    font-family: 'Spectral', serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--paper);
+  }
+  .hexagram-card-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--paper-dim);
+    margin-bottom: 16px;
+  }
+
+  .bars{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:180px;
+  }
+
+  .bar-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:2px 0;
+  }
+
+  .bar-track{
+    flex:1;
+    height:14px;
+    display:flex;
+    gap:8px;
+  }
+  .bar-seg{
+    flex:1;
+    background:var(--paper);
+    border-radius:2px;
+    opacity:0.88;
+  }
+  .bar-row.thuong .bar-seg{background:var(--gold);}
+  .bar-row.ha .bar-seg{background:var(--jade);}
+  .bar-row.active .bar-seg{
+    background:var(--cinnabar);
+    opacity:1;
+    box-shadow:0 0 10px rgba(194,70,50,0.6);
+  }
+
+  .bar-idx{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--paper-faint);
+    width:16px;
+  }
+  .bar-row.active .bar-idx{color:var(--cinnabar); font-weight: bold;}
+
+  .info-meta {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    border-top: 1px dashed var(--line-strong);
+    padding-top: 20px;
+  }
+  @media(max-width: 600px){ .info-meta { grid-template-columns: 1fr; } }
+
+  .info-block .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:6px;
+  }
+  .info-block .value{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:22px;
+  }
+  .info-block .formula{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--paper-faint);
+    margin-top:4px;
+  }
+
+  footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--paper-faint);
+    font-family:'IBM Plex Mono',monospace;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Thuật toán lập quẻ</div>
+  <h1>Đồ Thư Phi Bàn Độn</h1>
+  <p class="subtitle">Lập quẻ Thượng – Hạ từ Giờ, Ngày, Tháng âm lịch và Can của ngày, theo phương pháp phi bàn độn trên Hà Đồ &amp; Lạc Thư.</p>
+  <div class="rule"></div>
+
+  <div class="console">
+    <div class="console-grid">
+      <div class="field">
+        <label for="sel-gio">Giờ lập quẻ</label>
+        <select id="sel-gio"></select>
+      </div>
+      <div class="field">
+        <label for="sel-can">Can của ngày</label>
+        <select id="sel-can"></select>
+      </div>
+      <div class="field">
+        <label for="sel-ngay">Ngày</label>
+        <select id="sel-ngay"></select>
+      </div>
+      <div class="field">
+        <label for="sel-thang">Tháng</label>
+        <select id="sel-thang"></select>
+      </div>
+    </div>
+    <div class="console-actions">
+      <div class="presets">
+        <label class="arrow-toggle">
+          <input type="checkbox" id="arrow-toggle">
+          <span class="switch"></span>
+          <span class="toggle-label">Hiện mũi tên</span>
+        </label>
+        <button class="preset-btn" data-preset="0">Ví dụ cơ bản</button>
+        <button class="preset-btn" data-preset="1">Sóng thần 2004</button>
+        <button class="preset-btn" data-preset="2">Mất điện 2002</button>
+      </div>
+      <button class="cast-btn" id="cast-btn">Lập quẻ</button>
+    </div>
+  </div>
+
+  <div class="error-msg" id="error-msg"></div>
+
+  <div id="result">
+
+    <div class="panels">
+      <div class="panel thuong">
+        <div class="panel-head">
+          <div>
+            <div class="step-label gold">Bước 1 · Quẻ Thượng</div>
+            <h3 class="panel-title">Hà Đồ &amp; Bát Môn</h3>
+          </div>
+        </div>
+        <p class="panel-desc" id="thuong-desc"></p>
+        <div class="grid-wrap">
+          <svg class="grid-svg" id="svg-hado" viewBox="0 0 240 240"></svg>
+        </div>
+        <div class="result-chip">
+          <span class="symbol" id="thuong-symbol"></span>
+          <span class="name" id="thuong-name"></span>
+        </div>
+      </div>
+
+      <div class="panel ha">
+        <div class="panel-head">
+          <div>
+            <div class="step-label jade">Bước 2 · Quẻ Hạ</div>
+            <h3 class="panel-title">Lạc Thư &amp; đường 9 ô</h3>
+          </div>
+        </div>
+        <p class="panel-desc" id="ha-desc"></p>
+        <div class="grid-wrap">
+          <svg class="grid-svg" id="svg-lacthu" viewBox="0 0 240 240"></svg>
+        </div>
+        <div class="result-chip">
+          <span class="symbol" id="ha-symbol"></span>
+          <span class="name" id="ha-name"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hexagram Section Displaying Gốc, Biến, Hỗ -->
+    <div class="hexagram-section">
+      <div class="hexagram-header">
+        <div class="eyebrow">Kết Quả Lập Quẻ</div>
+        <div class="hexagram-name" id="goc-fullname"></div>
+      </div>
+
+      <div class="hexagram-dual-container">
+        <!-- Quẻ Gốc -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag">Quẻ Gốc</div>
+          <div class="hexagram-card-title" id="card-goc-title"></div>
+          <div class="hexagram-card-sub" id="card-goc-symbols"></div>
+          <div class="bars" id="bars-goc"></div>
+        </div>
+
+        <!-- Quẻ Biến -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag" style="color:var(--cinnabar)">Quẻ Biến</div>
+          <div class="hexagram-card-title" id="card-bien-title"></div>
+          <div class="hexagram-card-sub" id="card-bien-symbols"></div>
+          <div class="bars" id="bars-bien"></div>
+        </div>
+
+        <!-- Quẻ Hỗ -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag" style="color:var(--jade)">Quẻ Hỗ</div>
+          <div class="hexagram-card-title" id="card-ho-title"></div>
+          <div class="hexagram-card-sub" id="card-ho-symbols"></div>
+          <div class="bars" id="bars-ho"></div>
+        </div>
+      </div>
+
+      <div class="info-meta">
+        <div class="info-block">
+          <div class="label">Hào Động</div>
+          <div class="value" id="haodong-value"></div>
+          <div class="formula" id="haodong-formula"></div>
+        </div>
+        <div class="info-block">
+          <div class="label">Mã Nhị Phân (Hào 1 → 6)</div>
+          <div class="formula">Quẻ Gốc: <b id="goc-binary"></b></div>
+          <div class="formula">Quẻ Biến: <b id="bien-binary" style="color:var(--cinnabar)"></b></div>
+          <div class="formula">Quẻ Hỗ: <b id="ho-binary" style="color:var(--jade)"></b></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>Đồ Thư Phi Bàn Độn — Công cụ lập quẻ chuẩn thuật toán</span>
+    <span id="input-echo"></span>
+  </footer>
+
+</div>
+
+<script>
+/* =========================================================================
+ * BẢNG 64 QUẺ DỊCH TRA CỨU THEO TRIGRAM (TỪ FILE 01-QUE_NGU_LINH_V3.HTML)
+ * ========================================================================= */
+
+const TRIGRAM_TUONG = {
+  "Càn": "Thiên", "Đoài": "Trạch", "Ly": "Hỏa", "Chấn": "Lôi",
+  "Tốn": "Phong", "Khảm": "Thủy", "Cấn": "Sơn", "Khôn": "Địa"
+};
+
+const DICH_64_BY_PAIR = {
+  "Càn_Càn": "Thuần Càn", "Càn_Đoài": "Thiên Trạch Lý", "Càn_Ly": "Thiên Hỏa Đồng Nhân", "Càn_Chấn": "Thiên Lôi Vô Vọng",
+  "Càn_Tốn": "Thiên Phong Cấu", "Càn_Khảm": "Thiên Thủy Tụng", "Càn_Cấn": "Thiên Sơn Độn", "Càn_Khôn": "Thiên Địa Bĩ",
+
+  "Đoài_Càn": "Trạch Thiên Quải", "Đoài_Đoài": "Thuần Đoài", "Đoài_Ly": "Trạch Hỏa Cách", "Đoài_Chấn": "Trạch Lôi Tùy",
+  "Đoài_Tốn": "Trạch Phong Đại Quá", "Đoài_Khảm": "Trạch Thủy Khốn", "Đoài_Cấn": "Trạch Sơn Hàm", "Đoài_Khôn": "Trạch Địa Tụy",
+
+  "Ly_Càn": "Hỏa Thiên Đại Hữu", "Ly_Đoài": "Hỏa Trạch Khuê", "Ly_Ly": "Thuần Ly", "Ly_Chấn": "Hỏa Lôi Phệ Hạp",
+  "Ly_Tốn": "Hỏa Phong Đỉnh", "Ly_Khảm": "Hỏa Thủy Vị Tế", "Ly_Cấn": "Hỏa Sơn Lữ", "Ly_Khôn": "Hỏa Địa Tấn",
+
+  "Chấn_Càn": "Lôi Thiên Đại Tráng", "Chấn_Đoài": "Lôi Trạch Quy Muội", "Chấn_Ly": "Lôi Hỏa Phong", "Chấn_Chấn": "Thuần Chấn",
+  "Chấn_Tốn": "Lôi Phong Hằng", "Chấn_Khảm": "Lôi Thủy Giải", "Chấn_Cấn": "Lôi Sơn Tiểu Quá", "Chấn_Khôn": "Lôi Địa Dự",
+
+  "Tốn_Càn": "Phong Thiên Tiểu Súc", "Tốn_Đoài": "Phong Trạch Trung Phu", "Tốn_Ly": "Phong Hỏa Gia Nhân", "Tốn_Chấn": "Phong Lôi Ích",
+  "Tốn_Tốn": "Thuần Tốn", "Tốn_Khảm": "Phong Thủy Hoán", "Tốn_Cấn": "Phong Sơn Tiệm", "Tốn_Khôn": "Phong Địa Quan",
+
+  "Khảm_Càn": "Thủy Thiên Nhu", "Khảm_Đoài": "Thủy Trạch Tiết", "Khảm_Ly": "Thủy Hỏa Ký Tế", "Khảm_Chấn": "Thủy Lôi Truân",
+  "Khảm_Tốn": "Thủy Phong Tỉnh", "Khảm_Khảm": "Thuần Khảm", "Khảm_Cấn": "Thủy Sơn Kiển", "Khảm_Khôn": "Thủy Địa Tỷ",
+
+  "Cấn_Càn": "Sơn Thiên Đại Súc", "Cấn_Đoài": "Sơn Trạch Tổn", "Cấn_Ly": "Sơn Hỏa Bí", "Cấn_Chấn": "Sơn Lôi Di",
+  "Cấn_Tốn": "Sơn Phong Cổ", "Cấn_Khảm": "Sơn Thủy Mông", "Cấn_Cấn": "Thuần Cấn", "Cấn_Khôn": "Sơn Địa Bác",
+
+  "Khôn_Càn": "Địa Thiên Thái", "Khôn_Đoài": "Địa Trạch Lâm", "Khôn_Ly": "Địa Hỏa Minh Di", "Khôn_Chấn": "Địa Lôi Phục",
+  "Khôn_Tốn": "Địa Phong Thăng", "Khôn_Khảm": "Địa Thủy Sư", "Khôn_Cấn": "Địa Sơn Khiêm", "Khôn_Khôn": "Thuần Khôn"
+};
+
+function getTenQueDichFromTrigrams(upper, lower) {
+  const key = `${upper}_${lower}`;
+  if (DICH_64_BY_PAIR[key]) return DICH_64_BY_PAIR[key];
+  if (upper === lower) return `Thuần ${upper}`;
+  return `${TRIGRAM_TUONG[upper]} ${TRIGRAM_TUONG[lower]}`;
+}
+
+/* =========================================================================
+ * PHẦN 1 — LÕI THUẬT TOÁN ĐỒ THƯ PHI BÀN ĐỘN (GỐC)
+ * ========================================================================= */
+
+const BAT_QUAI = [
+  { name: "Càn",  tienThien: 1, hauThien: 6, binary: "111", symbol: "☰" },
+  { name: "Đoài", tienThien: 2, hauThien: 7, binary: "110", symbol: "☱" },
+  { name: "Ly",   tienThien: 3, hauThien: 9, binary: "101", symbol: "☲" },
+  { name: "Chấn", tienThien: 4, hauThien: 3, binary: "100", symbol: "☳" },
+  { name: "Tốn",  tienThien: 5, hauThien: 4, binary: "011", symbol: "☴" },
+  { name: "Khảm", tienThien: 6, hauThien: 1, binary: "010", symbol: "☵" },
+  { name: "Cấn",  tienThien: 7, hauThien: 8, binary: "001", symbol: "☶" },
+  { name: "Khôn", tienThien: 8, hauThien: 2, binary: "000", symbol: "☷" },
+];
+
+const TIEN_THIEN_TO_TRIGRAM = Object.fromEntries(BAT_QUAI.map(t => [t.tienThien, t]));
+const HAU_THIEN_TO_TRIGRAM = Object.fromEntries(BAT_QUAI.map(t => [t.hauThien, t]));
+const BINARY_TO_TRIGRAM = Object.fromEntries(BAT_QUAI.map(t => [t.binary, t]));
+const TRUNG_CUNG_TRIGRAM = BAT_QUAI.find(t => t.name === "Khôn");
+
+const HA_DO_MATRIX = [[2, 1, 5], [3, null, 6], [4, 8, 7]];
+const LAC_THU_MATRIX = [[4, 9, 2], [3, 5, 7], [8, 1, 6]];
+const GIO_MATRIX = [["Tị/Thìn", "Ngọ", "Mùi/Thân"], ["Mão", null, "Dậu"], ["Dần/Sửu", "Tý", "Tuất/Hợi"]];
+const THANG_MATRIX = [["6/5", "7", "8/9"], ["4", null, "10"], ["3/2", "1", "11/12"]];
+
+const BAT_MON_PATTERN = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]];
+const LAC_THU_PATTERN = [[0, 0], [1, 1], [2, 2], [1, 2], [2, 0], [0, 1], [2, 1], [0, 2], [1, 0]];
+
+const THIEN_CAN_STEPS = { "Giáp":0,"Ất":1,"Bính":2,"Đinh":3,"Mậu":4,"Kỷ":5,"Canh":6,"Tân":7,"Nhâm":8,"Quý":9 };
+const DIA_CHI_ORDINAL = { "Tý":0,"Sửu":1,"Dần":2,"Mão":3,"Thìn":4,"Tị":5,"Ngọ":6,"Mùi":7,"Thân":8,"Dậu":9,"Tuất":10,"Hợi":11 };
+
+const THIEN_CAN_LIST = Object.keys(THIEN_CAN_STEPS);
+const DIA_CHI_LIST = Object.keys(DIA_CHI_ORDINAL);
+
+function coordEq(a, b) { return a[0] === b[0] && a[1] === b[1]; }
+function indexOfCoord(pattern, coord) {
+  for (let i = 0; i < pattern.length; i++) if (coordEq(pattern[i], coord)) return i;
+  return -1;
+}
+function findInMatrix(value, matrix) {
+  const v = String(value);
+  for (let r = 0; r < matrix.length; r++) for (let c = 0; c < matrix[r].length; c++) {
+    const cell = matrix[r][c];
+    if (cell === null) continue;
+    if (String(cell).split("/").includes(v)) return [r, c];
+  }
+  throw new Error(`Không tìm thấy '${value}' trong bảng đã cho.`);
+}
+function trigramFromTienThien(number) {
+  if (number === null || number === undefined) return TRUNG_CUNG_TRIGRAM;
+  const t = TIEN_THIEN_TO_TRIGRAM[number];
+  if (!t) throw new Error(`Số Tiên Thiên '${number}' không hợp lệ.`);
+  return t;
+}
+function trigramFromHauThien(number) {
+  if (number === null || number === undefined || number === 5) return TRUNG_CUNG_TRIGRAM;
+  const t = HAU_THIEN_TO_TRIGRAM[number];
+  if (!t) throw new Error(`Số Hậu Thiên '${number}' không hợp lệ.`);
+  return t;
+}
+
+function getQueThuong(gio, canNgay) {
+  if (!(canNgay in THIEN_CAN_STEPS)) throw new Error(`Can '${canNgay}' không hợp lệ.`);
+  const startCoord = findInMatrix(gio, GIO_MATRIX);
+  const startIdx = indexOfCoord(BAT_MON_PATTERN, startCoord);
+  const steps = THIEN_CAN_STEPS[canNgay];
+  const finalIdx = (startIdx + steps) % BAT_MON_PATTERN.length;
+  const finalCoord = BAT_MON_PATTERN[finalIdx];
+  const number = HA_DO_MATRIX[finalCoord[0]][finalCoord[1]];
+  const trigram = trigramFromTienThien(number);
+  const path = [];
+  for (let i = 0; i <= steps; i++) {
+    path.push(BAT_MON_PATTERN[(startIdx + i) % BAT_MON_PATTERN.length]);
+  }
+  return { trigram, number, startCoord, finalCoord, steps, path };
+}
+
+function getQueHa(thang, ngay) {
+  const startCoord = findInMatrix(thang, THANG_MATRIX);
+  const startIdx = indexOfCoord(LAC_THU_PATTERN, startCoord);
+  const steps = ngay - 1;
+  const finalIdx = (startIdx + steps) % LAC_THU_PATTERN.length;
+  const finalCoord = LAC_THU_PATTERN[finalIdx];
+  const number = LAC_THU_MATRIX[finalCoord[0]][finalCoord[1]];
+  const trigram = trigramFromHauThien(number);
+  const path = [];
+  for (let i = 0; i <= steps; i++) {
+    path.push(LAC_THU_PATTERN[(startIdx + i) % LAC_THU_PATTERN.length]);
+  }
+  return { trigram, number, startCoord, finalCoord, steps, path };
+}
+
+function flipBit(binaryStr, position) {
+  const idx = position - 1;
+  const chars = binaryStr.split("");
+  chars[idx] = chars[idx] === "1" ? "0" : "1";
+  return chars.join("");
+}
+
+function calculateQueHo(originalQueBinary) {
+  const queHoLowerBinary = originalQueBinary.slice(1, 4);
+  const queHoUpperBinary = originalQueBinary.slice(2, 5);
+
+  const lowerTrigram = BINARY_TO_TRIGRAM[queHoLowerBinary];
+  const upperTrigram = BINARY_TO_TRIGRAM[queHoUpperBinary];
+  const queHoFullBinary = queHoLowerBinary + queHoUpperBinary;
+
+  return {
+    upperName: upperTrigram.name,
+    lowerName: lowerTrigram.name,
+    upperTrigram,
+    lowerTrigram,
+    queHoFullBinary
+  };
+}
+
+function lapQueDoThu(gio, canNgay, ngay, thang) {
+  const thuong = getQueThuong(gio, canNgay);
+  const ha = getQueHa(thang, ngay);
+
+  const gocBinary = ha.trigram.binary + thuong.trigram.binary; // Hào 1-3: Hạ, Hào 4-6: Thượng
+  const gocName = `${thuong.trigram.name} / ${ha.trigram.name}`;
+  const tenQueGocDich = getTenQueDichFromTrigrams(thuong.trigram.name, ha.trigram.name);
+
+  const gioVal = DIA_CHI_ORDINAL[gio] + 1;
+  const haoDong = ((thang + gioVal - 1) % 6) + 1;
+
+  const bienBinary = flipBit(gocBinary, haoDong);
+  const bienHaBinary = bienBinary.slice(0, 3);
+  const bienThuongBinary = bienBinary.slice(3, 6);
+  const bienHaTrigram = BINARY_TO_TRIGRAM[bienHaBinary];
+  const bienThuongTrigram = BINARY_TO_TRIGRAM[bienThuongBinary];
+  const tenQueBienDich = getTenQueDichFromTrigrams(bienThuongTrigram.name, bienHaTrigram.name);
+
+  const ho = calculateQueHo(gocBinary);
+  const tenQueHoDich = getTenQueDichFromTrigrams(ho.upperName, ho.lowerName);
+
+  return {
+    thuong, ha,
+    gocBinary, gocName, tenQueGocDich,
+    haoDong, gioVal,
+    bienBinary, bienThuongTrigram, bienHaTrigram, tenQueBienDich,
+    ho, tenQueHoDich
+  };
+}
+
+/* =========================================================================
+ * PHẦN 2 — GIAO DIỆN & VẼ SVG / BARS
+ * ========================================================================= */
+
+const selGio = document.getElementById("sel-gio");
+const selCan = document.getElementById("sel-can");
+const selNgay = document.getElementById("sel-ngay");
+const selThang = document.getElementById("sel-thang");
+
+DIA_CHI_LIST.forEach(g => selGio.add(new Option(`Giờ ${g}`, g)));
+THIEN_CAN_LIST.forEach(c => selCan.add(new Option(c, c)));
+for (let d = 1; d <= 30; d++) selNgay.add(new Option(`Ngày ${d}`, d));
+for (let m = 1; m <= 12; m++) selThang.add(new Option(`Tháng ${m}`, m));
+
+const PRESETS = [
+  { gio: "Ngọ", can: "Giáp", ngay: 1, thang: 1 },
+  { gio: "Thân", can: "Mậu", ngay: 26, thang: 12 },
+  { gio: "Tý", can: "Bính", ngay: 8, thang: 6 },
+];
+
+document.querySelectorAll(".preset-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const p = PRESETS[parseInt(btn.dataset.preset)];
+    selGio.value = p.gio;
+    selCan.value = p.can;
+    selNgay.value = p.ngay;
+    selThang.value = p.thang;
+    cast();
+  });
+});
+
+const CELL = 72;
+const GAP_ORIGIN = 12;
+function cellCenter(r, c) {
+  return [GAP_ORIGIN + c * CELL + CELL / 2, GAP_ORIGIN + r * CELL + CELL / 2];
+}
+
+function svgEl(tag, attrs) {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+function renderGridBase(svgId, matrix, pathColor) {
+  const svg = document.getElementById(svgId);
+  svg.innerHTML = "";
+  const size = GAP_ORIGIN * 2 + CELL * 3;
+  svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+
+  const defs = svgEl("defs", {});
+  const marker = svgEl("marker", {
+    id: svgId + "-arrow",
+    markerWidth: 8,
+    markerHeight: 8,
+    refX: 6,
+    refY: 3,
+    orient: "auto",
+    markerUnits: "strokeWidth"
+  });
+  marker.appendChild(svgEl("path", { d: "M0,0 L6,3 L0,6 Z", fill: pathColor }));
+  defs.appendChild(marker);
+  svg.appendChild(defs);
+
+  for (let i = 0; i <= 3; i++) {
+    svg.appendChild(svgEl("line", {
+      x1: GAP_ORIGIN, y1: GAP_ORIGIN + i * CELL,
+      x2: GAP_ORIGIN + 3 * CELL, y2: GAP_ORIGIN + i * CELL,
+      stroke: "var(--line-strong)", "stroke-width": 1
+    }));
+    svg.appendChild(svgEl("line", {
+      x1: GAP_ORIGIN + i * CELL, y1: GAP_ORIGIN,
+      x2: GAP_ORIGIN + i * CELL, y2: GAP_ORIGIN + 3 * CELL,
+      stroke: "var(--line-strong)", "stroke-width": 1
+    }));
+  }
+
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
+      const [cx, cy] = cellCenter(r, c);
+      const val = matrix[r][c];
+      const textVal = val === null ? "—" : String(val);
+      const txt = svgEl("text", {
+        x: cx, y: cy - 6,
+        "text-anchor": "middle", "dominant-baseline": "middle",
+        fill: "var(--paper-faint)", "font-size": 11, "class": "cell-num"
+      });
+      txt.textContent = textVal;
+      svg.appendChild(txt);
+    }
+  }
+}
+
+function drawCellHighlight(svg, coord, color) {
+  const [cx, cy] = cellCenter(coord[0], coord[1]);
+  const rect = svgEl("rect", {
+    x: cx - CELL / 2 + 4, y: cy - CELL / 2 + 4,
+    width: CELL - 8, height: CELL - 8,
+    fill: color, opacity: 0.18,
+    stroke: color, "stroke-width": 1.5, rx: 2
+  });
+  svg.appendChild(rect);
+}
+
+function drawCellLabel(svg, coord, labelText, color) {
+  const [cx, cy] = cellCenter(coord[0], coord[1]);
+  const txt = svgEl("text", {
+    x: cx, y: cy + 12,
+    "text-anchor": "middle", "dominant-baseline": "middle",
+    fill: color, "font-size": 13, "class": "cell-label"
+  });
+  txt.textContent = labelText;
+  svg.appendChild(txt);
+}
+
+function drawPathAnimated(svg, svgId, path, color, showArrows) {
+  if (!showArrows) return;
+  for (let i = 1; i < path.length; i++) {
+    const [x1, y1] = cellCenter(path[i-1][0], path[i-1][1]);
+    const [x2, y2] = cellCenter(path[i][0], path[i][1]);
+    const line = svgEl("line", {
+      x1, y1, x2, y2,
+      stroke: color, "stroke-width": 2,
+      "marker-end": `url(#${svgId}-arrow)`,
+      opacity: 0.85
+    });
+    svg.appendChild(line);
+  }
+}
+
+function renderBarsToElement(elementId, binary6, activeHao = 0) {
+  const container = document.getElementById(elementId);
+  container.innerHTML = "";
+  for (let hao = 6; hao >= 1; hao--) {
+    const bit = binary6[hao - 1];
+    const row = document.createElement('div');
+    row.className = 'bar-row ' + (hao >= 4 ? 'thuong' : 'ha') + (hao === activeHao ? ' active' : '');
+
+    const idxLabel = document.createElement('span');
+    idxLabel.className = 'bar-idx';
+    idxLabel.textContent = hao;
+    row.appendChild(idxLabel);
+
+    const track = document.createElement('div');
+    track.className = 'bar-track';
+    if (bit === '1') {
+      const seg = document.createElement('div');
+      seg.className = 'bar-seg';
+      track.appendChild(seg);
+    } else {
+      const seg1 = document.createElement('div'); seg1.className = 'bar-seg';
+      const seg2 = document.createElement('div'); seg2.className = 'bar-seg';
+      track.appendChild(seg1); track.appendChild(seg2);
+    }
+    row.appendChild(track);
+    container.appendChild(row);
+  }
+}
+
+function cast() {
+  const gio = selGio.value;
+  const can = selCan.value;
+  const ngay = parseInt(selNgay.value, 10);
+  const thang = parseInt(selThang.value, 10);
+  const showArrows = document.getElementById("arrow-toggle").checked;
+
+  const errorBox = document.getElementById("error-msg");
+  const result = document.getElementById("result");
+
+  let r;
+  try {
+    r = lapQueDoThu(gio, can, ngay, thang);
+  } catch (e) {
+    result.style.display = "none";
+    errorBox.style.display = "block";
+    errorBox.textContent = "Lỗi: " + e.message;
+    return;
+  }
+
+  errorBox.style.display = "none";
+  result.style.display = "block";
+
+  const goldColor = getComputedStyle(document.documentElement).getPropertyValue('--gold').trim();
+  const jadeColor = getComputedStyle(document.documentElement).getPropertyValue('--jade').trim();
+
+  // Step 1: Hà Đồ
+  renderGridBase("svg-hado", HA_DO_MATRIX, goldColor);
+  const svgHD = document.getElementById("svg-hado");
+  drawPathAnimated(svgHD, "svg-hado", r.thuong.path, goldColor, showArrows);
+  drawCellHighlight(svgHD, r.thuong.finalCoord, goldColor);
+  drawCellLabel(svgHD, r.thuong.startCoord, "Đầu", goldColor);
+  drawCellLabel(svgHD, r.thuong.finalCoord, r.thuong.trigram.name, goldColor);
+
+  document.getElementById("thuong-desc").innerHTML =
+    `Giờ <b>${gio}</b> → Can <b>${can}</b> (${r.thuong.steps} bước) → Ô số <b>${r.thuong.number}</b>.`;
+  document.getElementById("thuong-symbol").textContent = r.thuong.trigram.symbol;
+  document.getElementById("thuong-name").textContent = `Quẻ ${r.thuong.trigram.name}`;
+
+  // Step 2: Lạc Thư
+  renderGridBase("svg-lacthu", LAC_THU_MATRIX, jadeColor);
+  const svgLT = document.getElementById("svg-lacthu");
+  drawPathAnimated(svgLT, "svg-lacthu", r.ha.path, jadeColor, showArrows);
+  drawCellHighlight(svgLT, r.ha.finalCoord, jadeColor);
+  drawCellLabel(svgLT, r.ha.startCoord, "Đầu", jadeColor);
+  drawCellLabel(svgLT, r.ha.finalCoord, r.ha.trigram.name, jadeColor);
+
+  document.getElementById("ha-desc").innerHTML =
+    `Tháng <b>${thang}</b> → Ngày <b>${ngay}</b> (${r.ha.steps} bước) → Ô số <b>${r.ha.number}</b>.`;
+  document.getElementById("ha-symbol").textContent = r.ha.trigram.symbol;
+  document.getElementById("ha-name").textContent = `Quẻ ${r.ha.trigram.name}`;
+
+  // Hexagram Graphic & Cards
+  document.getElementById("goc-fullname").textContent = `${r.tenQueGocDich} (${r.gocName})`;
+
+  // Render Quẻ Gốc
+  document.getElementById("card-goc-title").textContent = r.tenQueGocDich;
+  document.getElementById("card-goc-symbols").textContent = `${r.gocName} (${r.thuong.trigram.symbol}${r.ha.trigram.symbol})`;
+  renderBarsToElement('bars-goc', r.gocBinary, r.haoDong);
+
+  // Render Quẻ Biến
+  document.getElementById("card-bien-title").textContent = r.tenQueBienDich;
+  document.getElementById("card-bien-symbols").textContent = `${r.bienThuongTrigram.name} / ${r.bienHaTrigram.name} (${r.bienThuongTrigram.symbol}${r.bienHaTrigram.symbol})`;
+  renderBarsToElement('bars-bien', r.bienBinary, 0);
+
+  // Render Quẻ Hỗ
+  document.getElementById("card-ho-title").textContent = r.tenQueHoDich;
+  document.getElementById("card-ho-symbols").textContent = `${r.ho.upperName} / ${r.ho.lowerName} (${r.ho.upperTrigram.symbol}${r.ho.lowerTrigram.symbol})`;
+  renderBarsToElement('bars-ho', r.ho.queHoFullBinary, 0);
+
+  // Info Meta
+  document.getElementById("goc-binary").textContent = r.gocBinary;
+  document.getElementById("bien-binary").textContent = r.bienBinary;
+  document.getElementById("ho-binary").textContent = r.ho.queHoFullBinary;
+  document.getElementById("haodong-value").textContent = `Hào ${r.haoDong}`;
+  document.getElementById("haodong-formula").innerHTML =
+    `Hào Động = (Tháng ${thang} + Giờ ${r.gioVal} - 1) mod 6 + 1 = <b>${r.haoDong}</b>`;
+
+  document.getElementById("input-echo").textContent =
+    `Giờ ${gio} · Can ${can} · Ngày ${ngay} · Tháng ${thang}`;
+}
+
+document.getElementById("cast-btn").addEventListener("click", cast);
+document.getElementById("arrow-toggle").addEventListener("change", () => {
+  if (document.getElementById("result").style.display === "block") cast();
+});
+
+selGio.value = "Ngọ"; selCan.value = "Giáp"; selNgay.value = "1"; selThang.value = "1";
+</script>
+</body>
+</html>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ý Nghĩa Của Bát Quái Trong Luận Đoán Sự Việc — Dịch Học Ngũ Linh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink-900: #14151a;
+    --ink-850: #191b21;
+    --ink-800: #1d1f27;
+    --ink-750: #242631;
+    --paper: #e7dfc9;
+    --paper-dim: rgba(231,223,201,0.58);
+    --paper-faint: rgba(231,223,201,0.32);
+    --gold: #c19a4b;
+    --gold-dim: rgba(193,154,75,0.28);
+    --jade: #5b9686;
+    --jade-dim: rgba(91,150,134,0.28);
+    --cinnabar: #c24632;
+    --cinnabar-dim: rgba(194,70,50,0.25);
+	--gainsboro: #dcdcdc; 
+	--gainsboro-dim: #333333;
+	--royalblue: #4169e1;
+	--royalblue-dim: #101b3b;
+    --line: rgba(231,223,201,0.10);
+    --line-strong: rgba(231,223,201,0.18);
+    --radius: 3px;
+    --bg-radial: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(193,154,75,0.06), transparent 60%);
+  }
+
+  /* Light mode variables Override */
+  [data-theme="light"] {
+    --ink-900: #f5f2e9;
+    --ink-850: #ffffff;
+    --ink-800: #f0eae1;
+    --ink-750: #e4dcd0;
+    --paper: #222328;
+    --paper-dim: rgba(34,35,40,0.78);
+    --paper-faint: rgba(34,35,40,0.50);
+    --gold: #9e7323;
+    --gold-dim: rgba(158,115,35,0.28);
+    --jade: #2e685a;
+    --jade-dim: rgba(46,104,90,0.28);
+	--cinnabar: #a12b18;
+    --cinnabar-dim: rgba(161,43,24,0.18);
+    --gainsboro: #333333;
+    --gainsboro-dim: #f0f0f0;
+    --royalblue: #2243a3;
+    --royalblue-dim: rgba(34,67,163,0.15); 
+    --line: rgba(34,35,40,0.12);
+    --line-strong: rgba(34,35,40,0.22);
+    --bg-radial: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(158,115,35,0.08), transparent 60%);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    background: var(--bg-radial), var(--ink-900);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:56px 20px 100px;
+    line-height:1.5;
+    max-width:none;
+    margin:0;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .wrap{max-width:880px;margin:0 auto; position: relative;}
+
+  /* ---------- Theme Toggle Button ---------- */
+  .theme-toggle-btn {
+    position: absolute;
+    top: -36px;
+    right: 0;
+    background: var(--ink-800);
+    border: 1px solid var(--line-strong);
+    color: var(--gold);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .theme-toggle-btn:hover {
+    background: var(--ink-750);
+    border-color: var(--gold);
+  }
+
+  /* ---------- Header ---------- */
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+
+  h1{
+    font-family:'Spectral',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(28px,4.5vw,42px);
+    margin:0 0 10px;
+    letter-spacing:0.01em;
+    color:var(--paper);
+  }
+  h1 span{color:var(--gold) !important;}
+
+  .subtitle{
+    font-size:14.5px;
+    color:var(--paper-dim);
+    max-width:64ch;
+    margin:0 0 28px;
+  }
+  .subtitle strong{color:var(--paper);font-weight:600;}
+
+  .rule{
+    height:1px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--line) 40%, transparent 100%);
+    margin:0 0 32px;
+  }
+
+  /* ---------- Ngu hanh groups ---------- */
+
+  details.que-group{
+    background:transparent;
+    border:none;
+    border-top:1px solid var(--line-strong);
+    border-radius:0;
+    padding:22px 0 6px;
+    margin-bottom:6px;
+  }
+  details.que-group > summary{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    padding:0 0 16px;
+    list-style:none;
+  }
+  details.que-group > summary::-webkit-details-marker{display:none;}
+  details.que-group > summary::before{
+    content:"▸ ";
+    color:var(--gold);
+  }
+  details.que-group[open] > summary::before{content:"▾ ";}
+
+  /* ---------- Bát Khí Card ---------- */
+
+  details[name="que-don-item"]{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    margin-bottom:12px;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  details[name="que-don-item"]:hover{border-color:var(--line-strong);}
+  details[name="que-don-item"][open]{
+    background:var(--ink-850);
+    border-color:var(--gold-dim);
+  }
+
+  details[name="que-don-item"] > summary{
+    cursor:pointer;
+    outline:none;
+    list-style:none;
+    font-family:'Spectral',serif;
+    font-size:17px;
+    color:var(--paper);
+    padding-right:16px;
+    position:relative;
+  }
+  details[name="que-don-item"] > summary::-webkit-details-marker{display:none;}
+  details[name="que-don-item"] > summary::after{
+    content:"+";
+    position:absolute;
+    right:0;
+    top:0;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:16px;
+    color:var(--gold);
+    transition:transform .15s ease;
+  }
+  details[name="que-don-item"][open] > summary::after{
+    content:"–";
+  }
+  details[name="que-don-item"] > summary strong{
+    font-style:italic;
+    font-weight:600;
+    color:var(--paper);
+  }
+
+  /* ---------- Text elements ---------- */
+
+  p{
+    margin:10px 0 0 0;
+    text-align:justify;
+    font-size:14px;
+    color:var(--paper-dim);
+    line-height:1.7;
+  }
+  p strong{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-style:normal;
+  }
+
+  ul{margin:10px 0 0 0; padding-left:20px;}
+  li{margin-bottom:7px; font-size:14px; color:var(--paper-dim); line-height:1.6;}
+  li strong{color:var(--paper); font-weight:600; font-style:normal;}
+
+  .badge-kim {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--gainsboro-dim);
+    color: var(--gainsboro);
+    border: 1px solid var(--gainsboro);
+    margin-left: 8px;
+  }
+  
+  .badge-moc {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--jade-dim);
+    color: var(--jade);
+    border: 1px solid var(--jade);
+    margin-left: 8px;
+  }
+  
+  .badge-thuy {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--royalblue-dim);
+    color: var(--royalblue);
+    border: 1px solid var(--royalblue);
+    margin-left: 8px;
+  }
+  
+    .badge-hoa {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--cinnabar-dim);
+    color: var(--cinnabar);
+    border: 1px solid var(--cinnabar);
+    margin-left: 8px;
+  }
+  
+    .badge-tho {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--gold-dim);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    margin-left: 8px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+    <span id="theme-icon">☀️</span> <span id="theme-text">Light Mode</span>
+  </button>
+
+  <div class="eyebrow">Luận đoán · Dịch học Ngũ Linh</div>
+  <h1>Ý Nghĩa Của <span>Bát Quái</span> Trong Luận Đoán Sự Việc</h1>
+  <p class="subtitle">Bản phân tích chi tiết về tác động, thuộc tính và ứng dụng của 8 quẻ đơn khi luận giải vận thế, sự nghiệp, kinh doanh, gia đạo và sức khỏe. <strong>Trích: Dịch học Ngũ Linh — Cao Từ Linh.</strong></p>
+
+<div class="rule"></div>
+
+<details name="que-don-item">
+	<summary><strong>Quẻ Càn (1)</strong> <span class="badge-kim">Kim</span></summary>
+	<p><strong>Ý nghĩa của bát quái với kiến trúc dương cơ</strong></p>
+	<ul>
+		<li>Càn: là cột nóc (thanh cái trên mái).</li>
+	</ul>
+	<hr>
+	<p><strong>Quan hệ đối của bát quái với ngoại quan (theo Thiệu Ung - Thiệu Khang Tiết)</strong></p>
+	<ul>
+		<li><strong>Thiên thời:</strong> trời; băng; (nước) đá; cục (nước) đá.</li>
+		<li><strong>Địa lý:</strong> phương Tây bắc; kinh đô; quận lớn; địa hình hiểm yếu hoặc danh lam thắng cảnh; vùng đất cao và khô.</li>
+		<li><strong>Nhân vật:</strong> vua; quân tử; cha; đại nhân; người già; bậc trưởng giả; quan; danh nhân; cán bộ.</li>
+		<li><strong>Tính cách:</strong> cứng, mạnh, dũng võ, quả quyết; hoạt động nhiều.</li>
+		<li><strong>Thân thể:</strong> đầu, xương, phổi.</li>
+		<li><strong>Thời gian:</strong> giao thời, giữa tháng chín và tháng mười mùa Thu; chuyển từ tháng hoặc năm Tuất sang Hợi; giờ ngày, tháng, năm của Ngũ kim.</li>
+		<li><strong>Động vật:</strong> ngựa, ngỗng (thiên nga); sư tử, voi.</li>
+		<li><strong>Tĩnh vật:</strong> vàng ngọc; châu báu; vật tròn; quả cây; vật cứng; mũ; kính.</li>
+		<li><strong>Nhà cửa:</strong> nhà xí công cộng; lâu đài; nhà cao to; lầu; trạm; ở hướng Tây bắc.</li>
+		<li><strong>Nhà ở:</strong> chiếm được vào mùa Thu thì hưng thịnh, mùa Hạ có hoạ; mùa Đông thì vắng lạnh; mùa Xuân thì cát lợi.</li>
+		<li><strong>Hôn nhân:</strong> người thân quyến của nhà quan; gia đình có danh tiếng; vào mùa Thu sẽ kết quả; mùa Đông, mùa Hạ không lợi.</li>
+		<li><strong>Ăn uống:</strong> thịt ngựa quí ngon; nhiều xương; gan; phổi; thịt khô; quả cây; thủ của các loại vật; vật tròn; vật đắng cay.</li>
+		<li><strong>Cầu danh:</strong> có danh; hợp với các chức nội nhiệm, quan toà, võ chức, nắm quyền, thiên sứ, liên lạc; nhậm chức về hướng Tây bắc.</li>
+		<li><strong>Mưu vượng:</strong> thành công; có lợi trong việc công; có tiến trong hoạt động; mùa Hạ thì không thành; mùa Đông nhiều mưu; không được vừa ý.</li>
+		<li><strong>Giao dịch:</strong> hàng quí như: vàng, ngọc, châu báu; dễ thành công; vào mùa Thu Hạ không lợi.</li>
+		<li><strong>Cầu lợi:</strong> có của; lợi về vàng ngọc; được của trong cơ quan; vào mùa Thu rất lợi; mùa Hạ tổn tài; mùa Đông không được của.</li>
+		<li><strong>Xuất hành:</strong> xuất hành lợi; hợp với người kinh sư; lợi đi về phía Tây bắc; mùa Hạ không lợi.</li>
+		<li><strong>Mong gặp:</strong> lợi gặp được đại nhân; gặp người có đức; hợp với gặp người chức cao sang; có thể gặp.</li>
+		<li><strong>Tranh tụng:</strong> thế mạnh; có quí nhân phù trợ; vào mùa Thu sẽ thắng; mùa Hạ thất lý.</li>
+		<li><strong>Bệnh tật:</strong> bệnh ở đầu, mặt; bệnh phổi; bệnh gân cốt; bệnh ở thượng tiêu, mùa Hạ không yên ổn.</li>
+		<li><strong>Mộ phần:</strong> hợp hướng Tây bắc; hợp với mạch khí Càn sơn; hợp với thiên huyệt; hợp với chỗ cao; mùa Thu thì quí; mùa Hạ hung dữ.</li>
+		<li><strong>Phương đường đi:</strong> Tây bắc.</li>
+		<li><strong>Chữ tên họ:</strong> người tên họ có chữ Kim bên cạnh; ngôi hàng một, bốn, chín (tức con thứ nhất, con thứ tư, con thứ chín).</li>
+		<li><strong>Chứ số:</strong> 1, 4, 9 (vận dụng các chữ số này tuỳ vào việc).</li>
+		<li><strong>Ngũ vị:</strong> đắng cay.</li>
+		<li><strong>Ngũ sắc:</strong> màu đỏ mạnh; màu đen huyền.</li>
+		<li>(không có mục sinh để do quẻ không hiện).</li>
+	</ul>
+	<hr>
+	<p><strong>Ý nghĩa của bát quái trong tam tài (Thiên - Địa - Nhân)</strong></p>
+	<ul>
+		<li><strong>Thiên:</strong> mặt trời; bầu trời. Chỉ trời nắng, bầu trời trong sáng, cao và quang đăng ít mây. Quẻ Càn cũng còn chỉ sự đóng băng; chỉ mưa đá.</p>
+		<li><strong>Địa:</strong> phương Tây bắc; kinh đô hoặc những địa danh, châu quận lớn. Quẻ Càn cũng còn chỉ những nơi có địa hình hiểm yếu hoặc những nơi danh lam thắng cảnh; vùng đất cao và khô đắc sơn thanh tú mỹ lệ, hùng vĩ.</p>
+		<ul>
+			<li>Nhà cửa: nhà to lớn, lâu đài, biệt thự, nhà nhiều dương khí (dương khí thịnh vượng).</li>
+			<li>Mộ phần: hợp với mộ toạ Tốn hướng Càn, toạ Càn hướng Tốn. Toạ Nhâm hướng Bính, toạ Bính hướng Nhâm. Hợp với mạch khí Càn sơn nhập thủ; hợp với thiên huyệt; hợp với chỗ có địa thế cao. Huyệt cũng thường được táng trên gò đất có hình con Long, con Mã. Mùa Hạ không được hạ táng.</li>
+		</ul>
+		<li><strong>Nhân:</strong> các bậc vua chúa, đại nhân, quân tử. Người đứng đầu một quốc gia, một đơn vị, một gia đình.</p>
+		<ul>
+			<li>Quẻ Càn biểu hiện tính cách: cứng rắn, mạnh mẽ, dũng cảm, quả quyết; ưa hoạt động.</li>
+			<li>Quẻ Càn tượng cơ thể là đầu, là xương, là phổi. Vì vậy khi xét về bệnh lý nó thường biểu hiện những bệnh ở đầu, mặt; bệnh phổi; bệnh gân cốt; bệnh ở thượng tiêu, và thường bất lợi về mùa Hạ.</li>
+			<li>Chữ tên họ: Quẻ Càn thường là người tên họ có chữ Kim bên cạnh, hoặc những người thuộc họ Vũ, họ Đoàn, họ Nguyễn, họ Hoàng, họ Triệu. Hoặc người trong tên có chữ cái đầu là chữ A, C, Đ, L. Ngôi hàng nhất, bốn, chín. Hoặc chữ số 149.</li>
+		</ul>
+	</ul>
+</details>
+
+<details name="que-don-item">
+	<summary><strong>Quẻ Khôn (2)</strong> <span class="badge-tho">Thổ</span></summary>
+	<p><strong>Ý nghĩa của bát quái với kiến trúc dương cơ</strong></p>
+	<ul>
+		<li>Khôn: là nền nhà.</li>
+	</ul>
+	<hr>
+	<p><strong>Quan hệ đối của bát quái với ngoại quan (theo Thiệu Ung - Thiệu Khang Tiết)</strong></p>
+	<ul>
+		<li><strong>Thiên thời:</strong> mây đen, mù sương.</li>
+		<li><strong>Địa lý:</strong> điền dã, buổi sáng ban mai ở nông thôn; bình địa; phương Tây nam.</li>
+		<li><strong>Nhân vật:</strong> mẹ già; mẹ kế; nông phu; người nông thôn; người bình thường; người phụ nữ già; người bụng to.</li>
+		<li><strong>Tính cách:</strong> biển lận; nhu thuận; nhu nhược; nhiễu ngươi; tiểu nhân.</li>
+		<li><strong>Thân thể:</strong> bụng; lá lách; thịt; dạ dày.</li>
+		<li><strong>Thời gian:</strong> tháng: Thìn, Tuất, Sửu, Mùi; giờ, ngày, tháng, năm: Mùi, Thân; ngày, tháng: tám, năm, mười (lấy theo chữ số).</li>
+		<li><strong>Động vật:</strong> trâu bò; bách cầm; ngựa bướu.</li>
+		<li><strong>Tĩnh vật:</strong> vật vuông; vật mềm; vải tợ gấm; ngũ cố; binh khí; rìu; đồ đất.</li>
+		<li><strong>Nhà cửa:</strong> phương Tây nam; thôn điếm; lều ngoài đồng; nhà thấp bé; đất bậc thang; nhà kho.</li>
+		<li><strong>Nhà ở:</strong> yên ốn; nhiều âm khí; được vào mùa Xuân không yên.</li>
+		<li><strong>Ăn uống:</strong> thịt trâu; món ăn sang và vừa; vị ngọt; vị dân dã; vị ngũ cốc; món ăn mầm măng; vật thuộc về lòng (ruột, tim, gan...).</li>
+		<li><strong>Hôn nhân:</strong> lợi về hôn nhân; lợi cho nhà chịu thuế, nhà nông thôn hoặc nhà quả phụ; mùa Xuân không lợi.</li>
+		<li><strong>Sinh để:</strong> dễ đẻ; mùa Xuân khó đẻ; tổn thất hoặc bắt lợi cho mẹ; ngồi hợp với phương Tây nam.</li>
+		<li><strong>Cầu danh:</strong> có danh; hợp với phương Tây nam hoặc với chức thầy giáo; người coi giữ đất; mùa Xuân không thành.</li>
+		<li><strong>Giao dịch:</strong> lợi trong giao dịch; hợp với giao dịch về đất về ngũ cốc; về hàng rẻ tiền; vật nặng; vải vóc; trong im tĩnh có tiền; mùa Xuân không lợi.</li>
+		<li><strong>Cầu lợi:</strong> có lợi; hợp với có lợi trong việc đất đai; lợi về vật nặng; hàng rẻ tiền; trong tĩnh có tiền; mùa Xuân không được tiền; trong nhiều tiềm được lợi.</li>
+		<li><strong>Mưu vượng:</strong> lợi về cầu mưu; cầu mưu ở bên cạnh láng giềng; cầu mưu trong tĩnh; mùa Xuân không thuận hoặc cầu mưu ở phụ nữ.</li>
+		<li><strong>Xuất hành:</strong> có thể đi; hợp với phía Nam; hợp với về nông thôn; hợp với đi bộ; mùa Xuân không hợp.</li>
+		<li><strong>Mong gặp:</strong> có thể gặp; lợi về gặp ở thôn quê;hợp với gặp bạn thân; người âm; mùa Xuân khó gặp.</li>
+		<li><strong>Bệnh tật:</strong> bệnh ở bụng; bệnh tỳ vị; ăn uống chậm tiêu; ăn không tiêu.</li>
+		<li><strong>Tranh tụng:</strong> thuận về lý; được lòng mọi người; tranh tụng đang tan cuộc.</li>
+		<li><strong>Mộ phần:</strong> hợp với hướng Tây nam; đất bằng phẳng quang đăng. Gần điền dã; hợp với mai táng chỗ thấp; mùa Xuân không được táng.</li>
+		<li><strong>Chữ tên họ:</strong> chữ tên có họ mang chữ Thổ; ngôi hàng là tám, năm, mười (tức con thứ tám, thứ năm, thứ mười).</li>
+		<li><strong>Chữ số:</strong> 8, 5, 10 (có thể tháng tám, tháng năm, tháng mười) hoặc số 8, 5, 10 hoặc 850 (tuỳ vào việc mà đoán).</li>
+		<li><strong>Phương đường đi:</strong> Tây nam.</li>
+		<li><strong>Ngũ vị:</strong> ngọt</li>
+		<li><strong>Ngũ sắc:</strong> vàng, đen.</li>
+	</ul>
+	<hr>
+	<p><strong>Ý nghĩa của bát quái trong tam tài (Thiên - Địa - Nhân)</strong></p>
+		<ul>
+		<li><strong>Thiên:</strong> trời âm u, mù sương hoặc trời râm mát, có nhiều mây, mây đen.</li>
+		<li><strong>Địa:</strong> phương Tây nam, làng quê, điền dã, đất bậc thang. Đồng bằng hay bình địa. Buổi sáng ban mai ở nông thôn. Hoặc những nơi đồng ruộng, gò đồi.</li>
+		<ul>
+			<li><strong>Nhà cửa:</strong> thấp bé, nhà cấp 4, lều ngoài đồng, nhà kho, thôn điếm; nhà nhiều khí âm (âm khí thịnh vượng).</li>
+			<li><strong>Mộ phần:</strong> hợp với mộ toạ Cấn hướng Khôn, toạ Khôn hướng Cấn. Toạ Đinh hướng Quý, toạ Quý hướng Đinh. Hợp với mạch đất có khí từ phương Khôn chạy tới nhập thủ. Hợp với thế đất bằng phẳng quang đăng, gần điền dã, thôn xóm. Hợp với mai táng chỗ thấp, chỗ đất nhuận, ẩm. Huyệt cũng thường được táng trên lưng con Tê, con Thiềm thừ. Mùa Xuân khống được táng.</li>
+			</ul>
+		<li><strong>Nhân:</strong> phụ nữ, mẹ già, mẹ kế; nông phu, người nông thôn; người phụ nữ đã có gia đình, người đang mang thai, người bụng to.</li>
+			<ul>
+			<li>Quẻ Khôn biểu hiện tính cách: nhu thuận, chậm chạp, lo toan vụn vặt. Quẻ Khôn cũng biểu hiện đám đông, nhiều người hay những kẻ tiểu nhân, biển lận.</li>
+			<li>Quẻ Khôn tượng thân thể là bụng, lá lách, thịt, dạ dày. Vì vậy khi xét về bệnh lý nó thường chỉ những bệnh ở vùng bụng, bệnh tỳ vị, những bệnh do ăn uống gây ra như: chậm tiêu hóa, đầy hơi, chướng khí. Những bệnh do ngộ độc thức ăn.</li>
+			<li>Chữ tên họ: Quẻ Khôn thường là người chữ tên có họ mang bộ Thổ; những người thuộc họ Trần, họ Vương, họ Triệu, họ Lê, họ Lý. Hoặc người trong tên có chữ cái đầu thường là chữ K, M, G, R. Ngôi hàng là tám, năm, mười. Chữ số: 8, 5, 10, hoặc số 850 (tuỳ vào việc mà đoán).</li>
+			</ul>
+		</ul>
+</details>
+
+<details name="que-don-item">
+	<summary><strong>Quẻ Chấn (3)</strong> <span class="badge-moc">Mộc</span></summary>
+	<p><strong>Ý nghĩa của bát quái với kiến trúc dương cơ</strong></p>
+	<ul>
+		<li>Chấn: là hai mái nhà.</li>
+	</ul>
+	<hr>
+	<p><strong>Quan hệ đối của bát quái với ngoại quan (theo Thiệu Ung - Thiệu Khang Tiết)</strong></p>
+	<ul>
+		<li><strong>Thiên thời:</strong> sấm.</li>
+		<li><strong>Địa lý:</strong> phương Đông; cây gỗ; chợ ồn ào; đường lớn; rừng tre; chỗ cỏ cây rậm rạp.</li>
+		<li><strong>Thân thể:</strong> chân, gan, tóc, âm thanh.</li>
+		<li><strong>Nhân vật:</strong> trưởng nam.</li>
+		<li><strong>Tính cách:</strong> khởi động, giận, hoảng sợ vu vơ, gào hét; động nhiều tĩnh ít.</li>
+		<li><strong>Thời gian:</strong> tháng hai mùa Xuân; giờ ngày tháng năm Mão; ngày tháng tư, ba, tám.</li>
+		<li><strong>Tĩnh vật:</strong> gỗ tre; cây lau; nhạc khí (bằng tre gỗ); vật hoa cỏ tươi tốt; hạt.</li>
+		<li><strong>Động vật:</strong> rồng; rắn; trăm loại sâu; ngựa kêu.</li>
+		<li><strong>Nhà cửa:</strong> ở phương Đông; chỗ rừng rậm; lầu các.</li>
+		<li><strong>Nhà ở:</strong> có lúc bất thần lo sợ vu vơ trong nhà; mùa Xuân, mùa Đông; mùa Thu không lợi.</li>
+		<li><strong>Ăn uống:</strong> vó chân; thịt; hương vị sơn lâm; thịt tươi; quả chua; rau; cá chép.</li>
+		<li><strong>Hôn nhân:</strong> có thể thành công; nhà có thanh danh; được kết hôn với trưởng nam; mùa Thu không lợi.</li>
+		<li><strong>Cầu lợi:</strong> phát tài về gỗ tre rừng núi; tìm lợi chỗ động, hoặc gặp lợi về các mặt hàng trà, tre, gỗ, sơn lâm.</li>
+		<li><strong>Cầu danh:</strong> được danh; hợp về nhậm chức ở phương Đông; hợp về chức hô hào, ra lệnh; quan cai ngục; không nhậm chức thuế khoá, trà, gỗ, hoặc chức ở chợ ồn ào.</li>
+		<li><strong>Sinh đẻ:</strong> sợ vu vơ; thai động không yên; thai đầu tiên chắc chắn là trai; ngồi nên hướng Đông; mùa Thu không tốt.</li>
+		<li><strong>Bệnh tật:</strong> bệnh chân; bệnh gan; kinh hoảng không yên.</li>
+		<li><strong>Mưu vượng:</strong> có thể vượng; có thể cầu; thích hợp với cầu trong sự hoạt động; mùa Thu không thuận.</li>
+		<li><strong>Giao dịch:</strong> lợi về giao dịch; mùa Thu khó thành; động mới có thể thành; có lợi về những hàng trà, tre gỗ, rừng núi.</li>
+		<li><strong>Tranh tụng:</strong> thế mạnh; lo lắng vu vơ; dĩ động; lặp đi lặp lại.</li>
+		<li><strong>Mong gặp:</strong> có thể gặp; dễ gặp người rừng núi; dễ gặp người có thanh danh.</li>
+		<li><strong>Xuất hành:</strong> dễ xuất hành; lợi về phương Đông; lợi người rừng núi; mùa Thu không nên đi, nhưng lo sợ vu vơ.</li>
+		<li><strong>Mộ phần:</strong> lợi về phương Đông; huyệt trong rừng sâu; mùa Thu không lợi.</li>
+		<li><strong>Chữ tên họ:</strong> có chữ Mộc, ngôi hàng bốn, tám, ba.</li>
+		<li><strong>Chứ số:</strong> 4, 8, 3.</li>
+		<li><strong>Phương đường đi:</strong> Đông.</li>
+		<li><strong>Ngũ vị:</strong> ngọt, chua.</li>
+		<li><strong>Ngũ sắc:</strong> xanh đen; màu lục bích.</li>
+	</ul>
+	<hr>
+	<p><strong>Ý nghĩa của bát quái trong tam tài (Thiên - Địa - Nhân)</strong></p>
+	<ul>
+		<li><strong>Thiên:</strong> chỉ trời nắng sáng, gay gắt, oi ả. Nếu trời đang mưa thì chỉ sấm sét.</li>
+		<li><strong>Địa:</strong> phương Đông, nơi chợ búa ồn ào, náo nhiệt. Chỉ đường xá lớn, thành phố, thị tứ. Cũng chỉ rừng già, chỗ cỏ cây rậm rạp.</li>
+		<ul>
+			<li>Nhà cửa: to lớn, biệt thự, lầu gác cao, quán ăn, khách sạn. Cũng chỉ nhà cao tầng, các khu nhà tập thể. Lại cũng chỉ các gác chuông, bảo tháp, đình làng. Nhà có dương khí thịnh.</li>
+			<li>Mộ phần: hợp với mộ tọa Chấn hướng Đoài, tọa Đoài hướng Chấn. Tọa Dần hướng Thân, tọa Thân hướng Dần. Cũng hợp với mạch khí đi từ phương Đông đến nhập thủ huyệt. Huyệt thường nằm tại những chỗ có bụi cây cỏ xanh tốt hay tại chỗ gần gốc cây to. Huyệt cũng thường được táng trên gò có hình con Ngựa, con Tôm. Mùa Thu không nên táng.</li>
+		</ul>
+		<li><strong>Nhân:</strong> đàn ông, con trai, trưởng nam. Những người có địa vị, công chức, những người có tiếng tăm.</li>
+		<ul>
+			<li>Quẻ Chấn biểu hiện tính cách: năng động, nhanh nhẹn, hoạt bát và có óc sáng tạo. Những người hay cáu giận, hoảng sợ vu vơ, những người động nhiều tĩnh ít.</li>
+			<li>Quẻ Chấn tượng thân thể là chân, gan, tóc, là âm thanh. Vì vậy biểu hiện bệnh lý của quẻ Chấn thường là những bệnh tật về chân; bệnh gan; những bệnh kinh hoảng không yên.</li>
+			<li>Chữ tên họ: Quẻ Chấn thường là người trong họ có chữ Mộc, hoặc những người có họ Lê, họ Lý, họ Cao, họ Trần. Hoặc người trong tên có chữ cái đầu thường là chữ C, T, U, V. Ngôi hàng bốn, tám, ba. Chữ số 483.</li>
+		</ul>
+	</ul>
+</details>
+
+<details name="que-don-item">
+	<summary><strong>Quẻ Tốn (4)</strong> <span class="badge-moc">Mộc</span></summary>
+	<p><strong>Ý nghĩa của bát quái với kiến trúc dương cơ</strong></p>
+	<ul>
+		<li>Tốn: là sân nhà (cả sân trước và sân sau).</li>
+	</ul>
+	<hr>
+	<p><strong>Quan hệ đối của bát quái với ngoại quan (theo Thiệu Ung - Thiệu Khang Tiết)</strong></p>
+	<ul>
+		<li><strong>Thiên thời:</strong> gió.</li>
+		<li><strong>Địa lý:</strong> đất ở phương Đông nam; chỗ cỏ cây rậm rạp, vườn rau hoa quả.</li>
+		<li><strong>Nhân vật:</strong> trưởng nữ; tú sĩ, người quả phụ; người tiên đạo ở rừng sâu; tăng đạo.</li>
+		<li><strong>Tính cách:</strong> nhu hoà; bất định; cổ vũ; buôn bán rất sinh lợi; tiến thoái không quả quyết.</li>
+		<li><strong>Thân thể:</strong> cánh tay; đùi; khí; phong tật.</li>
+		<li><strong>Thời gian:</strong> giao thời giữa Xuân và Hạ; ngày tháng: hai, năm, tám; tháng ba; giờ, ngày, tháng: Thìn, Ty, tháng tư.</li>
+		<li><strong>Tĩnh vật:</strong> mộc hương; dây; vật thẳng; vật dài; tre gỗ; đồ thủ công khéo léo; khối; lông gà; buồm; quạt; cối.</li>
+		<li><strong>Động vật:</strong> gà, các loại cầm (thú), cầm (thú) trong rừng, sâu, bọ, rắn.</li>
+		<li><strong>Nhà cửa:</strong> ở hướng Đông nam; lâu đài gác (chuông) trong chùa; ở trong rừng sâu.</li>
+		<li><strong>Nhà ở:</strong> yên ổn; lợi ở chợ; mùa Xuân tốt; mùa Thu không yên ổn.</li>
+		<li><strong>Ăn uống:</strong> thịt gà; hương vị núi rừng; vị chua của hoa quả.</li>
+		<li><strong>Hôn nhân:</strong> có thể thành; hợp kết hôn với con gái đầu; mùa Thu không lợi.</li>
+		<li><strong>Sinh để:</strong> dễ sinh; sinh lần đầu sẽ là con gái; vào mùa Thu sẽ có hại cho thai; hợp với ngồi hướng Đông nam.</li>
+		<li><strong>Cầu danh:</strong> có danh; hợp với thế lực chức văn hoặc có phong hiến; dễ làm người có phong hiến; hợp với chức thuế khóa, hàng tre, gỗ, trà, hoa, quả; hợp với nhậm chức phía Đông nam.</li>
+		<li><strong>Cầu lợi:</strong> buôn bán phát đạt; lợi về miền núi; lợi về hàng tre gỗ; mùa Thu không lợi.</li>
+		<li><strong>Giao dịch:</strong> có thể thành công; tiến thoái bất nhất; lợi về giao dịch; giao dịch việc núi rừng; lợi về hàng trà, gỗ núi rừng.</li>
+		<li><strong>Mưu vượng:</strong> có thể mưu vượng; có tiền có thể thành công; mùa Thu nhiều mưu nhưng không thuận lắm.</li>
+		<li><strong>Xuất hành:</strong> có thể đi; có được có mất; hợp đi hướng Đông nam; mùa Thu hướng không lợi.</li>
+		<li><strong>Mong gặp:</strong> có thể gặp; dễ gặp người miền núi; dễ gặp văn nhân tú sĩ.</li>
+		<li><strong>Bệnh tật:</strong> bệnh đùi; cánh tay; bệnh phong; bệnh đường ruột; trúng phong; bệnh về tắc khí.</li>
+		<li><strong>Chữ tên họ:</strong> tên họ có chữ Thảo Mộc bên cạnh; ngôi hàng năm, ba, tám.</li>
+		<li><strong>Tranh tụng:</strong> dễ hoà; sợ gặp phải cái nợ phong hiến.</li>
+		<li><strong>Mộ phần:</strong> dễ là hướng Đông; huyệt ở rừng núi; nhiều cây gỗ; mùa Thu không lợi.</li>
+		<li><strong>Chữ số:</strong> 5, 3, 8.</li>
+		<li><strong>Phương đường đi:</strong> Đông nam.</li>
+		<li><strong>Ngũ vị:</strong> vị cay.</li>
+		<li><strong>Ngũ sắc:</strong> xanh lục, mầu bích trắng trong.</li>
+	</ul>
+	<hr>
+	<p><strong>Ý nghĩa của bát quái trong tam tài (Thiên - Địa - Nhân)</strong></p>
+	<ul>
+		<li><strong>Thiên:</strong> chỉ trời sáng, râm mát, có mây, nhiều gió. Nếu trời đang mưa thì chỉ gió bão, cuồng phong, hoặc chỉ những cơn dông, cơn lốc.</li>
+		<li><strong>Địa:</strong> phương Đông nam. Đất ruộng, đất ao hay ruộng trũng. Đất vườn, đất màu hay đất trồng rau, trồng hoa quả. Chỉ chỗ đất có cỏ cây rậm rạp, bụi rậm, thảo mộc.</li>
+		<ul>
+			<li>Nhà cửa: ở hướng Đông nam; nhà cấp 4, nhà ở nông thôn, nhà lá hay nhà ngói. Quẻ Tốn cũng còn chỉ chùa chiền, đền miếu, lâu đài, gác (chuông) trong chùa, nhà ở trong rừng sâu. Nhà khí âm thịnh.</li>
+			<li>Mộ phần: hợp với mộ tọa Càn hướng Tốn hay tọa Tốn hướng Càn. Tọa Mùi hướng Sửu, tọa Sửu hướng Mùi. Cũng hợp với mạch khí chạy từ phía Đông nam lại nhập thủ mạch. Huyệt thường ở những thửa ruộng thấp có gò con nổi lên hơi cao, hoặc ở gần những khu vườn trồng hoa màu, ở chỗ có những bụi cỏ cây rậm rạp riêng biệt. Huyệt cũng thường được táng trên gò có hình Ngô công hay hình con Phượng. Mùa Thu không nên táng.</li>
+		</ul>
+		<li><strong>Nhân:</strong> nữ giới, trưởng nữ, là người phụ nữ mềm thuận, là người tóc dài thưa, cũng thường là những người mặt bầu bĩnh có má lúm đồng tiền. Quê Tốn cũng còn là những tu sĩ; là người quả phụ; là những bậc tiên đạo, tăng đạo.</li>
+		<ul>
+			<li>Quẻ Tốn biểu hiện tính cách: nhu hoà, âm thầm, bất định, ngoài cứng trong mềm, tưởng khó mà dễ gần. Quẻ Tốn cũng có tính cách cổ vũ; buôn bán rất sinh lợi; tiến thoái không quả quyết.</li>
+			<li>Quẻ Tốn tượng thân thể là cánh tay, là đùi. Là khí, phong tật, là mật. Vì vậy biểu hiện bệnh lý của quẻ Tốn thường là những bệnh tật về cánh tay, về phần đùi, những bệnh liên quan đến khí, đến phong tật như cảm gió, cảm phong hàn. Những bệnh về đường ruột, bệnh về gan mật và những bệnh về tắc khí, kinh lạc không thông, khí huyết không điều hòa.</li>
+			<li>Chữ tên họ: Quẻ Tốn thường là những người tên họ có bộ Thảo Mộc bên cạnh, hoặc thường là những người mang các họ Nguyễn, họ Ngô, họ Quách, họ Lê. Hoặc thường là những người trong tên có chữ cái đầu là T, N, M, P, Q. Ngôi hàng: năm, ba, tám. Chữ số 538.</li>
+		</ul>
+	</ul>
+</details>
+
+<details name="que-don-item">
+	<summary><strong>Quẻ Khảm (5)</strong> <span class="badge-thuy">Thủy</span></summary>
+	<p><strong>Ý nghĩa của bát quái với kiến trúc dương cơ</strong></p>
+	<ul>
+		<li>Khảm: là hệ thống cột kèo (dầm bê tông, cột bê tông).</li>
+	</ul>
+	<hr>
+	<p><strong>Quan hệ đối của bát quái với ngoại quan (theo Thiệu Ung - Thiệu Khang Tiết)</strong></p>
+	<ul>
+		<li><strong>Thiên thời:</strong> trăng, mưa, tuyết, mù, sương, nước.</li>
+		<li><strong>Địa lý:</strong> phương Bắc; sông hồ; khe suối; giếng tuyến; chỗ ẩm ướt; mương rãnh; ao đầm; chỗ có nước.</li>
+		<li><strong>Nhân vật:</strong> trung nam; người giang hồ; người lái đò; bọn trộm cướp; phỉ.</li>
+		<li><strong>Tính cách:</strong> chỗ hiểm hóc; bề ngoài lấy mềm; bên trong lấy lợi; phiêu bạt không thành; theo sóng mà trôi dần.</li>
+		<li><strong>Thân thể:</strong> tai; máu; thận.</li>
+		<li><strong>Thời gian:</strong> tháng 11 mùa Đông; ngày, tháng, năm: Tý; ngày, tháng: một, sáu.</li>
+		<li><strong>Tĩnh vật:</strong> một dải nước; vật có hạt; vành cung; vật thấp mềm thứ để đựng rượu; dụng cụ đựng nước; nhà xưởng; chua; lê; cái ách; muối; rượu.</li>
+		<li><strong>Động vật:</strong> lợ; cá; con vật trong nước; con hồ ly; loài thuỷ tộc.</li>
+		<li><strong>Nhà cửa:</strong> ở hướng Bắc; gần nước; lầu trên nước; lầu trên sông; nhà ở chỗ hỗn địa.</li>
+		<li><strong>Ăn uống:</strong> thịt lợn; rượu; thức ăn lạnh; thức ăn biển; canh; vị chua; thức ăn thường ngày; cá lẫn huyết; cất giấu; vật có hạt; vật trong nước; vật nhiều xương.</li>
+		<li><strong>Nhà ở:</strong> không yên; ám muội; đề phòng cướp, phỉ.</li>
+		<li><strong>Hôn nhân:</strong> lợi khi kết hôn với trung nam; hợp với kết hôn về phía Bắc; không dễ thành hôn; không nên cưới vào tháng Thìn, Tuất, Sửu, Mùi.</li>
+		<li><strong>Sinh để:</strong> khó đẻ, nguy hiểm; không phải là lần đầu; nam; trung nam; vào tháng hai: Thìn, Tuất, Sửu, Mùi, có tổn thất; hợp với phương Bắc.</li>
+		<li><strong>Cầu danh:</strong> khó khăn; e có tai hoạ; dễ gặp ở phương Bắc; được chức kém như quản lý cá, muối, sòng bạc; rượu lẫn đấm.</li>
+		<li><strong>Cầu lợi:</strong> có của đề phòng mất; dễ được của ở vùng nước; e sợ có sự mất mát nguy hiểm dễ gặp lợi về các hàng cá, muối, rượu; đề phòng mất mát; phòng mất cướp.</li>
+		<li><strong>Giao dịch:</strong> không lợi; lo đề phòng mất mát; hợp với giao dịch ở vùng hồ nước; hợp với hàng cá muối; hợp với hàng rượu; hoặc giao dịch với người liên quan với nước.</li>
+		<li><strong>Mưu vượng:</strong> không dễ mưu vượng; không thành công; mùa Thu; Đông có thể được.</li>
+		<li><strong>Xuất hành:</strong> không nên đi xa; nên đi thuyền; nên đi về phương Bắc; đề phòng bị cướp; e sẽ gặp việc hiểm trở.</li>
+		<li><strong>Mong gặp:</strong> khó gặp; nên gặp người giang hồ; hoặc người sống cạnh vùng nước.</li>
+		<li><strong>Bệnh tật:</strong> bệnh ở bụng; bệnh tỳ vị; ăn uống chậm tiêu; ăn không tiêu.</li>
+		<li><strong>Tranh tụng:</strong> có âm hiểm; có mất vì kiện; mắt mát.</li>
+		<li><strong>Mộ phần:</strong> nên huyệt hướng Bắc; mộ gần nước; táng không lợi.</li>
+		<li><strong>Chữ tên họ:</strong> tên họ viết có chữ Thuỷ bên cạnh.</li>
+		<li><strong>Chữ số:</strong> 1, 6.</li>
+		<li><strong>Phương đường đi:</strong> phương Bắc.</li>
+		<li><strong>Ngũ vị:</strong> mặn; chua.</li>
+		<li><strong>Ngũ sắc:</strong> đen.</li>
+	</ul>
+	<hr>
+	<p><strong>Ý nghĩa của bát quái trong tam tài (Thiên - Địa - Nhân)</strong></p>
+	<ul>
+		<li><strong>Thiên:</strong> chỉ trời mưa, tuyết, sương mù. Cũng chỉ mặt trăng, chỉ trời có khí hậu lạnh giá. Chỉ lũ lụt, thủy nạn.</li>
+		<li><strong>Địa:</strong> phương Bắc. Sông hồ, khe suối, giếng nước; chỗ ẩm ướt; mương rãnh; ao chuôm, chỗ tụ thủy. Cũng chỉ về đường đi lối lại nhỏ hẹp, đường mòn, chỉ làng quê nghèo hay những vùng sâu vùng xa, vùng núi. Ở thành phố là những xóm dân nghèo, ổ chuột, những hẻm nhỏ.</li>
+		<ul>
+			<li><strong>Nhà cửa:</strong> nhà ở gần sông nước, lầu trên nước, lầu trên sông; nhà ở chỗ hỗn địa. Nhà hàng bán đồ tươi sống, hải sản. Cảng, chợ bến sông. Cũng là những nhà gỗ lá lụp xụp, ẩm thấp.</li>
+			<li><strong>Mộ phần:</strong> hợp với mộ tọa Ly hướng Khảm, tọa Khảm hướng Ly. Tọa Giáp hướng Canh, tọa Canh hướng Giáp. Mộ gần nước; đắc thủy, hay mộ hướng ra phía ao hồ sông nước. Nếu xấu là bị ngắm nước, ngập nước hay bị rãnh nước, dòng nước nhỏ chảy đâm thẳng vào huyệt. Huyệt cũng thường được táng trên gò đất có hình con Cá, con Trai. Mùa Hạ và 4 tháng mộ Thổ Thìn Tuất Sửu Mùi táng không lợi.</li>
+		</ul>	
+		<li><strong>Nhân:</strong> con trai, trung nam; người giang hồ, người lái đò; bọn trộm cướp, bọn phỉ.</li>
+		<ul>
+			<li>Quẻ Khảm biểu hiện tính cách: âm hiểm, ngưng trệ, trí tuệ, cơ mưu tính toán chi ly hơn thiệt. Bề ngoài lấy mềm, bên trong lấy lợi. Quẻ Khảm cũng chỉ số kiếp của những người phiêu bạt không thành; theo sóng mà trôi dần.</li>
+			<li>Quẻ Khảm tượng thân thể là tai, máu, thận, là ống chân, cẳng chân, là xương Đen-ta (xương quai xanh). Vì vậy biểu hiện bệnh lý của quẻ Khảm cũng thường là những bệnh tật về tai như điếc tai, viêm tai, những bệnh về máu huyết, bệnh đau bụng đi ngoài, đi lỏng, bệnh suy thận, yếu thận, sỏi thận... và những tai họa liên quan đến xương cẳng chân, xương quai xanh.</li>
+			<li>Chữ tên họ: Quẻ Khảm thường là người trong tên họ viết có chữ Thủy bên cạnh. Hoặc những người thuộc về họ Phạm, họ Vũ, họ Hà, họ Hàn, họ Mai, họ Mặc, họ Phùng. Hoặc thường là những người trong tên có chữ cái đầu là K, H, S, Y. Ngôi hàng một, sáu hoặc chữ số 16.</li>
+		</ul>
+	</ul>
+</details>
+
+<details name="que-don-item">
+	<summary><strong>Quẻ Ly (6)</strong> <span class="badge-hoa">Hỏa</span></summary>
+	<p><strong>Ý nghĩa của bát quái với kiến trúc dương cơ</strong></p>
+	<ul>
+		<li>Ly: là các cửa sổ.</li>
+	</ul>
+	<hr>
+	<p><strong>Quan hệ đối của bát quái với ngoại quan (theo Thiệu Ung - Thiệu Khang Tiết)</strong></p>
+	<ul>
+		<li><strong>Thiên thời:</strong> ban ngày; điện; cầu vồng; ráng mây mầu.</li>
+		<li><strong>Địa lý:</strong> phương Nam; chỗ đất gò cao; chỗ có lò; đất khô liễm; mặt đất khô.</li>
+		<li><strong>Nhân vật:</strong> trung nữ; văn nhân; bụng to; người mắt có tật; người đội mũ giáp.</li>
+		<li><strong>Tính cách:</strong> nơi văn hóa; tài học thông minh; khiêm tốn trong giao tiếp; làm việc sách vở; mỹ lệ.</li>
+		<li><strong>Thân thể:</strong> mắt; tim; thượng tiêu.</li>
+		<li><strong>Thời gian:</strong> tháng năm mùa Hạ; giờ, ngày, tháng, năm: Ngọ Hoả; ngày ba, hai, bảy.</li>
+		<li><strong>Tĩnh vật:</strong> lửa; sách; văn; chữ khắc trên mai rùa; xương; vũ khí; áo khô; vật khô.</li>
+		<li><strong>Động vật:</strong> chim trĩ; chim công; rùa; ba ba; ốc trai; cua.</li>
+		<li><strong>Nhà cửa:</strong> nhà hướng Nam; nhà sáng; cửa sổ sáng; nhà ảo (hư thất).</li>
+		<li><strong>Nhà ở:</strong> yên ốn; yên lành; mùa Đông không yên; hoả hoạn.</li>
+		<li><strong>Ăn uống:</strong> thịt chim trĩ; chim công; hầm xào; thức ăn kho; thịt khô; thịt chín.</li>
+		<li><strong>Hôn nhân:</strong> không thành; lợi về kết hôn với trung nữ; mùa Hè dễ thành; mùa Đông không lợi.</li>
+		<li><strong>Sinh đẻ:</strong> dễ sinh; đẻ con gái thứ, mùa Đông có tổn thất; nên ngồi hướng Nam.</li>
+		<li><strong>Cầu danh:</strong> có danh; hợp với chức ở phía Nam; nhậm chức quan văn; đễ nhậm chức về lò luyện.</li>
+		<li><strong>Cầu lợi:</strong> có của thì nên cầu phía Nam; có của về văn thư; mùa Đông có mất mát.</li>
+		<li><strong>Giao dịch:</strong> có thể thành; nên giao dịch về việc văn thư.</li>
+		<li><strong>Xuất hành:</strong> có thể đi; hợp với đi phía Nam; đi về việc văn thư, mùa Đông không nên đi; không nên đi thuyền.</li>
+		<li><strong>Mong gặp:</strong> có thể gặp người phương Nam; mùa Đông không thuận lợi; mùa Thu sẽ gặp được tài sĩ văn thư khảo án.</li>
+		<li><strong>Tranh tụng:</strong> dễ tan; đơn thư hoạt bát; động; lời kiện rõ ràng.</li>
+		<li><strong>Bệnh tật:</strong> bệnh mắt; bệnh tim; bệnh ở thượng tiêu (vùng ngực); mùa Hạ dễ bị bệnh nóng; bệnh dịch.</li>
+		<li><strong>Mộ phần:</strong> mộ hướng Nam; năm không có cây cối; huyệt dương. Mùa Hạ sẽ xuất hiện văn nhân; mùa Đông không có lợi.</li>
+		<li><strong>Chữ tên họ:</strong> tên nhân sĩ có chữ Thứ hoặc chữ Nhân đứng bên cạnh; ngôi hàng ba, hai, bảy.</li>
+		<li><strong>Chứ số:</strong> 2, 3, 7.</li>
+		<li><strong>Phương đường đi:</strong> phương Nam.</li>
+		<li><strong>Ngũ vị:</strong> đắng.</li>
+		<li><strong>Ngũ sắc:</strong> đỏ, tím, hồng.</li>
+		<li>(không có mục mưu vượng do quể không hiện).</li>
+	</ul>
+	<hr>
+	<p><strong>Ý nghĩa của bát quái trong tam tài (Thiên - Địa - Nhân)</strong></p>
+	<ul>
+		<li><strong>a. Thiên:</strong> mặt trời buổi trưa, ban ngày; điện; cầu vồng; ráng mây mầu. Nếu trời đang mưa thì chỉ tia sét đánh xuống (tia lửa điện). Quẻ Ly cũng chủ trời nắng, hạn hán, nắng nóng, khí hậu oi bức. Cũng chỉ hỏa hoạn, dịch bệnh.</li>
+		<li><strong>b. Địa:</strong> phương Nam. Chỗ đất gò cao; đất đồi; chỗ có lò nung như lò nung gạch hay nung vôi, lò rèn. Cũng chỉ thị tứ, đô thị tấp nập, đông đúc, dân cư chật hẹp, hoặc những xóm thôn nhỏ dưới chân núi.</li>
+		<ul>
+			<li>Nhà cửa: nhà ở gần đường hay gần cầu; nhà nhiều ánh sáng; nhiều cửa sổ; nhà ở trên lầu cao. Những nhà mà trong nhà hay có điện thờ hoặc nhà ở gần có đền thờ, đền miếu.</li>
+			<li>Mộ phần: hợp với mộ tọa Ly hướng Khảm, tọa Khảm hướng Ly. Mộ tọa Ất hướng Tân hay tọa Tân hướng Ất. Cũng hợp với những mạch khí chạy từ phương Nam tới nhập thủ. Quẻ Ly cũng thường có huyệt nằm ở chỗ không có cây cối, đất khô cao ráo. Hay có huyệt nằm ở trên lưng con Quy, con Xà, con Bạch tượng. Mùa Đông không nên táng.</li>
+		</ul>
+	<li><strong>c. Nhân:</strong> nữ giới, trung nữ. Người con gái có khuôn mặt trái xoan, tóc dài, vóc dáng nhẹ nhàng, nữ tính, cũng thường có răng khểnh hay răng lấy (răng xấu hay răng sâu). Những bậc văn nhân; quẻ Ly cũng còn chỉ người bụng to; người mắt có tật; người đội mũ giáp.</li>
+		<ul>
+			<li>Quẻ Ly biểu hiện tính cách: nhẹ nhàng, mỹ lệ, tươi tắn và có văn hóa, có tài học; thông minh, khiêm tốn trong giao tiếp. Những người có cuộc sống nội tâm, những người làm việc đầu óc, sách vở.</li>
+			<li>Quẻ Ly tượng thân thể là mắt, tim, hệ thần kinh trung ương, thượng tiêu. Vì vậy biểu hiện bệnh lý của quệ Ly cũng thường là những bệnh về tim như yếu tim, đau tim. Những bệnh về mắt như mắt có tật, hay đau mắt, mắt cận thị, loạn thị. Lại cũng biểu hiện những bệnh về huyết áp như huyết áp cao, viêm màng não, những bệnh sốt, cảm cúm, đau đầu buốt óc. Đặc biệt về mùa Hạ dễ bị bệnh nóng, ung nhọt, bệnh dịch.</li>
+			<li>Chữ tên họ: Quẻ Ly thường là người trong tên họ viết có bộ Hỏa, bộ Nhân bên cạnh. Hoặc những người thuộc về họ Đoàn, họ Đào, họ Đỗ, họ Nông, họ Phạm. Cũng là những người trong tên thường có chữ cái đầu là chữ L, H, X, D. Ngôi hàng: ba, hai, bảy. Chữ số 327.</li>
+		</ul>
+	</ul>
+</details>
+
+<details name="que-don-item">
+	<summary><strong>Quẻ Cấn (7)</strong> <span class="badge-tho">Thổ</span></summary>
+	<p><strong>Ý nghĩa của bát quái với kiến trúc dương cơ</strong></p>
+	<ul>
+		<li>Cấn: là tường nhà.</li>
+	</ul>
+	<hr>
+	<p><strong>Quan hệ đối của bát quái với ngoại quan (theo Thiệu Ung - Thiệu Khang Tiết)</strong></p>
+	<ul>
+		<li><strong>Thiên thời:</strong> mây; mù; mây mù ở thung lũng.</li>
+		<li><strong>Địa lý:</strong> đường đất ở trên rừng gần sơn thành; lăng gồ; mồ mả; phương Đông bắc; môn khuyết (thiếu, mất cửa).</li>
+		<li><strong>Nhân vật:</strong> Đàn ông trẻ tuổi; người rỗi việc; người trong núi; đồng tử.</li>
+		<li><strong>Tính cách:</strong> cách trở; thủ tĩnh (giữ yên tĩnh); tiến thối do dự; mặt sau; phản lại; ngừng lại; không thấy.</li>
+		<li><strong>Thân thể:</strong> ngón tay; xương; mũi; lưng.</li>
+		<li><strong>Thời gian:</strong> tháng giữa Đông sang Xuân; giờ ngày tháng năm Sửu Dần của tháng 12; ngày tháng 7, 5, 10; giờ ngày tháng năm Thổ.</li>
+		<li><strong>Tĩnh vật:</strong> đất đá; quả dưa; vật màu vàng; vật trong đất; cửa chùa; vật do gỗ làm ra; dưa của loại cây dây leo sinh ra.</li>
+		<li><strong>Động vật:</strong> hổ; chó; chuột; các loại súc vật (bách cầm) thuộc loại mỏ đen; hồ; ly.</li>
+		<li><strong>Nhà cửa:</strong> ở phương Đông bắc; ở núi gần đá; nhà gần đường.</li>
+		<li><strong>Nhà ở:</strong> yên ổn; nhiều việc có trở ngại; người nhà không hoà thuận; mùa Xuân không yên.</li>
+		<li><strong>Ăn uống:</strong> hương vị của vật ở trong đất; thịt các loại thú; hương vị dân dã.</li>
+		<li><strong>Hôn nhân:</strong> cách trở khó thành; thành nhưng muộn; chậm; lợi kết hôn với nam trẻ; nên kết hôn với người nông thôn; mùa Xuân không lợi.</li>
+		<li><strong>Cầu danh:</strong> cách trở vô danh; nên nhậm chức phía Đông bắc; hợp với chức trông coi đất đai ở vùng núi.</li>
+		<li><strong>Sinh đẻ:</strong> khó sinh; có chỗ hiểm yếu; trắc trở; nên hướng Đông bắc; mùa Xuân có tổn thất.</li>
+		<li><strong>Giao dịch:</strong> khó thành; có việc giao dịch về ruộng đất rừng núi; mùa Xuân có thua thiệt.</li>
+		<li><strong>Xuất hành:</strong> không nên đi xa; có trắc trở; nên đi đường bộ và gần.</li>
+		<li><strong>Mong gặp:</strong> không thể gặp; có trắc trở; nên gặp người ở vùng núi.</li>
+		<li><strong>Bệnh tật:</strong> bệnh về ngón tay; bệnh về tỳ vị.</li>
+		<li><strong>Tranh tụng:</strong> quý nhân cản trở làm chậm; kiện chưa được giải quyết; có liên quan không dứt được.</li>
+		<li><strong>Mộ phần:</strong> huyệt hướng Đông bắc; huyệt trong núi; gần bên cạnh đường có đá; mùa Xuân không lợi.</li>
+		<li><strong>Chứ tên họ:</strong> chữ viết bên cạnh có chữ Thổ; ngôi hàng năm, bảy, mười.</li>
+		<li><strong>Chữ số:</strong> 5, 7, 10.</li>
+		<li><strong>Phương đường đi:</strong> phương Đông bắc.</li>
+		<li><strong>Ngũ vị:</strong> ngọt.</li>
+		<li><strong>Ngũ sắc:</strong> vàng.</li>
+		<li>(không có mục mưu vượng, cầu lợi do quẻ không hiện).</li>
+	</ul>
+	<hr>
+	<p><strong>Ý nghĩa của bát quái trong tam tài (Thiên - Địa - Nhân)</strong></p>
+	<ul>
+		<li><strong>Thiên:</strong> chỉ sự thay đổi trạng thái của trời đất, như đang nắng thành mưa, đang mưa thành nắng. Trong trạng thái bình thường nó chỉ trời âm u, nhiều mây, mù, vòm trời thấp, nặng nề.</li>
+		<li><strong>Địa:</strong> phương Đông bắc. Đồi núi hay đất gò cao, đồi trọc. Quẻ Cấn cũng chỉ đường đi lối lại nhưng là đường đất ở làng quê thôn xóm, đường ở trên rừng gần sơn thành. Chỉ lăng tẩm, mồ mả, môn khuyết (thiếu, mắt cửa).</li>
+		<ul>
+			<li><strong>Nhà cửa:</strong> nhà dân, nhà cấp 4, nhà ở gần núi đá; nhà gần đường, nhà ở gần các công sở, cơ quan xí nghiệp, bệnh viện, trường học. Quẻ Cấn cũng còn chỉ nhà của chính các công sở, cơ quan xí nghiệp, bệnh viện, trường học đó.</li>
+			<li><strong>Mộ phần:</strong> hợp với mộ tọa Khôn hướng Cấn, tọa Cần hướng Khôn. Mộ tọa Tuất hướng Thìn hay tọa Thìn hướng Tuất. Cũng hợp với mạch khí từ phương Đông bắc đến nhập thủ huyệt trong núi, trên gò đồi, huyệt gần bên cạnh đường. Huyệt cũng thường được táng trên lưng con Quy, con Tượng, hay trên quả Hồ lô. Mùa Xuân không nên táng.</li>
+		</ul>
+		<li><strong>Nhân:</strong> nam giới, người đàn ông trẻ tuổi; người ri việc: người trong núi, đồng tử. Người con trai có dáng người tầm thước, hoặc cao gầy, mặt đầy đặn, mũi cao, môi đỏ da trắng, trông tươi tắn, có duyên.</li>
+		<ul>
+			<li>Quẻ Cấn biểu hiện tính cách: thủ tĩnh (giữ yên tĩnh); tiến thối do dự, phản phục bất thường; ngưng đọng trì trệ; không chắc chắn.</li>
+			<li>Quẻ Cấn tượng thân thể là ngón tay, ngón chân, là lưng, là xương sống, là lá lách. Quẻ Cấn cũng tượng là cái mũi, mũi cao thường rơi vào cách "độc cô phong tị".</li>
+			<li>Vì vậy biểu hiện bệnh lý của quẻ Cấn cũng thường là những bệnh tật về tỳ vị. Những bệnh về lưng về cột sống như thoái hóa cột sống, vôi hóa cột sống, những bệnh tật do bị tổn thương vùng thắt lưng cột sống, thậm chí có thể vì sự tổn thương này mà dẫn tới chỗ bại liệt, bán thân bất toại. Lại cũng hay chủ về những bệnh đường hô hấp như viêm xoang.</li>
+			<li>Chữ tên họ: Quẻ Cấn thường là người trong tên họ viết có bộ Thổ. Hoặc những người thuộc về họ Vi, họ Vương, họ Dư, họ Doãn, họ Hồ, họ Lý. Hoặc là những người trong tên có chữ cái đầu là B, T, P, D. Ngôi hàng: năm, bảy, mười. Chữ số 5710.</li>
+		</ul>
+	</ul>
+</details>
+
+<details name="que-don-item">
+	<summary><strong>Quẻ Đoài (8)</strong> <span class="badge-kim">Kim</span></summary>
+	<p><strong>Ý nghĩa của bát quái với kiến trúc dương cơ</strong></p>
+	<ul>
+		<li>Đoài: là cửa cổng (cửa chính, cửa phụ, cửa thông phòng, cổng nhà).</li>
+	</ul>
+	<hr>
+	<p><strong>Quan hệ đối của bát quái với ngoại quan (theo Thiệu Ung - Thiệu Khang Tiết)</strong></p>
+	<ul>
+		<li><strong>Thiên thời:</strong> mưa, trăng non, sao.</li>
+		<li><strong>Địa lý:</strong> ao; đầm; mép nước; ao nhỏ; giếng bỏ đi; chỗ núi nể sụt lở; chỗ đất sỏi.</li>
+		<li><strong>Nhân vật:</strong> thiếu nữ; thiếp; kỹ nữ, diễn viên; người phiên dịch; thầy bói; con gái giúp việc nhà.</li>
+		<li><strong>Tính cách:</strong> vui mừng; cãi vã (miệng lưỡi); nói xấu; ăn uống.</li>
+		<li><strong>Thân thể:</strong> lưỡi; miệng; hầu; phổi; đờm; nước bọt.</li>
+		<li><strong>Thời gian:</strong> tháng tám mùa Thu; giờ ngày tháng năm Dậu; ngày tháng năm Kim; ngày tháng 2, 4, 9.</li>
+		<li><strong>Tĩnh vật:</strong> kim dao (dao kim loại); kim loại; nhạc khí vật phế thải; vật thiếu các phụ tùng; vật có miệng; vật hư gẫy.</li>
+		<li><strong>Động vật:</strong> dê; vật trong ao hồ.</li>
+		<li><strong>Nhà cửa:</strong> ở hướng Tây; ở gần ao; nhà tường vách hỏng; nhà có hao tổn.</li>
+		<li><strong>Nhà ở:</strong> không yên; đề phòng cãi vã; mùa Thu thì vui mừng; mùa Hạ được nhà có tai hoạ.</li>
+		<li><strong>Ăn uống:</strong> thịt dê; vật ở ao hồ; vị bình thường; vật đắng cay.</li>
+		<li><strong>Hôn nhân:</strong> không thành; mùa Thu không thành; có hỷ (vui); tốt cho người chủ hôn với thiếu nữ; mùa Hạ không lợi.</li>
+		<li><strong>Sinh để:</strong> không lợi; e tổn hại thai hoặc là sinh con gái; mùa Hạ không lợi; nên ngồi hướng Tây.</li>
+		<li><strong>Cầu danh:</strong> khó thành; vì danh mà có tổn thất; lợi về nhận việc ở phía Tây; nên làm hình quan (quan tòa); chức võ; người diễn viên; người phiên dịch.</li>
+		<li><strong>Cầu lợi:</strong> không lợi; có hại; tài lợi gây ra cãi vạ; mùa Thu có tin vui; có của; mùa Hạ không lợi.</li>
+		<li><strong>Xuất hành:</strong> không nên đi xa; đề phòng cãi vã; hoặc mất mát; nên đi phía Tây; mùa Thu có lợi nên đi.</li>
+		<li><strong>Giao dịch:</strong> có lợi; đề phòng cãi vã; có cạnh tranh; mùa Thu có lợi do giao dịch; mùa Hạ không lợi.</li>
+		<li><strong>Mong gặp:</strong> lợi đi về phía Tây; gặp sẽ có chửi mắng.</li>
+		<li><strong>Bệnh tật:</strong> bệnh ở miệng, lưỡi, yết hầu; bệnh thở dốc ngược; ăn uống không được.</li>
+		<li><strong>Mộ phần:</strong> nên hướng Tây; phòng trong huyệt có nước; mộ gần ao hồ; hoặc táng ở huyệt đất hoang; mùa Hạ không nên.</li>
+		<li><strong>Tranh tụng:</strong> tranh kiện mãi không thôi; quanh co không dứt khoát; vì kiện mà bị tổn hại; đề phòng bị hình sự; mùa Thu thắng lý được kiện.</li>
+		<li><strong>Chữ tên họ:</strong> chữ viết tên họ có chữ Khẩu; chữ Kim bên cạnh; ngôi hàng bốn, hai, chín.</li>
+		<li><strong>Chữ số:</strong> 4, 2, 9.</li>
+		<li><strong>Phương đường đi:</strong> phương Tây.</li>
+		<li><strong>Ngũ vị:</strong> cay.</li>
+		<li><strong>Ngũ sắc:</strong> trắng.</li>
+		<li>(không có mục mưu vượng, do quể không hiện).</li>
+	</ul>
+	<hr>
+	<p><strong>Ý nghĩa của bát quái trong tam tài (Thiên - Địa - Nhân)</strong></p>
+	<ul>
+		<li><strong>Thiên:</strong> chỉ trăng non, sao. Cũng chỉ trời mưa hoặc trời nắng nhạt mây mỏng hay lác đác mưa nhỏ, lúc mưa, lúc tạnh.</li>
+		<li><strong>Địa:</strong> chỉ ao chuôm, đầm lầy, mép nước, vũng bùn; giếng nước đã bỏ đi; chỗ núi sụt lở; chỗ đất sỏi. Quẻ Đoài cũng chỉ những chỗ chợ búa, mua bán trao đổi. Chỉ rạp chiếu phim, rạp hát, phòng trà, chỗ ca múa nhạc.</li>
+		<ul>
+			<li>Nhà cửa: nhà gần ao, đầm, hay gần nhà có mương nước, rãnh nước tù đọng. Nhà tường vách hỏng, tường hay trần nhà có vết nứt; nhà có hao tổn. Quẻ Đoài cũng chỉ khách sạn, phòng trà, lại cũng chỉ mái đình, miếu, chùa chiền; hoặc là chỉ nhà ở gần đình miếu chùa chiền.</li>
+			<li>Mộ phần: hợp với mộ tọa Chấn hướng Đoài, tọa Đoài hướng Chấn. Tọa Ty hướng Hợi, tọa Hợi hướng Ty. Huyệt được táng trên gò có hình con Xà, con Cá, con Quy. Huyệt gần chỗ ao đầm, hay những huyệt bên trong có nhiều bùn nước, hoặc huyệt được táng ở chỗ bãi đất hoang, bãi cỏ lác. Mùa Hạ không hạ táng.</li>
+		</ul>	
+		<li><strong>Nhân:</strong> nữ giới, thiếu nữ; tỳ thiếp; kỹ nữ, nữ diễn viên; người phiên dịch; thầy bói; con gái giúp việc nhà. Quẻ Đoài thường có tượng là thiếu nữ da trắng, nhanh nhẹn, mặt tròn nhưng hơi xương, mũi cao, gò má cao, tóc ngắn, nói chuyện có duyên, bề ngoài dễ gần.</li>
+		<ul>
+			<li>Quẻ Đoài biểu hiện tính cách: hoạt bát, vui về, hay nói, hay chuyện và cũng hay cãi vã ganh đua (chủ về miệng lưỡi là nói xấu dèm pha). Quẻ Đoài cũng còn có tượng là 	ăn uống, hay ăn, tiệc tùng rượu chè tụ tập.</li>
+			<li>Quẻ Đoài tượng thân thể là lưỡi, miệng, hầu, phổi, đờm, nước bọt. Vì vậy biển hiện bệnh lý của quẻ Đoài cũng thường là những bệnh tật liên quan đến phần mặt mà chủ yếu là mồm miệng, lưỡi, cổ, vai. Những bệnh về phế quản, yết hầu, bệnh thở dốc, những bệnh ăn uống không được. Quẻ Đoài cũng chỉ bệnh hen suyễn, thậm chí có thể là cả bệnh tim, bệnh đau cổ, đau vai.</li>
+			<li>Chữ tên họ: Quẻ Đoài thường là những người trong tên họ viết có chữ Kim, chữ Khẩu, hoặc những người thuộc về họ Triệu, họ Trần, họ Vũ, họ Phạm, họ Hoàng. Hoặc là những người trong tên thường có chữ cái đầu là B, Đ, N, P. Ngôi hàng: bốn, hai, chín. Chữ số 429.</li>
+		</ul>
+	</ul>
+</details>
+</div>
+
+<script>
+	// ---- Accordion behavior ----
+	document.addEventListener('toggle', (event) => {
+		const el = event.target;
+		if (!el || el.tagName !== 'DETAILS') return;
+    
+		if (el.open) {
+			const name = el.getAttribute('name');
+			if (name) {
+				document.querySelectorAll('details[name][open]').forEach((other) => {
+					if (other !== el && other.getAttribute('name') === name) other.open = false;
+				});
+			}
+		} else {
+			el.querySelectorAll('details[open]').forEach((nested) => { nested.open = false; });
+		}
+	}, true);
+	
+	// ---- Toggle-theme ----
+	const themeToggleBtn = document.getElementById('theme-toggle');
+	const themeIcon = document.getElementById('theme-icon');
+	const themeText = document.getElementById('theme-text');
+
+	// Helper to update button state
+	function updateThemeUI(isLight) {
+		if (isLight) {
+			document.documentElement.setAttribute('data-theme', 'light');
+			themeIcon.textContent = '🌙';
+			themeText.textContent = 'Dark Mode';
+		} else {
+			document.documentElement.removeAttribute('data-theme');
+			themeIcon.textContent = '☀️';
+			themeText.textContent = 'Light Mode';
+		}
+	}
+
+	// Check saved theme or default to dark
+	const savedTheme = localStorage.getItem('theme') || 'dark';
+	updateThemeUI(savedTheme === 'light');
+
+	themeToggleBtn.addEventListener('click', () => {
+		const isCurrentLight = document.documentElement.getAttribute('data-theme') === 'light';
+		const nextTheme = isCurrentLight ? 'dark' : 'light';
+		
+		localStorage.setItem('theme', nextTheme);
+		updateThemeUI(nextTheme === 'light');
+	});
+</script>
+  
+</body>
+</html>

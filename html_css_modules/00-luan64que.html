@@ -22,6 +22,12 @@
     --jade-dim: rgba(91,150,134,0.28);
     --cinnabar: #c24632;
     --cinnabar-dim: rgba(194,70,50,0.25);
+	--gainsboro: #dcdcdc; 
+	--gainsboro-dim: #333333;
+	--royalblue: #4169e1;
+	--royalblue-dim: #101b3b;
+	--amethyst: #a45ee5;
+	--amethyst-dim: #57115e;
     --line: rgba(231,223,201,0.10);
     --line-strong: rgba(231,223,201,0.18);
     --radius: 3px;
@@ -41,6 +47,16 @@
     --gold-dim: rgba(158,115,35,0.28);
     --jade: #2e685a;
     --jade-dim: rgba(46,104,90,0.28);
+    --line: rgba(34,35,40,0.12);
+    --line-strong: rgba(34,35,40,0.22);
+    --cinnabar: #a12b18;
+    --cinnabar-dim: rgba(161,43,24,0.18);
+    --gainsboro: #333333;
+    --gainsboro-dim: #f0f0f0;
+    --royalblue: #2243a3;
+    --royalblue-dim: rgba(34,67,163,0.15); 
+    --amethyst: #6f2fae;
+    --amethyst-dim: rgba(111,47,174,0.15);
     --line: rgba(34,35,40,0.12);
     --line-strong: rgba(34,35,40,0.22);
     --bg-radial: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(158,115,35,0.08), transparent 60%);
@@ -123,11 +139,16 @@
     margin:0 0 32px;
   }
 
-  /* ---------- Search ---------- */
+  /* ---------- Search & Filter Section ---------- */
 
-  .search-container{margin-bottom:36px;}
+  .search-container{
+    position: relative;
+    margin-bottom:36px;
+    display: flex;
+    gap: 10px;
+  }
   .search-input{
-    width:100%;
+    flex: 1;
     background:var(--ink-800);
     border:1px solid var(--line-strong);
     border-radius:var(--radius);
@@ -143,6 +164,126 @@
     outline:none;
     border-color:var(--gold);
     background:var(--ink-850);
+  }
+
+  /* Nút kích hoạt bộ lọc popover */
+  .filter-btn {
+    background: var(--ink-800);
+    border: 1px solid var(--line-strong);
+    color: var(--paper);
+    padding: 0 18px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--gold);
+    background: var(--ink-850);
+    color: var(--gold);
+  }
+  .filter-btn .badge {
+    background: var(--gold);
+    color: var(--ink-900);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    display: none;
+  }
+  .filter-btn .badge.show {
+    display: inline-block;
+  }
+
+  /* Khung Popover chứa các checkbox */
+  .filter-popover {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 380px;
+    max-width: calc(100vw - 40px);
+    background: var(--ink-850);
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 18px;
+    z-index: 100;
+  }
+  .filter-popover.open {
+    display: block;
+  }
+
+  .filter-group-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .filter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 12px;
+    margin-bottom: 16px;
+  }
+
+  .filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: var(--paper-dim);
+    cursor: pointer;
+    user-select: none;
+  }
+  .filter-checkbox:hover {
+    color: var(--paper);
+  }
+  .filter-checkbox input[type="checkbox"] {
+    accent-color: var(--gold);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
+
+  .filter-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+  .filter-reset-btn {
+    background: transparent;
+    border: none;
+    color: var(--paper-faint);
+    font-size: 12.5px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+  }
+  .filter-reset-btn:hover {
+    color: var(--cinnabar);
+  }
+  .filter-close-btn {
+    background: var(--gold);
+    border: none;
+    color: var(--ink-900);
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    font-size: 12.5px;
+    cursor: pointer;
   }
 
   /* ---------- Kinh groups (Thượng / Hạ) ---------- */
@@ -261,34 +402,12 @@
     color:var(--gold);
     font-style:normal;
   }
-  ul {
-  margin: 10px 0 0 0; 
-  padding-left: 20px;
-  }
 
-  li {
-    margin-bottom: 7px; 
-    font-size: 14px; 
-    color: var(--paper-dim); 
-    line-height: 1.6; 
-    text-align: justify; /* Justifies main list items */
-  }
-
-  li strong {
-    color: var(--paper); 
-    font-weight: 600; 
-    font-style: normal;
-  }
-
-  li ul {
-    margin-top: 6px;
-  }
-
-  li ul li {
-    font-size: 13px; 
-    color: var(--paper-faint);
-    text-align: justify; /* Justifies nested list items if needed */
-  }
+  ul{margin:10px 0 0 0; padding-left:20px;}
+  li{margin-bottom:7px; font-size:14px; color:var(--paper-dim); line-height:1.6;}
+  li strong{color:var(--paper); font-weight:600; font-style:normal;}
+  li ul{margin-top:6px;}
+  li ul li{font-size:13px; color:var(--paper-faint);}
 
   hr{
     height:1px;
@@ -352,6 +471,80 @@
     letter-spacing:0.14em;
     color:var(--paper-faint);
   }
+  
+  /* ---------- Tags badge -------------- */
+  
+  .badge-kim {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--gainsboro-dim);
+    color: var(--gainsboro);
+    border: 1px solid var(--gainsboro);
+    margin-left: 8px;
+  }
+  
+  .badge-moc {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--jade-dim);
+    color: var(--jade);
+    border: 1px solid var(--jade);
+    margin-left: 8px;
+  }
+  
+  .badge-thuy {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--royalblue-dim);
+    color: var(--royalblue);
+    border: 1px solid var(--royalblue);
+    margin-left: 8px;
+  }
+  
+    .badge-hoa {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--cinnabar-dim);
+    color: var(--cinnabar);
+    border: 1px solid var(--cinnabar);
+    margin-left: 8px;
+  }
+  
+    .badge-tho {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--gold-dim);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    margin-left: 8px;
+  }
+  
+  .badge-soul {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--amethyst-dim);
+    color: var(--amethyst);
+    border: 1px solid var(--amethyst);
+    margin-left: 8px;
+  }
 
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
@@ -371,7 +564,7 @@
   <p class="subtitle">Ý nghĩa 64 quẻ dịch theo thứ tự — vận thế, hy vọng, tài vận, sự nghiệp, hôn nhân và các mục luận giải khác cho từng quẻ. <strong>Trích: Dịch học Ngũ Linh — Cao Từ Linh.</strong></p>
   <div class="rule"></div>
 
-  <!-- SEARCH BAR SECTION -->
+  <!-- SEARCH & FILTER BAR SECTION -->
   <div class="search-container">
     <input
       type="text"
@@ -379,12 +572,44 @@
       class="search-input"
       placeholder="Nhập tên quẻ hoặc mã nhị phân (VD: Địa Thiên Thái, 111000)…"
     >
+    <button id="filter-toggle-btn" class="filter-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+      <span>Bộ lọc</span>
+      <span id="filter-badge" class="badge">0</span>
+    </button>
+
+    <!-- POPOVER BỘ LỌC CHECKBOX -->
+    <div id="filter-popover" class="filter-popover">
+      <div class="filter-group-title">Theo Họ Quẻ</div>
+      <div class="filter-grid">
+        <label class="filter-checkbox"><input type="checkbox" name="ho-que" value="Càn"> Họ Càn</label>
+        <label class="filter-checkbox"><input type="checkbox" name="ho-que" value="Đoài"> Họ Đoài</label>
+        <label class="filter-checkbox"><input type="checkbox" name="ho-que" value="Ly"> Họ Ly</label>
+        <label class="filter-checkbox"><input type="checkbox" name="ho-que" value="Chấn"> Họ Chấn</label>
+        <label class="filter-checkbox"><input type="checkbox" name="ho-que" value="Tốn"> Họ Tốn</label>
+        <label class="filter-checkbox"><input type="checkbox" name="ho-que" value="Khảm"> Họ Khảm</label>
+        <label class="filter-checkbox"><input type="checkbox" name="ho-que" value="Cấn"> Họ Cấn</label>
+        <label class="filter-checkbox"><input type="checkbox" name="ho-que" value="Khôn"> Họ Khôn</label>
+      </div>
+
+      <div class="filter-group-title">Theo Loại Quẻ</div>
+      <div class="filter-grid">
+        <label class="filter-checkbox"><input type="checkbox" name="loai-que" value="Quy Hồn"> Quẻ Quy Hồn</label>
+        <label class="filter-checkbox"><input type="checkbox" name="loai-que" value="Du Hồn"> Quẻ Du Hồn</label>
+        <label class="filter-checkbox"><input type="checkbox" name="loai-que" value="Lục Xung"> Quẻ Lục Xung</label>
+      </div>
+
+      <div class="filter-actions">
+        <button id="filter-reset-btn" class="filter-reset-btn">Xóa chọn</button>
+        <button id="filter-close-btn" class="filter-close-btn">Áp dụng</button>
+      </div>
+    </div>
   </div>
 
 <details class="que-group"> 
 	<summary>Thượng kinh</summary>
-		<details name="que-item">
-		<summary><strong>Thuần Càn (1) </strong> - trời</summary>
+		<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Càn">
+		<summary><strong>Thuần Càn (1) </strong> - trời <span class="badge-kim">họ Càn</span> <span class="badge-soul">quẻ Lục xung</span></summary> 
 		<ul>
 			<li><strong>Vận thế:</strong> Trước mắt tuy tốt, nhưng vì muốn mau chóng đạt mục đích mà dễ đi tới thất bại, vậy hãy kiên nhẫn chờ thời cơ, chớ quá nóng ruột và quá tự tin</li>
 			<li><strong>Hy vọng:</strong> Có thể được như ý, nhưng tin tức sẽ đến chậm, nôn nóng sẽ hỏng việc. Khi sự việc đã như ý, lại phải đề phòng hậu quả xấu</li>
@@ -551,8 +776,8 @@
 			đều yên.</p>
 		</details>
 	</details>
-  	<details name="que-item">
-	<summary><strong>Thuần Khôn (2) </strong> - đất</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Khôn">
+	<summary><strong>Thuần Khôn (2) </strong> - đất <span class="badge-tho">họ Khôn</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 	<ul>
 		<li><strong>Vận thế:</strong> Vì nóng vội mà làm hỏng cả khí vận của mình, nếu yên tâm ở nghề nghiệp cũ thì không sao. Nên lắng nghe ý kiến người trên, nên cùng hành động với số đông.</li>
 		<li><strong>Hy vọng:</strong> Vì mê muội mà không thể thành công. Hãy hạ bớt yêu cầu và mục tiêu.</li>
@@ -711,8 +936,8 @@
 		<p>Khôn là quẻ đối nhau với Càn, 4 đức tính giống nhau nhưng thể "trinh" thì khác nhau. Càn lấy chính bền làm "trinh", Khôn thì lấy nhu thuận làm "trinh". Ngựa cái là giống nhu thuận mà sức đi khoẻ cho nên dùng tượng của nó gọi là "nết trinh của ngựa cái". Việc làm của đấng quân tử nhu thuận mà lợi cho trinh đó là hợp với đức tính của Khôn. Âm phải theo dương ắt đợi xướng rồi mới hoạ. Âm đi trước dương tức là mê lẫn phải ở sau dương mới đúng lẽ thường. Chủ về lợi nghĩa là lợi cho muôn vật đều chủ ở khôn vì cuộc sinh thành đều là công của đất cả. Đạo làm bề tôi cũng vậy, vua sai tôi làm, vất vả về việc làm là chức trách của kẻ làm tôi. Tây nam là phương âm, Đông bắc là phương dương. Âm phải theo dương, lìa bỏ bầy loại của nó mới có thể làm nên công cuộc hoá dục mà được cái tốt bụng trong việc an phận giữ nết trinh. Nghĩa là đúng với lẽ thường thì yên, yên với lẽ thường thì "trinh" cho nên mới tốt.</p>
 	</details>
 </details>
-  	<details name="que-item">
- 		<summary><strong>Thủy Lôi Truân (3) </strong> - mới sinh, khó khăn</summary>
+  	<details name="que-item" data-ho-que="Khảm">
+ 		<summary><strong>Thủy Lôi Truân (3) </strong> - mới sinh, khó khăn <span class="badge-thuy">họ Khảm</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện đang là thời kì khó khăn nhất, tiến thoái lưỡng nan, nhẫn nại là cách tốt hơn cả. Cần dựa vào bề trên và an tâm với nghề nghiệp cũ.</li>
 			<li><strong>Hy vọng:</strong> Khó đạt tới.</li>
@@ -866,8 +1091,8 @@
 			<p>Quẻ Truân có cách đại hanh thông mà ở vào đó thì lợi ở chính bền, không chính bền lấy gì để qua lúc truân? Lúc truân có việc chưa có thể đi được, thiên hạ đương truân há rằng sức một người nào có thể làm cho qua được? Ắt phải rộng nhờ về sức giúp đỡ cho nên lợi về sự dựng tước hầu. </p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Sơn Thủy Mông (4) </strong> - mờ tối, non yểu</summary>
+  	<details name="que-item" data-ho-que="Ly">
+ 		<summary><strong>Sơn Thủy Mông (4) </strong> - mờ tối, non yểu <span class="badge-hoa">họ Ly</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện tại mọi việc còn mơ hồ, chưa biết xoay sở cách nào. Vận thế mờ mịt.</li>
 			<li><strong>Hy vọng:</strong> Vô vọng, phải chờ thời cơ, nếu miễn cưỡng sẽ chỉ chuốc lấy thất bại.</li>
@@ -1006,13 +1231,13 @@
 			<p>"Mông hanh, phỉ ngã cầu đồng mông, đồng mông cầu ngã. Sơ phệ cốc, tái tam độc, độc tắc bất cốc, lợi trinh" (Quẻ Mông hanh thông, chẳng phải ta tìm trẻ thơ mà trẻ thơ tìm ta. Hỏi một lần thì bảo, hai ba lần thì nhàm, nhàm thì không bảo, lợi về sự trinh chính). Chữ "mông" có lẽ là khai phát tức là hanh thông, hào âm 5 làm chủ quẻ Mông mà hào dương 2 là người mở mang sự mờ tối. "Ta" là hào 2. Hào 2 không phải là chủ quẻ Mông, hào 5 đã nhún thuận vào hào 2, hào 2 bèn mở mang sự mờ tối cho nó. Cho nên mới lấy hào 2 làm chủ mà nói: "Chẳng phải ta tìm trẻ thơ, trẻ thơ tìm ta". Hào 5 ở ngôi tôn có đức thuận mà đương ở thời trẻ thơ chính ứng với hào 2 mà đức "trung" lại cũng giống nhau, có thể dùng đạo của hào 2 để mở mang sự mờ tối. Hào 2 đức cương trung ở dưới, được vua tìm theo phải nên lấy đạo tự giữ đợi vua chính thành cầu mình đó là "không phải ta tìm trẻ thơ, trẻ thơ tìm ta". Bói là xem để quyết đoán. Mới bói bảo nghĩa là thật lòng, dốc ý để tìm mình thì mình bảo họ, đến 2, 3 lần thì là nhảm nhí cho nên không bảo. Cái đạo mở mang kẻ mờ tối chỉ lợi về sự chính đính. Vả lại hào 2 tuy là cương trung nhưng ở ngôi âm cho nên mới có lời răn bảo.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Thủy Thiên Nhu (5) </strong> - ăn uống, chờ đợi</summary>
+  	<details name="que-item" data-loai-que="Du Hồn" data-ho-que="Khôn">
+		<summary><strong>Thủy Thiên Nhu (5) </strong> - ăn uống, chờ đợi <span class="badge-tho">họ Khôn</span> <span class="badge-soul">quẻ Du hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Mọi việc tiến triển thuận lợi sẽ được như ý</li>
 			<li><strong>Hy vọng:</strong> Đừng nóng vội sẽ thành công</li>
 			<li><strong>Tài vận:</strong> Sẽ tới, cứ an tâm chờ đợi.</li>
-			<li><strong>Sự nghiệp:</strong> Chưa phải thời cơ thích hơpk, chờ thêm một chút nữa.</li>
+			<li><strong>Sự nghiệp:</strong> Chưa phải thời cơ thích hợp, chờ thêm một chút nữa.</li>
 			<li><strong>Nhậm chức:</strong> Chờ một thời gian nữa, sẽ có địa vị tốt</li>
 			<li><strong>Chuyển nghề:</strong> Chưa nên, giữ việc hiện tại có lợi.</li>
 			<li><strong>Tình yêu:</strong> Cảm tình tiến triển quá nhanh, nên bình tĩnh tở lại đôi chút để tránh đổ vỡ.</li>
@@ -1176,8 +1401,8 @@
 			<p>Đại phàm "trinh cát" có khi đã chính lại tốt, có khi có chính mới tốt cần phải phân biệt.&nbsp;</p>
 		</details>
     </details>
-    <details name="que-item">
-		<summary><strong>Thiên Thủy Tụng (6) </strong> - kiện cáo, tranh giành</summary>
+    <details name="que-item" data-loai-que="Du Hồn" data-ho-que="Ly">
+		<summary><strong>Thiên Thủy Tụng (6) </strong> - kiện cáo, tranh giành <span class="badge-hoa">họ Ly</span> <span class="badge-soul">quẻ Du hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Suy yếu, mọi việc dễ phạm sơ hở, sai sót khó bề giải quyết, chớ tranh hơn thua, chớ nói xấu người khác, phải cẩn thận trong trong hành động và lời lẽ.</li>
 			<li><strong>Hy vọng:</strong> Vô ích, nên thay đổi mục tiêu.</li>
@@ -1338,8 +1563,8 @@
 			<p>Phép kiện phải đúng sự thật, không có thật là làm càn ấy là đạo hung. Quẻ này giữa đặc tức là tượng có sự thật. Kẻ kiện tranh biện với người này mà đợi người khác quyết đoán cho mình. Dù có sự thật cũng nên lấp đi, nếu không lấp thì đã rã rồi không có kiện nữa. Việc đã chưa phân biện thì lành dữ chưa thể chắc, cho nên có sự sợ hãi. "Trung cát" nghĩa là vừa phải thì tốt, "chung hung" nghĩa là theo kiện đến cùng thì xấu. Kẻ kiện cần để phân biệt cong ngay, cho nên lợi về sự gặp bậc đại nhân vì rằng bậc đại nhân dùng đức cương minh trung chính quyết đoán việc kiện của họ. Kiện không phải là việc hoà bình, nên chọn chỗ yên ổn mà ở, không nên hãm vào chốn nguy hiểm. Cho nên không cho việc vượt sông lớn.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Địa Thủy Sư (7) </strong> - quân lính, số đông</summary>
+  	<details name="que-item" data-loai-que="Quy Hồn" data-ho-que="Khảm">
+ 		<summary><strong>Địa Thủy Sư (7) </strong> - quân lính, số đông <span class="badge-thuy">họ Khảm</span> <span class="badge-soul">quẻ Quy hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện đang ở thời ký khó khăn nguy hiểm, nên nhẫn nại, chịu đựng gian khổ.</li>
 			<li><strong>Hy vọng:</strong> Nhất thời chưa thành công. Phải cố gắng lớn.</li>
@@ -1499,8 +1724,8 @@
 			<p>Cái đạo cầm quân gia lấy sự chính đính làm gốc. Dấy quân động chúng, để làm độc hại thiên hạ mà không dùng cách chính đính thì dân không theo, chẳng qua cưỡng bách xua họ đi mà thôi. Cho nên quân gia phải lấy sự chính đính làm chủ. Hành động tuy chính đính nhưng kẻ làm tướng phải là bậc trượng nhân mới tốt mà không có lỗi. Bởi vì có khi tốt mà có lỗi, có khi không lỗi mà không tốt. Tốt mà không lỗi mới là tận thiện. Trượng nhân là tên gọi bậc tôn nghiêm. Đem quân coi chúng nếu không phải kẻ mà mọi người, tôn, tín, sợ phục thì sao cho được lòng người vâng theo? Gọi là trượng nhân bất tất phải người vốn vẫn ở ngôi cao quý, hễ mà tài mưu đức nghiệp đủ khiến mọi người sợ phục mới được.</p>
 		</details>
 	</details>
-  	<details name="que-item">
- 		<summary><strong>Thủy Địa Tỷ (8) </strong> - thân thiết, gần gũi</summary>
+  	<details name="que-item" data-loai-que="Quy Hồn" data-ho-que="Khôn">
+ 		<summary><strong>Thủy Địa Tỷ (8) </strong> - thân thiết, gần gũi <span class="badge-tho">họ Khôn</span> <span class="badge-soul">quẻ Quy hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Thuận lợi.</li>
 			<li><strong>Hy vọng:</strong> Thành tựu như ý.</li>
@@ -1645,8 +1870,8 @@
 			<p>Liền nhau là tốt, người ta gần liền nhau tức là đạo tốt. Có người gần liền với nhau thì phải có cách. Nếu không phải cách thì có hối hận, cho nên cần phải lựa chọn kẻ nào có thể gần liền được thì gần. "Phê" ở đây là tính toán đắn đo chọn lựa không phải là bói mai rùa. Cái người mình gần phải có đức tính nguyên tốt mới chính bền mà được lâu dài thì mới không lỗi. "Nguyên" tốt có đạo Quân trưởng, "vĩnh" là lâu dài có thể thường lâu, "trinh" là chính đạo. Người trên gần với kẻ dưới ắt có 3 đức tính ấy. Kẻ dưới gần với người trên cũng phải có 3 đức tính ấy thì không có lỗi. Người nào đến khi không giữ được yên ổn của mình mới đến cầu thân được gần liền thì mới giữ được yên ổn. Trong lúc không yên, phải nên kíp kíp để tìm người gần liền, nếu đứng một mình mà tự cậy mình, chí cầu thân không nóng mà chậm lại sau, thì tuy là đấng trượng phu cũng hung, huống chi là kẻ nhu nhược. Những thứ sinh ra trong trời đất không thứ gì không liền nhau mà có thể tự tồn, tuy rất cương cường chưa có kẻ nào đứng một mình được. Đạo quẻ Tỷ do ở 2 chí liền nhau, nếu không liền nhau thì quẻ Khuê. Ông vua vỗ về kẻ dưới, kẻ dưới thân bám người trên; họ hàng, bè bạn, làng xóm đều vậy. Cho nên trong khi kẻ trên và người dưới hợp chí để theo nhau, nếu không có tìm nhau thì phải lìa nhau mà hung. Đại để tình người tìm nhau thì hợp, găng nhau thì lìa, găng nhau nghĩa là kẻ nọ chờ kẻ kia chẳng ai chịu làm trước. Người ta thân nhau đành vẫn có cách, nhưng mà cái chí gần muốn gần nhau thì không thể hoãn.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Phong Thiên Tiểu Súc (9) </strong> - chứa nhỏ</summary>
+  	<details name="que-item" data-ho-que="Tốn">
+ 		<summary><strong>Phong Thiên Tiểu Súc (9) </strong> - chứa nhỏ <span class="badge-moc">họ Tốn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Bề ngoài tưởng chừng thuận lợi, thực ra có nhiều trắc trở. Nên suy tính chu đáo mới giải quyết được.</li>
 			<li><strong>Hy vọng:</strong> Chưa thực hiện được vì có người cản trở.</li>
@@ -1798,8 +2023,8 @@
 			<p>Mây là khí âm dương, hai khí đó giao nhau mà hoà hợp thì nó chứa nhau, chắc lại thì thành ra mưa. Dương xướng lên, âm hoạ theo là thuận nên mới hoà hợp, nếu âm xướng trước dương là không thuận nên không hoà hợp, không hoà hợp thì không thể thành mưa. Mây tuy chứa họp đã đầy mà không thể thành mưa là vì nó ở cõi Tây. Đông bắc là phương dương, Tây nam là phương âm, tự âm xướng lên cho nên nó không hoà hợp mà không thành mưa. Lấy con mắt người ta mà coi thì khí mây nổi lên đều tự bốn chỗ thẳm xa nên gọi là giao. Căn cứ vào hào 4 mà nói cho nên nói là " tự ta", chứa khí dương tức là hào 4, nó là chủ của quẻ Súc.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Thiên Trạch Lý (10) </strong> - lễ</summary>
+  	<details name="que-item" data-ho-que="Cấn">
+		<summary><strong>Thiên Trạch Lý (10) </strong> - lễ <span class="badge-tho">họ Cấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang ở giai đoạn vô cùng nguy ngập, phải hết sức thận trọng, nên dựa vào bề trên, giữ lẽ cho chu đáo.</li>
 			<li><strong>Hy vọng:</strong> Khó thực hiện vì đầy rẫy khó khăn và chưa cố gắng đủ mức.</li>
@@ -1951,8 +2176,8 @@
 			<p>Quẻ Lý là đường mà người ta vẫn đi lên, trời ở trên mà trầm ở dưới, lấy kẻ mềm bị dầy xéo với kẻ cứng, trên dưới, đều đúng nghĩa là việc rất thuận lẽ rất đúng, người ta cứ thế mà đi. Tuy xéo vào chỗ nguy hiểm cũng không hại gì cho nên "xéo lên đuôi cọp mà không bị cắn", vì vậy mới hanh thông được.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Địa Thiên Thái (11) </strong> - thông suốt</summary>
+  	<details name="que-item" data-ho-que="Khôn">
+		<summary><strong>Địa Thiên Thái (11) </strong> - thông suốt <span class="badge-tho">họ Khôn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tương đối thuận lợi, nhưng tình trạng này kéo dài không lâu, nên suy tính đối sách thích ứng.</li>
 			<li><strong>Hy vọng:</strong> Như ý, nhưung vào phút chót dễ thất bại do chủ quan hoặc bất mãn</li>
@@ -2114,8 +2339,8 @@
 			<p>Nhỏ là âm, lớn là dương, "đi" là đi ra ngoài, "lại" là ở bên trong, khí âm hạ xuống, khí dương bốc lên tức là giao nhau, âm dương hoạ xướng thì muôn vật được sống thoả thuê, ấy là đất trời thông thái. Nói về việc người thì lớn là đấng trong, quân thượng, nhỏ là kẻ thần hạ. Ông vua suy lòng thành thật để cùng kẻ dưới, bề tôi hết lòng thành thật để thờ vua, chí của kẻ trên người dưới thông nhau ấy là cuộc thái của triều đình. Dương là quân tử, âm là tiểu nhân, quân tử lại ở bên tiểu nhân đi ở bên ngoài, quân tử được ngôi, tiểu nhân ở dưới ấy là cuộc thái của thiên hạ. Đó là đạo củacuộc thái, tốt mà lại hanh thông. Không nói là "nguyên cát" mà nói là "cát hanh" là vì "thời" có khi lên khi xuống, tự có cuộc lớn cuộc nhỏ tuy là hảnh thái cũng không thể nói nhất thái. Nói là "cát hạnh" thì bao bọc được cả.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thiên Địa Bĩ (12) </strong> - bế tắc, lấp</summary>
+  	<details name="que-item" data-ho-que="Càn">
+ 		<summary><strong>Thiên Địa Bĩ (12) </strong> - bế tắc, lấp <span class="badge-kim">họ Càn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Lúc này là thời kỳ tối nghịch cảnh, mọi việc đều không thuận lợi, phải gắng sức chịu khổ cực và vượt qua, thì không lâu sau sẽ có kết quả tốt.</li>
 			<li><strong>Hy vọng:</strong> Khó thành, phạm sai lầm viển vông.</li>
@@ -2271,8 +2496,8 @@
 			<p>Trời đất giao nhau mà muôn vật sinh ở bên trong, rồi sau mới đủ 3 tài. Người là bậc tối linh cho nên làm đầu muôn vật. Phàm những cái giống trong trời đất đều là đạo người. Trời đất không giao nhau thì không sinh ra muôn vật, ấy là không có đạo người cho nên nói là "phỉ nhân" nghĩa là không phải đạo nghĩa. Tiêu đi, lớn lên, đóng lại mở ra những sự đó theo nhau không dừng. Thái cực thì trở lại, bĩ hết thì nghiêng đi, cái lẽ không thể thường mãi không thay đổi, người há lại không có? Đã bĩ thì thái rồi. Trên dưới giao nhau thông cương nhu hoà hợp đó là đạo quân tử, cuộc bĩ thì trái hẳn thế cho nên không lợi cho người quân tử. "Trinh" tức là chính đạo của đấng quân tử, bị bĩ tắc mà không thực hành được, "lớn đi nhỏ lại" tức là dương tiêu đi mà âm lớn lên. Đó là tượng "đạo kẻ tiểu nhân lớn lên, đạo quân tử tiêu đị" cho nên là bĩ.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thiên Hỏa Đồng Nhân (13) </strong> - cùng</summary>
+  	<details name="que-item" data-loai-que="Quy Hồn" data-ho-que="Ly">
+ 		<summary><strong>Thiên Hỏa Đồng Nhân (13) </strong> - cùng <span class="badge-hoa">họ Ly</span> <span class="badge-soul">quẻ Quy hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Vận đang vượng, được người khác tín nhiệm, có danh tiếng tốt, mọi việc dễ thành.</li>
 			<li><strong>Hy vọng:</strong> Nhiều khả năng được người ủng hộ, đề bạt mà thành tựu.</li>
@@ -2418,8 +2643,8 @@
 			<p>Đồng là nơi rộng rãi, lấy nghĩa ở xa và ở ngoài. Ôi chung cùng với người bằng đạo đại đồng của thiên hạ là lòng rất công của thánh hiền. Người thường cùng nhau chỉ cốt ý riêng hợp nhau đó là cái tình gần gũi mà thôi. Cho nên cần phải "ở đồng" nghĩa là không vì tình riêng gần gũi mà phải ở nơi đồng cõi rộng xa. Đã không vướng về sự riêng mới là cái đạo đại đồng rất công, không chỗ xa nào không đồng nhau đủ biết là hanh. Hễ đã có thể đại đồng với thiên hạ thì thiên hạ cũng chung cùng với mình, thiên hạ đã chung cùng thì sự hiểm trở nào không thể vượt qua? Còn sự gian nguy nào không thể hanh thông, cho nên lợi về sự "vượt sông lớn", lợi cho sự chính bền của đấng quân tử. Trên nói: "Ở đồng" nghĩa là không ở chỗ gần kề, đây lại nói nên dùng chính đạo của đấng quân tử. Sự chính bền của đấng quân tử là đạo chí công đại đồng trong thiên hạ, cho nên dù ở xa ngàn dặm thì sau ngàn năm so lại vẫn như hợp cái phù tính (mảnh tre có in tên họ chức tước của bọn nội giám treo ở cửa cung, ai muốn vào so thấy khớp mảnh tre ấy mới cho vào, phép của đời Hán như vậy). Suy ra mà thi hành tuy là rộng như bốn bể, nhiều như tiện dân không gì không hợp. Kẻ tiểu nhân thì chỉ chuyên dùng ý riêng, người họ yêu dù trái họ cũng chung cùng, người họ ghét dù phải họ cũng trái khác, cho nên sự chung cùng của họ chỉ là bè phái. Vì là lòng họ bất chính, cho nên cái đạo chung cùng với người lợi ở sự trinh của đấng quân tử.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Hỏa Thiên Đại Hữu (14) </strong> - có, sở hữu</summary>
+  	<details name="que-item" data-loai-que="Quy Hồn" data-ho-que="Càn">
+ 		<summary><strong>Hỏa Thiên Đại Hữu (14) </strong> - có, sở hữu <span class="badge-kim">họ Càn</span> <span class="badge-soul">quẻ Quy hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Vận đang cực vượng, sắp sửa suy thoái. Quá thuận lượi là lúc phải đề phòng thất bại.</li>
 			<li><strong>Hy vọng:</strong> Hoàn toàn như ý, nhưng chớ tự mãn mà phạm sai lầm.</li>
@@ -2573,8 +2798,8 @@
 			<p>Về tài quẻ nó là đại hanh thông vì nó cương kiện văn minh ứng nhau với trời mà làm việc phải thời cho nên được đại hành thông.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Địa Sơn Khiêm (15) </strong> - khiêm nhường</summary>
+  	<details name="que-item" data-ho-que="Đoài">
+		<summary><strong>Địa Sơn Khiêm (15) </strong> - khiêm nhường <span class="badge-kim">họ Đoài</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện tại bình ổn vô sự.</li>
 			<li><strong>Hy vọng:</strong> Chưa thể thực hiện ngay. Chớ nên nôn nóng, sẽ đến lúc như ý.</li>
@@ -2712,8 +2937,8 @@
 		<p>Quẻ Khiêm là quẻ có đạo hanh thông, có đức mà không tự nhận gọi là khiêm. Người ta lấy sự khiêm tốn tự xử thì đi đâu mà không hanh thông? "Người quân tử có đức sau được tốt" nghĩa là người quân tử chí ở khiêm tốn hiếu lễ, cho nên vui với mệnh trời mà không cạnh tranh, bên trong đầy đủ cho nên tự mình lui mà không khoe khoang, yên lặng đi theo sự khiêm suốt đời không đổi, mình tự hạ mình mà người ta tôn lên, mình tự che cho tới khi mà đức càng sáng tỏ đó là người quân tử về sau được tốt (có hậu). Ở tiểu nhân thì họ có sự ham muốn ắt phải cạnh tranh, có đức ắt phải hợm hĩnh tuy có miễn cưỡng mến sự khiêm tốn cũng không thể yên lòng mà làm, bền chí mà giữ, ấy là không có hậu.</p>
 	</details>
     </details>
-    <details name="que-item">
-		<summary><strong>Lôi Địa Dự (16) </strong> - vui vẻ</summary>
+    <details name="que-item" data-ho-que="Chấn">
+		<summary><strong>Lôi Địa Dự (16) </strong> - vui vẻ <span class="badge-moc">họ Chấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang ở vận thế cực thịnh, mọi việc như ý.</li>
 			<li><strong>Hy vọng:</strong> Nhiêu khả năng thực hiện.</li>
@@ -2857,8 +3082,8 @@
 			<p>Dự là thuận, mà động nghĩa của quẻ Dự lợi ở sự đem quân "đi dựng nước hầu". Dựng nước chư hầu là dựng phên tường để cho cùng yên, thiên hạ chư hầu hoà thuận thì muôn dân vui phục, quân lữ dấy lên lòng người hoà đẹp thì sẽ thuận theo mà có công cao, nên cái đạo đẹp vui lợi ở sự đem quân đi dựng nước hầu. Lại trên động mà dưới thuận đó là cái tượng chư hầu theo nhà vua, binh chúng thuận theo mệnh lệnh. Làm vua muôn nước họp số quân lớn không hoà thì không thể khiến họ phục theo.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Trạch Lôi Tùy (17) </strong> - theo</summary>
+  	<details name="que-item" data-loai-que="Quy Hồn" data-ho-que="Chấn">
+ 		<summary><strong>Trạch Lôi Tùy (17) </strong> - theo <span class="badge-moc">họ Chấn</span> <span class="badge-soul">quẻ Quy hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang tốt nhưng vì không tiếp thu ý kiên của người khác nên thất bại.</li>
 			<li><strong>Hy vọng:</strong> Nếu chịu lắng nghe ý kiến của người khác thì có thể thực hiện được điều mong mỏi.</li>
@@ -3003,8 +3228,8 @@
 			<p>Đạo của sự theo có thể đem đến được nguyên hanh. Đạo quân tử được mọi người theo và mình theo người cùng là tốt việc mà chọn đường nên theo đều là theo cả. Theo được phải đạo thì có thể đem đến sự nguyên hanh. Phàm như ông vua theo điều thiện bề tôi vâng mệnh, kẻ học rồi sang điều nghĩa cùng là tốt việc, mà theo bậc trưởng thượng cũng là theo. Đạo của sự theo lợi ở chính đính rồi mới nguyên hạnh mà không lỗi. Nếu mất đường chính thì phải có lỗi, nguyên hạnh sao được?</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Sơn Phong Cổ (18) </strong> - mê loạn, đổ nát</summary>
+  	<details name="que-item" data-loai-que="Quy Hồn" data-ho-que="Tốn">
+ 		<summary><strong>Sơn Phong Cổ (18) </strong> - mê loạn, đổ nát <span class="badge-moc">họ Tốn</span> <span class="badge-soul">quẻ Quy hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Vốn bình thường, do chủ quan sơ suất mà lâm vào tình thế nguy hiểm, phải thay đổi ngay sách lược thì sẽ trở lại bình thường.</li>
 			<li><strong>Hy vọng:</strong> Tưởng chừng dễ thực hiện, xong thực ra có nhiều trở ngại, khó đạt.</li>
@@ -3157,8 +3382,8 @@
 			<p>"Cổ nguyên hanh, lợi thiệp đại xuyên, tiên Giáp tam nhật, hậu Giáp tam nhật" (Quẻ Cổ được nguyên hanh, lợi sang sông lớn nếu biết xem đi xét lại trước sau ba ngày). Đã loạn thì có lý lại trị, từ xưa cuộc trị ắt nhân cuộc loạn, cuộc loạn thì mở ra cuộc trị là lẽ tự nhiên. Như tài quẻ này dùng để trị cuộc loạn thì có thể đem đến sự nguyên hạnh. Sự lớn nhất trong cuộc loạn là phải vượt qua sự gian nan hiểm trở của đời cho nên nói là "lợi sang sông lớn". "Giáp" là chữ đầu của hàng Can là buổi đầu của công việc tức là mối của các việc, cách trị cuộc cổ phải nghĩ ngợi trước sau 3 ngày. "Trước Giáp" là trước lúc đó xem xét tại sao mà thế, "sau Giáp" là sau lúc đó lo rằng sắp sửa đến thế. Một ngày đến 2 ngày, đến 3 ngày ý nói lo cho sâu mà suy cho xa, xét xem tại sao mà thế thì biết cách để cứu chữa, lo rằng sắp sửa đến thế thì biết mẹo để phòng bị, khéo cứu chữa thì tệ trước có thể cải cách, khéo phòng bị thì có thể lợi sau có thể lâu dài. Đó là phương pháp của bậc thánh vương đời xưa làm mới thiên hạ mà để lại cho đời sau. Những người trị cuộc cổ loạn sau này không rõ cái ý "trước Giáp sau Giáp" của bậc thánh nhân lo nông mà làm việc gần cho nên nhọc về cứu đời mà loạn không khỏi, công chưa thành mà tệ đã sinh rồi.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Địa Trạch Lâm (19) </strong> - lớn, đại</summary>
+  	<details name="que-item" data-ho-que="Khôn">
+ 		<summary><strong>Địa Trạch Lâm (19) </strong> - lớn, đại <span class="badge-tho">họ Khôn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang ở vận tốt, chớ chủ quan.</li>
 			<li><strong>Hy vọng:</strong> Sắp tới lúc thực hiện, hãy nỗ lực đến cùng.</li>
@@ -3308,8 +3533,8 @@
 			<p>Đây là nói về tài của quẻ. Đạo tới như tài quẻ này thì có thể nguyên hanh mà chính. Hai khí dương (chỉ hai hào dương ở dưới) đương lớn lên ở dưới là lúc dương đạo sắp thịnh, thánh nhân răn sẵn mà rằng: "Khí dương tuy được thịnh, đến tháng tám thì nó sẽ tiêu đi ấy là có hung". Đại để thánh nhân răn được ắt là từ lúc dương thịnh mà lo rằng suy thì mới có thể ngăn ngừa sự quá đầy mà mưu tính cuộc lâu dài. Nếu để đã suy mới răn thì không kịp nữa.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Phong Địa Quan (20) </strong> - xem xét</summary>
+  	<details name="que-item" data-ho-que="Càn">
+		<summary><strong>Phong Địa Quan (20) </strong> - xem xét <span class="badge-kim">họ Càn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện đang ở giai đoạn đầy biến động với rất nhiều vẫn đề phát sinh. Nếu hành động thoải mái không vụ lợi, thì có thể lập tức chuyển sang vận tốt.</li>
 			<li><strong>Hy vọng:</strong> Tuy có thể thành tựu, nhưung phải trải qua nhiều vấn đề rắc rối.</li>
@@ -3468,8 +3693,8 @@
 			<p>Ta nghe nói rằng: "Đấng quân tử ở trên, làm gương cho thiên hạ nghĩa là phải cực kỳ trang kính, thì kẻ dưới ngửa xem mà hoá". Cho nên làm gì để thiên hạ xem phải như cuộc tế tôn miếu, trong khi mới rửa tay không thể như sau khi cúng thì kẻ hạ dân hết lòng chí thành cung kính ngửa xem mình. Rửa tay là lúc bắt đầu tế tự, rửa tay rót rượu quỳ xuống đất để cầu thần, cúng là lúc dâng đồ tươi dâng đồ chín, rửa tay là khi việc mới bắt đầu, người ta đang hết lòng tin thành nghiêm trang tột bậc. Sau khi cúng, lễ có phần phiền phức rắc rối thì lòng người tản mác mà sự tin nhất không bằng lúc mới rửa tay. Kẻ ở trên làm cho biểu nghi ngay thẳng để kẻ hạ dân xem lên thì trang kính như khi tế mới rửa tay, chớ để thành ý hơi tan như lúc tế đã cúng rồi, thì người thiên hạ ai cũng hết lòng tin thật ngửa lên xem mình. "Ngung" là ngửa lên mà trông.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Hỏa Lôi Phệ Hạp (21) </strong> - làm cho hợp lại</summary>
+  	<details name="que-item" data-ho-que="Tốn">
+		<summary><strong>Hỏa Lôi Phệ Hạp (21) </strong> - làm cho hợp lại <span class="badge-moc">họ Tốn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện đang gặp rất nhiều trở ngại, rắc rối. Cần có ý chí kiên cường và nỗ lực cao để khắc phục.</li>
 			<li><strong>Hy vọng:</strong> Phải vượt qua trở ngại mới có thể thực hiện được.</li>
@@ -3622,8 +3847,8 @@
 		<p>Quẻ Phệ hạp hanh vì quẻ tự có nghĩa hanh. Việc trong thiên hạ sở dĩ không được hanh thông là vì có chỗ ngăn cách, cắn mà hợp lại thì hanh thông rồi. "Lợi dùng việc ngục" nghĩa là cái đạo "cắn mà hợp lại" nên dùng về việc hình ngục vậy. Lại ngăn cách ở thiên hạ phi hình ngục lấy gì mà trừ bỏ được? Không nói là "lợi dùng việc hình" mà nói là "lợi dùng việc ngục", là vì trong quẻ có tượng sáng soi (chỉ quẻ Ly) lợi về sự xét ngục vậy. Ngục là để xét tự sự thật, sự 90%. Biết được tình thật thì biết cái đạo làm cho ngăn cách rồi mới có thể đặt cách ngăn ngừa và dùng hình phạt.</p>
 	</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Sơn Hỏa Bí (22) </strong> - trau dồi, trang sức</summary>
+  	<details name="que-item" data-ho-que="Cấn">
+ 		<summary><strong>Sơn Hỏa Bí (22) </strong> - trau dồi, trang sức <span class="badge-tho">họ Cấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang ở giai đoạn đầy gian nan, vất vả và đau khổ. Phải hành động đúng với thân phân phận để vượt qua.</li>
 			<li><strong>Hy vọng:</strong> Chớ hy vọng gì nhiều.</li>
@@ -3762,8 +3987,8 @@
 			<p>Các vật có trang sức mới có thể hanh thông cho nên nói rằng: "Không gốc không đứng, không có văn vẻ thì không làm được", có sự thực mà thêm văn sức thì có thể hạnh. Cái đạo văn sức có thể thêm phần sáng của văn vẻ cho nên hơi lợi về sự tiến lên.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Sơn Địa Bác (23) </strong> - lột bỏ đi</summary>
+  	<details name="que-item" data-ho-que="Càn">
+ 		<summary><strong>Sơn Địa Bác (23) </strong> - lột bỏ đi <span class="badge-kim">họ Càn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Cực kì gian khổ, bế tắc. Phải ráng sức chịu đựng.</li>
 			<li><strong>Hy vọng:</strong> Đừng hy vọng gì hết.</li>
@@ -3913,8 +4138,8 @@
 			<p>Quẻ Bác là lúc khí âm lớn thịnh, tiêu gọt khí dương cũng tức là lúc những kẻ tiểu nhân gọt đẽo quân tử cho nên đống quân tử bất lợi không tiến lên được chỉ nên nhún lời nói, giấu tung tích, tuỳ thời nghe ngóng cho khỏi bị kẻ tiểu nhân làm hại.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Địa Lôi Phục (24) </strong> - trở lại</summary>
+  	<details name="que-item" data-ho-que="Khôn">
+ 		<summary><strong>Địa Lôi Phục (24) </strong> - trở lại <span class="badge-tho">họ Khôn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Bắt đầu tốt dần, nhưng hiên thời có cảm giác ngược lại, vậy hãy kiên nhẫn, để khỏi làm cho tình thế xấu đi.</li>
 			<li><strong>Hy vọng:</strong> Có nhiều khả năng thành hiện thực, song phải tốn thời gian, không thể nôn nóng.</li>
@@ -4075,8 +4300,8 @@
 			<p>Cái đạo tiêu trưởng lật đi lật lại đắp đổi mà đến, khí dương tiêu đi đến bảy ngày mà lại trở lại. Quẻ Cấu là dương mới tiêu bảy lần biến mà thành quẻ Phục cho nên nói rằng bảy ngày nghĩa là bảy lần đổi. Quẻ Lâm nói rằng: "Tám tháng có hung" nghĩa là từ lúc dương sinh lớn lên đến lúc âm lớn trải tám tháng vậy. Dương tiến thì âm lui, đạo đấng quân tử lớn lên thì đạo kẻ tiểu nhân đi, cho nên lợi cho việc tiến lên.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Thiên Lôi Vô Vọng (25) </strong> - không làm càn bậy</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Tốn">
+		<summary><strong>Thiên Lôi Vô Vọng (25) </strong> - không làm càn bậy <span class="badge-moc">họ Tốn</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Bế tắc, mọi việc đều không như ý, dễ xảy ra những chuyện bất trắc.</li>
 			<li><strong>Hy vọng:</strong> Không có hy vọng gì, phải chờ thời.</li>
@@ -4234,8 +4459,8 @@
 			<p>Không càn tức là rất thành, rất thành thì là đạo trời. Trời biến hoá nuôi nấng các vật, muôn vật sinh sôi không cùng, vật nào nhằm đúng tính mệnh vật ấy đều là không cần. Người ta có thể hợp với đạo không càn thì "hợp với đức của trời đất". Không càn nên được "nguyên hanh", người quân tử làm theo đạo không càn thì có thể đem lại sự nguyên hanh. Vậy quẻ Vô vọng tức là đạo trời, trong quẻ cốt nói về lẽ người ta theo đạo "không càn". "Lợi trinh" nghĩa là cái cách bắt chước đạo không càn, lợi ở sự trinh chính, không trinh chính là càn. Tuy không tà tâm mà nếu không hợp chính lý thì cũng là càn, là có tà tâm. Cho nên chẳng chính thì là tội lỗi. Đã không cần thì không nên có sự đi, đi thì là càn.</p>
 		</details>
     </details>
-    <details name="que-item">
-		<summary><strong>Sơn Thiên Đại Súc (26) </strong> - chứa lớn</summary>
+    <details name="que-item" data-ho-que="Cấn">
+		<summary><strong>Sơn Thiên Đại Súc (26) </strong> - chứa lớn <span class="badge-tho">họ Cấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đã qua nhiều gian khổ, vận thế đang tốt dần, nhưng chưa thật sự tốt, hành sự phải thận trọng.</li>
 			<li><strong>Hy vọng:</strong> Một thời gian nữa mới như ý.</li>
@@ -4370,8 +4595,8 @@
 			<p>Chẳng gì lớn bằng trời mà lại ở vào trong núi, Cấn ở trên mà ngăn Càn ở dưới, đều là tượng chứa đựng rất lớn. Ở người ta thì đạo đức học thuật đầy chứa ở trong tức là cái chứa lớn lắm. Phàm sự chứa hợp đều chuyên về cái lớn hơn. Sự chứa đựng nên được chính đạo, cho nên nói là lợi về sự trinh chính. Ôi những phái học khác họ chứa rất nhiều mà sự bất chính vẫn có. Đã có đạo đức đầy chứa ở trong nên ở ngôi trên để hưởng lộc trời, thi thố với thiên hạ thì chẳng những là tốt một mình mà lại tốt cả thiên hạ. Nếu phải ở vào cảnh cùng mà ăn ở nhà thì là đạo gặp lúc bĩ cho nên chẳng ăn ở nhà thì tốt. Cái chứa đã lớn nên đem thi thố với đời giúp sự gian hiểm của thiên hạ, ấy là sự dùng của cái chứa lớn, cho nên lợi sang sông lớn. Đây chỉ theo nghĩa dưới lớn mà nói, lời thoán lại lấy tài đức của quẻ mà nói, các hào thì chỉ có nghĩa chứa ngăn, bởi vì Kinh Dịch chủ về thể đạo tuỳ nghi chỉ lấy những điều rõ và gần hơn.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Sơn Lôi Di (27) </strong> - nuôi</summary>
+  	<details name="que-item" data-loai-que="Du Hồn" data-ho-que="Tốn">
+ 		<summary><strong>Sơn Lôi Di (27) </strong> - nuôi <span class="badge-moc">họ Tốn</span> <span class="badge-soul">quẻ Du hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tưởng chừng tốt đẹp, thực ra không phải vậy.</li>
 			<li><strong>Hy vọng:</strong> Khó được như ý.</li>
@@ -4521,8 +4746,8 @@
 			<p>Đạo của sự nuôi hễ chính đạo thì tốt, người ta nuôi thân mình, nuôi đạo đức, nuôi kẻ khác và được người khác nuôi đều theo chính đạo thì tốt, trời đất tạo hoá nuôi nấng muôn vật, vật nào được sự thích nghi của vật ấy cũng là chính đạo mà thôi. Xem sự nuôi tự tìm cái thuật của miệng nghĩa là xem cái mà người ta nuôi mà cách tự tìm cái thật cho miệng của họ thì sự thiện ác lành dữ có thể thấy được.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Trạch Phong Đại Quá (28) </strong> - quá lớn</summary>
+  	<details name="que-item" data-loai-que="Du Hồn" data-ho-que="Chấn">
+ 		<summary><strong>Trạch Phong Đại Quá (28) </strong> - quá lớn <span class="badge-moc">họ Chấn</span> <span class="badge-soul">quẻ Du hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang ở thời điểm đầy khó khăn trở ngại, hậu quả của việc chủ quan, cậy mình có tài.</li>
 			<li><strong>Hy vọng:</strong> Hy vọng quá lớn, không thể như ý.</li>
@@ -4668,8 +4893,8 @@
 			<p>Quẻ Tiểu quá khí âm quá ở trên và dưới, quẻ Đại quá khí dương quá ở giữa. Dương quá ở giữa mà trên, dưới yếu rồi, cho nên là tượng cột oải. Cột là lấy nghĩa chịu nổi sự nặng, bốn hào dương họp ở giữa, có thể bảo là nặng rồi. Hào 3 và hào 4 gốc ngọn đều yếu, giữa mạnh mà gốc ngọn yếu, cho nên mới oải. Khí âm yếu mà khí dương mạnh, đấng quân tử thịnh mà kẻ tiểu nhân thì suy, cho nên lợi cho việc tiến mà hanh.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thuần Khảm (29) </strong> - hiểm</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Khảm">
+ 		<summary><strong>Thuần Khảm (29) </strong> - hiểm <span class="badge-thuy">họ Khảm</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Mọi sự đều chưa thể như ý, sự tình có chiều hướng ngày một xấu thêm, đề phòng bệnh tật, trộm cướp.</li>
 			<li><strong>Hy vọng:</strong> Khó bề như ý.</li>
@@ -4821,8 +5046,8 @@
 			<p>Dương đặc ở giữa là trong có đức tin chỉ vì trong lòng thành thực chuyên nhất, cho nên có thể hanh thông. Lòng chí thành có thể suốt được vàng đá, nhảy vào nước lửa, còn sự hiểm nan nào mà không thể hanh? Đi có chuộng, ý nói lấy sự thành thật chuyên nhất mà đi, thì có thể ra khỏi chỗ hiểm, đáng được khen chuộng, tức là có công vậy.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Thuần Ly (30) </strong> - bám vào</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Ly">
+		<summary><strong>Thuần Ly (30) </strong> - bám vào <span class="badge-hoa">họ Ly</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Bề ngoài tưởng chừng tốt đẹp, thực tế khó giải quyết. Có sự bất hòa giữa nam và nữ.</li>
 			<li><strong>Hy vọng:</strong> Nôn nóng thì không thể như ý.</li>
@@ -4989,8 +5214,8 @@
 
 <details class="que-group">
   		<summary>Hạ kinh</summary>
-  	<details name="que-item">
-		<summary><strong>Trạch Sơn Hàm (31) </strong> - giao cảm</summary>
+  	<details name="que-item" data-ho-que="Đoài">
+		<summary><strong>Trạch Sơn Hàm (31) </strong> - giao cảm <span class="badge-kim">họ Đoài</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Bình ổn, nhất là đối với người trẻ tuổi thì rất tốt đẹp.</li>
 			<li><strong>Hy vọng:</strong> Như ý.</li>
@@ -5147,8 +5372,8 @@
 			<p>Hàm tức là cảm, nhưng không nói cảm, vì hàm còn có nghĩa nữa là đều, tức là trai gái cảm lẫn nhau vậy. Các vật cảm nhau, không gì thiết tha bằng trai với gái mà hạng tuổi trẻ càng thiết tha hơn. Các vật cảm nhau thì có lẽ hanh thông, cho nên quẻ Hàm mới có lẽ hạnh. "Lợi trinh" nghĩa là cái đạocảm nhau, lợi về sự chính. "Lấy con gái tốt" là nói tài quẻ. Quẻ có mềm trên cứng dưới, hai khí cảm ứng nhau, đậu mà đẹp lòng là nghĩa trai chịu dưới gái, dùng cách đó mà lấy con gái, thì được chính đáng mà tốt lành.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Lôi Phong Hằng (32) </strong> - lâu dài</summary>
+  	<details name="que-item" data-ho-que="Chấn">
+ 		<summary><strong>Lôi Phong Hằng (32) </strong> - lâu dài <span class="badge-moc">họ Chấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hết sức yên ổn, càng lúc càng tốt đẹp.</li>
 			<li><strong>Hy vọng:</strong> Như ý nếu không có nhiều hy vọng.</li>
@@ -5289,8 +5514,8 @@
 			<p>Hằng là thường lâu, đạo hằng có thể hanh thông, hễ thường thường theo giữ đạo ấy mà có thể hanh thông mới là không lỗi, nếu thường thường theo giữ đạo ấy mà không thể hanh thông, thì không phải là đạo có thể thường thường theo giữ, tức là có lỗi. Ví như đấng quân tử thường thường theo giữ điều thiện, đó là cái đạo có thể thường thường theo giữ; kẻ tiểu nhân thường thường theo giữ điều ác, đó là lỗi với cái đạo có thể thường thường. Đạo Hằng sở dĩ hạnh được, là vì trinh chính, cho nên nói là "lợi trinh". Ôi gọi là hằng, tức là cái đạo có thể thường thường, không phải chỉ giữ một bên mà không thay đổi, cho nên mới lợi về khi có việc mà đi.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thiên Sơn Độn (33) </strong> - tránh đi</summary>
+  	<details name="que-item" data-ho-que="Càn">
+ 		<summary><strong>Thiên Sơn Độn (33) </strong> - tránh đi <span class="badge-kim">họ Càn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tình thế tốt đẹp cứ ngày một giảm dần, nên tranh thủ khởi đầu công việc mới, cứ duy trì việc cũ thì hơn.</li>
 			<li><strong>Hy vọng:</strong> Có trở ngại, khó thực hiện.</li>
@@ -5444,8 +5669,8 @@
 		<p>Quẻ Độn là lúc âm trưởng dương tiêu, đấng quân tử trốn nấp. Đấng quân tử lui nấp, là để làm cho đạo của mình thẳng ra. Đạo không bị khuất thì là hanh, cho nên quẻ Độn có nghĩa hanh. Trong việc, cũng có khi ví sự trốn lánh mà hạnh thông, dẫu là lúc đạo kẻ tiểu nhân đương lớn, đấng quân tử biết cơ lui tránh vẫn phải, nhưng mà việc đời có lúc không giống nhau, phải tuỳ theo thời thế, không cần phải bắt như nhau. Âm nhu được lớn mà nó chưa đến thịnh lắm, đấng quân tử cũng có cách từ từ ra sức, tuy không thể trinh lớn mà còn lợi cho sự trinh nhỏ vậy.</p>
 	</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Lôi Thiên Đại Tráng (34) </strong> - lớn mạnh</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Khôn">
+ 		<summary><strong>Lôi Thiên Đại Tráng (34) </strong> - lớn mạnh <span class="badge-tho">họ Khôn</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện đang rất vượng, nếu ỷ vào đó mà triển khai đại quy mô thì sẽ thất bại.</li>
 			<li><strong>Hy vọng:</strong> Chủ yếu là đạt sở nguyện, nhưng nếu chủ quan sẽ gặp nhiều điều nhỏ trái ý.</li>
@@ -5593,8 +5818,8 @@
 			<p>Cái đạo lớn mạnh về trinh chính. Lớn mạnh mà không đúng với chính đạo tức là hành vi của kẻ hung tợn không phải đạo của đấng quân tử.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Hỏa Địa Tấn (35) </strong> - tiến lên</summary>
+  	<details name="que-item" data-loai-que="Du Hồn" data-ho-que="Càn">
+		<summary><strong>Hỏa Địa Tấn (35) </strong> - tiến lên <span class="badge-kim">họ Càn</span> <span class="badge-soul">quẻ Du hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Cực thịnh, được bề trên hỗ trợ, mọi việc như ý, thanh danh tăng tiến, nhưng đừng chủ quan tự mãn mà phạm sai lầm.</li>
 			<li><strong>Hy vọng:</strong> Đạt được, nhờ người có địa vị cao thì sớm như ý.</li>
@@ -5745,8 +5970,8 @@
 			<p>Quẻ Tấn là thì tiến thịnh, sự sáng lớn ở trên, mà thể dưới êm thuận phụ vào, tức là tượng chư hầu vâng theo nhà vua cho nên là tước hầu yên. Tước hầu yên nghĩa là tước hầu trị an, gặp được bề trên sáng suốt, mà biết dốc lòng để thuận theo, đó là tước hầu trị an, vì vậy mới được bề trên yêu thương, cho ngựa rất nhiều. Xe ngựa là của ban thưởng long trọng, "giậm nhiều" nghĩa là đông nhiều, chẳng những nhà vua ban cho hậu hỹ, lại được thân mật kính lễ, trong buổi ban ngày, đến ba lần tiếp, ý nói yêu thương đãi đoạ đến tột bậc vậy. Quẻ Tấn là thì tiến thịnh, trên sáng dưới thuận, vua tôi hợp nhau, nói về người trên, thì là tiến về đường sáng thịnh, nói về bề tôi, thì là tiến lên mà ắt được sự vẻ vang yêu thương vậy.</p>
 		</details>
     </details>
-    <details name="que-item">
-		<summary><strong>Địa Hỏa Minh Di (36) </strong> - sáng, bị tổn hại</summary>
+    <details name="que-item" data-loai-que="Du Hồn" data-ho-que="Khảm">
+		<summary><strong>Địa Hỏa Minh Di (36) </strong> - sáng, bị tổn hại <span class="badge-thuy">họ Khảm</span> <span class="badge-soul">quẻ Du hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện tại tình thế hết sức khó khăn, mọi việc trục trặc, may mà tình trạng này sẽ kéo dài không lâu, sắp chuyển sang vận tốt, vậy hãy gắng chịu đựng, giữ gìn.</li>
 			<li><strong>Hy vọng:</strong> Khó thành, đừng nản lòng sẽ được như ý.</li>
@@ -5886,8 +6111,8 @@
 			<p>Đấng quân tử gặp thời Minh di, lợi ở biết khó nhọc mà không lỗi đạo trinh chính. Ở thời tối tăm khó khăn mà có thể không mất sự trinh chính của mình, vì vậy mới là quân tử sáng láng.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Phong Hỏa Gia Nhân (37) </strong> - người cùng nhà</summary>
+  	<details name="que-item" data-ho-que="Tốn">
+ 		<summary><strong>Phong Hỏa Gia Nhân (37) </strong> - người cùng nhà <span class="badge-moc">họ Tốn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Bình an vô sự, gia đạo êm ấm.</li>
 			<li><strong>Hy vọng:</strong> Đạt thành.</li>
@@ -6052,8 +6277,8 @@
 			<p>Đạo người nhà lợi ở con gái chính, con gái chính thì đạo nhà chính. Ôi, vợ ra vợ, chồng ra chồng thì đạo nhà mới chính, nay chỉ nói con gái chính, là vì chính là cái thân chính đính, con gái chính, thì nhà chính, con gái chính thì chắc con trai cũng chính.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Hỏa Trạch Khuê (38) </strong> - ngang trái, lìa nhau</summary>
+  	<details name="que-item" data-ho-que="Cấn">
+ 		<summary><strong>Hỏa Trạch Khuê (38) </strong> - ngang trái, lìa nhau <span class="badge-tho">họ Cấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Khó khăn do phán quyết hoặc tính toán sai lầm. Không nên tranh chấp.</li>
 			<li><strong>Hy vọng:</strong> Khó thành hiện thực.</li>
@@ -6204,8 +6429,8 @@
 			<p>Quẻ Khuê là thì sai trái lìa tan, chẳng phải đạo tốt. Vì tài quẻ này, tuy ở thì lìa mà việc nhỏ thì tốt.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thủy Sơn Kiển (39) </strong> - hiểm trở</summary>
+  	<details name="que-item" data-ho-que="Đoài">
+ 		<summary><strong>Thủy Sơn Kiển (39) </strong> - hiểm trở <span class="badge-kim">họ Đoài</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Suy bại, mọi việc trắc trở, bệnh tật triền miên, chán nản.</li>
 			<li><strong>Hy vọng:</strong> Khó thành.</li>
@@ -6349,8 +6574,8 @@
 			<p>Tây nam là phương Khôn, Khôn là đất, thể nó xuôi thuận bình dị; Đông bắc là phương Cấn, Cấn là núi, thể nó ngừng đậu mà hiểm hóc. Trong thì kiển khó, lợi về xuôi thuận ở nơi bình dị không lợi về ngừng đậu ở chỗ nguy hiểm; ở chỗ nguy thuận dễ thì nạn có thể thư, đậu chỗ hiểm thì nạn càng tệ. Trong thì kiển khó, ắt có người thánh hiền, có thể làm cho thiên hạ qua nạn, cho nên lợi về sự thấy bậc đại nhân. Người làm qua nạn, ắt phải dùng đạo đại cả chính mà giữ cho bền, cho nên chính thì tốt. Đại phàm xử trí lúc nạn, cốt ở được trinh chính, dù cho không giải được nạn cũng không bị mất chính đức, vì vậy mới tốt. Nếu gặp nạn mà không giữ vững được sự thao thủ, bị sa vào đường tà, làm cẩu thả cho khỏi nạn, cũng là ác đức, kẻ biết nghĩa mệnh không chịu làm thế.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Lôi Thủy Giải (40) </strong> - mở ra</summary>
+  	<details name="que-item" data-ho-que="Chấn">
+		<summary><strong>Lôi Thủy Giải (40) </strong> - mở ra <span class="badge-moc">họ Chấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Khó khăn đang được giải quyết dần, tình hình ngày một yên ổn, đừng nôn nóng.</li>
 			<li><strong>Hy vọng:</strong> Đạt được gần như ý muốn, nhưng cuối cùng do sơ suất mà hỏng việc.</li>
@@ -6501,8 +6726,8 @@
 			<p>Tây nam là phương Khôn, thể Khôn rộng lớn bằng phẳng, đương khi nạn của thiên hạ mới giải, người ta mới lìa khỏi sự gian khổ, không thể lại dùng chính sách phiền hà nghiêm ngặt mà trị họ, phải giúp thêm bằng cách khoan hồng giản dị, đó là nên lắm. Như thế thì lòng người yêu mến mà lấy làm yên, cho nên lợi về Tây nam. "Không phải đi, thì trở lại, có việc đi sớm tốt" là nghĩa làm sao? "Không phải đi" ý nói nạn của thiên hạ đã giải tan rồi, không phải làm gì nữa; "có việc đi" ý nói hãy còn có việc phải giải vậy. Ôi, thiên hạ nhà nước, ắt là pháp độ hỏng loạn mà sau hoạ hoạn mới sinh ra, đấng thánh nhân đã gỡ nạn đó, mà được bình yên vô sự rồi, thế là "không phải đi vậy", thì nên sửa sang trị đạo, chỉnh đốn kỷ cương, tỏ rõ pháp độ, tiến lên mà khôi phục cuộc thịnh trị của đấng tiên vương. Thế là "lại lại", nghĩa là trở lại chính lý, đó là sự tốt lành của thiên hạ. Chữ "kỳ" là tiếng phát ngữ, "có phải đi, sớm, tốt" ý nói còn có việc phải giải, thì nên làm sớm mới tốt. Việc nên giải còn chưa giải hết, nếu không trừ sớm thì nó lại thịnh; việc lại sinh ra, nếu không trị sớm thì nó lại lớn dần; cho nên hễ sớm thì tốt.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Sơn Trạch Tổn (41) </strong> - bị tổn hại</summary>
+  	<details name="que-item" data-ho-que="Cấn">
+		<summary><strong>Sơn Trạch Tổn (41) </strong> - bị tổn hại <span class="badge-tho">họ Cấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện đang suy vi, tổn thất, nhưng sắp chuyển sang vận tốt, có cơ sở hoạt động cho tương lai.</li>
 			<li><strong>Hy vọng:</strong> Không lâu sau sẽ được như ý, chớ nên nóng vội.</li>
@@ -6665,8 +6890,8 @@
 			<p>Tổn là giảm bớt, phàm việc nén bớt sự thái quá, để tới nghĩa lý, đều là đạo "bớt" vậy. Đạo "bớt" ắt có thành tín, nghĩa là chí thành thuận lý vậy, bớt mà thuận lý thì đại thiện mà tốt, cái đã bớt mà không quá sai, thì có thể chính bền, thường làm mà lợi cho việc tiến đi vậy. Sự bớt của người ta hoặc thái quá hoặc bất cập, hoặc bất thường, đều không hợp chính lý, không phải có tin, thì không tốt mà có lỗi, không phải cái đạo có thể chính bền, thì không nên làm. Tổn là bớt cái thái quá mà tới mực vừa phải, bớt đi ngành ngọn mà tới chỗ rễ gốc dầy đặc vậy. Đấng thánh nhân lấy sự "thà kiệm" làm gốc của lễ, cho nên vì sự "bớt" mà phát minh cái nghĩa của nó. Lấy sự cúng tế mà nói, cái lễ cúng tế, nghi văn rất phiền phức, nhưng phải lấy sự thành kính làm gốc. Lắm nghi tiết nhiều đồ vật là để đưa sức lòng thành kính đó. Nếu sự trang sức quá sự thành kính, thì là giả dối. Bớt sự trang sức là để cho còn sự thành kính, cho nên nói rằng: "Phải dùng gì? Hai quỹ, khả dụng hưởng". Tằn tiện đến hai quỹ, mà có thể dùng để cúng tế, ý nói cốt ở lòng thành mà thôi. Lòng thành tức là cái gốc. Tai hại của thiên hạ, không cái gì không do ở ngọn lớn quá, nóc cao tường chạm gốc ở cửa nhà, ao rượu rừng thịt gốc ở ăn uống, dâm bạo tàn nhẫn gốc ở hình phạt, cùng binh độc võ gốc ở đánh dẹp, phàm lòng tham muốn của người ta mà đến thái quá, đều gốc ở sự phụng dưỡng, rồi ngành ngọn của nó xa đi, thì thành tai hại. Đấng tiên vương hạn chế cái gốc, ấy là lẽ trời, người sau trôi theo cái ngọn, ấy là lòng ham muốn của người. Nghĩa quẻ Tổn là bớt lòng ham muốn của người để khôi phục lẽ trời mà thôi.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Phong Lôi Ích (42) </strong> - thêm vào phải có lợi</summary>
+  	<details name="que-item" data-ho-que="Tốn">
+ 		<summary><strong>Phong Lôi Ích (42) </strong> - thêm vào phải có lợi <span class="badge-moc">họ Tốn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Vô cùng thuận lợi, mọi việc đều trôi chảy, nhưng chớ vì thế mà chủ quan dễ phạm sai lầm.</li>
 			<li><strong>Hy vọng:</strong> Được như ý.</li>
@@ -6837,8 +7062,8 @@
 			<p>Đạo ích có thể vượt qua hiểm nạn, đó là lợi sang sông lớn.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Trạch Thiên Quải (43) </strong> - quả quyết</summary>
+  	<details name="que-item" data-ho-que="Khôn">
+ 		<summary><strong>Trạch Thiên Quải (43) </strong> - quả quyết <span class="badge-tho">họ Khôn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Chỉ một sai lầm sẽ lâm vào tình thế nguy ngập, vậy phải hết sức thận trọng trong hành động.</li>
 			<li><strong>Hy vọng:</strong> Khó thành, nên rút ra bài học từ những lần thất bại trước đây.</li>
@@ -6989,8 +7214,8 @@
 			<p>Lúc kẻ tiểu nhân đương thịnh, đạo đấng quân tử chưa thắng, có thể nào hiển nhiên dùng chính đạo mà quyết trừ nó, cho nên phải kín đáo đợi thời, dần dần tính cách làm tiêu nó đi. Nay bè phái tiểu nhân đang suy, quân tử đương thịnh, nên làm rõ ở công triều, khiến cho người ta biết rõ sự thiện ác, cho nên nói rằng: "Tuyên cáo ở sân vua". "Phu" là điều tin ở trong lòng, tức là cái ý thành thực, "hiệu" là lời sai nhiều người; đạo đấng quân tử lớn thịnh, mà không giảm sự răn ngừa, cho nên dùng sự chí thành để sai mọi người, khiến họ biết rằng còn có sự nguy, ắt phải có lòng răn sợ, thì không có gì... Đấng quân tử trị kẻ tiểu nhân, vì nó bất thiện, ắt lấy đạo thiện của mình mà đổi được nó, cho nên đấng thánh nhân trừ kẻ làm loạn ắt trước sửa mình, tức như vua Thuấn sửa đức văn vậy. "Ấp" là làng riêng, "cáo tự ấp" nghĩa là trị mình. Đem sự thịnh vượng của các hào dương, mà quyết trừ một hào âm, sức vẫn còn thừa, nhưng không nên dùng cách cương quyết thái quá, thái quá thì nó sẽ đến làm giặc như hào 6 dương quẻ Mông. "Nhung" là việc cường vũ của nhà binh, "chẳng lợi tới quân" tức là chẳng lợi về mặt chuộng sự tráng vũ, "tức" là tới, "tới quân" nghĩa là chuộng võ vậy. "Lợi có việc đi" nghĩa là khi dương tuy thịnh, nhưng chưa tới ngôi trên, khi âm tuy suy, nhưng còn chưa đi hết, đó là tiểu nhân hãy còn, đạo của quân tử chưa thật đến nơi, cho nên nên tiến mà đi. Chẳng chuộng cương vũ, mà đạo càng tiến, ấy là sự quyết rất khéo.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thiên Phong Cấu (44) </strong> - gặp gỡ</summary>
+  	<details name="que-item" data-ho-que="Càn">
+ 		<summary><strong>Thiên Phong Cấu (44) </strong> - gặp gỡ <span class="badge-kim">họ Càn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Gặp tai nạn bất ngờ, khó giải quyết vẫn đề hậu quả với người khác giới.</li>
 			<li><strong>Hy vọng:</strong> Không thể thực hiện được.</li>
@@ -7149,8 +7374,8 @@
 			<p>Một khí âm mới sinh, từ đó mà lớn dần dần, rồi đến thịnh lớn, đó là con gái sắp sửa lớn mạnh, âm lớn thì dương tiêu, con gái mạnh thì con trai yếu, cho nên nói rằng: "Chớ lấy hạng con gái như thế". Lấy vợ muốn được những người nhu, mỏng, thuận theo, để cho nên đạo nhà. Quẻ Cấu là khí âm đương tiến, dần dần mạnh lên mà địch nhau với khí dương, cho nên không thể lấy. Con gái mạnh dần thì mất sự chính đính trong đạo trai gái, thế là đạo hỏng rồi. Quẻ Cấu tuy một hào âm rất nhỏ, nhưng nó có cơ lớn dần, vì vậy phải răn.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Trạch Địa Tụy (45) </strong> - tụ họp</summary>
+  	<details name="que-item" data-ho-que="Đoài">
+		<summary><strong>Trạch Địa Tụy (45) </strong> - tụ họp <span class="badge-kim">họ Đoài</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Do thanh danh của mình và được sự đề cao, tín nhiệm của người khác mà đang ở vận khí tốt đẹp.</li>
 			<li><strong>Hy vọng:</strong> Được thực hiện.</li>
@@ -7290,8 +7515,8 @@
 			<p>Quẻ Tụy là thời lập hội lập bè phái, sự dùng nên cho xứng đáng, cho nên dùng lễ vật lớn sẽ sinh cát. Việc không gì trọng bằng việc tế, cho nên lấy việc cúng tế mà nói: Trên thì giao với quỉ thần, dưới thì tiếp với nhân vật, trăm thứ dùng đều vậy. Nhưng đương thời họp mà giao với người bằng cách hậu hỷ, thì là được hưởng cái tốt của sự phong phú, thiên hạ không ai không chung cuộc giàu vui của mình. Nếu gặp thời lập hội lập bè phái mà mình giao thiệp với người bằng cách bôi bác, thì là tự mình không muốn hưởng sự giàu đẹp, thiên hạ chẳng ai chung chạ với mình, mà sự hối tiếc sẽ sinh ra. Đó là theo sự thích nghi của từng thời, thuận lẽ mà làm, cho nên lời thoán nói là thuận mệnh trời. Ôi, không thể có làm là vì sức không đủ làm, gặp thời họp, cho nên lợi khi có việc đi. Đại phàm, dấy công dựng việc, quí ở được thời đáng làm, mà sau nhúng tay vào đâu sẽ được dư dự ở đấy, lẽ trời thế vậy.</p>
 		</details>		
     </details>
-    <details name="que-item">
-		<summary><strong>Địa Phong Thăng (46) </strong> - lên</summary>
+    <details name="que-item" data-ho-que="Chấn">
+		<summary><strong>Địa Phong Thăng (46) </strong> - lên <span class="badge-moc">họ Chấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Từ nay trở đi sẽ dần dần phát triển, năng lực bản thân được phát huy, có sự trợ giúp của bề trên.</li>
 			<li><strong>Hy vọng:</strong> Chưa thực hiện được ngay, nhưng sau một thời gian cố gắng, chắc chắn thành hiện thực.</li>
@@ -7442,8 +7667,8 @@
 			<p>Thăng là tiến mà lên, tiến lên thì có nghĩa hanh, mà vì tài quẻ hay khéo, cho nên đại hanh. Dùng cách đó để thấy đại nhân, không cần lo lắng, tiến lên phía trước thì tốt. Đi về phương Nam tức là tiến lên phía trước vậy.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Trạch Thủy Khốn (47) </strong> - khốn cùng</summary>
+  	<details name="que-item" data-ho-que="Đoài">
+ 		<summary><strong>Trạch Thủy Khốn (47) </strong> - khốn cùng <span class="badge-kim">họ Đoài</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang ở tình thế bế tắc, tiến thoái lưỡng nan, không nên triển khai thêm hoạt động, phải chờ thời cơ.</li>
 			<li><strong>Hy vọng:</strong> Khó thành, cần thay đổi mục tiêu và phương pháp tiến hành.</li>
@@ -7599,8 +7824,8 @@
 			<p>Như tài quẻ này, thì khốn mà có thể hanh, và được trinh chính là đạo quân tử ở thì khốn vậy, cho nên có thể tốt mà không lỗi. Quân tử ở thì khốn, chẳng những đạo của mình tự nhiên vẫn tốt, mà "vui trời yên mệnh", ấy là không mất sự tốt, huống chi theo thì khéo xử, lại còn lỗi gì? "Có nói chẳng tin" là vì đương thời khốn mà nói, thì còn ai tin?</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thủy Phong Tỉnh (48) </strong> - giếng nước</summary>
+  	<details name="que-item" data-ho-que="Chấn">
+ 		<summary><strong>Thủy Phong Tỉnh (48) </strong> - giếng nước <span class="badge-moc">họ Chấn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tình trạng đình đốn, phải chờ thời.</li>
 			<li><strong>Hy vọng:</strong> Sẽ có quý nhân phù trợ.</li>
@@ -7748,8 +7973,8 @@
 			<p>Giếng là một vật mà không thể đổi, làng có thể đổi đi chỗ khác, mà giếng thì không thể dời, cho nên nói rằng: "Đổi làng không đổi giếng". Giếng múc nó chẳng hết, để nó chẳng đầy, tức là "không mất không được". Người nào đến đó cũng được dùng nó, tức là "đi lại giếng giếng". "Không mất không được" là đức của giếng, "đi lại giếng giếng" là công dụng của giếng vậy. "Hất" là gầu, "quất" là dây chạc. Cái giếng lấy sự nên dùng làm công, gầu đến mà chưa kịp dùng thì cũng như chưa buông chạc xuống giếng. Đạo đấng quân tử quí ở có nên, vì vậy mà ngũ cốc không chín, chẳng bằng cây cỏ nuôi gia súc; đào giếng chín bậc mà chưa tới suối, cũng là giếng bỏ. Có công dụng giúp cho các vật chưa tới các vật, cũng như không có vậy. Làm hỏng cái lọ mà đánh mất đi, thì sự dùng của nó mất rồi, cho nên mới hung. "Luy" là huỷ cho hỏng đi</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Trạch Hỏa Cách (49) </strong> - biến đổi, cải cách</summary>
+  	<details name="que-item" data-ho-que="Khảm">
+ 		<summary><strong>Trạch Hỏa Cách (49) </strong> - biến đổi, cải cách <span class="badge-thuy">họ Khảm</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tình thế, sự việc hoặc ý muốn đã đến lúc phải thay đổi hết thảy. Chú ý đừng đi quá khả năng của chính mình.</li>
 			<li><strong>Hy vọng:</strong> Suy xét lại mục tiêu một cách toàn diện.</li>
@@ -7902,8 +8127,8 @@
 			<p>Cách là đổi cái cũ, đổi cái cũ thì người ta chưa chịu tin ngay, cho nên phải đợi hết ngày, lòng người mới tin theo. "Nguyên hanh lợi trinh, ăn năn mất" là sao? Có hỏng nát mới phải thay đổi, mà thay đổi là để làm cho hanh thông, cho nên đổi đi mà có thể nguyên hanh, đổi đi mà lợi về chính đạo, thì có lâu dài mà được cái nghĩa "bỏ cũ" không phải ăn năn về sự biến động, thế là "ăn năn mất". Đổi thay mà không ích lắm, còn đáng ăn năn, huống chi đổi thay mà lại có hại. Vì vậy, cổ nhân mới coi việc cải cách là việc quan trọng.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Hỏa Phong Đỉnh (50) </strong> - cái vạc</summary>
+  	<details name="que-item" data-ho-que="Ly">
+		<summary><strong>Hỏa Phong Đỉnh (50) </strong> - cái vạc <span class="badge-hoa">họ Ly</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang dần dần tốt lên, hoặc nhờ bề trên đề bạt, hoặc do tự mình thay đổi cách thức.</li>
 			<li><strong>Hy vọng:</strong> Thoạt đầu tưởng khó thực hiện, nhưng nếu nhờ bề trên, có thể thành công.</li>
@@ -8043,8 +8268,8 @@
 			<p>Đây lấy tài quẻ mà nói. Như tài quẻ này, có thể đem đến được sự đại hanh vậy. Chỉ nên nói "nguyên hanh", chữ "cát" là thừa. Vì tài quẻ này có thể đem đến được sự nguyên hanh, chưa thể có sự đại cát. Lời thoán nói "nguyên hanh" nghĩa đó rõ lắm.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Thuần Chấn (51) </strong> - sấm động</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Chấn">
+		<summary><strong>Thuần Chấn (51) </strong> - sấm động <span class="badge-moc">họ Chấn</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tuy đang vượng, nhưng chớ phù phiếm.</li>
 			<li><strong>Hy vọng:</strong> Đừng kì vọng thì sẽ như ý.</li>
@@ -8199,8 +8424,8 @@
 			<p>Dương sinh ở dưới mà tiến lên có nghĩa hanh thông. "Lại chấn" là động, là sợ hãi, chủ về động mà phấn phát, động mà tiến lên, sợ hãi mà sửa mình; có khi chủ về giữ gìn lấy sự lớn lao, đều có thể đem lại sự hanh thông, cho nên động thì có hanh. Đương lúc sự động kéo lại, thì sợ hãi không dám, rồi liền ngảnh lại lo nghĩ, thì ngơm ngớp vậy; "hích hích" là vẻ đoái lo chẳng yên. Con nhện trắng có tên là "hích", vì nó quanh co đoái lo, không dám tự yên. Ở thì động mà biết như thế, thì có thể giữ được sự yên ỗn ung dung, cho nên cười nói khanh khách; "ách ách" là vẻ cười nói vui thích. Động lớn không gì bằng sấm, chấn là sấm, cho nên sấm mà nói: Sấm động sợ đến chỗ xa trăm dặm, người ta không ai không sợ mà tự mất, chỉ có cúng tế ở nhà tôn miếu, thì không đến nỗi mất. Người ta hết lòng thành kính, không gì bằng lúc cúng tế. "Môi" là cái để múc đồ nấu trong vạc mà đổ lên mâm; "xướng" là thứ rượu để rót xuống đất mà giáng thần, lúc rót phải bỏ trần tay áo mà cầu thân, dâng đồ cúng mà cầu hưởng, hết lòng thành kính như thế, thì tuy oai của sấm động, cũng không khiến mình sợ hãi mà đánh mất cái của mình giữ. Cho nên tới cuộc sợ hãi to lớn, có thể yên ổn mà không hoảng hốt, chỉ nhờ về lòng thành kính mà thôi. Đó là cách ở thì "sợ".</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thuần Cấn (52) </strong> - ngăn lại</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Cấn">
+ 		<summary><strong>Thuần Cấn (52) </strong> - ngăn lại <span class="badge-tho">họ Cấn</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang tạm thời đình đốn, phải hết sức vất vả. Nếu kiên nhẫn sẽ chóng chuyển sang vận tốt.</li>
 			<li><strong>Hy vọng:</strong> Khó bề như ý, nên thay đổi mục tiêu.</li>
@@ -8357,8 +8582,8 @@
 			<p>Người ta sở dĩ không ở yên đâu được là vì bị động về sự ham muốn. Sự ham muốn co kéo ở đằng mà cần nó đậu thì không thể được, cho nên đạo đậu, nên đậu cái lưng. Những cái trông thấy đều ở đằng trước, mà lưng thì trái ngược lại, ấy là nó không trông thấy. Đậu vào chỗ không trông thấy, thì không có sự ham muốn làm loạn lòng mình, sự đậu mới yên. "Chẳng được thấy mình" tức là chẳng thấy mình mình, nghĩa là quên mình đi vậy. Không có mình nữa, thì là đậu rồi... "Đi ở sân chẳng thấy có người" là sao? "Sân thềm" là chỗ rất gần, ở đằng lưng tuy chỗ rất gần "cũng không trông thấy" nghĩa là không giao tiếp với vật ngoài nữa. Vật ngoài không tiếp xúc, sự ham muốn bên trong không sinh ra, như thế mà đậu, mới đúng đạo "đậu" với thì "đậu" là không lỗi.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Phong Sơn Tiệm (53) </strong> - dần dần</summary>
+  	<details name="que-item" data-loai-que="Quy Hồn" data-ho-que="Cấn">
+ 		<summary><strong>Phong Sơn Tiệm (53) </strong> - dần dần <span class="badge-tho">họ Cấn</span> <span class="badge-soul">quẻ Quy hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Từ nay mọi việc sẽ bắt đầu tốt dần lên, nếu định rõ năng lực của bản thân, cẩn thận hành sự, thì sẽ thành tựu.</li>
 			<li><strong>Hy vọng:</strong> Trước mắt chưa thể thực hiện, phải kiên trì.</li>
@@ -8510,8 +8735,8 @@
 			<p>Đây lấy tài quẻ gồm nghĩa chữ "tiệm" mà nói. Càn Khôn biến đi là Tốn, Cấn; Tốn, Cấn chồng lại là quẻ Tiệm. Nói về thể quẻ Tiệm, thì hai hào trung giao nhau, bởi sự giao nhau của hai hào ấy mà sau con trai con gái đều được chính ngôi; hai hào đầu và chót tuy không đáng ngôi, nhưng cũng dương trên âm dưới, tôn ty chính đáng, con trai con gái bên nào được chính đạo của bên ấy, như thế cũng là được ngôi, rõ ràng đối nhau với quẻ Quy muội. Con gái về nhà chồng, có thể chính đính như thế thì tốt.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Lôi Trạch Quy Muội (54) </strong> - con gái về nhà chồng</summary>
+  	<details name="que-item" data-loai-que="Quy Hồn" data-ho-que="Đoài">
+ 		<summary><strong>Lôi Trạch Quy Muội (54) </strong> - con gái về nhà chồng <span class="badge-kim">họ Đoài</span> <span class="badge-soul">quẻ Quy hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Mê muội cầu lợi mà bị thất bại.</li>
 			<li><strong>Hy vọng:</strong> Thoạt đầu tưởng được như ý, sau thất vọng.</li>
@@ -8659,8 +8884,8 @@
 			<p>Lấy sự đẹp lòng mà động, động mà đi thì hung.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Lôi Hỏa Phong (55) </strong> - lớn thịnh</summary>
+  	<details name="que-item" data-ho-que="Khảm">
+		<summary><strong>Lôi Hỏa Phong (55) </strong> - lớn thịnh <span class="badge-thuy">họ Khảm</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tình thế đang hết sức thuận lợi, mọi việc trôi chảy, nhưng chớ chủ quan.</li>
 			<li><strong>Hy vọng:</strong> Nếu không quá tham, sẽ được như ý.</li>
@@ -8813,8 +9038,8 @@
 			<p>Phong là thịnh lớn, nghĩa nó vẫn hanh thông. Làm cho tột bậc sáng lớn ở gầm trời, chỉ đấng vương giả có thể được thế. Đến là tột bậc vậy. Cao đến như ngôi trời, giàu đến như bốn bể, nhiều đến như các loài, lớn đến như đạo vưởng, làm cho cùng tột đạo thịnh, chỉ có đấng vương giả! Trong thời thịnh, nhân dân đông nhiều, các vật thịnh vượng, trị chúng há dễ? Việc đó vẫn đáng lo lắng, phải nên như mặt trời trung trưa, sáng rõ soi rộng, không đâu không tới, rồi mới không lo.</p>
 		</details>
     </details>
-    <details name="que-item">
-		<summary><strong>Hỏa Sơn Lữ (56) </strong> - xa nhà</summary>
+    <details name="que-item" data-ho-que="Ly">
+		<summary><strong>Hỏa Sơn Lữ (56) </strong> - xa nhà <span class="badge-hoa">họ Ly</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đầy rẫy khó khăn trắc trở, tình thế biến động bất an liên tục.</li>
 			<li><strong>Hy vọng:</strong> Khó được thực hiện.</li>
@@ -8971,8 +9196,8 @@
 			<p>Đây lấy tài quẻ mà nói. Như tài quẻ này có thể hanh thông nho nhỏ được lẽ trinh chính của sự đi đường mà tốt.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thuần Tốn (57) </strong> - vào</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Tốn">
+ 		<summary><strong>Thuần Tốn (57) </strong> - vào <span class="badge-moc">họ Tốn</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Không ổn định, nhiều mê hoặc. Cần bình tĩnh hỏi ý kiến bề trên and chớ nôn nóng.</li>
 			<li><strong>Hy vọng:</strong> Tham vọng khó bề như ý.</li>
@@ -9124,8 +9349,8 @@
 			<p>Tài quẻ này có thể nho nhỏ hanh thông, lợi cho việc đi, lợi thấy bậc đại nhân. Quẻ Tốn và quẻ Đoài đều là kẻ cương ở chỗ trung chính, nhún và đẹp lòng, nghĩa cũng giống nhau, thế mà quẻ Đoài thì hanh, quẻ Tốn thì nhỏ hanh, là vì quẻ Đoài dương làm việc, quẻ Tốn âm làm việc, quẻ Đoài hào nhu ở ngoài, tức là dùng cách nhu, quẻ Tốn hào nhu ở trong, tức là tính nó mềm, vì vậy hanh thông của quẻ Tốn mới nhỏ.</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Thuần Đoài (58) </strong> - vui</summary>
+  	<details name="que-item" data-loai-que="Lục Xung" data-ho-que="Đoài">
+ 		<summary><strong>Thuần Đoài (58) </strong> - vui <span class="badge-kim">họ Đoài</span> <span class="badge-soul">quẻ Lục xung</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tình thế thuận lợi, bình ổn vô sự, được người khác giới quý mến, nhưng thận trọng về tửu sắc.</li>
 			<li><strong>Hy vọng:</strong> Có thể đạt, nhưng đừng chủ quan sơ ý mà hỏng.</li>
@@ -9279,8 +9504,8 @@
 			<p>Đoài là đẹp lòng, đẹp lòng tức là cách đem đến sự hanh thông. Có thể đẹp lòng với người ta, người ta ai cũng đẹp lòng mà cùng với mình? Như thế đủ để đem đến sự hanh thông. Nhưng cái đạo làm sự đẹp lòng, lợi tại trinh chính, nếu trái đạo mà cầu đẹp lòng thì là tà xiểm, mà có hối lỗi, cho nên răn rằng: "Lợi về chính bền".</p>
 		</details>
     </details>
-  	<details name="que-item">
- 		<summary><strong>Phong Thủy Hoán (59) </strong> - lìa tan</summary>
+  	<details name="que-item" data-ho-que="Ly">
+ 		<summary><strong>Phong Thủy Hoán (59) </strong> - lìa tan <span class="badge-hoa">họ Ly</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Tình trạng gian khổ kết thúc, từ nay chuyển sang giai đoạn tốt đẹp.</li>
 			<li><strong>Hy vọng:</strong> Chưa thể như ý, cần tiếp tục cố gắng.</li>
@@ -9436,8 +9661,8 @@
 			<p>Hoán là lìa tan. Người ta lìa tan bởi ở bên trong, lòng người lìa thì tan; chữa sự lìa tan cũng gốc ở bên trong, thu thập lòng người thì tan có thể họp; cho nên nghĩa quẻ đều chủ về bên trong. "Lợi trinh" nghĩa là cái đạo hợp sự lìa tan, cốt ở chính bền.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Thủy Trạch Tiết (60) </strong> - hạn chế</summary>
+  	<details name="que-item" data-ho-que="Khảm">
+		<summary><strong>Thủy Trạch Tiết (60) </strong> - hạn chế <span class="badge-thuy">họ Khảm</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Nhiều việc thuận lợi từ đó sinh ra chủ quan nóng vội, hành động quá năng lực của bản thân. Rất cần chừng mực.</li>
 			<li><strong>Hy vọng:</strong> Nôn nóng kỳ vọng thì khó bề như ý.</li>
@@ -9584,8 +9809,8 @@
 			<p>Việc mà đã có tiết độ, thì có thể đem đến được sự hanh thông, cho nên quẻ Tiết có nghĩa hanh. Tiết chế quí ở vừa phải, thái quá thì khổ; tiết chế đã đến khổ, há giữ thường thường được sao? Không thể cố giữ làm sự thường thường tức là không thể chính bền.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Phong Trạch Trung Phu (61) </strong> - lòng có đức tin</summary>
+  	<details name="que-item" data-loai-que="Du Hồn" data-ho-que="Cấn">
+		<summary><strong>Phong Trạch Trung Phu (61) </strong> - lòng có đức tin <span class="badge-tho">họ Cấn</span> <span class="badge-soul">quẻ Du hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Đang yên ổn, nhưng nếu có sự thiếu thận trọng sẽ xấu đi, đặc biệt trong quan hệ nam nữ.</li>
 			<li><strong>Hy vọng:</strong> Phải gắng sức mới có thể như ý.</li>
@@ -9744,8 +9969,8 @@
 			<p>Lợn nóng nảy, cá lờ mờ, là giống khó cảm trong loài vật. Sự tin có thể cảm đến cá lợn, thì không đâu không tới, vì vậy mới tốt. Lòng trung tín có thể xéo lên nước sôi, lửa bỏng huống chi sang sông, cái đạo giữ đức tin, cốt ở kiên chính, cho nên lợi về chính bền.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Lôi Sơn Tiểu Quá (62) </strong> - nhỏ và nhiều</summary>
+  	<details name="que-item" data-loai-que="Du Hồn" data-ho-que="Đoài">
+		<summary><strong>Lôi Sơn Tiểu Quá (62) </strong> - nhỏ và nhiều <span class="badge-kim">họ Đoài</span> <span class="badge-soul">quẻ Du hồn</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Thất bại vì quá tự phụ. Phải lắng nghe ý kiến bề trên.</li>
 			<li><strong>Hy vọng:</strong> Khó bề như ý.</li>
@@ -9892,8 +10117,8 @@
 			<p>Quá là vượt qua mực thường. Nếu uốn cong mà quá thẳng, sự quá đó cốt để tới sự chính vậy, việc cũng có khi nên thế, phải đợi quá đi mới hanh được, cho nên quẻ Tiểu quá tự nó đã có nghĩa hanh. "Lợi trinh" nghĩa là đạo quá lợi về chính bền. Chẳng lỗi với lẽ nên phải của đương thời, thì gọi là chính.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Thủy Hỏa Ký Tế (63) </strong> - sự đã rồi</summary>
+  	<details name="que-item" data-ho-que="Khảm">
+		<summary><strong>Thủy Hỏa Ký Tế (63) </strong> - sự đã rồi <span class="badge-thuy">họ Khảm</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Mọi việc thuận buồm xuôi gió, sau đó có xu hướng sa sút, khi ấy nên dừng lại.</li>
 			<li><strong>Hy vọng:</strong> Ước mong nhỏ sẽ thành hiện thực.</li>
@@ -10037,8 +10262,8 @@
 			<p>Trong thì đã sang, cái lớn đã hanh thông rồi, cái nhỏ còn chưa hanh thông. Tuy là trong thì đã sang, không thể không có cái nhỏ chưa hanh thông. Chữ "nhỏ" ở dưới, lời nói nên thế. Nếu nói "nhỏ hanh" thì là sự hanh thông nhỏ. "Lợi về chính bền" là vì ở thì đã sang, lợi ở giữ gìn bằng cách chính bền. "Đầu tốt" là lúc dương sang, "chót loạn" là tại sang đã cùng cực thì phải trái lại.</p>
 		</details>
     </details>
-  	<details name="que-item">
-		<summary><strong>Hỏa Thủy Vị Tế (64) </strong> - việc chưa xong</summary>
+  	<details name="que-item" data-ho-que="Ly">
+		<summary><strong>Hỏa Thủy Vị Tế (64) </strong> - việc chưa xong <span class="badge-hoa">họ Ly</span></summary>
 		<ul>
 			<li><strong>Vận thế:</strong> Hiện tại đang khó khăn, nhưng dần chuyển biến tốt. Cứ bình tĩnh hành sự.</li>
 			<li><strong>Hy vọng:</strong> Sau một thời gian sẽ được như ý.</li>
@@ -10210,8 +10435,6 @@
 		'011': '☴', '010': '☵', '001': '☶', '000': '☷',
 	};
 
-	// Tên quẻ dạng "Thượng Hạ Tên" (VD: Địa Thiên Thái) -> nhị phân hào1..hào6
-	// (hào1-3 = quẻ hạ/dưới, hào4-6 = quẻ thượng/trên), hoặc "Thuần X" -> xếp chồng X lên X.
 	function nameToBinary(fullName) {
 		const words = (fullName || '').trim().split(/\s+/);
 		if (words.length < 2) return null;
@@ -10277,15 +10500,21 @@
 		return wrap;
 	}
 
-	// ---- Search behavior ----
+	// ---- Search & Filter behavior ----
 	const searchInput = document.getElementById('accordion-search');
+	const filterToggleBtn = document.getElementById('filter-toggle-btn');
+	const filterPopover = document.getElementById('filter-popover');
+	const filterBadge = document.getElementById('filter-badge');
+	const filterResetBtn = document.getElementById('filter-reset-btn');
+	const filterCloseBtn = document.getElementById('filter-close-btn');
+
 	const groups = Array.from(document.querySelectorAll('.que-group'));
 
 	function normalize(str) {
 		return (str || '')
 			.toLowerCase()
 			.normalize('NFD')
-			.replace(/[\u0300-\u036f]/g, '')
+			.replace(/[̀-ͯ]/g, '')
 			.replace(/đ/g, 'd');
 	}
 
@@ -10304,8 +10533,96 @@
 			group: el.closest('.que-group'),
 			name: normalize(summaryEl?.textContent),
 			binary,
+			hoQue: el.getAttribute('data-ho-que') || '',
+			loaiQue: el.getAttribute('data-loai-que') || ''
 		};
 	});
+
+	// Bật/Tắt cửa sổ popover
+	filterToggleBtn.addEventListener('click', (e) => {
+		e.stopPropagation();
+		filterPopover.classList.toggle('open');
+		filterToggleBtn.classList.toggle('active', filterPopover.classList.contains('open'));
+	});
+
+	// Đóng popover khi bấm bên ngoài
+	document.addEventListener('click', (e) => {
+		if (!filterPopover.contains(e.target) && !filterToggleBtn.contains(e.target)) {
+			filterPopover.classList.remove('open');
+			filterToggleBtn.classList.remove('active');
+		}
+	});
+
+	filterCloseBtn.addEventListener('click', () => {
+		filterPopover.classList.remove('open');
+		filterToggleBtn.classList.remove('active');
+	});
+
+	// Reset các checkbox
+	filterResetBtn.addEventListener('click', () => {
+		const checkboxes = filterPopover.querySelectorAll('input[type="checkbox"]');
+		checkboxes.forEach(cb => cb.checked = false);
+		applyFilter();
+	});
+
+	function applyFilter() {
+		const rawQuery = searchInput.value;
+		const trimmed = rawQuery.trim();
+		const filter = normalize(trimmed);
+		const isBinaryQuery = /^[01]{1,6}$/.test(trimmed);
+
+		// Lấy danh sách giá trị checkbox được chọn
+		const selectedHo = Array.from(filterPopover.querySelectorAll('input[name="ho-que"]:checked')).map(cb => cb.value);
+		const selectedLoai = Array.from(filterPopover.querySelectorAll('input[name="loai-que"]:checked')).map(cb => cb.value);
+
+		// Cập nhật Badge hiển thị số lượng bộ lọc đang chọn
+		const totalSelected = selectedHo.length + selectedLoai.length;
+		if (totalSelected > 0) {
+			filterBadge.textContent = totalSelected;
+			filterBadge.classList.add('show');
+		} else {
+			filterBadge.classList.remove('show');
+		}
+
+		if (filter === '' && selectedHo.length === 0 && selectedLoai.length === 0) {
+			items.forEach(({ el }) => { el.style.display = ''; el.open = false; });
+			groups.forEach((g) => { g.style.display = ''; g.open = false; });
+			return;
+		}
+
+		const groupHasMatch = new Map(groups.map((g) => [g, false]));
+
+		items.forEach(({ el, group, name, binary, hoQue, loaiQue }) => {
+			// Khớp từ khóa
+			const textMatch = filter === '' || name.includes(filter);
+			const binMatch = isBinaryQuery && !!binary && binary.includes(trimmed);
+			const searchMatch = textMatch || binMatch;
+
+			// Khớp Họ quẻ (Hoặc là không chọn gì, hoặc phải nằm trong danh sách checked)
+			const hoMatch = selectedHo.length === 0 || selectedHo.includes(hoQue);
+
+			// Khớp Loại quẻ
+			const loaiMatch = selectedLoai.length === 0 || selectedLoai.includes(loaiQue);
+
+			const isMatch = searchMatch && hoMatch && loaiMatch;
+
+			el.style.display = isMatch ? '' : 'none';
+			el.open = false;
+			if (isMatch && group) groupHasMatch.set(group, true);
+		});
+
+		groups.forEach((g) => {
+			const hit = groupHasMatch.get(g);
+			g.style.display = hit ? '' : 'none';
+			g.open = hit;
+		});
+	}
+
+	searchInput.addEventListener('input', applyFilter);
+	
+	// Gán sự kiện change cho tất cả checkbox
+	const checkboxes = filterPopover.querySelectorAll('input[type="checkbox"]');
+	checkboxes.forEach(cb => cb.addEventListener('change', applyFilter));
 
   // ---- Accordion behavior -------------------------------------------------
 
@@ -10325,37 +10642,6 @@
 			el.querySelectorAll('details[open]').forEach((nested) => { nested.open = false; });
 		}
 	}, true);
-
-	function applyFilter(rawQuery) {
-		const trimmed = rawQuery.trim();
-		const filter = normalize(trimmed);
-		const isBinaryQuery = /^[01]{1,6}$/.test(trimmed);
-
-		if (filter === '') {
-			items.forEach(({ el }) => { el.style.display = ''; el.open = false; });
-			groups.forEach((g) => { g.style.display = ''; g.open = false; });
-			return;
-		}
-
-		const groupHasMatch = new Map(groups.map((g) => [g, false]));
-
-		items.forEach(({ el, group, name, binary }) => {
-			const textMatch = name.includes(filter);
-			const binMatch = isBinaryQuery && !!binary && binary.includes(trimmed);
-			const isMatch = textMatch || binMatch;
-			el.style.display = isMatch ? '' : 'none';
-			el.open = false;
-			if (isMatch && group) groupHasMatch.set(group, true);
-		});
-
-		groups.forEach((g) => {
-			const hit = groupHasMatch.get(g);
-			g.style.display = hit ? '' : 'none';
-			g.open = hit;
-		});
-	}
-
-	searchInput.addEventListener('input', (e) => applyFilter(e.target.value));
 	
 	//----Toggle-theme---------------------
 	const themeToggleBtn = document.getElementById('theme-toggle');
