@@ -49,7 +49,7 @@
       <td>Công cụ lập Quẻ Đồ Thư Phi Bàn Độn</td>
     </tr>
     <tr>
-      <td><code>01-que_ngu_linh_v3.html</code></td>
+      <td><code>01-que_ngu_linh.html</code></td>
       <td>Công cụ lập Quẻ Ngũ Linh</td>
     </tr>
   </tbody>
@@ -66,16 +66,24 @@
   </thead>
   <tbody>
     <tr>
-      <td><code>02-tam_tuyet_phap.html</code></td>
-      <td>Công cụ tính Tam Tuyệt Pháp - xem ngày cưới hỏi.</td>
-    </tr>
-    <tr>
       <td><code>02-ma_phuong.html</code></td>
       <td>Công cụ tính toán hỗ trợ vẽ Ma Phương.</td>
     </tr>
     <tr>
       <td><code>02-cung_sinh_cung_phi.html</code></td>
-      <td>Công cụ tra cứu và tính toán Cung Sinh (giờ sinh) - Cung Phi (nắm sinh) cho bản mệnh</td>
+      <td>Công cụ tra cứu và tính toán Cung Sinh (giờ sinh) - Cung Phi (năm sinh) cho bản mệnh</td>
+    </tr>
+    <tr>
+      <td><code>02-tam_tuyet_phap.html</code></td>
+      <td>Công cụ tính Tam Tuyệt Pháp - xem ngày cưới hỏi.</td>
+    </tr>
+    <tr>
+      <td><code>02-tam_y_tam_sinh.html</code></td>
+      <td>Công cụ tính tháng và ngày Thiên y/Sinh khí</td>
+    </tr>
+    <tr>
+      <td><code>02-que_tieu_van.html</code></td>
+      <td>Công cụ tính quẻ tiểu vận dựa trên quẻ quốc khí vận đồ</td>
     </tr>
   </tbody>
 </table>
