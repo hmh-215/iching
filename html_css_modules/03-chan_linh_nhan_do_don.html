@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chân Linh Nhân Độn — Đồ Thư Phi Bàn Độn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root[data-theme="dark"] {
+    --ink-900:#14151a;
+    --ink-850:#191b21;
+    --ink-800:#1d1f27;
+    --ink-750:#242631;
+    --paper:#e7dfc9;
+    --paper-dim:rgba(231,223,201,0.65);
+    --paper-faint:rgba(231,223,201,0.35);
+    --gold:#c19a4b;
+    --gold-dim:rgba(193,154,75,0.28);
+    --jade:#5b9686;
+    --jade-dim:rgba(91,150,134,0.28);
+    --cinnabar:#c24632;
+    --cinnabar-dim:rgba(194,70,50,0.25);
+    --line:rgba(231,223,201,0.12);
+    --line-strong:rgba(231,223,201,0.22);
+    --radius:4px;
+    --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(193,154,75,0.06), transparent 60%), #14151a;
+  }
+
+  :root[data-theme="light"] {
+    --ink-900:#f4f1ea;
+    --ink-850:#ffffff;
+    --ink-800:#fdfbf7;
+    --ink-750:#eae5d9;
+    --paper:#22252a;
+    --paper-dim:#555a64;
+    --paper-faint:#888e99;
+    --gold:#9e7526;
+    --gold-dim:rgba(158,117,38,0.15);
+    --jade:#3b7566;
+    --jade-dim:rgba(59,117,102,0.15);
+    --cinnabar:#b03420;
+    --cinnabar-dim:rgba(176,52,32,0.15);
+    --line:rgba(0,0,0,0.10);
+    --line-strong:rgba(0,0,0,0.20);
+    --radius:4px;
+    --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(158,117,38,0.08), transparent 60%), #f4f1ea;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    background: var(--bg-gradient);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:40px 20px 100px;
+    line-height:1.5;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .wrap{max-width:1000px;margin:0 auto;}
+
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .theme-toggle-btn {
+    background: var(--ink-800);
+    border: 1px solid var(--line-strong);
+    color: var(--paper);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+  .theme-toggle-btn:hover { border-color: var(--gold); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+
+  h1{
+    font-family:'Spectral',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(30px,4.6vw,46px);
+    margin:0 0 10px;
+    letter-spacing:0.01em;
+    color:var(--paper);
+  }
+
+  .subtitle{
+    font-size:15px;
+    color:var(--paper-dim);
+    max-width:68ch;
+    margin:0 0 28px;
+  }
+
+  .rule{
+    height:1px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--line) 40%, transparent 100%);
+    margin:0 0 32px;
+  }
+
+  /* ---- Tabs ---- */
+  .tabs-nav{
+    display:flex;
+    gap:6px;
+    margin-bottom:28px;
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .tab-btn{
+    background:transparent;
+    border:none;
+    border-bottom:2px solid transparent;
+    color:var(--paper-dim);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:12px 16px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .tab-btn:hover{color:var(--paper);}
+  .tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .console{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px 28px 24px;
+    margin-bottom:32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  .console-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:22px;
+  }
+  @media (max-width:900px){ .console-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .console-grid{grid-template-columns:1fr;} }
+
+  .field label{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:8px;
+  }
+  .field .hint{
+    display:block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    color:var(--paper-faint);
+    margin-top:5px;
+    letter-spacing:0.02em;
+    text-transform:none;
+  }
+
+  .field select, .field input[type="number"]{
+    width:100%;
+    background:var(--ink-850);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:500;
+    padding:10px 12px;
+    transition:border-color .15s ease;
+  }
+  .field select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c19a4b'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    cursor:pointer;
+  }
+  .field select:focus, .field input:focus{ outline:none; border-color:var(--gold); }
+
+  .console-actions{
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:16px;
+    flex-wrap:wrap;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+
+  .cast-btn{
+    background:var(--cinnabar);
+    color:#fff;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    padding:13px 30px;
+    border-radius:var(--radius);
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, background .15s ease;
+    box-shadow:0 6px 18px -6px rgba(194,70,50,0.5);
+  }
+  .cast-btn:hover{ filter: brightness(1.1); }
+  .cast-btn:active{transform:scale(0.97);}
+
+  .error-msg{
+    display:none;
+    background:var(--cinnabar-dim);
+    border:1px solid var(--cinnabar);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    font-size:13.5px;
+    color:var(--paper);
+    margin-bottom:32px;
+  }
+
+  #result-1, #result-2, #result-3 { display:none; }
+
+  .step-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .step-label.gold{color:var(--gold);}
+  .step-label.jade{color:var(--jade);}
+
+  .panel{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    margin-bottom:28px;
+  }
+  .panel-title{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:19px;
+    margin:0 0 4px;
+  }
+  .panel-desc{
+    font-size:12.5px;
+    color:var(--paper-dim);
+    margin:0 0 18px;
+  }
+
+  /* ---- Info chips ---- */
+  .chips-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+  @media (max-width:760px){ .chips-grid{grid-template-columns:repeat(2,1fr);} }
+  .chip{
+    background:var(--ink-850);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:12px 14px;
+  }
+  .chip .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    margin-bottom:6px;
+  }
+  .chip .value{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--paper);
+  }
+  .chip .value.small{ font-family:'IBM Plex Mono',monospace; font-style:normal; font-size:13px;}
+
+  /* ---- 3x3 matrix table ---- */
+  .matrix3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:5px;
+    max-width:230px;
+    margin:0 auto;
+  }
+  .matrix3 .mcell{
+    aspect-ratio:1/1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--ink-850);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    color:var(--paper-dim);
+    text-align:center;
+    padding:4px;
+  }
+  .matrix3 .mcell.empty{ background:transparent; border:1px dashed var(--line); }
+  .matrix3 .mcell.active{
+    background:var(--cinnabar-dim);
+    border-color:var(--cinnabar);
+    color:var(--paper);
+    font-weight:600;
+  }
+
+  .matrix-wrap{ max-width:230px; margin:0 auto 6px; }
+  .matrix-caption{
+    text-align:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--paper-faint);
+    margin-top:8px;
+  }
+
+  .thientinh-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:12.5px;
+  }
+  .thientinh-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    padding:6px 10px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .thientinh-table td{
+    padding:7px 10px;
+    border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--paper-dim);
+  }
+  .thientinh-table tr.hl td{background:var(--jade-dim);color:var(--paper);}
+  .thientinh-table td.name-cell{font-family:'Inter',sans-serif;font-weight:500;color:var(--paper);}
+
+  .hexagram-section{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    margin-bottom:28px;
+  }
+  .hexagram-header{
+    text-align:center;
+    margin-bottom:26px;
+  }
+  .hexagram-header .eyebrow{margin-bottom:8px;}
+  .hexagram-name{
+    font-family:'Spectral',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:30px;
+    color:var(--paper);
+  }
+  .hexagram-dual-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .hexagram-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--ink-850);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    min-width: 220px;
+    flex:1;
+  }
+  .hexagram-card-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .hexagram-card-title {
+    font-family: 'Spectral', serif;
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 2px;
+    color: var(--paper);
+    text-align:center;
+  }
+  .hexagram-card-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--paper-dim);
+    margin-bottom: 16px;
+    text-align:center;
+  }
+  .bars{ display:flex; flex-direction:column; gap:9px; width:170px; }
+  .bar-row{ display:flex; align-items:center; gap:10px; padding:2px 0; }
+  .bar-track{ flex:1; height:13px; display:flex; gap:7px; }
+  .bar-seg{ flex:1; background:var(--paper); border-radius:2px; opacity:0.88; }
+  .bar-row.thuong .bar-seg{background:var(--gold);}
+  .bar-row.ha .bar-seg{background:var(--jade);}
+  .bar-row.active .bar-seg{ background:var(--cinnabar); opacity:1; box-shadow:0 0 10px rgba(194,70,50,0.6); }
+  .bar-idx{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--paper-faint); width:14px; }
+  .bar-row.active .bar-idx{color:var(--cinnabar); font-weight: bold;}
+
+  details.steps{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 22px;
+    margin-bottom:28px;
+  }
+  details.steps summary{
+    cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    outline:none;
+  }
+  details.steps .steps-body{
+    margin-top:14px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--paper-dim);
+    line-height:1.9;
+  }
+  details.steps .steps-body b{color:var(--paper);font-weight:500;}
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  @media (max-width:760px){ .two-col{grid-template-columns:1fr;} }
+
+  footer{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--paper-faint);
+    font-family:'IBM Plex Mono',monospace;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header-bar">
+    <div>
+      <div class="eyebrow">Thuật toán lập quẻ · Chân Linh Nhân Độn</div>
+      <h1>Chân Linh Nhân Độn</h1>
+    </div>
+    <button class="theme-toggle-btn" id="theme-btn">☀️ Giao diện Sáng</button>
+  </div>
+
+  <p class="subtitle">Lập quẻ Chân Linh Nhân đồ Vận mệnh, Niên vận, và Tuyển trạch.</p>
+  <div class="rule"></div>
+
+  <div class="tabs-nav">
+    <button class="tab-btn active" data-tab="1">Vận Mệnh</button>
+    <button class="tab-btn" data-tab="2">Niên Vận</button>
+    <button class="tab-btn" data-tab="3">Tuyển Trạch</button>
+  </div>
+
+  <!-- =========================== TAB 1 =========================== -->
+  <div class="tab-panel active" id="tab-1">
+    <div class="console">
+      <div class="console-grid">
+        <div class="field">
+          <label for="t1-gender">Giới tính</label>
+          <select id="t1-gender">
+            <option value="female">Nữ</option>
+            <option value="male">Nam</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="t1-month">Tháng sinh (âm lịch)</label>
+          <select id="t1-month"></select>
+        </div>
+        <div class="field">
+          <label for="t1-year">Năm sinh (âm lịch)</label>
+          <input type="number" id="t1-year" value="1990" min="1900" max="2100">
+        </div>
+      </div>
+      <div class="console-actions">
+        <button class="cast-btn" id="cast-btn-1">Lập Quẻ Nhân Đồ Vận Mệnh</button>
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg-1"></div>
+
+    <div id="result-1">
+      <div class="panel">
+        <div class="step-label gold">Dữ liệu bản mệnh</div>
+        <h3 class="panel-title">Cung Phi &amp; Khí năm sinh</h3>
+        <div class="chips-grid" id="t1-chips"></div>
+      </div>
+
+      <div class="hexagram-section">
+        <div class="hexagram-header">
+          <div class="eyebrow">Quẻ Chân Linh Nhân Đồ Vận Mệnh</div>
+          <div class="hexagram-name" id="t1-goc-fullname"></div>
+        </div>
+        <div class="hexagram-dual-container">
+          <div class="hexagram-card">
+            <div class="hexagram-card-tag">Quẻ Gốc</div>
+            <div class="hexagram-card-title" id="t1-card-goc-title"></div>
+            <div class="hexagram-card-sub" id="t1-card-goc-sub"></div>
+            <div class="bars" id="t1-bars-goc"></div>
+          </div>
+          <div class="hexagram-card">
+            <div class="hexagram-card-tag" style="color:var(--cinnabar)">Quẻ Biến</div>
+            <div class="hexagram-card-title" id="t1-card-bien-title"></div>
+            <div class="hexagram-card-sub" id="t1-card-bien-sub"></div>
+            <div class="bars" id="t1-bars-bien"></div>
+          </div>
+        </div>
+      </div>
+
+      <details class="steps">
+        <summary>Các bước tính trung gian (đối chiếu thuật toán Python gốc)</summary>
+        <div class="steps-body" id="t1-steps-body"></div>
+      </details>
+    </div>
+  </div>
+
+  <!-- =========================== TAB 2 =========================== -->
+  <div class="tab-panel" id="tab-2">
+    <div class="console">
+      <div class="console-grid">
+        <div class="field">
+          <label for="t2-gender">Giới tính</label>
+          <select id="t2-gender">
+            <option value="female">Nữ</option>
+            <option value="male">Nam</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="t2-month">Tháng sinh (âm lịch)</label>
+          <select id="t2-month"></select>
+        </div>
+        <div class="field">
+          <label for="t2-year">Năm sinh (âm lịch)</label>
+          <input type="number" id="t2-year" value="1990" min="1900" max="2100">
+        </div>
+        <div class="field">
+          <label for="t2-nienvan-year">Năm tính Niên vận (âm lịch)</label>
+          <input type="number" id="t2-nienvan-year" value="2026" min="1900" max="2100">
+        </div>
+      </div>
+      <div class="console-actions">
+        <button class="cast-btn" id="cast-btn-2">Lập Quẻ Niên Vận</button>
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg-2"></div>
+
+    <div id="result-2">
+      <div class="panel">
+        <div class="step-label gold">Dữ liệu bản mệnh</div>
+        <h3 class="panel-title">Tuổi &amp; Sao chiếu mệnh</h3>
+        <div class="chips-grid" id="t2-chips"></div>
+      </div>
+
+      <div class="hexagram-section">
+        <div class="hexagram-header">
+          <div class="eyebrow">Quẻ Chân Linh Niên Vận</div>
+          <div class="hexagram-name" id="t2-goc-fullname"></div>
+        </div>
+        <div class="hexagram-dual-container">
+          <div class="hexagram-card">
+            <div class="hexagram-card-tag">Quẻ Gốc</div>
+            <div class="hexagram-card-title" id="t2-card-goc-title"></div>
+            <div class="hexagram-card-sub" id="t2-card-goc-sub"></div>
+            <div class="bars" id="t2-bars-goc"></div>
+          </div>
+          <div class="hexagram-card">
+            <div class="hexagram-card-tag" style="color:var(--cinnabar)">Quẻ Biến</div>
+            <div class="hexagram-card-title" id="t2-card-bien-title"></div>
+            <div class="hexagram-card-sub" id="t2-card-bien-sub"></div>
+            <div class="bars" id="t2-bars-bien"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="step-label jade">Bước 2 · Khí theo tháng</div>
+        <h3 class="panel-title">Bảng Khí 12 Tháng Trong Năm</h3>
+        <p class="panel-desc">Ma trận tháng được suy ra từ tuổi, giới tính, và vị trí khí năm sinh (giống nguyên lý Tuyển trạch riêng).</p>
+        <div class="two-col">
+          <div>
+            <div class="matrix-wrap">
+              <div class="matrix3" id="t2-month-matrix"></div>
+            </div>
+            <p class="matrix-caption">Ma trận tháng (nhóm tháng theo ô)</p>
+          </div>
+          <div>
+            <table class="thientinh-table">
+              <thead><tr><th>Tháng</th><th>Khí</th></tr></thead>
+              <tbody id="t2-month-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <details class="steps">
+        <summary>Các bước tính trung gian (đối chiếu thuật toán Python gốc)</summary>
+        <div class="steps-body" id="t2-steps-body"></div>
+      </details>
+    </div>
+  </div>
+
+  <!-- =========================== TAB 3 =========================== -->
+  <div class="tab-panel" id="tab-3">
+    <div class="console">
+      <div class="console-grid">
+        <div class="field">
+          <label for="t3-gender">Giới tính</label>
+          <select id="t3-gender">
+            <option value="female">Nữ</option>
+            <option value="male">Nam</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="t3-year">Năm sinh (âm lịch)</label>
+          <input type="number" id="t3-year" value="1990" min="1900" max="2100">
+        </div>
+        <div class="field">
+          <label for="t3-can-ngay">Can ngày tuyển trạch</label>
+          <select id="t3-can-ngay"></select>
+          <span class="hint">Cần để tính khí người dùng</span>
+        </div>
+        <div class="field">
+          <label for="t3-gio">Giờ tuyển trạch</label>
+          <select id="t3-gio"></select>
+        </div>
+        <div class="field">
+          <label for="t3-ngay">Ngày tuyển trạch (âm lịch)</label>
+          <input type="number" id="t3-ngay" value="1" min="1" max="30">
+        </div>
+        <div class="field">
+          <label for="t3-thang">Tháng tuyển trạch (âm lịch)</label>
+          <select id="t3-thang"></select>
+        </div>
+        <div class="field">
+          <label for="t3-tt-year">Năm tuyển trạch</label>
+          <input type="number" id="t3-tt-year" value="2026" min="1900" max="2100">
+          <span class="hint">Cần để tính tuổi cho Tuyển trạch riêng</span>
+        </div>
+      </div>
+      <div class="console-actions">
+        <button class="cast-btn" id="cast-btn-3">Tuyển Trạch</button>
+      </div>
+    </div>
+
+    <div class="error-msg" id="error-msg-3"></div>
+
+    <div id="result-3">
+      <div class="panel">
+        <div class="step-label gold">Dữ liệu bản mệnh</div>
+        <div class="chips-grid" id="t3-chips"></div>
+      </div>
+
+      <div class="panel">
+        <div class="step-label jade">Tuyển Trạch</div>
+        <h3 class="panel-title">Tuyển Trạch Chung</h3>
+        <div class="chips-grid" id="t3-chung-chips"></div>
+      </div>
+
+      <div class="hexagram-section">
+        <div class="hexagram-header">
+          <div class="eyebrow">Quẻ Gốc &amp; Biến (Tuyển Trạch Chung)</div>
+          <div class="hexagram-name" id="t3-goc-fullname"></div>
+        </div>
+        <div class="hexagram-dual-container">
+          <div class="hexagram-card">
+            <div class="hexagram-card-tag">Quẻ Gốc</div>
+            <div class="hexagram-card-title" id="t3-card-goc-title"></div>
+            <div class="hexagram-card-sub" id="t3-card-goc-sub"></div>
+            <div class="bars" id="t3-bars-goc"></div>
+          </div>
+          <div class="hexagram-card">
+            <div class="hexagram-card-tag" style="color:var(--cinnabar)">Quẻ Biến</div>
+            <div class="hexagram-card-title" id="t3-card-bien-title"></div>
+            <div class="hexagram-card-sub" id="t3-card-bien-sub"></div>
+            <div class="bars" id="t3-bars-bien"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="step-label jade">Tuyển Trạch</div>
+        <h3 class="panel-title">Tuyển Trạch Riêng</h3>
+        <p class="panel-desc">Khí giờ / ngày / tháng tính riêng theo tuổi và vị trí khí năm sinh của người dùng.</p>
+        <div class="chips-grid" id="t3-rieng-chips"></div>
+      </div>
+
+      <details class="steps">
+        <summary>Các bước tính trung gian (đối chiếu thuật toán Python gốc)</summary>
+        <div class="steps-body" id="t3-steps-body"></div>
+      </details>
+    </div>
+  </div>
+
+  <footer>
+    <span>Chân Linh Nhân Độn — Thuật toán bảo toàn theo mã nguồn Python gốc</span>
+    <span id="input-echo"></span>
+  </footer>
+
+</div>
+
+<script>
+/* =========================================================================
+ * PHẦN 0 — TRA CỨU 64 QUẺ DỊCH (chỉ để hiển thị, không ảnh hưởng logic)
+ * ========================================================================= */
+const TRIGRAM_TUONG = {
+  "Càn": "Thiên", "Đoài": "Trạch", "Ly": "Hỏa", "Chấn": "Lôi",
+  "Tốn": "Phong", "Khảm": "Thủy", "Cấn": "Sơn", "Khôn": "Địa"
+};
+const TRIGRAM_SYMBOL = { "Càn":"☰","Đoài":"☱","Ly":"☲","Chấn":"☳","Tốn":"☴","Khảm":"☵","Cấn":"☶","Khôn":"☷" };
+const DICH_64_BY_PAIR = {
+  "Càn_Càn": "Thuần Càn", "Càn_Đoài": "Thiên Trạch Lý", "Càn_Ly": "Thiên Hỏa Đồng Nhân", "Càn_Chấn": "Thiên Lôi Vô Vọng",
+  "Càn_Tốn": "Thiên Phong Cấu", "Càn_Khảm": "Thiên Thủy Tụng", "Càn_Cấn": "Thiên Sơn Độn", "Càn_Khôn": "Thiên Địa Bĩ",
+  "Đoài_Càn": "Trạch Thiên Quải", "Đoài_Đoài": "Thuần Đoài", "Đoài_Ly": "Trạch Hỏa Cách", "Đoài_Chấn": "Trạch Lôi Tùy",
+  "Đoài_Tốn": "Trạch Phong Đại Quá", "Đoài_Khảm": "Trạch Thủy Khốn", "Đoài_Cấn": "Trạch Sơn Hàm", "Đoài_Khôn": "Trạch Địa Tụy",
+  "Ly_Càn": "Hỏa Thiên Đại Hữu", "Ly_Đoài": "Hỏa Trạch Khuê", "Ly_Ly": "Thuần Ly", "Ly_Chấn": "Hỏa Lôi Phệ Hạp",
+  "Ly_Tốn": "Hỏa Phong Đỉnh", "Ly_Khảm": "Hỏa Thủy Vị Tế", "Ly_Cấn": "Hỏa Sơn Lữ", "Ly_Khôn": "Hỏa Địa Tấn",
+  "Chấn_Càn": "Lôi Thiên Đại Tráng", "Chấn_Đoài": "Lôi Trạch Quy Muội", "Chấn_Ly": "Lôi Hỏa Phong", "Chấn_Chấn": "Thuần Chấn",
+  "Chấn_Tốn": "Lôi Phong Hằng", "Chấn_Khảm": "Lôi Thủy Giải", "Chấn_Cấn": "Lôi Sơn Tiểu Quá", "Chấn_Khôn": "Lôi Địa Dự",
+  "Tốn_Càn": "Phong Thiên Tiểu Súc", "Tốn_Đoài": "Phong Trạch Trung Phu", "Tốn_Ly": "Phong Hỏa Gia Nhân", "Tốn_Chấn": "Phong Lôi Ích",
+  "Tốn_Tốn": "Thuần Tốn", "Tốn_Khảm": "Phong Thủy Hoán", "Tốn_Cấn": "Phong Sơn Tiệm", "Tốn_Khôn": "Phong Địa Quan",
+  "Khảm_Càn": "Thủy Thiên Nhu", "Khảm_Đoài": "Thủy Trạch Tiết", "Khảm_Ly": "Thủy Hỏa Ký Tế", "Khảm_Chấn": "Thủy Lôi Truân",
+  "Khảm_Tốn": "Thủy Phong Tỉnh", "Khảm_Khảm": "Thuần Khảm", "Khảm_Cấn": "Thủy Sơn Kiển", "Khảm_Khôn": "Thủy Địa Tỷ",
+  "Cấn_Càn": "Sơn Thiên Đại Súc", "Cấn_Đoài": "Sơn Trạch Tổn", "Cấn_Ly": "Sơn Hỏa Bí", "Cấn_Chấn": "Sơn Lôi Di",
+  "Cấn_Tốn": "Sơn Phong Cổ", "Cấn_Khảm": "Sơn Thủy Mông", "Cấn_Cấn": "Thuần Cấn", "Cấn_Khôn": "Sơn Địa Bác",
+  "Khôn_Càn": "Địa Thiên Thái", "Khôn_Đoài": "Địa Trạch Lâm", "Khôn_Ly": "Địa Hỏa Minh Di", "Khôn_Chấn": "Địa Lôi Phục",
+  "Khôn_Tốn": "Địa Phong Thăng", "Khôn_Khảm": "Địa Thủy Sư", "Khôn_Cấn": "Địa Sơn Khiêm", "Khôn_Khôn": "Thuần Khôn"
+};
+function getTenQueDich(upper, lower) {
+  if (!upper || !lower) return "";
+  const key = `${upper}_${lower}`;
+  if (DICH_64_BY_PAIR[key]) return DICH_64_BY_PAIR[key];
+  if (upper === lower) return `Thuần ${upper}`;
+  return `${TRIGRAM_TUONG[upper]} ${TRIGRAM_TUONG[lower]}`;
+}
+
+/* =========================================================================
+ * PHẦN 1 — DỮ LIỆU GỐC (chuyển 1:1 từ Chan_linh_nhan_don_v2.ipynb)
+ * ========================================================================= */
+
+const KHAM_BASE = [
+  [2, 3, 7],
+  [6, 1, 5],
+  [4, 8, 9],
+];
+
+function transform(matrix, kind) {
+  const n = 3;
+  const result = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let r = 0; r < n; r++) {
+    for (let c = 0; c < n; c++) {
+      const r0 = r - 1, c0 = c - 1;
+      let nr0, nc0;
+      if (kind === 'e') { nr0 = r0; nc0 = c0; }
+      else if (kind === 'rot90') { nr0 = c0; nc0 = -r0; }
+      else if (kind === 'rot180') { nr0 = -r0; nc0 = -c0; }
+      else if (kind === 'rot270') { nr0 = -c0; nc0 = r0; }
+      else if (kind === 'flip_h') { nr0 = r0; nc0 = -c0; }
+      else if (kind === 'flip_v') { nr0 = -r0; nc0 = c0; }
+      else if (kind === 'transpose') { nr0 = c0; nc0 = r0; }
+      else if (kind === 'anti_transpose') { nr0 = -c0; nc0 = -r0; }
+      result[nr0 + 1][nc0 + 1] = matrix[r][c];
+    }
+  }
+  return result;
+}
+
+const GUA_TRANSFORM = {
+  'Khảm': 'flip_v',
+  'Đoài': 'anti_transpose',
+  'Ly':   'flip_h',
+  'Cấn':  'transpose',
+  'Khôn': 'transpose',
+  'Chấn': 'rot180',
+  'Tốn':  'e',
+  'Càn':  'anti_transpose',
+};
+
+function pymod(n, m) { return ((n % m) + m) % m; }
+
+function flyingStarMatrix(gua, centerNumber = 1) {
+  const base = transform(KHAM_BASE, GUA_TRANSFORM[gua]);
+  const shift = centerNumber - 1;
+  return base.map(row => row.map(v => pymod(v - 1 + shift, 9) + 1));
+}
+
+const LAC_THU_BA_GUA_ARRANGEMENT = [
+  ['Tốn', 'Ly', 'Khôn'],
+  ['Chấn', null, 'Đoài'],
+  ['Cấn', 'Khảm', 'Càn']
+];
+
+const BA_GUA_BINARY = {
+  'Càn': '111', 'Đoài': '110', 'Ly': '101', 'Chấn': '100',
+  'Tốn': '011', 'Khảm': '010', 'Cấn': '001', 'Khôn': '000'
+};
+
+const BIEN_KHI_MEANINGS = {
+  '001': 'Sinh khí', '011': 'Ngũ quỷ', '111': 'Diên niên', '101': 'Lục sát',
+  '100': 'Họa hại', '110': 'Thiên y', '010': 'Tuyệt mệnh', '000': 'Phục vị'
+};
+
+const HAU_THIEN_SO = {
+  'Càn': 6, 'Đoài': 7, 'Ly': 9, 'Chấn': 3, 'Tốn': 4, 'Khảm': 1, 'Cấn': 8, 'Khôn': [2, 5]
+};
+
+const THIEN_CAN_FROM_YEAR_LAST_DIGIT = {
+  4: 'Giáp', 5: 'Ất', 6: 'Bính', 7: 'Đinh', 8: 'Mậu',
+  9: 'Kỷ', 0: 'Canh', 1: 'Tân', 2: 'Nhâm', 3: 'Quý'
+};
+
+const CHI_MAP = {
+  0: 'Thân', 1: 'Dậu', 2: 'Tuất', 3: 'Hợi', 4: 'Tý', 5: 'Sửu',
+  6: 'Dần', 7: 'Mão', 8: 'Thìn', 9: 'Tỵ', 10: 'Ngọ', 11: 'Mùi'
+};
+
+const DIA_CHI_MONTH_ORDER = [
+  'Dần', 'Mão', 'Thìn', 'Tỵ', 'Ngọ', 'Mùi',
+  'Thân', 'Dậu', 'Tuất', 'Hợi', 'Tý', 'Sửu'
+];
+
+const DIA_CHI_MATRIX = [
+  ['Thìn_Tỵ', 'Ngọ', 'Mùi_Thân'],
+  ['Mão', null, 'Dậu'],
+  ['Sửu_Dần', 'Tý', 'Tuất_Hợi']
+];
+
+const KHI_MATRIX = [
+  ['Phá bại', 'Thông thiên', 'Cô thương'],
+  ['Đại an', null, 'Thụ ám'],
+  ['Nguyên cát', 'Không Vong', 'Địa lợi']
+];
+
+const NAP_CAN_AN_MALE = {
+  'Càn': ['Giáp'], 'Đoài': ['Đinh', 'Kỷ'], 'Ly': ['Nhâm'], 'Chấn': ['Canh'],
+  'Tốn': ['Tân'], 'Khảm': ['Quý'], 'Cấn': ['Bính', 'Mậu'], 'Khôn': ['Ất']
+};
+const NAP_CAN_AN_FEMALE = {
+  'Càn': ['Giáp', 'Nhâm'], 'Đoài': ['Đinh'], 'Ly': ['Kỷ'], 'Chấn': ['Canh'],
+  'Tốn': ['Tân'], 'Khảm': ['Mậu'], 'Cấn': ['Bính'], 'Khôn': ['Ất', 'Quý']
+};
+
+const BAT_QUAI_CHAN_LINH_THAN_TY_THIN = [
+  ['Khảm', 'Ly', 'Đoài'],
+  ['Chấn', null, 'Tốn'],
+  ['Càn', 'Cấn', 'Khôn']
+];
+const BAT_QUAI_CHAN_LINH_DAN_NGO_TUAT = [
+  ['Khôn', 'Cấn', 'Càn'],
+  ['Tốn', null, 'Chấn'],
+  ['Đoài', 'Ly', 'Khảm']
+];
+const BAT_QUAI_CHAN_LINH_TY_DAU_SUU = [
+  ['Đoài', 'Tốn', 'Khôn'],
+  ['Ly', null, 'Cấn'],
+  ['Khảm', 'Chấn', 'Càn']
+];
+const BAT_QUAI_CHAN_LINH_HOI_MAO_MUI = [
+  ['Càn', 'Chấn', 'Khảm'],
+  ['Cấn', null, 'Ly'],
+  ['Khôn', 'Tốn', 'Đoài']
+];
+
+function pickBatQuaiChanLinhMatrix(chiMonth) {
+  if (['Dần','Ngọ','Tuất'].includes(chiMonth)) return BAT_QUAI_CHAN_LINH_DAN_NGO_TUAT;
+  if (['Thân','Tý','Thìn'].includes(chiMonth)) return BAT_QUAI_CHAN_LINH_THAN_TY_THIN;
+  if (['Tỵ','Dậu','Sửu'].includes(chiMonth)) return BAT_QUAI_CHAN_LINH_TY_DAU_SUU;
+  if (['Hợi','Mão','Mùi'].includes(chiMonth)) return BAT_QUAI_CHAN_LINH_HOI_MAO_MUI;
+  return null;
+}
+
+const CUU_TINH_UNG_BAT_QUAI = {
+  'La Hầu': {Hanh:'Thủy', Que:'Khảm'}, 'Thổ Tú': {Hanh:'Thổ', Que:'Khôn'},
+  'Thủy Diệu': {Hanh:'Thủy', Que:'Khảm'}, 'Thái Bạch': {Hanh:'Kim', Que:'Càn'},
+  'Thái Dương': {Hanh:'Hỏa', Que:'Ly'}, 'Vân Hớn': {Hanh:'Mộc', Que:'Tốn'},
+  'Kế Đô': {Hanh:'Thổ', Que:'Cấn'}, 'Thái Âm': {Hanh:'Kim', Que:'Đoài'},
+  'Mộc Đức': {Hanh:'Mộc', Que:'Chấn'}
+};
+
+const CUU_TINH_NIEN_VAN_NAM_PLUS = [
+  ['Thái Bạch', 'Mộc Đức', 'Thổ Tú'],
+  ['Thủy Diệu', 'Thái Dương', 'Kế Đô'],
+  ['Thái Dương', 'La Hầu', 'Vân Hớn']
+];
+const CUU_TINH_NIEN_VAN_NAM_MINUS = [
+  ['Thái Bạch', 'Mộc Đức', 'Thổ Tú'],
+  ['Thủy Diệu', 'Thái Dương', 'Kế Đô'],
+  ['Thái Âm', 'La Hầu', 'Vân Hớn']
+];
+const CUU_TINH_NIEN_VAN_NU_PLUS = [
+  ['Thái Âm', 'Thủy Diệu', 'Thổ Tú'],
+  ['Mộc Đức', 'Thổ Tú', 'Thái Dương'],
+  ['Thái Bạch', 'Kế Đô', 'La Hầu']
+];
+const CUU_TINH_NIEN_VAN_NU_MINUS = [
+  ['Thái Âm', 'Thủy Diệu', 'Vân Hớn'],
+  ['Mộc Đức', 'Thổ Tú', 'Thái Dương'],
+  ['Thổ Tú', 'Kế Đô', 'La Hầu']
+];
+
+function pickCuuTinhNienVanMatrix(amDuongType) {
+  if (amDuongType === 'Nam+') return CUU_TINH_NIEN_VAN_NAM_PLUS;
+  if (amDuongType === 'Nam-') return CUU_TINH_NIEN_VAN_NAM_MINUS;
+  if (amDuongType === 'Nữ+') return CUU_TINH_NIEN_VAN_NU_PLUS;
+  if (amDuongType === 'Nữ-') return CUU_TINH_NIEN_VAN_NU_MINUS;
+  return null;
+}
+
+const NHAT_BIEN_HA_VI_LIEM_MATRIX = [
+  ['Phụ Bật','Liêm Trinh','Lộc Tồn'],
+  ['Tham Lang', null, 'Phá Quân'],
+  ['Cự Môn','Văn Khúc','Vũ Khúc']
+];
+const NHAT_BIEN_HA_VI_LIEM = {
+  'Liêm Trinh': 1, 'Phá Quân': 2, 'Phụ Bật': 3, 'Văn Khúc': 4,
+  'Vũ Khúc': 5, 'Cự Môn': 6, 'Lộc Tồn': 7, 'Tham Lang': 8
+};
+
+const THIEN_CAN_ORDER = ['Giáp','Ất','Bính','Đinh','Mậu','Kỷ','Canh','Tân','Nhâm','Quý'];
+const THIEN_CAN_TO_INDEX_FEMALE = {
+  'Giáp':0,'Ất':1,'Bính':2,'Đinh':3,'Mậu':4,'Kỷ':5,'Canh':6,'Tân':7,'Nhâm':0,'Quý':1
+};
+const INDEX_TO_THIEN_CAN_FEMALE = {
+  0:'Giáp/Nhâm',1:'Ất/Quý',2:'Bính',3:'Đinh',4:'Mậu',5:'Kỷ',6:'Canh',7:'Tân'
+};
+const THIEN_CAN_TO_INDEX_MALE = {
+  'Giáp':0,'Ất':1,'Bính':2,'Đinh':3,'Mậu':2,'Kỷ':3,'Canh':4,'Tân':5,'Nhâm':6,'Quý':7
+};
+const INDEX_TO_THIEN_CAN_MALE = {
+  0:'Giáp',1:'Ất',2:'Bính/Mậu',3:'Đinh/Kỷ',4:'Canh',5:'Tân',6:'Nhâm',7:'Quý'
+};
+
+const BASE_MATRIX_FEMALE_INDEXED = [
+  [0, 7, 6],
+  [1, null, 5],
+  [2, 3, 4]
+];
+const BASE_MATRIX_MALE_INDEXED = [
+  [0, 1, 2],
+  [7, null, 3],
+  [6, 5, 4]
+];
+
+const LUO_SHU_PATH = [[2,1],[0,2],[1,0],[0,0],[1,1],[2,2],[1,2],[2,0],[0,1]];
+
+const CLOCKWISE_PATH = [
+  [0,0],[0,1],[0,2],
+  [1,2],
+  [2,2],[2,1],[2,0],
+  [1,0]
+];
+const COUNTER_CLOCKWISE_PATH = [...CLOCKWISE_PATH].reverse();
+
+const MONTH_MATRIX = [
+  [{'3':[0,0],'4':[0,0]}, {'5':[0,1]}, {'6':[0,2],'7':[0,2]}],
+  [{'2':[1,0]}, null, {'8':[1,2]}],
+  [{'1':[2,0],'12':[2,0]}, {'11':[2,1]}, {'9':[2,2],'10':[2,2]}]
+];
+
+const CORNER_GROUPED_MONTHS_SEQUENCE = ['1/12', '2', '3/4', '5', '6/7', '8', '9/10', '11'];
+const EDGE_GROUPED_MONTHS_SEQUENCE = ['1', '2/3', '4', '5/6', '7', '8/9', '10', '11/12'];
+
+/* =========================================================================
+ * PHẦN 2 — CÁC HÀM TÍNH TOÁN (chuyển 1:1 từ notebook)
+ * ========================================================================= */
+
+function coordsEqual(a, b) { return a && b && a[0] === b[0] && a[1] === b[1]; }
+function indexOfCoords(path, coord) {
+  if (!coord) return -1;
+  return path.findIndex(p => coordsEqual(p, coord));
+}
+function findCoordsInMatrix(name, matrix) {
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) if (matrix[r][c] === name) return [r, c];
+  return null;
+}
+
+function calculateCungPhiNumber(year) {
+  const sumDigits = String(year).split('').reduce((s, d) => s + parseInt(d, 10), 0);
+  let n = sumDigits % 9;
+  if (n === 0) n = 9;
+  return n;
+}
+
+function getGuaFromCungPhi(gender, yearOfBirth) {
+  const cungPhiNum = calculateCungPhiNumber(yearOfBirth);
+  let matrixTypeGua, matrixCenterNum;
+  if (gender === 'male') { matrixTypeGua = 'Khôn'; matrixCenterNum = 6; }
+  else { matrixTypeGua = 'Càn'; matrixCenterNum = 1; }
+  const generatedMatrix = flyingStarMatrix(matrixTypeGua, matrixCenterNum);
+
+  let rowIdx = -1, colIdx = -1;
+  for (let r = 0; r < 3 && rowIdx === -1; r++) {
+    for (let c = 0; c < 3; c++) {
+      if (generatedMatrix[r][c] === cungPhiNum) { rowIdx = r; colIdx = c; break; }
+    }
+  }
+  if (rowIdx === -1) return [null, generatedMatrix, cungPhiNum];
+
+  let guaName;
+  if (rowIdx === 1 && colIdx === 1) {
+    guaName = gender === 'male' ? 'Khôn' : 'Cấn';
+  } else {
+    guaName = LAC_THU_BA_GUA_ARRANGEMENT[rowIdx][colIdx];
+  }
+  return [guaName, generatedMatrix, cungPhiNum];
+}
+
+function getCanFromYear(year) { return THIEN_CAN_FROM_YEAR_LAST_DIGIT[pymod(year, 10)]; }
+function getChiFromYear(year) { return CHI_MAP[pymod(year, 12)]; }
+
+function getCanAn(gender, cungPhiGua) {
+  let canAnValue = null;
+  if (gender === 'male') {
+    if (cungPhiGua === 'Đoài') canAnValue = 'Kỷ';
+    else if (cungPhiGua === 'Cấn') canAnValue = 'Kỷ';
+    else { const list = NAP_CAN_AN_MALE[cungPhiGua]; if (list) canAnValue = list[0]; }
+  } else if (gender === 'female') {
+    if (cungPhiGua === 'Càn') canAnValue = 'Giáp';
+    else if (cungPhiGua === 'Khôn') canAnValue = 'Ất';
+    else { const list = NAP_CAN_AN_FEMALE[cungPhiGua]; if (list) canAnValue = list[0]; }
+  }
+  return canAnValue;
+}
+
+function getDiaChiMatrixCoords(chiName) {
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) {
+    const cell = DIA_CHI_MATRIX[r][c];
+    if (cell) {
+      if (cell.includes('_')) { if (cell.split('_').includes(chiName)) return [r, c]; }
+      else if (cell === chiName) return [r, c];
+    }
+  }
+  return null;
+}
+
+function generateThienCanMatrix(gender, canAn, startCoords) {
+  let canToIndexMap, indexToCanMap, baseIndexedMatrix;
+  if (gender === 'female') {
+    canToIndexMap = THIEN_CAN_TO_INDEX_FEMALE; indexToCanMap = INDEX_TO_THIEN_CAN_FEMALE; baseIndexedMatrix = BASE_MATRIX_FEMALE_INDEXED;
+  } else {
+    canToIndexMap = THIEN_CAN_TO_INDEX_MALE; indexToCanMap = INDEX_TO_THIEN_CAN_MALE; baseIndexedMatrix = BASE_MATRIX_MALE_INDEXED;
+  }
+  let canAnIdx = canToIndexMap[canAn];
+  if (canAnIdx === undefined) {
+    for (const k of Object.keys(canToIndexMap)) {
+      if (k.includes('/') && k.split('/').includes(canAn)) { canAnIdx = canToIndexMap[k]; break; }
+    }
+  }
+  const baseValAtStart = baseIndexedMatrix[startCoords[0]][startCoords[1]];
+  const shift = pymod(canAnIdx - baseValAtStart, 8);
+
+  const shiftedIndexedMatrix = [[null,null,null],[null,null,null],[null,null,null]];
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++)
+    if (baseIndexedMatrix[r][c] !== null) shiftedIndexedMatrix[r][c] = pymod(baseIndexedMatrix[r][c] + shift, 8);
+
+  const resultMatrix = [[null,null,null],[null,null,null],[null,null,null]];
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++)
+    if (shiftedIndexedMatrix[r][c] !== null) resultMatrix[r][c] = indexToCanMap[shiftedIndexedMatrix[r][c]];
+
+  return resultMatrix;
+}
+
+function findCanCoordsInMatrix(canName, matrix) {
+  if (!matrix) return null;
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) {
+    const cell = matrix[r][c];
+    if (cell != null) {
+      if (cell === canName || cell.split('/').includes(canName)) return [r, c];
+    }
+  }
+  return null;
+}
+
+function moveClockwise(startCoords, steps) {
+  const idx = indexOfCoords(CLOCKWISE_PATH, startCoords);
+  if (idx === -1) return null;
+  return CLOCKWISE_PATH[pymod(idx + steps, CLOCKWISE_PATH.length)];
+}
+function moveCounterClockwise(startCoords, steps) {
+  const idx = indexOfCoords(COUNTER_CLOCKWISE_PATH, startCoords);
+  if (idx === -1) return null;
+  return COUNTER_CLOCKWISE_PATH[pymod(idx + steps, COUNTER_CLOCKWISE_PATH.length)];
+}
+
+function findMonthCoords(monthNumber) {
+  const monthStr = String(monthNumber);
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) {
+    const cell = MONTH_MATRIX[r][c];
+    if (!cell) continue;
+    if (Object.prototype.hasOwnProperty.call(cell, monthStr)) return cell[monthStr];
+  }
+  return null;
+}
+
+function generateTuyenTrachRiengMonthMatrix(age, gender, luoShuPath, clockwisePath, birthYearKhiCoords) {
+  const stepsForMonth1Pos = age - 2;
+  const startIndexInLuoshu = indexOfCoords(luoShuPath, birthYearKhiCoords);
+  if (startIndexInLuoshu === -1) return null;
+  const finalIndexInLuoshu = pymod(startIndexInLuoshu + stepsForMonth1Pos, luoShuPath.length);
+  const rawCoords = luoShuPath[finalIndexInLuoshu];
+
+  let effectiveStartCoords;
+  if (coordsEqual(rawCoords, [1,1])) {
+    effectiveStartCoords = gender === 'male' ? [0,2] : [2,0];
+  } else {
+    effectiveStartCoords = rawCoords;
+  }
+  if (!effectiveStartCoords) return null;
+
+  const isCornerStart = [[0,0],[0,2],[2,0],[2,2]].some(c => coordsEqual(c, effectiveStartCoords));
+  const selectedSequence = isCornerStart ? CORNER_GROUPED_MONTHS_SEQUENCE : EDGE_GROUPED_MONTHS_SEQUENCE;
+
+  const monthMatrix = [[null,null,null],[null,null,null],[null,null,null]];
+  const startIdxInPath = indexOfCoords(clockwisePath, effectiveStartCoords);
+  if (startIdxInPath === -1) return null;
+
+  for (let i = 0; i < clockwisePath.length; i++) {
+    const idx = pymod(startIdxInPath + i, clockwisePath.length);
+    const coords = clockwisePath[idx];
+    monthMatrix[coords[0]][coords[1]] = selectedSequence[i];
+  }
+  return monthMatrix;
+}
+
+function findMonthCoordsRieng(monthNumber, monthMatrix) {
+  const monthStr = String(monthNumber);
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) {
+    const cell = monthMatrix[r][c];
+    if (cell && cell.split('/').includes(monthStr)) return [r, c];
+  }
+  return null;
+}
+
+/* ---- Bien khi / hao the / hao nguyen duong / hao dong / que bien ---- */
+function computeQueBienStep(queThuongBinary, queHaBinary, cungPhiGuaStarValue, chiForDelta) {
+  const fullBinaryCombined = queHaBinary + queThuongBinary; // L1..L6
+
+  let bienKhiBinary = '';
+  for (let i = 0; i < 3; i++) bienKhiBinary += (queThuongBinary[i] !== queHaBinary[i]) ? '1' : '0';
+  const bienKhiMeaning = BIEN_KHI_MEANINGS[bienKhiBinary];
+
+  let haoThe = 0;
+  if (bienKhiMeaning === 'Họa hại') haoThe = 1;
+  else if (bienKhiMeaning === 'Thiên y') haoThe = 2;
+  else if (bienKhiMeaning === 'Diên niên' || bienKhiMeaning === 'Tuyệt mệnh') haoThe = 3;
+  else if (bienKhiMeaning === 'Lục sát' || bienKhiMeaning === 'Ngũ quỷ') haoThe = 4;
+  else if (bienKhiMeaning === 'Sinh khí') haoThe = 5;
+  else if (bienKhiMeaning === 'Phục vị') haoThe = 6;
+
+  const bitAtHaoThe = parseInt(fullBinaryCombined[haoThe - 1], 10);
+  const baseStar = bitAtHaoThe === 0 ? 'Cự Môn' : 'Văn Khúc';
+  const baseStarValue = NHAT_BIEN_HA_VI_LIEM[baseStar];
+  // Khoảng cách sao dạng vòng tròn (cyclic), khớp bản đã chỉnh sửa trong Chan_linh_nhan_don_v4.ipynb
+  const N_STARS = Object.keys(NHAT_BIEN_HA_VI_LIEM).length;
+  const starDistance = pymod(N_STARS + cungPhiGuaStarValue - baseStarValue, N_STARS);
+  const haoNguyenDuongLine = pymod((haoThe - 1) + starDistance, 6) + 1;
+
+  const tyIndex = DIA_CHI_MONTH_ORDER.indexOf('Tý');
+  const chiIndex = DIA_CHI_MONTH_ORDER.indexOf(chiForDelta);
+  const deltaChi = pymod(chiIndex - tyIndex, 12);
+  const haoDong = pymod((haoNguyenDuongLine - 1) + deltaChi, 6) + 1;
+
+  const bitsList = fullBinaryCombined.split('').map(Number);
+  bitsList[haoDong - 1] = 1 - bitsList[haoDong - 1];
+  const transformedStr = bitsList.join('');
+  const transformedHaBinary = transformedStr.slice(0, 3);
+  const transformedThuongBinary = transformedStr.slice(3, 6);
+
+  let transformedQueThuong = null, transformedQueHa = null;
+  for (const gua of Object.keys(BA_GUA_BINARY)) {
+    if (BA_GUA_BINARY[gua] === transformedThuongBinary) transformedQueThuong = gua;
+    if (BA_GUA_BINARY[gua] === transformedHaBinary) transformedQueHa = gua;
+  }
+
+  return {
+    fullBinaryCombined, bienKhiBinary, bienKhiMeaning, haoThe, bitAtHaoThe, baseStar, baseStarValue,
+    starDistance, haoNguyenDuongLine, deltaChi, haoDong,
+    transformedQueThuong, transformedQueHa,
+    transformedBinaryFull: transformedHaBinary + transformedThuongBinary
+  };
+}
+
+/* ---- Ho so ban menh dung chung cho ca 3 tab ---- */
+function computeCoreProfile(gender, yearOfBirth) {
+  const [cungPhiGua, cungPhiMatrix, cungPhiNum] = getGuaFromCungPhi(gender, yearOfBirth);
+
+  const hauThienRaw = HAU_THIEN_SO[cungPhiGua];
+  const hauThienSoBanMenh = Array.isArray(hauThienRaw) ? 2 : hauThienRaw;
+
+  const canForBirthYear = getCanFromYear(yearOfBirth);
+  const chiForBirthYear = getChiFromYear(yearOfBirth);
+  const canAnUser = getCanAn(gender, cungPhiGua);
+  const startCoordsMovement = getDiaChiMatrixCoords(chiForBirthYear);
+  const thienCan3x3Matrix = generateThienCanMatrix(gender, canAnUser, startCoordsMovement);
+  const endCoordsMovement = findCanCoordsInMatrix(canForBirthYear, thienCan3x3Matrix);
+  const khiAtEndCoords = KHI_MATRIX[endCoordsMovement[0]][endCoordsMovement[1]];
+
+  const isYearEven = (yearOfBirth % 2 === 0);
+  let amDuongType;
+  if (gender === 'male') amDuongType = isYearEven ? 'Nam+' : 'Nam-';
+  else amDuongType = isYearEven ? 'Nữ+' : 'Nữ-';
+
+  const cungPhiGuaCoords = findCoordsInMatrix(cungPhiGua, LAC_THU_BA_GUA_ARRANGEMENT);
+  const starAtCungPhiGua = NHAT_BIEN_HA_VI_LIEM_MATRIX[cungPhiGuaCoords[0]][cungPhiGuaCoords[1]];
+  const cungPhiGuaStarValue = NHAT_BIEN_HA_VI_LIEM[starAtCungPhiGua];
+
+  return {
+    gender, yearOfBirth, cungPhiGua, cungPhiMatrix, cungPhiNum, hauThienSoBanMenh,
+    canForBirthYear, chiForBirthYear, canAnUser, startCoordsMovement, thienCan3x3Matrix,
+    endCoordsMovement, khiAtEndCoords, isYearEven, amDuongType,
+    cungPhiGuaCoords, starAtCungPhiGua, cungPhiGuaStarValue
+  };
+}
+
+/* ---- Tab 1: Lap que Chan Linh Nhan Do Van Menh ---- */
+function computeTab1(core, birthMonth) {
+  const cuuTinhMatrix = pickCuuTinhNienVanMatrix(core.amDuongType);
+  const [er, ec] = core.endCoordsMovement;
+  const saoNienVan = cuuTinhMatrix[er][ec];
+  const queThuong = CUU_TINH_UNG_BAT_QUAI[saoNienVan].Que;
+
+  const chiMonth = DIA_CHI_MONTH_ORDER[birthMonth - 1];
+  const batQuaiMatrix = pickBatQuaiChanLinhMatrix(chiMonth);
+  const queHa = batQuaiMatrix[er][ec];
+
+  const queThuongBinary = BA_GUA_BINARY[queThuong];
+  const queHaBinary = BA_GUA_BINARY[queHa];
+  const gocBinaryFull = queHaBinary + queThuongBinary;
+
+  const bien = computeQueBienStep(queThuongBinary, queHaBinary, core.cungPhiGuaStarValue, core.chiForBirthYear);
+
+  return {
+    saoNienVan, queThuong, chiMonth, queHa,
+    queGoc: { thuong: queThuong, ha: queHa, binary: gocBinaryFull },
+    queBien: { thuong: bien.transformedQueThuong, ha: bien.transformedQueHa, binary: bien.transformedBinaryFull },
+    detail: bien
+  };
+}
+
+/* ---- Tab 2: Lap que Chan Linh Nien Van ---- */
+function computeTab2(core, birthMonth, yearForGuaCalculation) {
+  const age = yearForGuaCalculation - core.yearOfBirth + 1;
+
+  let initialStar, cuuTinhMatrixNiengan;
+  if (core.amDuongType === 'Nam+') { initialStar = 'La Hầu'; cuuTinhMatrixNiengan = CUU_TINH_NIEN_VAN_NAM_PLUS; }
+  else if (core.amDuongType === 'Nam-') { initialStar = 'La Hầu'; cuuTinhMatrixNiengan = CUU_TINH_NIEN_VAN_NAM_MINUS; }
+  else if (core.amDuongType === 'Nữ+') { initialStar = 'Kế Đô'; cuuTinhMatrixNiengan = CUU_TINH_NIEN_VAN_NU_PLUS; }
+  else { initialStar = 'Kế Đô'; cuuTinhMatrixNiengan = CUU_TINH_NIEN_VAN_NU_MINUS; }
+
+  const startCoordsForGuaThuong = findCoordsInMatrix(initialStar, cuuTinhMatrixNiengan);
+  const stepsToPhi = age - 1;
+  const startIdx1 = indexOfCoords(LUO_SHU_PATH, startCoordsForGuaThuong);
+  const endIdx1 = pymod(startIdx1 + stepsToPhi, LUO_SHU_PATH.length);
+  const endCoordsForGuaThuong = LUO_SHU_PATH[endIdx1];
+  const finalStarForGuaThuong = cuuTinhMatrixNiengan[endCoordsForGuaThuong[0]][endCoordsForGuaThuong[1]];
+  const queThuongFromNiengua = CUU_TINH_UNG_BAT_QUAI[finalStarForGuaThuong].Que;
+
+  const startCoordsForGuaHa = core.endCoordsMovement;
+  const stepsForGuaHa = age - 1;
+  const startIdx2 = indexOfCoords(LUO_SHU_PATH, startCoordsForGuaHa);
+  const endIdx2 = pymod(startIdx2 + stepsForGuaHa, LUO_SHU_PATH.length);
+  const finalCoordsForGuaHa = LUO_SHU_PATH[endIdx2];
+
+  let queHaFromNiengua;
+  if (coordsEqual(finalCoordsForGuaHa, [1,1])) {
+    queHaFromNiengua = core.gender === 'male' ? 'Khôn' : 'Cấn';
+  } else {
+    const chiMonth = DIA_CHI_MONTH_ORDER[birthMonth - 1];
+    const batQuaiMatrix = pickBatQuaiChanLinhMatrix(chiMonth);
+    queHaFromNiengua = batQuaiMatrix[finalCoordsForGuaHa[0]][finalCoordsForGuaHa[1]];
+  }
+
+  const queThuongBinaryNiengan = BA_GUA_BINARY[queThuongFromNiengua];
+  const queHaBinaryNiengan = BA_GUA_BINARY[queHaFromNiengua];
+  const fullBinaryQueGocNiengan = queHaBinaryNiengan + queThuongBinaryNiengan;
+
+  const chiForNienganYear = getChiFromYear(yearForGuaCalculation);
+  const bien = computeQueBienStep(queThuongBinaryNiengan, queHaBinaryNiengan, core.cungPhiGuaStarValue, chiForNienganYear);
+
+  const monthMatrix = generateTuyenTrachRiengMonthMatrix(age, core.gender, LUO_SHU_PATH, CLOCKWISE_PATH, core.endCoordsMovement);
+  const monthlyKhi = {};
+  for (let m = 1; m <= 12; m++) {
+    const coords = findMonthCoordsRieng(m, monthMatrix);
+    monthlyKhi[m] = coords ? KHI_MATRIX[coords[0]][coords[1]] : null;
+  }
+
+  return {
+    age, startCoordsForGuaThuong, endCoordsForGuaThuong, finalStarForGuaThuong, queThuongFromNiengua,
+    finalCoordsForGuaHa, queHaFromNiengua, chiForNienganYear,
+    queGoc: { thuong: queThuongFromNiengua, ha: queHaFromNiengua, binary: fullBinaryQueGocNiengan },
+    queBien: { thuong: bien.transformedQueThuong, ha: bien.transformedQueHa, binary: bien.transformedBinaryFull },
+    monthMatrix, monthlyKhi, detail: bien
+  };
+}
+
+/* ---- Tab 3: Tuyen Trach ---- */
+function computeTab3(core, gioIndex, canNgay, ngay, thang, yearForTuyenTrach) {
+  const age = yearForTuyenTrach - core.yearOfBirth + 1;
+
+  // -- Tuyển trạch chung --
+  const monthCoords = findMonthCoords(thang);
+  const khiMonth = KHI_MATRIX[monthCoords[0]][monthCoords[1]];
+  const dayCoords = moveClockwise(monthCoords, ngay - 1);
+  const khiDay = KHI_MATRIX[dayCoords[0]][dayCoords[1]];
+  const hourCoords = moveClockwise(dayCoords, gioIndex);
+  const khiHour = KHI_MATRIX[hourCoords[0]][hourCoords[1]];
+
+  const idxLunarDayCanFull = THIEN_CAN_ORDER.indexOf(canNgay);
+  const idxCanNamFull = THIEN_CAN_ORDER.indexOf(core.canForBirthYear);
+  const isClockwise = (core.amDuongType === 'Nam+' || core.amDuongType === 'Nữ-');
+
+  // Số bước tính theo chu kỳ đầy đủ 10 can (Ví dụ: Canh -> Nhâm là 2 bước)
+  const stepsOnCanCycle = pymod(idxCanNamFull - idxLunarDayCanFull, THIEN_CAN_ORDER.length);
+
+  let finalCoordsForPersonKhi, directionDesc;
+  if (isClockwise) {
+    finalCoordsForPersonKhi = moveClockwise(hourCoords, stepsOnCanCycle);
+    directionDesc = 'xuôi chiều kim đồng hồ';
+  } else {
+    finalCoordsForPersonKhi = moveCounterClockwise(hourCoords, stepsOnCanCycle);
+    directionDesc = 'ngược chiều kim đồng hồ';
+  }
+  const khiPersonAtCan = KHI_MATRIX[finalCoordsForPersonKhi[0]][finalCoordsForPersonKhi[1]];
+
+  const queThuongGoc = BAT_QUAI_CHAN_LINH_THAN_TY_THIN[finalCoordsForPersonKhi[0]][finalCoordsForPersonKhi[1]];
+  const guaHaMatrixForPhi = flyingStarMatrix('Càn', core.hauThienSoBanMenh);
+  const finalHauThienNumberForQueHa = guaHaMatrixForPhi[finalCoordsForPersonKhi[0]][finalCoordsForPersonKhi[1]];
+
+  let queHaGoc = null;
+  if (finalHauThienNumberForQueHa === 5) {
+    queHaGoc = 'Khôn';
+  } else {
+    for (const guaName of Object.keys(HAU_THIEN_SO)) {
+      const htNumber = HAU_THIEN_SO[guaName];
+      if (Array.isArray(htNumber)) { if (htNumber.includes(finalHauThienNumberForQueHa)) { queHaGoc = guaName; break; } }
+      else if (htNumber === finalHauThienNumberForQueHa) { queHaGoc = guaName; break; }
+    }
+  }
+
+  const queThuongGocBinary = BA_GUA_BINARY[queThuongGoc];
+  const queHaGocBinary = BA_GUA_BINARY[queHaGoc];
+  const gocBinaryFullChung = queHaGocBinary + queThuongGocBinary;
+
+  const bienChung = computeQueBienStep(queThuongGocBinary, queHaGocBinary, core.cungPhiGuaStarValue, core.chiForBirthYear);
+
+  // -- Tuyển trạch riêng --
+  const monthMatrixRieng = generateTuyenTrachRiengMonthMatrix(age, core.gender, LUO_SHU_PATH, CLOCKWISE_PATH, core.endCoordsMovement);
+  const monthCoordsRieng = findMonthCoordsRieng(thang, monthMatrixRieng);
+  const khiMonthRieng = monthCoordsRieng ? KHI_MATRIX[monthCoordsRieng[0]][monthCoordsRieng[1]] : null;
+  const dayCoordsRieng = monthCoordsRieng ? moveClockwise(monthCoordsRieng, ngay - 1) : null;
+  const khiDayRieng = dayCoordsRieng ? KHI_MATRIX[dayCoordsRieng[0]][dayCoordsRieng[1]] : null;
+  const hourCoordsRieng = dayCoordsRieng ? moveClockwise(dayCoordsRieng, gioIndex) : null;
+  const khiHourRieng = hourCoordsRieng ? KHI_MATRIX[hourCoordsRieng[0]][hourCoordsRieng[1]] : null;
+
+  return {
+    age,
+    chung: {
+      monthCoords, khiMonth, dayCoords, khiDay, hourCoords, khiHour,
+      finalCoordsForPersonKhi, khiPersonAtCan, directionDesc, stepsOnCanCycle,
+      queThuongGoc, queHaGoc, finalHauThienNumberForQueHa, guaHaMatrixForPhi,
+      queGoc: { thuong: queThuongGoc, ha: queHaGoc, binary: gocBinaryFullChung },
+      queBien: { thuong: bienChung.transformedQueThuong, ha: bienChung.transformedQueHa, binary: bienChung.transformedBinaryFull },
+      detail: bienChung
+    },
+    rieng: {
+      monthMatrixRieng, monthCoordsRieng, khiMonthRieng, dayCoordsRieng, khiDayRieng, hourCoordsRieng, khiHourRieng
+    }
+  };
+}
+
+/* =========================================================================
+ * PHẦN 3 — RENDER HELPERS
+ * ========================================================================= */
+
+function chip(label, value, small) {
+  return `<div class="chip"><div class="label">${label}</div><div class="value${small ? ' small' : ''}">${value}</div></div>`;
+}
+
+function renderMatrix3(containerId, matrix, activeCoord) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
+      const cell = matrix[r][c];
+      const div = document.createElement('div');
+      const isActive = activeCoord && activeCoord[0] === r && activeCoord[1] === c;
+      div.className = 'mcell' + (cell === null || cell === undefined ? ' empty' : '') + (isActive ? ' active' : '');
+      div.textContent = (cell === null || cell === undefined) ? '' : cell;
+      el.appendChild(div);
+    }
+  }
+}
+
+function renderBars(elementId, binary6, activeHao) {
+  const container = document.getElementById(elementId);
+  container.innerHTML = '';
+  for (let hao = 6; hao >= 1; hao--) {
+    const bit = binary6[hao - 1];
+    const row = document.createElement('div');
+    row.className = 'bar-row ' + (hao >= 4 ? 'thuong' : 'ha') + (hao === activeHao ? ' active' : '');
+
+    const idxLabel = document.createElement('span');
+    idxLabel.className = 'bar-idx';
+    idxLabel.textContent = hao;
+    row.appendChild(idxLabel);
+
+    const track = document.createElement('div');
+    track.className = 'bar-track';
+    if (bit === '1') {
+      const seg = document.createElement('div'); seg.className = 'bar-seg';
+      track.appendChild(seg);
+    } else {
+      const seg1 = document.createElement('div'); seg1.className = 'bar-seg';
+      const seg2 = document.createElement('div'); seg2.className = 'bar-seg';
+      track.appendChild(seg1); track.appendChild(seg2);
+    }
+    row.appendChild(track);
+    container.appendChild(row);
+  }
+}
+
+function renderHexCard(prefix, que, activeHao) {
+  document.getElementById(prefix + '-title').textContent = `${getTenQueDich(que.thuong, que.ha)}`;
+  document.getElementById(prefix + '-sub').textContent =
+    `${TRIGRAM_SYMBOL[que.thuong] || ''}${TRIGRAM_SYMBOL[que.ha] || ''} · ${que.thuong} / ${que.ha}`;
+  renderBars(prefix.replace('-card', '-bars').replace('card-', 'bars-'), que.binary, activeHao || 0);
+}
+
+function coordStr(c) { return c ? `[${c[0]}, ${c[1]}]` : '—'; }
+
+/* =========================================================================
+ * PHẦN 4 — GẮN KẾT UI: OPTIONS CHO SELECT
+ * ========================================================================= */
+
+function fillMonthSelect(id) {
+  const sel = document.getElementById(id);
+  for (let m = 1; m <= 12; m++) {
+    const opt = document.createElement('option');
+    opt.value = m; opt.textContent = `Tháng ${m}`;
+    sel.appendChild(opt);
+  }
+  sel.value = 7;
+}
+
+const THIEN_CAN_LIST = ['Giáp','Ất','Bính','Đinh','Mậu','Kỷ','Canh','Tân','Nhâm','Quý'];
+function fillCanSelect(id) {
+  const sel = document.getElementById(id);
+  THIEN_CAN_LIST.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c; opt.textContent = c;
+    sel.appendChild(opt);
+  });
+}
+
+const LUNAR_HOUR_LIST = ['Tý','Sửu','Dần','Mão','Thìn','Tỵ','Ngọ','Mùi','Thân','Dậu','Tuất','Hợi'];
+function fillGioSelect(id) {
+  const sel = document.getElementById(id);
+  LUNAR_HOUR_LIST.forEach((c, idx) => {
+    const opt = document.createElement('option');
+    opt.value = idx; opt.textContent = `${c}`;
+    sel.appendChild(opt);
+  });
+}
+
+fillMonthSelect('t1-month');
+fillMonthSelect('t2-month');
+fillMonthSelect('t3-thang');
+fillCanSelect('t3-can-ngay');
+fillGioSelect('t3-gio');
+
+/* =========================================================================
+ * PHẦN 5 — TABS
+ * ========================================================================= */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+const themeBtn = document.getElementById('theme-btn');
+themeBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  themeBtn.textContent = next === 'dark' ? '☀️ Giao diện Sáng' : '🌙 Giao diện Tối';
+});
+
+function showError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideError(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+/* =========================================================================
+ * PHẦN 6 — TAB 1 CAST
+ * ========================================================================= */
+function castTab1() {
+  hideError('error-msg-1');
+  try {
+    const gender = document.getElementById('t1-gender').value;
+    const year = parseInt(document.getElementById('t1-year').value, 10);
+    const month = parseInt(document.getElementById('t1-month').value, 10);
+    if (!year || year < 1 || month < 1 || month > 12) throw new Error('Vui lòng nhập năm sinh và tháng sinh hợp lệ.');
+
+    const core = computeCoreProfile(gender, year);
+    const r = computeTab1(core, month);
+
+    document.getElementById('t1-chips').innerHTML =
+      chip('Cung Phi bản mệnh', core.cungPhiGua) +
+      chip('Can ẩn', core.canAnUser, true) +
+      chip('Sao tại Cung Phi', core.starAtCungPhiGua, true) +
+      chip('Khí năm sinh', core.khiAtEndCoords);
+
+
+    document.getElementById('t1-goc-fullname').textContent = getTenQueDich(r.queGoc.thuong, r.queGoc.ha);
+    renderHexCard('t1-card-goc', r.queGoc, r.detail.haoDong);
+    renderHexCard('t1-card-bien', r.queBien, 0);
+
+    document.getElementById('t1-steps-body').innerHTML = `
+      - Cung Phi bản mệnh: <b>${core.cungPhiGua}</b> (số cung phi ${core.cungPhiNum}) · Số Hậu Thiên: <b>${core.hauThienSoBanMenh}</b><br>
+      - Can/Chi năm sinh: <b>${core.canForBirthYear} ${core.chiForBirthYear}</b> · Can ẩn: <b>${core.canAnUser}</b><br>
+      - Tọa độ bắt đầu (từ Địa Chi): <b>${coordStr(core.startCoordsMovement)}</b> → Tọa độ khí năm sinh (từ Can thật): <b>${coordStr(core.endCoordsMovement)}</b><br>
+      - Khí năm sinh: <b>${core.khiAtEndCoords}</b> · Âm Dương: <b>${core.amDuongType}</b><br>
+      - Sao niên vận tại khí năm sinh: <b>${r.saoNienVan}</b> → Quẻ Thượng: <b>${r.queThuong}</b><br>
+      - Tháng sinh ${document.getElementById('t1-month').value} → Địa Chi: <b>${r.chiMonth}</b> → Quẻ Hạ: <b>${r.queHa}</b><br>
+      - Quẻ Gốc: <b>${r.queGoc.thuong}/${r.queGoc.ha}</b> (binary ${r.queGoc.binary})<br>
+      - Biến khí Thượng/Hạ: <b>${r.detail.bienKhiBinary}</b> (${r.detail.bienKhiMeaning}) → Hào thế: <b>${r.detail.haoThe}</b><br>
+      - Sao xuất phát hào nguyên đường: <b>${r.detail.baseStar}</b> (giá trị ${r.detail.baseStarValue}) · Sao tại Cung Phi: <b>${core.starAtCungPhiGua}</b> (giá trị ${core.cungPhiGuaStarValue})<br>
+      - Khoảng cách sao: <b>${r.detail.starDistance}</b> → Hào nguyên đường: <b>${r.detail.haoNguyenDuongLine}</b><br>
+      - Delta Chi (Tý → ${core.chiForBirthYear}): <b>${r.detail.deltaChi}</b> bước → Hào động: <b>${r.detail.haoDong}</b><br>
+      - Quẻ Biến: <b>${r.queBien.thuong}/${r.queBien.ha}</b> (binary ${r.queBien.binary})
+    `;
+
+    document.getElementById('result-1').style.display = 'block';
+    document.getElementById('input-echo').textContent =
+      `Tab 1 · ${gender === 'male' ? 'Nam' : 'Nữ'} · Sinh ${month}/${year}`;
+  } catch (e) {
+    showError('error-msg-1', 'Lỗi: ' + e.message);
+    document.getElementById('result-1').style.display = 'none';
+  }
+}
+document.getElementById('cast-btn-1').addEventListener('click', castTab1);
+
+/* =========================================================================
+ * PHẦN 7 — TAB 2 CAST
+ * ========================================================================= */
+function castTab2() {
+  hideError('error-msg-2');
+  try {
+    const gender = document.getElementById('t2-gender').value;
+    const year = parseInt(document.getElementById('t2-year').value, 10);
+    const month = parseInt(document.getElementById('t2-month').value, 10);
+    const nienVanYear = parseInt(document.getElementById('t2-nienvan-year').value, 10);
+    if (!year || month < 1 || month > 12 || !nienVanYear) throw new Error('Vui lòng nhập đầy đủ thông tin hợp lệ.');
+
+    const core = computeCoreProfile(gender, year);
+    const r = computeTab2(core, month, nienVanYear);
+
+    document.getElementById('t2-chips').innerHTML =
+      chip('Tuổi (năm ' + nienVanYear + ')', r.age + ' tuổi') +
+      chip('Sao chiếu mệnh', r.finalStarForGuaThuong, true);
+
+    document.getElementById('t2-goc-fullname').textContent = getTenQueDich(r.queGoc.thuong, r.queGoc.ha);
+    renderHexCard('t2-card-goc', r.queGoc, r.detail.haoDong);
+    renderHexCard('t2-card-bien', r.queBien, 0);
+
+    // Month matrix + table
+    renderMatrix3('t2-month-matrix', r.monthMatrix, null);
+    const tbody = document.getElementById('t2-month-tbody');
+    tbody.innerHTML = '';
+    for (let m = 1; m <= 12; m++) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td class="name-cell">Tháng ${m}</td><td>${r.monthlyKhi[m] || '—'}</td>`;
+      tbody.appendChild(tr);
+    }
+
+    document.getElementById('t2-steps-body').innerHTML = `
+      - Tuổi năm ${nienVanYear}: <b>${r.age}</b> tuổi (= ${nienVanYear} − ${year} + 1)<br>
+      - Sao khởi phi Quẻ Thượng: <b>${document.getElementById('t2-gender').value === 'male' ? 'La Hầu' : 'Kế Đô'}</b> tại ${coordStr(r.startCoordsForGuaThuong)} → sau ${r.age - 1} bước phi → ${coordStr(r.endCoordsForGuaThuong)}: <b>${r.finalStarForGuaThuong}</b> → Quẻ Thượng: <b>${r.queThuongFromNiengua}</b><br>
+      - Quẻ Hạ: từ tọa độ khí năm sinh ${coordStr(core.endCoordsMovement)} → sau ${r.age - 1} bước phi → ${coordStr(r.finalCoordsForGuaHa)}: Quẻ Hạ = <b>${r.queHaFromNiengua}</b><br>
+      - Quẻ Gốc niên vận: <b>${r.queGoc.thuong}/${r.queGoc.ha}</b> (binary ${r.queGoc.binary})<br>
+      - Biến khí: <b>${r.detail.bienKhiBinary}</b> (${r.detail.bienKhiMeaning}) → Hào thế: <b>${r.detail.haoThe}</b><br>
+      - Sao xuất phát: <b>${r.detail.baseStar}</b> (${r.detail.baseStarValue}) · Sao Cung Phi: <b>${core.starAtCungPhiGua}</b> (${core.cungPhiGuaStarValue}) → Khoảng cách: <b>${r.detail.starDistance}</b><br>
+      - Hào nguyên đường: <b>${r.detail.haoNguyenDuongLine}</b> · Chi năm niên vận: <b>${r.chiForNienganYear}</b> (delta ${r.detail.deltaChi}) → Hào biến: <b>${r.detail.haoDong}</b><br>
+      - Quẻ Biến niên vận: <b>${r.queBien.thuong}/${r.queBien.ha}</b> (binary ${r.queBien.binary})
+    `;
+
+    document.getElementById('result-2').style.display = 'block';
+    document.getElementById('input-echo').textContent =
+      `Tab 2 · ${gender === 'male' ? 'Nam' : 'Nữ'} · Sinh ${month}/${year} · Niên vận ${nienVanYear}`;
+  } catch (e) {
+    showError('error-msg-2', 'Lỗi: ' + e.message);
+    document.getElementById('result-2').style.display = 'none';
+  }
+}
+document.getElementById('cast-btn-2').addEventListener('click', castTab2);
+
+/* =========================================================================
+ * PHẦN 8 — TAB 3 CAST
+ * ========================================================================= */
+function castTab3() {
+  hideError('error-msg-3');
+  try {
+    const gender = document.getElementById('t3-gender').value;
+    const year = parseInt(document.getElementById('t3-year').value, 10);
+    const ttYear = parseInt(document.getElementById('t3-tt-year').value, 10);
+    const canNgay = document.getElementById('t3-can-ngay').value;
+    const gioIndex = parseInt(document.getElementById('t3-gio').value, 10);
+    const ngay = parseInt(document.getElementById('t3-ngay').value, 10);
+    const thang = parseInt(document.getElementById('t3-thang').value, 10);
+    if (!year || !ttYear || ngay < 1 || thang < 1 || thang > 12) throw new Error('Vui lòng nhập đầy đủ thông tin hợp lệ.');
+
+    const core = computeCoreProfile(gender, year);
+    const r = computeTab3(core, gioIndex, canNgay, ngay, thang, ttYear);
+
+    document.getElementById('t3-chips').innerHTML =
+      chip('Cung Phi bản mệnh', core.cungPhiGua) +
+      chip('Can / Chi năm sinh', `${core.canForBirthYear} ${core.chiForBirthYear}`, true) +
+      chip('Tuổi (năm ' + ttYear + ')', r.age + ' tuổi');
+
+    document.getElementById('t3-chung-chips').innerHTML =
+      chip('Khí Tháng ' + thang, r.chung.khiMonth) +
+      chip('Khí Ngày ' + ngay, r.chung.khiDay) +
+      chip('Khí Giờ ' + LUNAR_HOUR_LIST[gioIndex], r.chung.khiHour) +
+      chip('Khí người dùng', r.chung.khiPersonAtCan);
+
+    document.getElementById('t3-goc-fullname').textContent = getTenQueDich(r.chung.queGoc.thuong, r.chung.queGoc.ha);
+    renderHexCard('t3-card-goc', r.chung.queGoc, r.chung.detail.haoDong);
+    renderHexCard('t3-card-bien', r.chung.queBien, 0);
+
+    document.getElementById('t3-rieng-chips').innerHTML =
+      chip('Khí Tháng ' + thang, r.rieng.khiMonthRieng || '—') +
+      chip('Khí Ngày ' + ngay, r.rieng.khiDayRieng || '—') +
+      chip('Khí Giờ ' + LUNAR_HOUR_LIST[gioIndex], r.rieng.khiHourRieng || '—');
+
+    document.getElementById('t3-steps-body').innerHTML = `
+      <u>Tuyển trạch chung</u><br>
+      - Khí Tháng ${thang}: ${coordStr(r.chung.monthCoords)} → <b>${r.chung.khiMonth}</b><br>
+      - Khí Ngày ${ngay} (di chuyển ${ngay - 1} bước xuôi): ${coordStr(r.chung.dayCoords)} → <b>${r.chung.khiDay}</b><br>
+      - Khí Giờ ${LUNAR_HOUR_LIST[gioIndex]} (di chuyển ${gioIndex} bước xuôi): ${coordStr(r.chung.hourCoords)} → <b>${r.chung.khiHour}</b><br>
+      - Khí người dùng: Can ngày <b>${canNgay}</b> vs Can năm sinh <b>${core.canForBirthYear}</b> → di chuyển ${r.chung.directionDesc} ${r.chung.stepsOnCanCycle} bước → ${coordStr(r.chung.finalCoordsForPersonKhi)}: <b>${r.chung.khiPersonAtCan}</b><br>
+      - Quẻ Thượng gốc (tại vị trí khí người dùng): <b>${r.chung.queThuongGoc}</b><br>
+      - Ma trận phi Càn (tâm = Số Hậu Thiên Cung Phi ${core.hauThienSoBanMenh}) → số tại vị trí khí người dùng: <b>${r.chung.finalHauThienNumberForQueHa}</b> → Quẻ Hạ gốc: <b>${r.chung.queHaGoc}</b><br>
+      - Quẻ Gốc: <b>${r.chung.queGoc.thuong}/${r.chung.queGoc.ha}</b> (binary ${r.chung.queGoc.binary})<br>
+      - Biến khí: <b>${r.chung.detail.bienKhiBinary}</b> (${r.chung.detail.bienKhiMeaning}) → Hào thế: <b>${r.chung.detail.haoThe}</b> → Hào nguyên đường: <b>${r.chung.detail.haoNguyenDuongLine}</b> → Hào động: <b>${r.chung.detail.haoDong}</b><br>
+      - Quẻ Biến: <b>${r.chung.queBien.thuong}/${r.chung.queBien.ha}</b> (binary ${r.chung.queBien.binary})<br><br>
+      <u>Tuyển trạch riêng</u> (tuổi ${r.age}, năm ${ttYear})<br>
+      - Khí Tháng ${thang}: ${coordStr(r.rieng.monthCoordsRieng)} → <b>${r.rieng.khiMonthRieng}</b><br>
+      - Khí Ngày ${ngay}: ${coordStr(r.rieng.dayCoordsRieng)} → <b>${r.rieng.khiDayRieng}</b><br>
+      - Khí Giờ ${LUNAR_HOUR_LIST[gioIndex]}: ${coordStr(r.rieng.hourCoordsRieng)} → <b>${r.rieng.khiHourRieng}</b>
+    `;
+
+    document.getElementById('result-3').style.display = 'block';
+    document.getElementById('input-echo').textContent =
+      `Tab 3 · ${gender === 'male' ? 'Nam' : 'Nữ'} · Sinh ${year} · Giờ ${LUNAR_HOUR_LIST[gioIndex]} · Can ${canNgay} · Ngày ${ngay} · Tháng ${thang}`;
+  } catch (e) {
+    showError('error-msg-3', 'Lỗi: ' + e.message);
+    document.getElementById('result-3').style.display = 'none';
+  }
+}
+document.getElementById('cast-btn-3').addEventListener('click', castTab3);
+</script>
+</body>
+</html>
