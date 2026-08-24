@@ -31,6 +31,14 @@
       <td><code>00-bien_khi.html</code></td>
       <td>Kiến thức về du niên biến khí</td>
     </tr>
+    <tr>
+      <td><code>00-luan9sao_clndd.html</code></td>
+      <td>Kiến thức cửu tinh trong Chân linh nhân đồ độn</td>
+    </tr>
+    <tr>
+      <td><code>00-khi_clndd.html</code></td>
+      <td>Kiến thức các khí và sự kết hợp của các khí trong Chân linh nhân đồ độn</td>
+    </tr>
   </tbody>
 </table>
 <h3>Khối Công Cụ Lập Quẻ</h3>
@@ -95,4 +103,5 @@
   <li>Mở trực tiếp từng file <code>.html</code> bằng trình duyệt web bất kỳ (Chrome, Edge, Firefox,...).</li>
   <li>Các file <code>00-*.html</code> thích hợp cho việc đọc, tra cứu kiến thức khi luận giải.</li>
   <li>Các file <code>01-*.html</code> và <code>02-*.html</code> chứa giao diện tương tác hỗ trợ nhập liệu và tính toán tự động.</li>
+  <li>File <code>03-chan-linh-nhan-do-don</code> chứa công cụ để tính quẻ và khí theo phương pháp Chân linh nhân đồ độn - quẻ bản mệnh, niên vận, và tuyển trạch.</li>
 </ol>
