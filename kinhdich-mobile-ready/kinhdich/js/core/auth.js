@@ -8,13 +8,15 @@
 
   const CONFIG = {
     SALT: 'iching_ngulinh_auth_salt_2026',
-    // SHA-256 của "iching_ngulinh_auth_salt_2026:KinhDich@2026"
-    HASH: '82cf600622f5644820a10a517453a6f03ad6e0f2fed25b95491edc0bff4655b8',
+    // SHA-256 của "iching_ngulinh_auth_salt_2026:Kinhdich@2026"
+    HASH_PRIMARY: 'fc40d1fb88ae05493d9460849edb72589b2166593481f226328e3852a92b879e',
+    // SHA-256 của "iching_ngulinh_auth_salt_2026:KinhDich@2026" (hỗ trợ viết hoa chữ D)
+    HASH_ALT: '82cf600622f5644820a10a517453a6f03ad6e0f2fed25b95491edc0bff4655b8',
     // Fallback legacy SHA-256 của "iching_ngulinh_auth_salt_2026:300703"
-    LEGACY_HASH: '6f1a15ccbad5eb8aecba77cd37397f4d5975df943e9bdff34885a8b19d833c74',
-    SESSION_KEY: 'kd_auth_token',
-    AUTH_VALID_VALUE: 'kd_authorized_session_2026'
+    HASH_LEGACY: '6f1a15ccbad5eb8aecba77cd37397f4d5975df943e9bdff34885a8b19d833c74'
   };
+
+  let _isAuthorized = false;
 
   async function sha256(message) {
     const msgBuffer = new TextEncoder().encode(message);
@@ -24,25 +26,23 @@
   }
 
   function isAuthorized() {
-    try {
-      const val = sessionStorage.getItem(CONFIG.SESSION_KEY) || sessionStorage.getItem('kd_pin_auth_token');
-      return val === CONFIG.AUTH_VALID_VALUE || val === 'kd_authorized_session_300703';
-    } catch (e) {
-      return false;
-    }
+    return _isAuthorized;
   }
 
   function setAuthorized() {
-    try {
-      sessionStorage.setItem(CONFIG.SESSION_KEY, CONFIG.AUTH_VALID_VALUE);
-    } catch (e) {}
+    _isAuthorized = true;
   }
 
   function clearAuthorized() {
+    _isAuthorized = false;
     try {
-      sessionStorage.removeItem(CONFIG.SESSION_KEY);
+      sessionStorage.removeItem('kd_auth_token');
+      sessionStorage.removeItem('kd_pin_auth_token');
     } catch (e) {}
   }
+
+  // Xóa sạch token cũ khi nạp trang để bắt buộc nhập mật khẩu mỗi lần mở web
+  clearAuthorized();
 
   // Inject CSS cho Gatekeeper Modal
   function injectAuthStyles() {
@@ -264,7 +264,7 @@
       const combined = `${CONFIG.SALT}:${pwd}`;
       const hashed = await sha256(combined);
 
-      if (hashed === CONFIG.HASH || hashed === CONFIG.LEGACY_HASH) {
+      if (hashed === CONFIG.HASH_PRIMARY || hashed === CONFIG.HASH_ALT || hashed === CONFIG.HASH_LEGACY) {
         setAuthorized();
         errorEl.textContent = '';
         overlay.style.transition = 'opacity .25s ease';

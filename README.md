@@ -20,7 +20,8 @@
 
 Ứng dụng được trang bị lớp bảo mật Gatekeeper trước khi bất kỳ nội dung nào được hiển thị:
 - **Cơ chế băm bảo mật**: Sử dụng Web Crypto API với thuật toán **SHA-256** kết hợp chuỗi Salt chuyên biệt, không lưu trữ mật khẩu dạng văn bản rõ (plaintext).
-- **Trải nghiệm người dùng**: Giao diện đăng nhập trang nhã với ô nhập mật khẩu bảo mật, hỗ trợ bật/tắt hiển thị mật khẩu (👁), phím tắt Enter, hiệu ứng rung (shake animation) khi nhập sai và tự động lưu phiên làm việc an toàn trong `sessionStorage` (`kd_auth_token`).
+- **Xác thực mỗi lần truy cập**: Mặc định yêu cầu xác thực mỗi khi mở hoặc tải lại trang web để bảo mật dữ liệu học thuật.
+- **Trải nghiệm người dùng**: Giao diện đăng nhập trang nhã với ô nhập mật khẩu bảo mật, hỗ trợ bật/tắt hiển thị mật khẩu (👁), phím tắt Enter, hiệu ứng rung (shake animation) khi nhập sai.
 - **Nút Khóa nhanh**: Nút biểu tượng ổ khóa 🔒 trên thanh Header cho phép người dùng chủ động khóa phiên bất kỳ lúc nào.
 
 <hr>
