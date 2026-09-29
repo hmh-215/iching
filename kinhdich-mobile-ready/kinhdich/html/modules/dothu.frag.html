@@ -1,0 +1,137 @@
+<div class="wrap">
+
+  <div class="eyebrow">Thuật toán lập quẻ</div>
+  <h1>Đồ Thư Phi Bàn Độn</h1>
+  <p class="subtitle">Lập quẻ Thượng – Hạ từ Giờ, Ngày, Tháng âm lịch và Can của ngày, theo phương pháp phi bàn độn trên Hà Đồ &amp; Lạc Thư.</p>
+  <div class="rule"></div>
+
+  <div class="console">
+    <div class="console-grid">
+      <div class="field">
+        <label for="sel-gio">Giờ lập quẻ</label>
+        <select id="sel-gio"></select>
+      </div>
+      <div class="field">
+        <label for="sel-can">Can của ngày</label>
+        <select id="sel-can"></select>
+      </div>
+      <div class="field">
+        <label for="sel-ngay">Ngày</label>
+        <select id="sel-ngay"></select>
+      </div>
+      <div class="field">
+        <label for="sel-thang">Tháng</label>
+        <select id="sel-thang"></select>
+      </div>
+    </div>
+    <div class="console-actions">
+      <div class="presets">
+        <label class="arrow-toggle">
+          <input type="checkbox" id="arrow-toggle">
+          <span class="switch"></span>
+          <span class="toggle-label">Hiện mũi tên</span>
+        </label>
+        <button class="preset-btn" data-preset="0">Ví dụ cơ bản</button>
+        <button class="preset-btn" data-preset="1">Sóng thần 2004</button>
+        <button class="preset-btn" data-preset="2">Mất điện 2002</button>
+      </div>
+      <button class="cast-btn" id="cast-btn">Lập quẻ</button>
+    </div>
+  </div>
+
+  <div class="error-msg" id="error-msg"></div>
+
+  <div id="result">
+
+    <div class="panels">
+      <div class="panel thuong">
+        <div class="panel-head">
+          <div>
+            <div class="step-label gold">Bước 1 · Quẻ Thượng</div>
+            <h3 class="panel-title">Hà Đồ &amp; Bát Môn</h3>
+          </div>
+        </div>
+        <p class="panel-desc" id="thuong-desc"></p>
+        <div class="grid-wrap">
+          <svg class="grid-svg" id="svg-hado" viewBox="0 0 240 240"></svg>
+        </div>
+        <div class="result-chip">
+          <span class="symbol" id="thuong-symbol"></span>
+          <span class="name" id="thuong-name"></span>
+        </div>
+      </div>
+
+      <div class="panel ha">
+        <div class="panel-head">
+          <div>
+            <div class="step-label jade">Bước 2 · Quẻ Hạ</div>
+            <h3 class="panel-title">Lạc Thư &amp; đường 9 ô</h3>
+          </div>
+        </div>
+        <p class="panel-desc" id="ha-desc"></p>
+        <div class="grid-wrap">
+          <svg class="grid-svg" id="svg-lacthu" viewBox="0 0 240 240"></svg>
+        </div>
+        <div class="result-chip">
+          <span class="symbol" id="ha-symbol"></span>
+          <span class="name" id="ha-name"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hexagram Section Displaying Gốc, Biến, Hỗ -->
+    <div class="hexagram-section">
+      <div class="hexagram-header">
+        <div class="eyebrow">Kết Quả Lập Quẻ</div>
+        <div class="hexagram-name" id="goc-fullname"></div>
+      </div>
+
+      <div class="hexagram-dual-container">
+        <!-- Quẻ Gốc -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag">Quẻ Gốc</div>
+          <div class="hexagram-card-title" id="card-goc-title"></div>
+          <div class="hexagram-card-sub" id="card-goc-symbols"></div>
+          <div class="bars" id="bars-goc"></div>
+        </div>
+
+        <!-- Quẻ Biến -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag" style="color:var(--cinnabar)">Quẻ Biến</div>
+          <div class="hexagram-card-title" id="card-bien-title"></div>
+          <div class="hexagram-card-sub" id="card-bien-symbols"></div>
+          <div class="bars" id="bars-bien"></div>
+        </div>
+
+        <!-- Quẻ Hỗ -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag" style="color:var(--jade)">Quẻ Hỗ</div>
+          <div class="hexagram-card-title" id="card-ho-title"></div>
+          <div class="hexagram-card-sub" id="card-ho-symbols"></div>
+          <div class="bars" id="bars-ho"></div>
+        </div>
+      </div>
+
+      <div class="info-meta">
+        <div class="info-block">
+          <div class="label">Hào Động</div>
+          <div class="value" id="haodong-value"></div>
+          <div class="formula" id="haodong-formula"></div>
+        </div>
+        <div class="info-block">
+          <div class="label">Mã Nhị Phân (Hào 1 → 6)</div>
+          <div class="formula">Quẻ Gốc: <b id="goc-binary"></b></div>
+          <div class="formula">Quẻ Biến: <b id="bien-binary" style="color:var(--cinnabar)"></b></div>
+          <div class="formula">Quẻ Hỗ: <b id="ho-binary" style="color:var(--jade)"></b></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>Đồ Thư Phi Bàn Độn — Công cụ lập quẻ chuẩn thuật toán</span>
+    <span id="input-echo"></span>
+  </footer>
+
+</div>

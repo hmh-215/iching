@@ -1,0 +1,11 @@
+{
+  "name": "Dịch Học Ngũ Linh",
+  "short_name": "Ngũ Linh",
+  "start_url": "./app.dc.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#12100e",
+  "theme_color": "#12100e",
+  "lang": "vi"
+}

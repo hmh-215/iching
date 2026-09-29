@@ -1,0 +1,301 @@
+/* ============================================================
+   Dịch Học Ngũ Linh — hệ token dùng chung + lớp hoà giải module
+   Token gốc lấy từ các tool (ink/paper/gold/jade/cinnabar).
+   ============================================================ */
+
+:root[data-theme="dark"]{
+  --ink-900:#14151a; --ink-850:#191b21; --ink-800:#1d1f27; --ink-750:#242631;
+  --paper:#e7dfc9; --paper-dim:rgba(231,223,201,0.65); --paper-faint:rgba(231,223,201,0.35);
+  --gold:#c19a4b; --gold-dim:rgba(193,154,75,0.28);
+  --jade:#5b9686; --jade-dim:rgba(91,150,134,0.28);
+  --cinnabar:#c24632; --cinnabar-dim:rgba(194,70,50,0.25);
+  --line:rgba(231,223,201,0.12); --line-strong:rgba(231,223,201,0.22);
+  --radius:4px;
+  --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(193,154,75,0.06), transparent 60%), #14151a;
+  --shadow-lift:0 18px 40px -22px rgba(0,0,0,0.85);
+}
+:root[data-theme="light"]{
+  --ink-900:#f4f1ea; --ink-850:#ffffff; --ink-800:#fdfbf7; --ink-750:#eae5d9;
+  --paper:#22252a; --paper-dim:#555a64; --paper-faint:#888e99;
+  --gold:#9e7526; --gold-dim:rgba(158,117,38,0.15);
+  --jade:#3b7566; --jade-dim:rgba(59,117,102,0.15);
+  --cinnabar:#b03420; --cinnabar-dim:rgba(176,52,32,0.15);
+  --line:rgba(0,0,0,0.10); --line-strong:rgba(0,0,0,0.20);
+  --radius:4px;
+  --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(158,117,38,0.08), transparent 60%), #f4f1ea;
+  --shadow-lift:0 14px 34px -20px rgba(60,45,25,0.35);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg-gradient);
+  color:var(--paper);
+  font-family:'Inter',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+  min-height:100vh;
+  transition:background .25s ease, color .25s ease;
+}
+a{color:var(--gold);text-decoration:none;}
+a:hover{color:var(--cinnabar);}
+
+/* ── Dịch Tự: quy hệ màu riêng về palette chung ─────────────── */
+.kd-mod[data-mod="dichtu"]{
+  --bg-0:var(--ink-900); --bg-1:var(--ink-850); --bg-2:var(--ink-800);
+  --surface:var(--ink-750); --text:var(--paper); --text-dim:var(--paper-dim);
+  --text-faint:var(--paper-faint);
+  --accent:var(--gold); --accent-dim:var(--gold-dim);
+  --seal:var(--cinnabar); --seal-dim:var(--cinnabar-dim);
+  --glow:transparent; --active:var(--cinnabar-dim);
+  --sheet:#e7dfc9; --sheet-ink:#171512;
+  --sheet-shadow:0 24px 60px -20px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,0,0,0.2);
+}
+:root[data-theme="light"] .kd-mod[data-mod="dichtu"]{
+  --sheet:#fdfaf3;
+  --sheet-shadow:0 14px 34px -18px rgba(60,45,25,0.45), 0 0 0 1px rgba(0,0,0,0.10);
+}
+
+/* ── Hoà giải khung module với vỏ app ───────────────────────── */
+.kd-mod{background:none !important;padding:0 !important;min-height:0 !important;}
+.kd-mod .wrap{max-width:none !important;margin:0 !important;padding:0 !important;}
+/* nút sáng/tối riêng của từng tool — vỏ app đã có, giữ trong DOM cho JS gốc */
+.kd-mod .theme-toggle-btn,
+.kd-mod #theme-btn,
+.kd-mod #theme-toggle,
+.kd-mod .theme-btn{display:none !important;}
+.kd-mod .header-bar{display:block !important;}
+/* tiêu đề module: gọn hơn vì vỏ app đã có tab */
+.kd-mod h1{font-size:clamp(26px,6vw,36px) !important;margin-bottom:8px !important;}
+.kd-mod .eyebrow{margin-bottom:10px !important;}
+.kd-mod .subtitle,.kd-mod .sub{font-size:14px !important;}
+/* diễn giải chuyển sang sổ tay bên phải */
+.kd-mod .steps,
+.kd-mod .step-by-step-box,
+.kd-mod .step-btn{display:none !important;}
+.kd-mod footer,.kd-mod .foot{opacity:.7;}
+
+/* ── Sổ tay diễn giải: bản clone hiển thị luôn ──────────────── */
+.kd-note .steps,
+.kd-note .step-by-step-box{display:block !important;margin:0 0 18px !important;}
+.kd-note .step-btn{display:none !important;}
+.kd-note h1,.kd-note .eyebrow{display:none;}
+
+/* ── Luận giải 64 quẻ trong ngăn phải ───────────────────────── */
+.kd-luan .wrap{max-width:none;margin:0;padding:0;}
+.kd-luan .theme-toggle-btn,.kd-luan h1,.kd-luan .subtitle,
+.kd-luan .search-container,.kd-luan .rule{display:none;}
+.kd-luan details[name="que-item"]{display:block;}
+
+/* Chỉ dùng tiếng Việt: ẩn dòng chữ Hán trong Dịch Tự (dữ liệu gốc giữ nguyên) */
+.kd-mod[data-mod="dichtu"] .hanzi{display:none !important;}
+
+/* ── Thẻ tương tác xem Luận Giải Quẻ & Khí (Ảnh 2 & Ảnh 3) ───── */
+.hexagram-card{
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  position: relative;
+}
+.hexagram-card:hover{
+  border-color: var(--gold) !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+.hexagram-card::after{
+  content: "🔎 Bấm xem luận giải";
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--paper-faint);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s ease;
+}
+.hexagram-card:hover::after{
+  opacity: 1;
+}
+
+/* Các chip chứa khí trong Chân Linh Nhân Độn */
+#t3-chung-chips .chip,
+#t3-rieng-chips .chip,
+.chip[data-khi],
+.khi-clickable{
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
+}
+#t3-chung-chips .chip:hover,
+#t3-rieng-chips .chip:hover,
+.chip[data-khi]:hover,
+.khi-clickable:hover{
+  border-color: var(--gold) !important;
+  background: var(--ink-750) !important;
+}
+
+/* Khung hiển thị Luận giải con (Ảnh 2 & Ảnh 3) */
+.kd-interp-card{
+  background: var(--ink-850);
+  border: 1px solid var(--cinnabar);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 12px 0;
+  max-height: 480px;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  animation: kdFadeIn .2s ease-out;
+  width: 100%;
+  box-sizing: border-box;
+}
+@keyframes kdFadeIn{
+  from{opacity:0;transform:translateY(-6px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.kd-interp-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+.kd-interp-title{
+  font-family: 'Spectral', serif;
+  font-size: 18px;
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.kd-interp-title strong{
+  font-weight: 600;
+  color: var(--gold);
+}
+.kd-interp-close{
+  background: var(--ink-750);
+  border: 1.5px solid var(--cinnabar);
+  color: var(--paper);
+  border-radius: var(--radius);
+  cursor: pointer;
+  padding: 6px 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all .18s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  user-select: none;
+}
+.kd-interp-close:hover{
+  border-color: var(--cinnabar);
+  color: #ffffff !important;
+  background: var(--cinnabar) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(194,70,50,0.45);
+}
+.kd-interp-close:active{
+  transform: translateY(0);
+}
+:root[data-theme="light"] .kd-interp-close{
+  background: #eae3d2;
+  border-color: #b03420;
+  color: #22252a;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+:root[data-theme="light"] .kd-interp-close:hover{
+  background: #b03420 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(176,52,32,0.35);
+}
+.kd-interp-footer{
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 12px;
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.kd-interp-body{
+  font-size: 14px;
+  color: var(--paper-dim);
+  line-height: 1.6;
+}
+.kd-interp-body ul{margin:8px 0 0 0; padding-left:20px;}
+.kd-interp-body li{margin-bottom:6px; font-size:13.5px; color:var(--paper-dim); line-height:1.6;}
+.kd-interp-body li strong{color:var(--paper); font-weight:600;}
+.kd-interp-body hr{height:1px; border:none; background:var(--line); margin:12px 0;}
+.kd-interp-body p{margin:8px 0; text-align:justify; font-size:13.5px; color:var(--paper-dim);}
+.kd-interp-body p strong{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.06em; color:var(--gold);}
+.kd-interp-body details{margin-top:10px; padding:10px 14px; background:var(--ink-800); border:1px solid var(--line); border-radius:var(--radius);}
+.kd-interp-body details summary{font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--jade); cursor:pointer; list-style:none;}
+.kd-interp-body details summary::-webkit-details-marker{display:none;}
+.kd-interp-body details summary::before{content:"▸ "; color:var(--gold);}
+.kd-interp-body details[open] summary::before{content:"▾ ";}
+.kd-interp-body details[open] summary{margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid var(--line);}
+
+/* Hexagram Mini trong thẻ luận giải (Ảnh 2) */
+.hexagram-mini{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:10px 0 12px;
+  padding:10px 14px;
+  background:var(--ink-800);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+}
+.hexagram-mini .bars{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  width:100px;
+  flex-shrink:0;
+}
+.hexagram-mini .bar-row{display:flex; align-items:center;}
+.hexagram-mini .bar-track{flex:1; height:6px; display:flex; gap:3px;}
+.hexagram-mini .bar-seg{
+  flex:1;
+  border-radius:1px;
+  background:var(--paper);
+  opacity:0.88;
+}
+.hexagram-mini .bar-row.thuong .bar-seg{background:var(--gold);}
+.hexagram-mini .bar-row.ha .bar-seg{background:var(--jade);}
+.hexagram-mini-info{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.hexagram-mini-info .mini-symbols{
+  font-size:20px;
+  letter-spacing:3px;
+  color:var(--gold);
+}
+.hexagram-mini-info .mini-binary{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--paper-faint);
+}
+
+/* Badges phân loại */
+.badge-cat{
+  display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+  padding:2px 8px; border-radius:2px; background:var(--jade-dim); color:var(--jade); border:1px solid var(--jade);
+}
+.badge-hung{
+  display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+  padding:2px 8px; border-radius:2px; background:var(--cinnabar-dim); color:var(--cinnabar); border:1px solid var(--cinnabar);
+}
+.badge-kim{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:rgba(220,220,220,0.12);color:#dcdcdc;border:1px solid #dcdcdc;}
+.badge-moc{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--jade-dim);color:var(--jade);border:1px solid var(--jade);}
+.badge-thuy{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:rgba(65,105,225,0.15);color:#4169e1;border:1px solid #4169e1;}
+.badge-hoa{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--cinnabar-dim);color:var(--cinnabar);border:1px solid var(--cinnabar);}
+.badge-tho{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold);}
+.badge-soul{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:rgba(164,94,229,0.18);color:#a45ee5;border:1px solid #a45ee5;}
+

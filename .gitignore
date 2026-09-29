@@ -1,0 +1,19 @@
+# Dependencies & OS files
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# Workspace scratch & tools
+.agents/
+notes/
+project/
+*.zip
+temp*
+diag*
+scratch/
+kinh-dich-ngu-linh/
+kinhdich-mobile-ready/kinhdich/dist/diag*
+kinhdich-mobile-ready/kinhdich/dist/test_runner.html
+
+# Logs
+*.log

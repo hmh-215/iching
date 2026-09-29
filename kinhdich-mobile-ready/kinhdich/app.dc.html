@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./js/runtime/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinh Dịch — Dịch Học Ngũ Linh</title>
+<meta name="theme-color" content="#12100e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kinh Dịch">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/core/kd.css">
+<!-- Nhóm 00: Kiến thức -->
+<link rel="stylesheet" href="css/modules/luan8que.css">
+<link rel="stylesheet" href="css/modules/luan64que.css">
+<link rel="stylesheet" href="css/modules/luan10sao.css">
+<link rel="stylesheet" href="css/modules/bienkhi.css">
+<link rel="stylesheet" href="css/modules/luan9sao.css">
+<link rel="stylesheet" href="css/modules/khiclndd.css">
+<!-- Nhóm 01: Lập quẻ -->
+<link rel="stylesheet" href="css/modules/dothu.css">
+<link rel="stylesheet" href="css/modules/nguling.css">
+<!-- Nhóm 02: Tạp dụng -->
+<link rel="stylesheet" href="css/modules/maphuong.css">
+<link rel="stylesheet" href="css/modules/cungsinh.css">
+<link rel="stylesheet" href="css/modules/tieuvan.css">
+<link rel="stylesheet" href="css/modules/tamtuyet.css">
+<link rel="stylesheet" href="css/modules/tamy.css">
+<link rel="stylesheet" href="css/modules/dichtu.css">
+<!-- Nhóm 03: Chân linh nhân độn -->
+<link rel="stylesheet" href="css/modules/chanlinh.css">
+<!-- Core Architecture (MVVM & Shared Services) -->
+<script src="js/core/auth.js"></script>
+<script src="js/core/util.js"></script>
+<script src="js/core/data.js"></script>
+<script src="js/core/grid.js"></script>
+<script src="js/core/flyingstar.js"></script>
+<script src="js/core/interpret.js"></script>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;">
+
+  <!-- THANH HEADER CHÍNH -->
+  <header style="position:sticky;top:0;z-index:40;background:var(--ink-850);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);">
+    <div style="max-width:1600px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1;">
+        <button type="button" onClick="{{ toggleNav }}" title="Bật/Tắt Menu Điều Hướng" style="background:var(--ink-800);border:1px solid var(--line-strong);color:var(--gold);width:38px;height:38px;border-radius:var(--radius);cursor:pointer;font-size:16px;display:grid;place-items:center;" style-hover="border-color:var(--gold);">☰</button>
+        <div style="min-width:0;cursor:pointer;" onClick="{{ toggleNav }}">
+          <div style="font-family:'Spectral',serif;font-style:italic;font-size:19px;font-weight:700;line-height:1.15;color:var(--paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Kinh dịch</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);white-space:nowrap;">{{ activeModName }}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex:0 0 auto;align-items:center;">
+        <button type="button" onClick="{{ lockApp }}" title="Khóa ứng dụng (Yêu cầu mã PIN)" style="background:var(--ink-800);border:1px solid var(--line-strong);color:var(--gold);height:38px;padding:0 10px;border-radius:var(--radius);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12px;display:flex;align-items:center;gap:4px;" style-hover="border-color:var(--gold);">
+          <span>🔒</span> <span>Khóa</span>
+        </button>
+        <button type="button" onClick="{{ toggleTheme }}" title="Đổi giao diện Sáng / Tối" style="background:var(--ink-800);border:1px solid var(--line-strong);color:var(--paper);height:38px;padding:0 12px;border-radius:var(--radius);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12px;display:flex;align-items:center;gap:6px;" style-hover="border-color:var(--gold);">
+          <span>{{ themeIcon }}</span> <span>{{ themeText }}</span>
+        </button>
+        <button type="button" onClick="{{ openNote }}" title="Sổ tay diễn giải" style="background:var(--ink-800);border:1px solid var(--line-strong);color:var(--paper);height:38px;padding:0 12px;border-radius:var(--radius);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.04em;white-space:nowrap;" style-hover="border-color:var(--gold);">Sổ tay</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HỒ SƠ DÙNG CHUNG (Collapsible) -->
+  <div style="background:var(--ink-800);border-bottom:1px solid var(--line);">
+    <div style="max-width:1600px;margin:0 auto;padding:0 14px;">
+      <button type="button" onClick="{{ toggleProfile }}" style="width:100%;background:none;border:none;color:var(--paper-dim);padding:9px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;">
+        <span style="display:flex;align-items:center;gap:10px;min-width:0;overflow:hidden;"><span style="color:var(--gold);white-space:nowrap;">Hồ sơ dùng chung</span><span style="color:var(--paper-faint);text-transform:none;letter-spacing:0.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ profileSummary }}</span></span>
+        <span style="color:var(--gold);font-size:12px;">{{ profileCaret }}</span>
+      </button>
+
+      <sc-if value="{{ profileOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:2px 0 16px;">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:12px;">
+            <label style="display:block;">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:6px;">Giới tính</span>
+              <select ref="{{ refGioiTinh }}" onChange="{{ onProfileChange }}" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'Inter',sans-serif;font-size:14px;padding:9px 10px;">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+              </select>
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:6px;">Năm sinh (DL)</span>
+              <input type="number" ref="{{ refNamSinh }}" onChange="{{ onProfileChange }}" step="1" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:14px;padding:9px 10px;">
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:6px;">Chi giờ</span>
+              <select ref="{{ refChiGio }}" onChange="{{ onProfileChange }}" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'Inter',sans-serif;font-size:14px;padding:9px 10px;">
+                <sc-for list="{{ chiList }}" as="c" hint-placeholder-count="12"><option value="{{ c }}">{{ c }}</option></sc-for>
+              </select>
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:6px;">Can giờ</span>
+              <select ref="{{ refCanGio }}" onChange="{{ onProfileChange }}" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'Inter',sans-serif;font-size:14px;padding:9px 10px;">
+                <sc-for list="{{ canList }}" as="c" hint-placeholder-count="10"><option value="{{ c }}">{{ c }}</option></sc-for>
+              </select>
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:6px;">Can ngày</span>
+              <select ref="{{ refCanNgay }}" onChange="{{ onProfileChange }}" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'Inter',sans-serif;font-size:14px;padding:9px 10px;">
+                <sc-for list="{{ canList }}" as="c" hint-placeholder-count="10"><option value="{{ c }}">{{ c }}</option></sc-for>
+              </select>
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:6px;">Ngày âm</span>
+              <select ref="{{ refNgayAm }}" onChange="{{ onProfileChange }}" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:14px;padding:9px 10px;">
+                <sc-for list="{{ ngayList }}" as="n" hint-placeholder-count="30"><option value="{{ n }}">{{ n }}</option></sc-for>
+              </select>
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:6px;">Tháng âm</span>
+              <select ref="{{ refThangAm }}" onChange="{{ onProfileChange }}" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:14px;padding:9px 10px;">
+                <sc-for list="{{ thangList }}" as="n" hint-placeholder-count="12"><option value="{{ n }}">{{ n }}</option></sc-for>
+              </select>
+            </label>
+            <label style="display:block;">
+              <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-dim);margin-bottom:6px;">Chi năm</span>
+              <select ref="{{ refChiNam }}" onChange="{{ onProfileChange }}" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'Inter',sans-serif;font-size:14px;padding:9px 10px;">
+                <sc-for list="{{ chiList }}" as="c" hint-placeholder-count="12"><option value="{{ c }}">{{ c }}</option></sc-for>
+              </select>
+            </label>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);">
+            <button type="button" onClick="{{ applyNow }}" style="background:var(--jade-dim);border:1px solid var(--jade);color:var(--paper);font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:10px 18px;border-radius:var(--radius);cursor:pointer;">Điền vào module này</button>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--paper-dim);">
+              <input type="checkbox" ref="{{ refAuto }}" onChange="{{ onAutoChange }}" checked="{{ autoApply }}" style="accent-color:var(--gold);width:15px;height:15px;">
+              Tự điền khi đổi module
+            </label>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--paper-faint);">{{ applyHint }}</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <!-- VÙNG BỐ CỤC CHÍNH (SIDEBAR NAV + MAIN MODULE HOST + NOTE DRAWER) -->
+  <div style="{{ shellStyle }}">
+
+    <!-- MOBILE BACKDROP -->
+    <sc-if value="{{ navMobileBackdrop }}">
+      <div onClick="{{ toggleNav }}" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(2px);z-index:90;"></div>
+    </sc-if>
+
+    <!-- CÂY ĐIỀU HƯỚNG ACCORDION (Ảnh 1) -->
+    <sc-if value="{{ navOpen }}">
+      <nav style="{{ navSidebarStyle }}">
+        <!-- Header trong sidebar -->
+        <div style="padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--ink-850);position:sticky;top:0;z-index:5;">
+          <div style="font-family:'Spectral',serif;font-size:22px;font-weight:700;color:var(--paper);letter-spacing:-0.5px;">Kinh dịch</div>
+          <button type="button" onClick="{{ toggleTheme }}" title="Đổi theme Sáng / Tối" style="background:var(--ink-800);border:1px solid var(--line-strong);color:var(--gold);padding:6px 12px;border-radius:var(--radius);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11.5px;display:flex;align-items:center;gap:6px;">
+            <span>{{ themeIcon }}</span> <span>{{ themeText }}</span>
+          </button>
+        </div>
+
+        <!-- 4 Nhóm Accordion: Mặc định ban đầu đều collapse theo Ảnh 1 -->
+        <div style="flex:1;overflow-y:auto;padding:6px 0 30px;">
+          <sc-for list="{{ categories }}" as="c">
+            <div style="border-bottom:1px solid var(--line);">
+              <button type="button" onClick="{{ c.toggle }}" style="width:100%;background:none;border:none;color:var(--paper);padding:14px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;font-family:'Spectral',serif;font-size:16.5px;font-weight:600;text-align:left;" style-hover="color:var(--gold);">
+                <span style="color:var(--gold);font-family:'IBM Plex Mono',monospace;font-size:13px;width:14px;flex-shrink:0;">{{ c.caret }}</span>
+                <span style="flex:1;">{{ c.title }}</span>
+              </button>
+              <sc-if value="{{ c.isOpen }}">
+                <div style="padding:2px 14px 12px 34px;display:flex;flex-direction:column;gap:3px;">
+                  <sc-for list="{{ c.items }}" as="m">
+                    <button type="button" onClick="{{ m.pick }}" style="{{ m.itemStyle }}" style-hover="background:var(--ink-750);color:var(--gold);">{{ m.name }}</button>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </nav>
+    </sc-if>
+
+    <!-- NỘI DUNG MODULE ĐANG CHỌN -->
+    <main style="{{ mainStyle }}">
+      <div ref="{{ refHost }}" class="kd-mod" data-mod="{{ currentMod }}"></div>
+    </main>
+
+    <!-- SỔ TAY DIỄN GIẢI / LUẬN GIẢI 64 QUẺ / LỊCH SỬ -->
+    <sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+      <aside style="{{ drawerStyle }}">
+        <div style="display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--ink-850);position:sticky;top:0;z-index:2;">
+          <sc-for list="{{ noteTabs }}" as="t" hint-placeholder-count="3">
+            <button type="button" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+          </sc-for>
+          <button type="button" onClick="{{ closeNote }}" style="margin-left:auto;background:none;border:1px solid var(--line-strong);color:var(--paper-dim);width:30px;height:30px;border-radius:var(--radius);cursor:pointer;font-size:14px;line-height:1;">×</button>
+        </div>
+
+        <div style="overflow-y:auto;flex:1;padding:16px 14px 40px;">
+          <sc-if value="{{ showSteps }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin:0 0 12px;">Diễn giải từng bước</p>
+              <div ref="{{ refNote }}" class="kd-mod kd-note"></div>
+              <sc-if value="{{ noteEmpty }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:13px;color:var(--paper-faint);margin:0;">Lập quẻ trước, các bước tính sẽ hiện ở đây.</p>
+              </sc-if>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ showLuan }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <input type="text" ref="{{ refLuanSearch }}" onInput="{{ onLuanSearch }}" placeholder="Tìm quẻ: tên hoặc nhị phân…" style="width:100%;background:var(--ink-850);border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--paper);font-family:'Inter',sans-serif;font-size:13.5px;padding:10px 12px;margin-bottom:12px;">
+              <sc-if value="{{ hasDetected }}" hint-placeholder-val="{{ false }}">
+                <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--jade);margin:0 0 8px;">Quẻ trong kết quả hiện tại</p>
+              </sc-if>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+                <sc-for list="{{ luanList }}" as="q" hint-placeholder-count="6">
+                  <button type="button" onClick="{{ q.pick }}" style="{{ q.style }}">{{ q.label }}</button>
+                </sc-for>
+              </div>
+              <div ref="{{ refLuan }}" class="kd-luan"></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ showHistory }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px;">
+                <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin:0;">Lần lập trước</p>
+                <button type="button" onClick="{{ clearHistory }}" style="background:none;border:none;color:var(--paper-faint);font-family:'IBM Plex Mono',monospace;font-size:10.5px;cursor:pointer;text-decoration:underline;">xoá hết</button>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <sc-for list="{{ history }}" as="h" hint-placeholder-count="4">
+                  <button type="button" onClick="{{ h.restore }}" style="display:block;width:100%;text-align:left;background:var(--ink-800);border:1px solid var(--line);border-left:2px solid var(--gold);border-radius:var(--radius);padding:10px 12px;cursor:pointer;color:var(--paper);" style-hover="border-color:var(--gold);">
+                    <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;">{{ h.mod }} · {{ h.when }}</span>
+                    <span style="display:block;font-size:12.5px;color:var(--paper-dim);line-height:1.45;">{{ h.echo }}</span>
+                  </button>
+                </sc-for>
+              </div>
+              <sc-if value="{{ historyEmpty }}" hint-placeholder-val="{{ false }}">
+                <p style="font-size:13px;color:var(--paper-faint);margin:0;">Chưa có lần lập nào được lưu.</p>
+              </sc-if>
+            </div>
+          </sc-if>
+        </div>
+      </aside>
+    </sc-if>
+
+  </div>
+
+  <footer style="border-top:1px solid var(--line);padding:18px 16px 30px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;color:var(--paper-faint);">
+    Thuật toán từng module giữ nguyên bản gốc · Luận giải trích Dịch học Ngũ Linh — Cao Từ Linh
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+/* ---------- bảng đường dẫn ---------- */
+const PATHS = {
+  frag : slug => 'html/modules/' + slug + '.frag.html',
+  mod  : slug => 'js/modules/'   + slug + '.js',
+  luan : 'data/luan64.json',
+};
+
+const CAN = ['Giáp','Ất','Bính','Đinh','Mậu','Kỷ','Canh','Tân','Nhâm','Quý'];
+const CHI = ['Tý','Sửu','Dần','Mão','Thìn','Tỵ','Ngọ','Mùi','Thân','Dậu','Tuất','Hợi'];
+
+/* ---------- Danh mục 4 nhóm theo Ảnh 1 ---------- */
+const CATEGORIES = [
+  { catKey:'cat00', title:'Kiến thức (00-...)' },
+  { catKey:'cat01', title:'Lập quẻ (01-...)' },
+  { catKey:'cat02', title:'Tạp dụng (02-...)' },
+  { catKey:'cat03', title:'Chân linh nhân độn (03-...)' },
+];
+
+/* ---------- 14 Module dịch học chuẩn hóa ---------- */
+const MODS = [
+  // 00- Kiến thức
+  { id:'luan8que',  name:'Luận 8 quẻ',           cat:'cat00' },
+  { id:'luan64que', name:'Luận 64 quẻ',          cat:'cat00' },
+  { id:'luan10sao', name:'Luận 10 sao',          cat:'cat00' },
+  { id:'bienkhi',   name:'Biến khí',             cat:'cat00' },
+  { id:'luan9sao',  name:'Luận 9 sao (CLNĐĐ)',   cat:'cat00' },
+  { id:'khiclndd',  name:'Khí CLNĐĐ',            cat:'cat00' },
+
+  // 01- Lập quẻ
+  { id:'dothu',     name:'Đồ thư phi bàn độn',   cat:'cat01' },
+  { id:'nguling',   name:'Ngũ linh',             cat:'cat01' },
+
+  // 02- Tạp dụng
+  { id:'maphuong',  name:'Ma phương',            cat:'cat02' },
+  { id:'cungsinh',  name:'Cung sinh - cung phi', cat:'cat02' },
+  { id:'tieuvan',   name:'Quẻ tiểu vận',         cat:'cat02' },
+  { id:'tamtuyet',  name:'Tam tuyệt pháp',       cat:'cat02' },
+  { id:'tamy',      name:'Tam ý tam sinh',       cat:'cat02' },
+  { id:'dichtu',    name:'Dịch tự (chữ cổ)',     cat:'cat02' },
+
+  // 03- Chân linh nhân độn
+  { id:'chanlinh',  name:'Chân linh nhân độn',   cat:'cat03' },
+];
+
+const PROFILE_MAP = {
+  dothu:    p => ({ 'sel-gio':p.chiGio, 'sel-can':p.canNgay, 'sel-thang':p.thangAm, 'sel-ngay':p.ngayAm }),
+  nguling:  p => ({ 'sel-gio':p.chiGio, 'sel-can':p.canNgay, 'sel-ngay':p.ngayAm, 'sel-thang':p.thangAm, 'sel-namchi':p.chiNam }),
+  cungsinh: p => ({ 'sel-gender':p.gioiTinh, 'inp-year':p.namSinh, 'sel-can':p.canGio, 'sel-chi':p.chiGio }),
+  tamtuyet: p => (p.gioiTinh === 'Nữ' ? { 'in-nam-sinh-nu':p.namSinh } : { 'in-nam-sinh-nam':p.namSinh }),
+  tamy:     p => ({ 'in-namsinh':p.namSinh, 'in-gioitinh':p.gioiTinh === 'Nữ' ? 'nu' : 'nam' }),
+  tieuvan:  p => ({ 'in-year':new Date().getFullYear(), 'in-thang':p.thangAm }),
+  dichtu:   () => ({}),
+  chanlinh: p => ({
+    't1-gender': p.gioiTinh === 'Nữ' ? 'female' : 'male',
+    't1-year': p.namSinh,
+    't1-month': p.thangAm,
+    't2-year': new Date().getFullYear(),
+    't3-can-ngay': p.canNgay,
+    't3-ngay': p.ngayAm,
+    't3-thang': p.thangAm,
+    't3-gio': String(CHI.indexOf(p.chiGio) >= 0 ? CHI.indexOf(p.chiGio) : 0)
+  }),
+  maphuong: () => ({}),
+  luan8que: () => ({}),
+  luan64que: () => ({}),
+  luan10sao: () => ({}),
+  bienkhi: () => ({}),
+  luan9sao: () => ({}),
+  khiclndd: () => ({}),
+};
+
+const MOD_HINT = {
+  dothu:'Điền: chi giờ · can ngày · ngày · tháng âm',
+  nguling:'Điền: chi giờ · can ngày · ngày · tháng · chi năm',
+  cungsinh:'Điền: giới tính · năm sinh · can giờ · chi giờ',
+  tamtuyet:'Điền: năm sinh (theo giới tính đã chọn)',
+  tamy:'Điền: năm sinh · giới tính',
+  tieuvan:'Điền: năm xem · tháng xem',
+  dichtu:'Tra cứu & tải vector chữ Dịch tự cổ 64 quẻ',
+  chanlinh:'Điền: giới tính · năm sinh · ngày · tháng · can ngày',
+  maphuong:'Nhập theo quẻ — hồ sơ không áp dụng',
+  luan8que:'Tra cứu ý nghĩa 8 quẻ đơn Bát quái',
+  luan64que:'Tra cứu ý nghĩa chi tiết 64 quẻ Kinh Dịch',
+  luan10sao:'Tra cứu ý nghĩa Thập Thiên Tinh',
+  bienkhi:'Tra cứu ý nghĩa Bát khí Ngũ Linh',
+  luan9sao:'Tra cứu ý nghĩa Cửu tinh Chân Linh',
+  khiclndd:'Tra cứu ý nghĩa Bát khí Chân Linh Nhân Độn',
+};
+
+const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
+
+class Component extends DCLogic {
+  state = {
+    mod: 'nguling', theme: 'dark', wide: false,
+    navOpen: false, openCats: {}, // Mặc định tất cả các tab ban đầu collapse theo Ảnh 1
+    profileOpen: false, autoApply: true,
+    drawerOpen: false, drawerTab: 'steps',
+    noteEmpty: true, historyEmpty: true, history: [],
+    luan: null, luanQuery: '', detected: [], activeQue: null,
+    profile: { gioiTinh:'Nam', namSinh:1990, chiGio:'Tý', canGio:'Giáp', canNgay:'Giáp', ngayAm:1, thangAm:1, chiNam:'Tý' },
+    appliedCount: 0,
+  };
+
+  srcCache = {};
+  refHost = React.createRef();
+  refNote = React.createRef();
+  refLuan = React.createRef();
+  refLuanSearch = React.createRef();
+  refAuto = React.createRef();
+  refs = {};
+
+  componentDidMount() {
+    const theme = localStorage.getItem('kd.theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    let profile = this.state.profile, autoApply = true, mod = 'nguling';
+    try {
+      const p = JSON.parse(localStorage.getItem('kd.profile') || 'null');
+      if (p) profile = Object.assign({}, profile, p);
+      const s = JSON.parse(localStorage.getItem('kd.settings') || 'null');
+      if (s) { if (typeof s.autoApply === 'boolean') autoApply = s.autoApply; if (s.mod) mod = s.mod; }
+    } catch (e) {}
+    const history = this.readHistory();
+    const wide = window.innerWidth >= 1024;
+    this.onResize = () => {
+      const w = window.innerWidth >= 1024;
+      if (w !== this.state.wide) {
+        this.setState({ wide: w, navOpen: w });
+      }
+    };
+    window.__KD_APP = this;
+    window.addEventListener('resize', this.onResize);
+    this.setState({ theme, profile, autoApply, mod, history, historyEmpty: !history.length,
+                    wide, navOpen: wide }, () => {
+      this.load(mod);
+    });
+  }
+
+  componentWillUnmount() {
+    if (window.__KD_APP === this) window.__KD_APP = null;
+    window.removeEventListener('resize', this.onResize);
+    if (this.obs) this.obs.disconnect();
+  }
+
+  componentDidUpdate() { this.syncProfileInputs(); }
+
+  /* ---------- nạp module ---------- */
+
+  async fetchText(url) {
+    if (window.KD_INLINE && window.KD_INLINE[url]) return window.KD_INLINE[url];
+    if (!this.srcCache[url]) this.srcCache[url] = (await fetch(url)).text();
+    return this.srcCache[url];
+  }
+
+  async load(slug) {
+    if (window.kdCloseAllPopups) window.kdCloseAllPopups();
+    const host = this.refHost.current;
+    if (!host) return;
+    host.setAttribute('data-mod', slug);
+    host.innerHTML = '<p style="font-family:IBM Plex Mono,monospace;font-size:12px;color:var(--paper-faint);padding:40px 0;">Đang nạp module…</p>';
+    try {
+      let frag = await this.fetchText(PATHS.frag(slug));
+      const SC = 'scr' + 'ipt';
+      frag = frag.replace(/<style[^>]*data-omelette-injected[^>]*>[\s\S]*?<\/style>/gi, '')
+                 .replace(new RegExp('^\\s*<' + SC + '\\b[^>]*>[\\s\\S]*?<\\/' + SC + '>', 'i'), '')
+                 .trim();
+      host.innerHTML = frag;
+      if (!window.KD_MOD || !window.KD_MOD[slug]) {
+        const src = await this.fetchText(PATHS.mod(slug));
+        (new Function(src))();
+      }
+      window.KD_MOD[slug]();
+      document.documentElement.setAttribute('data-theme', this.state.theme);
+    } catch (e) {
+      host.innerHTML = '<p style="color:var(--cinnabar);padding:40px 0;">Không nạp được module: ' + slug + '</p>';
+      console.error(e);
+      return;
+    }
+    this.bindHost(host);
+    if (this.state.autoApply) this.applyProfile(slug, false);
+    setTimeout(() => this.syncNote(), 60);
+  }
+
+  bindHost(host) {
+    if (this.obs) this.obs.disconnect();
+    let t = null;
+    this.obs = new MutationObserver(() => {
+      clearTimeout(t);
+      t = setTimeout(() => { this.syncNote(); this.detectQue(); }, 220);
+    });
+    this.obs.observe(host, { childList:true, subtree:true, characterData:true });
+    host.addEventListener('click', ev => {
+      const btn = ev.target.closest && ev.target.closest('.cast-btn, #cast-btn');
+      if (btn) setTimeout(() => this.recordHistory(), 400);
+    });
+  }
+
+  /* ---------- sổ tay diễn giải ---------- */
+
+  syncNote() {
+    const host = this.refHost.current, note = this.refNote.current;
+    if (!host) return;
+    const nodes = Array.from(host.querySelectorAll('.steps, .step-by-step-box'))
+      .filter(n => n.textContent.trim().length > 4);
+    this.setState({ noteEmpty: nodes.length === 0 });
+    if (!note) return;
+    note.setAttribute('data-mod', this.state.mod);
+    note.innerHTML = '';
+    nodes.forEach(n => {
+      const panel = n.closest('.panel');
+      const title = panel && panel.querySelector('.panel-title');
+      if (title && !n.classList.contains('steps')) {
+        const h = document.createElement('div');
+        h.style.cssText = "font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--jade);margin:0 0 6px;";
+        h.textContent = title.textContent;
+        note.appendChild(h);
+      }
+      const c = n.cloneNode(true);
+      c.removeAttribute('id');
+      c.querySelectorAll('[id]').forEach(e => e.removeAttribute('id'));
+      c.style.display = 'block';
+      note.appendChild(c);
+    });
+  }
+
+  /* ---------- tra cứu 64 quẻ ---------- */
+
+  async ensureLuan() {
+    if (this.state.luan) return this.state.luan;
+    const txt = await this.fetchText(PATHS.luan);
+    const luan = JSON.parse(txt);
+    this.setState({ luan });
+    return luan;
+  }
+
+  detectQue() {
+    const luan = this.state.luan, host = this.refHost.current;
+    if (!luan || !host) return;
+    const text = norm(host.textContent || '');
+    const found = luan.filter(q => text.includes(norm(q.name))).map(q => q.num);
+    const same = found.length === this.state.detected.length && found.every((n,i) => n === this.state.detected[i]);
+    if (!same) this.setState({ detected: found });
+  }
+
+  showQue(num) {
+    this.setState({ activeQue: num }, () => {
+      const el = this.refLuan.current, q = (this.state.luan||[]).find(x => x.num === num);
+      if (!el || !q) return;
+      el.innerHTML = '<div style="font-family:Spectral,serif;font-style:italic;font-size:22px;margin:0 0 4px;">' + q.name +
+        '</div><div style="font-family:IBM Plex Mono,monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;">Quẻ ' + q.num + ' · ' + q.group + (q.tail ? ' · ' + q.tail : '') + '</div>' + q.html;
+      // BẮT BUỘC theo Ảnh 2: các thẻ <details> con hào từ và lời quẻ mặc định collapse
+      el.querySelectorAll('details').forEach(d => { d.open = false; });
+    });
+  }
+
+  /* ---------- hồ sơ dùng chung ---------- */
+
+  readProfile() {
+    const p = Object.assign({}, this.state.profile);
+    const g = (k, cast) => { const el = this.refs[k]; if (el && el.value !== '') p[k] = cast ? cast(el.value) : el.value; };
+    g('gioiTinh'); g('namSinh', Number); g('chiGio'); g('canGio'); g('canNgay');
+    g('ngayAm', Number); g('thangAm', Number); g('chiNam');
+    return p;
+  }
+
+  syncProfileInputs() {
+    const p = this.state.profile;
+    Object.keys(p).forEach(k => { const el = this.refs[k]; if (el && String(el.value) !== String(p[k])) el.value = p[k]; });
+    if (this.refAuto.current) this.refAuto.current.checked = this.state.autoApply;
+  }
+
+  applyProfile(slug, doCast) {
+    const host = this.refHost.current;
+    if (!host) return 0;
+    const fields = (PROFILE_MAP[slug] || (() => ({})))(this.state.profile);
+    let n = 0;
+    Object.keys(fields).forEach(id => {
+      const el = host.querySelector('#' + id);
+      if (!el) return;
+      const val = String(fields[id]);
+      if (el.tagName === 'SELECT' && !Array.from(el.options).some(o => o.value === val)) return;
+      el.value = val;
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+      n++;
+    });
+    if (n && doCast && typeof window.__KD_CAST === 'function') {
+      try { window.__KD_CAST(); } catch (e) { console.warn(e); }
+    }
+    this.setState({ appliedCount: n });
+    return n;
+  }
+
+  /* ---------- lịch sử ---------- */
+
+  readHistory() {
+    try { return JSON.parse(localStorage.getItem('kd.history') || '[]'); } catch (e) { return []; }
+  }
+
+  recordHistory() {
+    const host = this.refHost.current;
+    if (!host) return;
+    const fields = {};
+    host.querySelectorAll('input[id], select[id]').forEach(el => {
+      if (el.type === 'checkbox') fields[el.id] = el.checked ? '1' : '';
+      else fields[el.id] = el.value;
+    });
+    const echoEl = host.querySelector('#input-echo, .input-echo');
+    const nameEl = host.querySelector('#goc-fullname, #goc-name, .hexagram-name');
+    const echo = (echoEl && echoEl.textContent.trim()) ||
+                 (nameEl && nameEl.textContent.trim()) ||
+                 Object.values(fields).slice(0, 5).join(' · ');
+    const entry = { mod: this.state.mod, ts: Date.now(), fields, echo };
+    const list = [entry].concat(this.readHistory().filter(h => !(h.mod === entry.mod && h.echo === entry.echo))).slice(0, 40);
+    localStorage.setItem('kd.history', JSON.stringify(list));
+    this.setState({ history: list, historyEmpty: false });
+  }
+
+  async restore(entry) {
+    if (entry.mod !== this.state.mod) {
+      await new Promise(res => this.setState({ mod: entry.mod }, res));
+      await this.load(entry.mod);
+    }
+    const host = this.refHost.current;
+    if (!host) return;
+    Object.keys(entry.fields).forEach(id => {
+      const el = host.querySelector('#' + id);
+      if (!el) return;
+      if (el.type === 'checkbox') el.checked = !!entry.fields[id];
+      else el.value = entry.fields[id];
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    if (typeof window.__KD_CAST === 'function') { try { window.__KD_CAST(); } catch (e) {} }
+    setTimeout(() => this.syncNote(), 120);
+  }
+
+  /* ---------- render styles ---------- */
+
+  navItemStyle(active) {
+    return 'width:100%;text-align:left;background:' + (active ? 'var(--ink-750)' : 'transparent') +
+      ';border:none;border-left:3px solid ' + (active ? 'var(--gold)' : 'transparent') +
+      ';color:' + (active ? 'var(--gold)' : 'var(--paper-dim)') +
+      ';font-family:\'Inter\',sans-serif;font-size:13.5px;font-weight:' + (active ? '600' : '400') +
+      ';padding:8px 12px;border-radius:0 var(--radius) var(--radius) 0;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:all .15s ease;display:block;';
+  }
+
+  chipStyle(active) {
+    return 'background:' + (active ? 'var(--gold-dim)' : 'transparent') + ';border:1px solid ' +
+      (active ? 'var(--gold)' : 'var(--line-strong)') + ';color:' + (active ? 'var(--paper)' : 'var(--paper-dim)') +
+      ';font-family:\'Inter\',sans-serif;font-size:12px;padding:6px 10px;border-radius:var(--radius);cursor:pointer;';
+  }
+
+  noteTabStyle(active) {
+    return 'background:' + (active ? 'var(--ink-800)' : 'transparent') + ';border:1px solid ' +
+      (active ? 'var(--gold)' : 'var(--line-strong)') + ';color:' + (active ? 'var(--paper)' : 'var(--paper-dim)') +
+      ';font-family:\'IBM Plex Mono\',monospace;font-size:10.5px;letter-spacing:0.06em;padding:7px 10px;border-radius:var(--radius);cursor:pointer;white-space:nowrap;';
+  }
+
+  setRef(k) {
+    return el => {
+      if (!el) return;
+      this.refs[k] = el;
+      const v = this.state.profile[k];
+      if (v !== undefined && String(el.value) !== String(v)) el.value = v;
+    };
+  }
+
+  renderVals() {
+    const s = this.state, wide = s.wide, open = s.drawerOpen, navOpen = s.navOpen;
+    const luanAll = s.luan || [];
+    const q = norm(s.luanQuery.trim());
+    let listSrc;
+    if (q) {
+      listSrc = luanAll.filter(x => norm(x.name).includes(q) || String(x.num) === s.luanQuery.trim());
+    } else if (s.detected.length) {
+      listSrc = luanAll.filter(x => s.detected.includes(x.num));
+    } else {
+      listSrc = luanAll;
+    }
+
+    const currentModObj = MODS.find(m => m.id === s.mod) || { name: s.mod };
+
+    return {
+      currentMod: s.mod,
+      activeModName: currentModObj.name,
+
+      /* Cấu trúc cây accordion phân cấp 4 nhóm theo Ảnh 1 */
+      categories: CATEGORIES.map(cat => {
+        const isOpen = !!s.openCats[cat.catKey];
+        const items = MODS.filter(m => m.cat === cat.catKey).map(m => ({
+          id: m.id,
+          name: m.name,
+          itemStyle: this.navItemStyle(m.id === s.mod),
+          pick: () => {
+            localStorage.setItem('kd.settings', JSON.stringify({ autoApply: s.autoApply, mod: m.id }));
+            const updates = { mod: m.id, detected: [] };
+            if (!wide) updates.navOpen = false;
+            this.setState(updates, () => this.load(m.id));
+          }
+        }));
+        return {
+          id: cat.catKey,
+          title: cat.title,
+          caret: isOpen ? '▼' : '▶',
+          isOpen: isOpen,
+          items: items,
+          toggle: () => {
+            const openCats = Object.assign({}, s.openCats);
+            openCats[cat.catKey] = !openCats[cat.catKey];
+            this.setState({ openCats });
+          }
+        };
+      }),
+
+      navOpen: navOpen,
+      navMobileBackdrop: !wide && navOpen,
+      toggleNav: () => this.setState({ navOpen: !navOpen }),
+      lockApp: () => { if (window.KD_AUTH) window.KD_AUTH.lock(); },
+
+      themeIcon: s.theme === 'dark' ? '☀' : '☾',
+      themeText: s.theme === 'dark' ? 'Light' : 'Dark',
+      toggleTheme: () => {
+        const next = s.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('kd.theme', next);
+        this.setState({ theme: next }, () => {
+          if (typeof window.__KD_CAST === 'function') {
+            const host = this.refHost.current;
+            const res = host && host.querySelector('#result');
+            if (!res || res.style.display === 'block') { try { window.__KD_CAST(); } catch (e) {} }
+          }
+        });
+      },
+
+      autoApply: s.autoApply,
+      profileOpen: s.profileOpen,
+      profileCaret: s.profileOpen ? '▲' : '▼',
+      profileSummary: wide
+        ? s.profile.gioiTinh + ' · ' + s.profile.namSinh + ' · giờ ' + s.profile.chiGio +
+          ' · ' + s.profile.canNgay + ' ngày ' + s.profile.ngayAm + '/' + s.profile.thangAm
+        : s.profile.gioiTinh + ' · ' + s.profile.namSinh + ' · ' + s.profile.ngayAm + '/' + s.profile.thangAm,
+      toggleProfile: () => this.setState({ profileOpen: !s.profileOpen }),
+      applyHint: MOD_HINT[s.mod] + (s.appliedCount ? ' — đã điền ' + s.appliedCount + ' ô' : ''),
+      applyNow: () => {
+        const p = this.readProfile();
+        localStorage.setItem('kd.profile', JSON.stringify(p));
+        this.setState({ profile: p }, () => this.applyProfile(s.mod, true));
+      },
+      onProfileChange: () => {
+        const p = this.readProfile();
+        localStorage.setItem('kd.profile', JSON.stringify(p));
+        this.setState({ profile: p });
+      },
+      onAutoChange: () => {
+        const autoApply = this.refAuto.current ? this.refAuto.current.checked : false;
+        localStorage.setItem('kd.settings', JSON.stringify({ autoApply, mod: s.mod }));
+        this.setState({ autoApply });
+      },
+
+      canList: CAN, chiList: CHI,
+      ngayList: Array.from({ length: 30 }, (_, i) => i + 1),
+      thangList: Array.from({ length: 12 }, (_, i) => i + 1),
+      refGioiTinh: this.setRef('gioiTinh'), refNamSinh: this.setRef('namSinh'),
+      refChiGio: this.setRef('chiGio'), refCanGio: this.setRef('canGio'),
+      refCanNgay: this.setRef('canNgay'), refNgayAm: this.setRef('ngayAm'),
+      refThangAm: this.setRef('thangAm'), refChiNam: this.setRef('chiNam'),
+      refAuto: this.refAuto, refHost: this.refHost, refNote: this.refNote,
+      refLuan: this.refLuan, refLuanSearch: this.refLuanSearch,
+
+      shellStyle: 'flex:1;display:flex;align-items:flex-start;position:relative;' + (wide ? '' : 'flex-direction:column;'),
+      navSidebarStyle: wide
+        ? 'position:sticky;top:59px;flex:0 0 280px;width:280px;height:calc(100vh - 59px);background:var(--ink-850);border-right:1px solid var(--line);display:flex;flex-direction:column;overflow-y:auto;z-index:15;'
+        : 'position:fixed;top:0;left:0;bottom:0;width:300px;max-width:85vw;background:var(--ink-850);border-right:1px solid var(--line);box-shadow:0 0 40px rgba(0,0,0,0.7);display:flex;flex-direction:column;overflow-y:auto;z-index:100;',
+      mainStyle: 'flex:1;min-width:0;width:100%;max-width:' + (open && wide ? 'none' : '1100px') +
+        ';margin:0 auto;padding:' + (wide ? '28px 24px 56px' : '18px 14px 40px') + ';',
+      drawerStyle: wide
+        ? 'position:sticky;top:59px;flex:0 0 420px;width:420px;align-self:stretch;height:calc(100vh - 59px);display:flex;flex-direction:column;background:var(--ink-850);border-left:1px solid var(--line);'
+        : 'position:fixed;left:0;right:0;bottom:0;z-index:60;height:78vh;display:flex;flex-direction:column;background:var(--ink-850);border-top:1px solid var(--gold-dim);box-shadow:var(--shadow-lift);border-radius:10px 10px 0 0;',
+
+      drawerOpen: open,
+      openNote: () => {
+        this.setState({ drawerOpen: !open }, () => {
+          if (!open) { this.syncNote(); this.ensureLuan().then(() => this.detectQue()); }
+        });
+      },
+      closeNote: () => this.setState({ drawerOpen: false }),
+      noteTabs: [
+        { key:'steps', label:'Diễn giải' },
+        { key:'luan', label:'Luận giải quẻ' },
+        { key:'history', label:'Lịch sử' },
+      ].map(t => ({
+        label: t.label,
+        style: this.noteTabStyle(s.drawerTab === t.key),
+        pick: () => this.setState({ drawerTab: t.key }, () => {
+          if (t.key === 'steps') this.syncNote();
+          if (t.key === 'luan') this.ensureLuan().then(() => this.detectQue());
+        }),
+      })),
+      showSteps: s.drawerTab === 'steps',
+      showLuan: s.drawerTab === 'luan',
+      showHistory: s.drawerTab === 'history',
+      noteEmpty: s.noteEmpty,
+
+      hasDetected: !q && s.detected.length > 0,
+      onLuanSearch: ev => this.setState({ luanQuery: ev.target.value }),
+      luanList: listSrc.slice(0, 64).map(x => ({
+        label: x.num + '. ' + x.name,
+        style: this.chipStyle(x.num === s.activeQue),
+        pick: () => this.showQue(x.num),
+      })),
+
+      history: s.history.map(h => ({
+        mod: (MODS.find(m => m.id === h.mod) || { name:h.mod }).name,
+        when: new Date(h.ts).toLocaleString('vi-VN', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }),
+        echo: h.echo,
+        restore: () => this.restore(h),
+      })),
+      historyEmpty: s.historyEmpty,
+      clearHistory: () => { localStorage.removeItem('kd.history'); this.setState({ history: [], historyEmpty: true }); },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

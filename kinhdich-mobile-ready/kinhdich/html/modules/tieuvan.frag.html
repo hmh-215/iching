@@ -1,0 +1,134 @@
+<div class="wrap">
+
+  <div class="header-bar">
+    <div>
+      <div class="eyebrow">Thuật toán lập quẻ · Tiểu Vận</div>
+      <h1>Quẻ Tiểu Vận</h1>
+    </div>
+    
+  </div>
+
+  <p class="subtitle">Lập Quẻ Tiểu Vận từ Quẻ Quốc Khí Vận Đồ, Cung Phi bản mệnh và Chi năm sinh — theo đúng thuật toán "Số Lưỡng Tích / Số Tham Tích / Tòng Động Biến Hào", rồi luận Quẻ Biến của Quẻ Tiểu Vận và vận trình của 12 tháng trong năm.</p>
+  <div class="rule"></div>
+
+  <div class="console">
+    <div class="console-grid">
+      <div class="field">
+        <label for="sel-gender">Giới tính</label>
+        <select id="sel-gender">
+          <option value="female">Nữ</option>
+          <option value="male">Nam</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="inp-year">Năm sinh</label>
+        <input type="number" id="inp-year" placeholder="Ví dụ 1990" min="1900" max="2100" step="1">
+      </div>
+      <div class="field">
+        <label for="sel-month">Tháng sinh</label>
+        <select id="sel-month"></select>
+      </div>
+      <div class="field">
+        <label for="inp-binary">Quẻ Quốc Khí Vận Đồ (nhị phân)</label>
+        <input type="text" id="inp-binary" placeholder="Ví dụ 101001" maxlength="6">
+        <div class="hint">6 ký tự gồm 0 &amp; 1 — hào 1→6 từ trái qua phải</div>
+      </div>
+      <div class="field">
+        <label for="sel-namtinh">Chi năm cần tính Tiểu Vận</label>
+        <select id="sel-namtinh"></select>
+      </div>
+    </div>
+    <div class="console-actions">
+      <div class="presets">
+        <button class="preset-btn" data-preset="0">Ví dụ 1</button>
+        <button class="preset-btn" data-preset="1">Ví dụ 2</button>
+      </div>
+      <button class="cast-btn" id="cast-btn">Lập Quẻ Tiểu Vận</button>
+    </div>
+  </div>
+
+  <div class="hexagram-section" id="preview-section" style="display:none;">
+    <div class="hexagram-header">
+      <div class="eyebrow">Xem trước · Hình dạng Quẻ Quốc Khí Vận Đồ</div>
+      <div class="hexagram-name" id="preview-name"></div>
+    </div>
+    <div class="hexagram-dual-container">
+      <div class="hexagram-card">
+        <div class="hexagram-card-tag">Quẻ Quốc Khí Vận Đồ (theo số nhị phân đã nhập)</div>
+        <div class="hexagram-card-title" id="preview-title"></div>
+        <div class="hexagram-card-sub" id="preview-symbols"></div>
+        <div class="bars" id="bars-preview"></div>
+      </div>
+    </div>
+  </div>
+  <div class="error-msg" id="preview-error" style="display:none;"></div>
+
+  <div class="error-msg" id="error-msg"></div>
+
+  <div id="result">
+
+    <!-- Hexagram Graphic: Quẻ Gốc (Tiểu Vận) & Quẻ Biến -->
+    <div class="hexagram-section">
+      <div class="hexagram-header">
+        <div class="eyebrow">Quẻ Tiểu Vận</div>
+        <div class="hexagram-name" id="header-name"></div>
+      </div>
+
+      <div class="hexagram-dual-container">
+        <!-- Quẻ Gốc (Tiểu Vận) -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag">Quẻ Gốc — Quẻ Tiểu Vận</div>
+          <div class="hexagram-card-title" id="card-goc-title"></div>
+          <div class="hexagram-card-sub" id="card-goc-symbols"></div>
+          <div class="bars" id="bars-goc"></div>
+        </div>
+
+        <!-- Quẻ Biến của Quẻ Tiểu Vận -->
+        <div class="hexagram-card">
+          <div class="hexagram-card-tag" style="color:var(--cinnabar)">Quẻ Biến của Quẻ Tiểu Vận</div>
+          <div class="hexagram-card-title" id="card-bien-title"></div>
+          <div class="hexagram-card-sub" id="card-bien-symbols"></div>
+          <div class="bars" id="bars-bien"></div>
+        </div>
+      </div>
+
+      <div class="info-meta">
+        <div class="info-block">
+          <div class="label">Hào Động (của Quẻ Tiểu Vận)</div>
+          <div class="value" id="haodong-value"></div>
+          <div class="formula" id="haodong-formula"></div>
+        </div>
+        <div class="info-block">
+          <div class="label">Mã Nhị Phân (Hào 1 → 6)</div>
+          <div class="formula">Quẻ Tiểu Vận (Gốc): <b id="goc-binary"></b></div>
+          <div class="formula">Quẻ Biến: <b id="bien-binary" style="color:var(--cinnabar)"></b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bảng vận từng tháng -->
+    <div class="thientinh-panel">
+      <div class="eyebrow" style="margin-bottom:8px;">Tra cứu</div>
+      <h3 class="panel-title">Vận Từng Tháng Trong Năm</h3>
+      <p class="panel-desc">Quẻ Gốc của tháng: Quẻ Tiểu Vận biến tại hào = (Tổng Tiên Thiên Quẻ Tiểu Vận + Hậu Thiên Cung Phi + Sao tháng) mod 6. Quẻ Biến của tháng: Quẻ Gốc của tháng biến tiếp tại hào xác định từ Hào Nguyên Đường của chính nó, di chuyển thuận theo Chi của tháng.</p>
+      <table class="thientinh-table" id="months-table">
+        <thead>
+          <tr><th>Tháng</th><th>Sao</th><th>Quẻ Gốc của tháng</th><th>Quẻ Biến của tháng</th></tr>
+        </thead>
+        <tbody id="months-tbody"></tbody>
+      </table>
+    </div>
+
+    <details class="steps">
+      <summary>Các bước tính trung gian (đối chiếu thuật toán Python gốc)</summary>
+      <div class="steps-body" id="steps-body"></div>
+    </details>
+
+  </div>
+
+  <footer>
+    <span>Quẻ Tiểu Vận — chuyển thể từ thuật toán Python gốc, giữ nguyên logic tính toán</span>
+    <span id="input-echo"></span>
+  </footer>
+
+</div>

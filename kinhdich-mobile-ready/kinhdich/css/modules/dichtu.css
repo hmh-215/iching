@@ -1,0 +1,125 @@
+.kd-mod[data-mod="dichtu"] /* ─── PALETTE: 2 theme dùng chung 1 bộ biến ngữ nghĩa ─────────────── */
+  html[data-theme="dark"]{
+    --bg-0:#0e0c0a;   --bg-1:#161310;   --bg-2:#100e0b;
+    --surface:#2a2621; --line:#3a352c;
+    --text:#eee7d6;   --text-dim:#9a9284; --text-faint:#736b5c;
+    --accent:#b39a5f; --accent-dim:#8a774a;
+    --seal:#a3402c;   --seal-dim:#7c3323;
+    --sheet:#eee7d6;  --sheet-ink:#171512;
+    --glow:rgba(163,64,44,0.10);
+    --sheet-shadow:0 24px 60px -20px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,0,0,0.25);
+    --active:rgba(163,64,44,0.18);
+  }
+.kd-mod[data-mod="dichtu"]{
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, var(--glow), transparent 60%),
+      var(--bg-0);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    padding:40px 20px 60px;
+    transition:background .25s, color .25s;
+  }
+.kd-mod[data-mod="dichtu"] .wrap{max-width:980px;margin:0 auto;position:relative;}
+.kd-mod[data-mod="dichtu"] header{text-align:center;margin-bottom:34px;}
+.kd-mod[data-mod="dichtu"] .eyebrow{font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.kd-mod[data-mod="dichtu"] h1{font-family:'Spectral',serif;font-weight:600;font-size:clamp(28px,4vw,42px);margin:0 0 8px;color:var(--text);}
+.kd-mod[data-mod="dichtu"] .sub{color:var(--text-dim);font-size:14.5px;max-width:560px;margin:0 auto;line-height:1.6;}
+.kd-mod[data-mod="dichtu"] /* theme switch */
+  .theme-btn{
+    position:absolute; top:0; right:0;
+    display:flex; align-items:center; gap:7px;
+    background:var(--surface); border:1px solid var(--line);
+    color:var(--text-dim); font-family:'Inter',sans-serif; font-size:12px;
+    padding:7px 12px; border-radius:999px; cursor:pointer;
+    transition:border-color .15s, color .15s;
+  }
+.kd-mod[data-mod="dichtu"] .theme-btn:hover{border-color:var(--accent-dim); color:var(--text);}
+.kd-mod[data-mod="dichtu"] .theme-btn .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);}
+@media (max-width:700px){
+.kd-mod[data-mod="dichtu"] .theme-btn{position:static;margin:0 auto 18px;}
+}
+.kd-mod[data-mod="dichtu"] .layout{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start;}
+@media (max-width:800px){
+.kd-mod[data-mod="dichtu"] .layout{grid-template-columns:1fr;}
+}
+.kd-mod[data-mod="dichtu"] .panel{
+    background:linear-gradient(180deg, var(--bg-1), var(--bg-2));
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+  }
+.kd-mod[data-mod="dichtu"] .field-label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin:0 0 8px;display:block;}
+.kd-mod[data-mod="dichtu"] input[type=text]{
+    width:100%;background:var(--surface);border:1px solid var(--line);color:var(--text);
+    font-family:'Spectral',serif;font-size:16px;padding:11px 12px;border-radius:8px;outline:none;
+    transition:border-color .15s;
+  }
+.kd-mod[data-mod="dichtu"] input[type=text]:focus{border-color:var(--seal);}
+.kd-mod[data-mod="dichtu"] input[type=text]::placeholder{color:var(--text-faint);}
+.kd-mod[data-mod="dichtu"] .hint{font-size:12px;color:var(--text-faint);margin-top:8px;line-height:1.5;}
+.kd-mod[data-mod="dichtu"] .status{font-size:12px;margin-top:7px;min-height:16px;line-height:1.45;color:var(--text-faint);}
+.kd-mod[data-mod="dichtu"] .status.err{color:var(--seal);}
+.kd-mod[data-mod="dichtu"] .divider{height:1px;background:var(--line);margin:20px 0;}
+.kd-mod[data-mod="dichtu"] .toggles{display:flex;flex-direction:column-reverse;gap:6px;}
+.kd-mod[data-mod="dichtu"] .toggle-row{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:7px 10px;background:var(--surface);border:1px solid var(--line);
+    border-radius:8px;cursor:pointer;user-select:none;transition:border-color .15s;
+  }
+.kd-mod[data-mod="dichtu"] .toggle-row:hover{border-color:var(--accent-dim);}
+.kd-mod[data-mod="dichtu"] .toggle-row .lbl{font-size:12.5px;color:var(--text-dim);}
+.kd-mod[data-mod="dichtu"] .toggle-row .bars{display:flex;gap:4px;width:46px;}
+.kd-mod[data-mod="dichtu"] .bar{height:7px;background:var(--text);border-radius:1px;flex:1;}
+.kd-mod[data-mod="dichtu"] .toggle-row.yin .bars{justify-content:space-between;}
+.kd-mod[data-mod="dichtu"] .toggle-row.yin .bar{flex:0 0 45%;}
+.kd-mod[data-mod="dichtu"] .toggle-row .state{font-family:'Spectral',serif;font-size:12px;width:34px;text-align:right;color:var(--accent);}
+.kd-mod[data-mod="dichtu"] .namelist{margin-top:14px;max-height:230px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;padding-right:4px;}
+.kd-mod[data-mod="dichtu"] .namelist::-webkit-scrollbar{width:6px;}
+.kd-mod[data-mod="dichtu"] .namelist::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px;}
+.kd-mod[data-mod="dichtu"] .name-item{
+    display:flex;justify-content:space-between;gap:8px;padding:6px 9px;border-radius:6px;
+    font-size:12.5px;color:var(--text-dim);cursor:pointer;transition:background .12s, color .12s;
+  }
+.kd-mod[data-mod="dichtu"] .name-item:hover{background:var(--surface);color:var(--text);}
+.kd-mod[data-mod="dichtu"] .name-item.active{background:var(--active);color:var(--text);}
+.kd-mod[data-mod="dichtu"] .name-item .n{color:var(--accent-dim);width:22px;flex:none;}
+.kd-mod[data-mod="dichtu"] /* --- render stage --- */
+  .stage{display:flex;flex-direction:column;align-items:center;padding:30px 24px 26px;}
+.kd-mod[data-mod="dichtu"] .scroll{
+    position:relative;
+    background:radial-gradient(ellipse 140% 90% at 50% 0%, rgba(0,0,0,0.05), transparent 55%), var(--sheet);
+    border-radius:4px;box-shadow:var(--sheet-shadow);padding:26px 30px 20px;
+  }
+.kd-mod[data-mod="dichtu"] .scroll::before, .kd-mod[data-mod="dichtu"] .scroll::after{
+    content:"";position:absolute;left:0;right:0;height:10px;
+    background:linear-gradient(90deg, var(--seal-dim), var(--accent-dim), var(--seal-dim));opacity:0.85;
+  }
+.kd-mod[data-mod="dichtu"] .scroll::before{top:0;border-radius:4px 4px 0 0;}
+.kd-mod[data-mod="dichtu"] .scroll::after{bottom:0;border-radius:0 0 4px 4px;}
+.kd-mod[data-mod="dichtu"] svg#glyph{display:block;width:235px;height:auto;}
+.kd-mod[data-mod="dichtu"] svg#glyph path{
+    fill:none; stroke:var(--sheet-ink);
+    stroke-linecap:round; stroke-linejoin:round;
+  }
+.kd-mod[data-mod="dichtu"] .glyph-caption{margin-top:18px;text-align:center;}
+.kd-mod[data-mod="dichtu"] .glyph-caption .hanzi{font-family:'Spectral',serif;font-size:15px;letter-spacing:0.08em;color:var(--accent);margin-bottom:2px;}
+.kd-mod[data-mod="dichtu"] .glyph-caption .name{font-family:'Spectral',serif;font-weight:600;font-size:22px;color:var(--text);}
+.kd-mod[data-mod="dichtu"] .glyph-caption .num{font-size:12px;color:var(--text-faint);margin-top:4px;letter-spacing:0.08em;}
+.kd-mod[data-mod="dichtu"] .binary-strip{margin-top:22px;display:flex;gap:6px;}
+.kd-mod[data-mod="dichtu"] .binary-strip .cell{
+    width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+    font-family:'Spectral',serif;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--accent);
+  }
+.kd-mod[data-mod="dichtu"] .meta-grid{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:340px;}
+.kd-mod[data-mod="dichtu"] .meta-item{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;}
+.kd-mod[data-mod="dichtu"] .meta-item .k{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-faint);}
+.kd-mod[data-mod="dichtu"] .meta-item .v{font-family:'Spectral',serif;font-size:14.5px;color:var(--text);margin-top:2px;}
+.kd-mod[data-mod="dichtu"] .export{margin-top:20px;display:flex;gap:8px;}
+.kd-mod[data-mod="dichtu"] .export button{
+    background:transparent;border:1px solid var(--line);color:var(--text-dim);
+    font-family:'Inter',sans-serif;font-size:12px;padding:7px 14px;border-radius:8px;cursor:pointer;
+    transition:border-color .15s,color .15s;
+  }
+.kd-mod[data-mod="dichtu"] .export button:hover{border-color:var(--accent-dim);color:var(--text);}
+.kd-mod[data-mod="dichtu"] footer{text-align:center;margin-top:34px;font-size:11.5px;color:var(--text-faint);line-height:1.6;}

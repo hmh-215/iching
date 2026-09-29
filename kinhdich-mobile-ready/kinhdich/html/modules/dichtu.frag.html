@@ -1,0 +1,69 @@
+<div class="wrap">
+
+  <button class="theme-btn" id="themeBtn"><span class="dot"></span><span id="themeLbl">Nền tối</span></button>
+
+  <header>
+    <div class="eyebrow">Dịch Tự</div>
+    <h1>Vẽ Dịch Tự từ Quẻ Kinh Dịch</h1>
+    <p class="sub">Nhập mã nhị phân 6 số (hào 1 ở dưới cùng) hoặc tên quẻ — chữ dịch tự được dựng lại bằng đúng dữ liệu vector nét mực gốc, hào Dương và hào Âm đã chuẩn hoá về cùng một khung và cùng độ mượt.</p>
+  </header>
+
+  <div class="layout">
+
+    <!-- LEFT: controls -->
+    <div class="panel">
+      <label class="field-label" for="queryInput">Nhị phân · tên quẻ · số quẻ</label>
+      <input type="text" id="queryInput" placeholder="vd: 111111 · Càn · Thuần Khôn · 3" autocomplete="off">
+      <div class="status" id="status"></div>
+      <p class="hint">Hào 1 (dưới cùng) → hào 6 (trên cùng). 1 = dương, 0 = âm. Chấp nhận cả dạng chữ: DADDAD.</p>
+
+      <div class="divider"></div>
+
+      <span class="field-label">6 hào (bấm để đổi)</span>
+      <div class="toggles" id="toggles"></div>
+
+      <div class="divider"></div>
+
+      <span class="field-label">64 quẻ</span>
+      <div class="namelist" id="nameList"></div>
+    </div>
+
+    <!-- RIGHT: render -->
+    <div class="panel stage">
+      <div class="scroll">
+        <svg id="glyph" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+
+      <div class="glyph-caption">
+        <div class="hanzi" id="capHanzi">&nbsp;</div>
+        <div class="name" id="capName">Thuần Càn</div>
+        <div class="num" id="capNum">QUẺ SỐ 1</div>
+      </div>
+
+      <div class="binary-strip" id="binaryStrip"></div>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="k">Thượng quái</div>
+          <div class="v" id="metaUpper">Càn ☰</div>
+        </div>
+        <div class="meta-item">
+          <div class="k">Hạ quái</div>
+          <div class="v" id="metaLower">Càn ☰</div>
+        </div>
+      </div>
+
+      <div class="export">
+        <button id="btnSvg">Tải SVG</button>
+        <button id="btnPng">Tải PNG ×4</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Chữ dựng bằng lõi nét + ngòi bút bề rộng đều 6.73px (đo từ bản in bằng distance transform, dao động giữa 64 quẻ chỉ 0.40px) — nên nét Âm và nét Dương cùng một tay bút.<br>
+    12 nét = 383 đoạn Bézier, có giữ điểm gãy; chỉnh <code>PEN</code> là đổi được độ đậm cả bộ chữ.<br>
+    Quan hệ giữa các nét trong cùng một họ giữ đúng bản trace; phép dời giữa họ Âm và họ Dương khớp từ bản in 64 quẻ. Thêm một luật ngữ cảnh mở rãnh giữa chân hào 1 Âm và nét sổ hào 4 Dương, cũng đo từ bản in. Khung chung <span id="fbox">300×520</span>.
+  </footer>
+</div>
