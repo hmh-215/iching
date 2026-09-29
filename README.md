@@ -10,19 +10,9 @@
   </p>
   <p>
     🌐 <b>Trải nghiệm Trực Tuyến:</b> <a href="https://hmh-215.github.io/iching/"><b>https://hmh-215.github.io/iching/</b></a><br>
-    🔑 <b>Mã PIN truy cập mặc định:</b> <code>300703</code>
   </p>
 </div>
 
-<hr>
-
-## 🔐 Cơ Chế Bảo Vệ Mã PIN (Gatekeeper)
-
-Ứng dụng được trang bị lớp bảo mật PIN Gatekeeper trước khi bất kỳ nội dung nào được hiển thị:
-- **Mã PIN truy cập**: `300703`
-- **Cơ chế băm bảo mật**: Sử dụng Web Crypto API với thuật toán **SHA-256** kết hợp chuỗi Salt chuyên biệt (`iching_ngulinh_auth_salt_2026:300703`), không lưu PIN dạng rõ (plaintext).
-- **Trải nghiệm người dùng**: Hỗ trợ bàn phím số cảm ứng 12 nút (0–9, Xóa, Lùi), phím cứng vật lý, hiệu ứng rung (shake animation) khi nhập sai và tự động lưu phiên làm việc an toàn trong `sessionStorage` (`kd_pin_auth_token`).
-- **Nút Khóa nhanh**: Nút biểu tượng ổ khóa 🔒 trên thanh Header cho phép người dùng chủ động khóa phiên bất kỳ lúc nào.
 
 <hr>
 
