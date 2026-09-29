@@ -274,6 +274,44 @@
     margin:0 0 18px;
     min-height:32px;
 }
+.kd-mod[data-mod="dothu"] .steps-btn {
+  background:transparent;
+  border:1px solid var(--line-strong);
+  color:var(--paper-dim);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.03em;
+  padding:6px 10px;
+  border-radius:var(--radius);
+  cursor:pointer;
+  white-space:nowrap;
+  transition:all .15s ease;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.kd-mod[data-mod="dothu"] .steps-btn:hover:not(:disabled) {
+  border-color:var(--gold);
+  color:var(--paper);
+}
+.kd-mod[data-mod="dothu"] .steps-btn:focus-visible {
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+.kd-mod[data-mod="dothu"] .steps-btn:disabled {
+  opacity:0.45;
+  cursor:default;
+}
+.kd-mod[data-mod="dothu"] .steps-btn .ico {
+  font-size:10px;
+}
+.kd-mod[data-mod="dothu"] .panel.ha .steps-btn:hover:not(:disabled) {
+  border-color:var(--jade);
+}
+@media (max-width:420px) {
+  .kd-mod[data-mod="dothu"] .steps-btn .txt { display:none; }
+  .kd-mod[data-mod="dothu"] .steps-btn { padding:6px 8px; }
+}
 .kd-mod[data-mod="dothu"] .grid-wrap {
   position:relative;width:100%;max-width:280px;margin:0 auto;
 }
