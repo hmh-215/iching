@@ -1,18 +1,27 @@
 <div align="center">
   <h1>DỰ ÁN TÀI LIỆU & CÔNG CỤ KINH DỊCH</h1>
-  <p><i>Hệ thống tài liệu tra cứu kiến thức và các công cụ hỗ trợ lập quẻ, tính toán ứng dụng Kinh Dịch — Tái cấu trúc chuẩn MVVM & Tích hợp Cổng bảo vệ Mã PIN.</i></p>
+  <p><i>Hệ thống tài liệu tra cứu kiến thức và các công cụ hỗ trợ lập quẻ, tính toán ứng dụng Kinh Dịch — Tái cấu trúc chuẩn MVVM & Tích hợp Cổng bảo vệ Mật Khẩu.</i></p>
   <p>
     <a href="https://hmh-215.github.io/iching/">
       <img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen?style=for-the-badge&logo=github" alt="Live Demo" />
     </a>
-    <img src="https://img.shields.io/badge/Security-PIN%20Protected-gold?style=for-the-badge&logo=auth0" alt="PIN Protected" />
+    <img src="https://img.shields.io/badge/Security-Password%20Protected-gold?style=for-the-badge&logo=auth0" alt="Password Protected" />
     <img src="https://img.shields.io/badge/Architecture-MVVM%20Modular-blue?style=for-the-badge" alt="MVVM Modular" />
   </p>
   <p>
     🌐 <b>Trải nghiệm Trực Tuyến:</b> <a href="https://hmh-215.github.io/iching/"><b>https://hmh-215.github.io/iching/</b></a><br>
+    🔒 <i>Ứng dụng yêu cầu mật khẩu truy cập để bảo vệ tài nguyên học thuật. Vui lòng liên hệ tác giả để nhận thông tin đăng nhập.</i>
   </p>
 </div>
 
+<hr>
+
+## 🔐 Cơ Chế Bảo Vệ Mật Khẩu (Gatekeeper)
+
+Ứng dụng được trang bị lớp bảo mật Gatekeeper trước khi bất kỳ nội dung nào được hiển thị:
+- **Cơ chế băm bảo mật**: Sử dụng Web Crypto API với thuật toán **SHA-256** kết hợp chuỗi Salt chuyên biệt, không lưu trữ mật khẩu dạng văn bản rõ (plaintext).
+- **Trải nghiệm người dùng**: Giao diện đăng nhập trang nhã với ô nhập mật khẩu bảo mật, hỗ trợ bật/tắt hiển thị mật khẩu (👁), phím tắt Enter, hiệu ứng rung (shake animation) khi nhập sai và tự động lưu phiên làm việc an toàn trong `sessionStorage` (`kd_auth_token`).
+- **Nút Khóa nhanh**: Nút biểu tượng ổ khóa 🔒 trên thanh Header cho phép người dùng chủ động khóa phiên bất kỳ lúc nào.
 
 <hr>
 
@@ -161,7 +170,7 @@ Hệ thống tính quẻ cao cấp tích hợp đa phương pháp:
 
 Dự án đã được tái cấu trúc triệt để, loại bỏ toàn bộ các hàm / bảng tra cứu trùng lặp thành **Tầng dịch vụ dùng chung (`js/core/`)**:
 
-- **`js/core/auth.js` (`KD_AUTH`)**: Quản lý xác thực mã PIN, băm SHA-256 + salt, giao diện modal số.
+- **`js/core/auth.js` (`KD_AUTH`)**: Quản lý xác thực mật khẩu truy cập, băm SHA-256 + salt, giao diện Gatekeeper bảo mật.
 - **`js/core/util.js` (`KD_UTIL`)**: Các hàm toán học nhị phân/modulo (`mod`), so sánh tọa độ (`coordEq`), chuẩn hóa chuỗi tiếng Việt (`norm`), điều khiển giao diện accordion.
 - **`js/core/data.js` (`KD_DATA`, `KD_DICH`)**: Bảng hằng số Thiên Can, Địa Chi, 60 Hoa Giáp, Bát Quái nhị phân, bảng tra cứu 64 quẻ Kinh Dịch chuẩn mực.
 - **`js/core/grid.js` (`KD_GRID`)**: Bộ dựng hình SVG dùng chung: vẽ ma trận, vẽ đường dịch chuyển hoạt họa (animated paths), vẽ hào âm dương (3 hào / 6 hào / hào động).

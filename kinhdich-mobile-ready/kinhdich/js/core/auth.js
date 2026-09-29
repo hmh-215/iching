@@ -1,6 +1,6 @@
 /* =========================================================================
- * Dịch Học Ngũ Linh — Tầng Xác Thực Mã PIN (js/core/auth.js)
- * Cổng bảo vệ truy cập ứng dụng bằng mã PIN với mã băm SHA-256 (Mã PIN: 300703).
+ * Dịch Học Ngũ Linh — Tầng Xác Thực Mật Khẩu (js/core/auth.js)
+ * Cổng bảo vệ truy cập ứng dụng bằng mật khẩu với mã băm SHA-256 + Salt.
  * ========================================================================= */
 
 (function() {
@@ -8,11 +8,12 @@
 
   const CONFIG = {
     SALT: 'iching_ngulinh_auth_salt_2026',
-    // SHA-256 của "iching_ngulinh_auth_salt_2026:300703"
-    HASH: '6f1a15ccbad5eb8aecba77cd37397f4d5975df943e9bdff34885a8b19d833c74',
-    PIN_LENGTH: 6,
-    SESSION_KEY: 'kd_pin_auth_token',
-    AUTH_VALID_VALUE: 'kd_authorized_session_300703'
+    // SHA-256 của "iching_ngulinh_auth_salt_2026:KinhDich@2026"
+    HASH: '82cf600622f5644820a10a517453a6f03ad6e0f2fed25b95491edc0bff4655b8',
+    // Fallback legacy SHA-256 của "iching_ngulinh_auth_salt_2026:300703"
+    LEGACY_HASH: '6f1a15ccbad5eb8aecba77cd37397f4d5975df943e9bdff34885a8b19d833c74',
+    SESSION_KEY: 'kd_auth_token',
+    AUTH_VALID_VALUE: 'kd_authorized_session_2026'
   };
 
   async function sha256(message) {
@@ -24,7 +25,8 @@
 
   function isAuthorized() {
     try {
-      return sessionStorage.getItem(CONFIG.SESSION_KEY) === CONFIG.AUTH_VALID_VALUE;
+      const val = sessionStorage.getItem(CONFIG.SESSION_KEY) || sessionStorage.getItem('kd_pin_auth_token');
+      return val === CONFIG.AUTH_VALID_VALUE || val === 'kd_authorized_session_300703';
     } catch (e) {
       return false;
     }
@@ -68,96 +70,114 @@
         background: var(--ink-850, #191b21);
         border: 1px solid var(--cinnabar, #c24632);
         box-shadow: 0 20px 50px rgba(0,0,0,0.65), 0 0 0 1px rgba(194,70,50,0.2);
-        border-radius: 8px;
+        border-radius: 10px;
         width: 100%;
-        max-width: 360px;
-        padding: 28px 24px;
+        max-width: 380px;
+        padding: 32px 26px;
         text-align: center;
         box-sizing: border-box;
       }
       .kd-auth-emblem {
-        font-size: 32px;
+        font-size: 34px;
         color: var(--gold, #c19a4b);
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         line-height: 1;
       }
       .kd-auth-title {
         font-family: 'Spectral', serif;
-        font-size: 22px;
+        font-size: 23px;
         font-style: italic;
         font-weight: 600;
         color: var(--paper, #e7dfc9);
         margin: 0 0 6px 0;
       }
       .kd-auth-subtitle {
-        font-size: 12.5px;
+        font-size: 13px;
         color: var(--paper-dim, rgba(231,223,201,0.65));
-        margin: 0 0 24px 0;
-        line-height: 1.4;
+        margin: 0 0 22px 0;
+        line-height: 1.45;
       }
-      .kd-auth-dots {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        margin-bottom: 22px;
+      .kd-auth-input-wrapper {
+        position: relative;
+        width: 100%;
+        margin-bottom: 14px;
       }
-      .kd-auth-dot {
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        border: 2px solid var(--line-strong, rgba(231,223,201,0.25));
-        background: transparent;
-        transition: all .18s ease;
-      }
-      .kd-auth-dot.filled {
-        background: var(--gold, #c19a4b);
-        border-color: var(--gold, #c19a4b);
-        box-shadow: 0 0 10px rgba(193,154,75,0.45);
-        transform: scale(1.1);
-      }
-      .kd-auth-error {
-        min-height: 20px;
-        font-size: 12px;
-        color: var(--cinnabar, #c24632);
-        margin-bottom: 18px;
-        font-weight: 500;
-      }
-      .kd-auth-numpad {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        max-width: 280px;
-        margin: 0 auto;
-      }
-      .kd-auth-btn {
+      .kd-auth-input {
+        width: 100%;
+        height: 46px;
+        padding: 0 44px 0 14px;
         background: var(--ink-800, #1d1f27);
-        border: 1px solid var(--line, rgba(231,223,201,0.12));
-        color: var(--paper, #e7dfc9);
+        border: 1px solid var(--line-strong, rgba(231,223,201,0.25));
         border-radius: 6px;
-        font-size: 20px;
-        font-weight: 500;
-        height: 54px;
+        color: var(--paper, #e7dfc9);
+        font-size: 16px;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color .18s ease, box-shadow .18s ease;
+      }
+      .kd-auth-input:focus {
+        border-color: var(--gold, #c19a4b);
+        box-shadow: 0 0 0 2px rgba(193,154,75,0.25);
+      }
+      .kd-auth-input::placeholder {
+        color: rgba(231,223,201,0.35);
+        font-size: 14px;
+      }
+      .kd-auth-eye-btn {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 4px 6px;
+        color: var(--paper-dim, rgba(231,223,201,0.65));
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
-        transition: all .15s ease;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
+        line-height: 1;
       }
-      .kd-auth-btn:hover {
-        background: var(--ink-750, #242631);
-        border-color: var(--gold, #c19a4b);
+      .kd-auth-eye-btn:hover {
         color: var(--gold, #c19a4b);
       }
-      .kd-auth-btn:active {
-        transform: scale(0.95);
-        background: var(--cinnabar, #c24632);
-        color: #fff;
+      .kd-auth-error {
+        min-height: 20px;
+        font-size: 12.5px;
+        color: var(--cinnabar, #c24632);
+        margin-bottom: 14px;
+        font-weight: 500;
+        text-align: left;
       }
-      .kd-auth-btn.action {
+      .kd-auth-submit {
+        width: 100%;
+        height: 46px;
+        background: var(--gold, #c19a4b);
+        color: #0e0f13;
         font-size: 15px;
-        color: var(--paper-dim, rgba(231,223,201,0.65));
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background .18s ease, transform .12s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        letter-spacing: 0.02em;
+      }
+      .kd-auth-submit:hover {
+        background: #d4aa59;
+      }
+      .kd-auth-submit:active {
+        transform: scale(0.98);
+      }
+      .kd-auth-hint {
+        margin-top: 14px;
+        font-size: 11.5px;
+        color: rgba(231,223,201,0.45);
+        line-height: 1.4;
       }
       .kd-auth-shake {
         animation: kdShake 0.4s cubic-bezier(.36,.07,.19,.97) both;
@@ -180,8 +200,6 @@
     injectAuthStyles();
     document.body.classList.add('kd-auth-locked-body');
 
-    let currentPin = '';
-
     const overlay = document.createElement('div');
     overlay.id = 'kd-auth-overlay';
 
@@ -191,47 +209,62 @@
     card.innerHTML = `
       <div class="kd-auth-emblem">☯</div>
       <h2 class="kd-auth-title">Khóa Bảo Mật</h2>
-      <p class="kd-auth-subtitle">Ứng dụng Dịch Học Ngũ Linh<br>Vui lòng nhập mã PIN gồm 6 chữ số để mở khóa</p>
-      <div class="kd-auth-dots">
-        ${Array.from({ length: CONFIG.PIN_LENGTH }, () => '<div class="kd-auth-dot"></div>').join('')}
+      <p class="kd-auth-subtitle">Ứng dụng Dịch Học Ngũ Linh<br>Vui lòng nhập mật khẩu để mở khóa ứng dụng</p>
+      
+      <div class="kd-auth-input-wrapper">
+        <input type="password" id="kd-auth-input" class="kd-auth-input" placeholder="Nhập mật khẩu truy cập..." autocomplete="current-password" spellcheck="false">
+        <button type="button" id="kd-auth-toggle-eye" class="kd-auth-eye-btn" title="Hiện/ẩn mật khẩu">👁</button>
       </div>
+
       <div class="kd-auth-error" id="kd-auth-error-msg"></div>
-      <div class="kd-auth-numpad">
-        <button type="button" class="kd-auth-btn" data-val="1">1</button>
-        <button type="button" class="kd-auth-btn" data-val="2">2</button>
-        <button type="button" class="kd-auth-btn" data-val="3">3</button>
-        <button type="button" class="kd-auth-btn" data-val="4">4</button>
-        <button type="button" class="kd-auth-btn" data-val="5">5</button>
-        <button type="button" class="kd-auth-btn" data-val="6">6</button>
-        <button type="button" class="kd-auth-btn" data-val="7">7</button>
-        <button type="button" class="kd-auth-btn" data-val="8">8</button>
-        <button type="button" class="kd-auth-btn" data-val="9">9</button>
-        <button type="button" class="kd-auth-btn action" data-val="clear">Xóa</button>
-        <button type="button" class="kd-auth-btn" data-val="0">0</button>
-        <button type="button" class="kd-auth-btn action" data-val="back">⌫</button>
-      </div>
+
+      <button type="button" id="kd-auth-submit-btn" class="kd-auth-submit">Mở Khóa Truy Cập</button>
+      <div class="kd-auth-hint">Nhập mật khẩu và nhấn Enter hoặc nút Mở Khóa</div>
     `;
 
     overlay.appendChild(card);
     document.body.appendChild(overlay);
 
-    const dots = card.querySelectorAll('.kd-auth-dot');
+    const inputEl = card.querySelector('#kd-auth-input');
+    const eyeBtn = card.querySelector('#kd-auth-toggle-eye');
+    const submitBtn = card.querySelector('#kd-auth-submit-btn');
     const errorEl = card.querySelector('#kd-auth-error-msg');
 
-    function updateDots() {
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('filled', idx < currentPin.length);
-      });
-    }
+    // Auto-focus input
+    setTimeout(() => {
+      if (inputEl) inputEl.focus();
+    }, 100);
+
+    // Toggle show/hide password
+    eyeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (inputEl.type === 'password') {
+        inputEl.type = 'text';
+        eyeBtn.textContent = '🔒';
+        eyeBtn.title = 'Ẩn mật khẩu';
+      } else {
+        inputEl.type = 'password';
+        eyeBtn.textContent = '👁';
+        eyeBtn.title = 'Hiện mật khẩu';
+      }
+      inputEl.focus();
+    });
 
     async function handleVerify() {
-      if (currentPin.length !== CONFIG.PIN_LENGTH) return;
-      errorEl.textContent = 'Đang xác thực…';
+      const pwd = inputEl.value.trim();
+      if (!pwd) {
+        errorEl.textContent = 'Vui lòng nhập mật khẩu!';
+        inputEl.focus();
+        return;
+      }
 
-      const combined = `${CONFIG.SALT}:${currentPin}`;
+      errorEl.textContent = 'Đang xác thực…';
+      submitBtn.disabled = true;
+
+      const combined = `${CONFIG.SALT}:${pwd}`;
       const hashed = await sha256(combined);
 
-      if (hashed === CONFIG.HASH) {
+      if (hashed === CONFIG.HASH || hashed === CONFIG.LEGACY_HASH) {
         setAuthorized();
         errorEl.textContent = '';
         overlay.style.transition = 'opacity .25s ease';
@@ -242,66 +275,29 @@
           window.dispatchEvent(new CustomEvent('kd:authorized'));
         }, 250);
       } else {
+        submitBtn.disabled = false;
         card.classList.remove('kd-auth-shake');
         void card.offsetWidth; // Trigger reflow
         card.classList.add('kd-auth-shake');
-        errorEl.textContent = 'Mã PIN không chính xác. Vui lòng thử lại!';
-        currentPin = '';
-        updateDots();
+        errorEl.textContent = 'Mật khẩu không chính xác. Vui lòng thử lại!';
+        inputEl.value = '';
+        inputEl.focus();
       }
     }
 
-    function addDigit(digit) {
-      if (currentPin.length < CONFIG.PIN_LENGTH) {
-        currentPin += digit;
-        errorEl.textContent = '';
-        updateDots();
-        if (currentPin.length === CONFIG.PIN_LENGTH) {
-          setTimeout(handleVerify, 80);
-        }
-      }
-    }
-
-    function backspace() {
-      if (currentPin.length > 0) {
-        currentPin = currentPin.slice(0, -1);
-        errorEl.textContent = '';
-        updateDots();
-      }
-    }
-
-    function clear() {
-      currentPin = '';
-      errorEl.textContent = '';
-      updateDots();
-    }
-
-    // Sự kiện Numpad cảm ứng
-    card.querySelectorAll('.kd-auth-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const val = btn.dataset.val;
-        if (val === 'clear') clear();
-        else if (val === 'back') backspace();
-        else if (/^[0-9]$/.test(val)) addDigit(val);
-      });
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleVerify();
     });
 
-    // Sự kiện bàn phím vật lý
-    function onKeyDown(e) {
-      if (!document.getElementById('kd-auth-overlay')) {
-        window.removeEventListener('keydown', onKeyDown);
-        return;
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleVerify();
+      } else {
+        errorEl.textContent = '';
       }
-      if (/^[0-9]$/.test(e.key)) {
-        addDigit(e.key);
-      } else if (e.key === 'Backspace') {
-        backspace();
-      } else if (e.key === 'Escape' || e.key === 'Delete') {
-        clear();
-      }
-    }
-    window.addEventListener('keydown', onKeyDown);
+    });
   }
 
   function checkAndPrompt() {

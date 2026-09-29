@@ -75,6 +75,7 @@ foreach ($k in $inlineEntries.Keys) {
 
 $supportPath = Join-Path $root 'js/runtime/support.js'
 $supportJs = [System.IO.File]::ReadAllText($supportPath, [System.Text.Encoding]::UTF8)
+$supportJs = $supportJs.Replace('<x-dc>', '[x-dc]')
 
 $headInjection = @"
 <script>

@@ -155,7 +155,7 @@
     runtime.markFetched(rootName);
     runtime.setRootName(rootName);
     runtime.adoptParsed(rootName, parsed);
-    if (!window.__resources) {
+    if (false) {
       fetch(location.href).then((res) => res.ok ? res.text() : "").then((t) => {
         const raw = t ? parseDcText(t) : null;
         if (raw?.template) runtime.updateHtml(rootName, raw.template);
@@ -1667,7 +1667,7 @@
           console.error(
             '[dc-runtime] sibling fetch for "' + name + '":',
             url,
-            "has no <x-dc> block \u2014 not a Design Component."
+            "has no [x-dc] block \u2014 not a Design Component."
           );
           return;
         }
