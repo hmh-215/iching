@@ -5,7 +5,6 @@
     <a href="https://hmh-215.github.io/iching/">
       <img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen?style=for-the-badge&logo=github" alt="Live Demo" />
     </a>
-    <img src="https://img.shields.io/badge/Security-Password%20Protected-gold?style=for-the-badge&logo=auth0" alt="Password Protected" />
     <img src="https://img.shields.io/badge/Architecture-MVVM%20Modular-blue?style=for-the-badge" alt="MVVM Modular" />
   </p>
   <p>
@@ -13,16 +12,6 @@
     🔒 <i>Ứng dụng yêu cầu mật khẩu truy cập để bảo vệ tài nguyên học thuật. Vui lòng liên hệ tác giả để nhận thông tin đăng nhập.</i>
   </p>
 </div>
-
-<hr>
-
-## 🔐 Cơ Chế Bảo Vệ Mật Khẩu & Mã Hóa Toàn Diện (AES-256 Gatekeeper)
-
-Ứng dụng được bảo vệ toàn diện bằng cơ chế mật mã học trước khi bất kỳ nội dung nào được nạp vào bộ nhớ:
-- **Chuẩn mã hóa AES-256-CBC**: Toàn bộ payload của ứng dụng (HTML, CSS, JavaScript, bộ dữ liệu 64 quẻ và thuật toán) được mã hóa thành bản mã bảo mật với muối (salt) và vector khởi tạo (IV) ngẫu nhiên.
-- **Hàm dẫn xuất khóa PBKDF2**: Sử dụng thuật toán PBKDF2 (100,000 vòng lặp, chuẩn HMAC-SHA-256) từ Web Crypto API để dẫn xuất khóa giải mã trong bộ nhớ RAM từ mật khẩu người dùng.
-- **Xác thực mỗi lần truy cập**: Mặc định yêu cầu xác thực mỗi khi mở hoặc tải lại trang web; dữ liệu giải mã chỉ tồn tại trong bộ nhớ RAM và được dọn dẹp ngay khi đóng/tải lại tab.
-- **Trải nghiệm người dùng**: Giao diện đăng nhập trang nhã với ô nhập mật khẩu bảo mật, hỗ trợ bật/tắt hiển thị mật khẩu (👁), phím tắt Enter, hiệu ứng rung (shake animation) khi nhập sai.
 
 <hr>
 
@@ -55,7 +44,7 @@ Bao gồm các tài liệu tra cứu, luận giải kiến thức nền tảng v
     <tr>
       <td><code>luan64que</code></td>
       <td>64 Quẻ Dịch</td>
-      <td>Tài liệu luận giải 64 quẻ Kinh Dịch, tra cứu theo số hiệu và hào quái.</td>
+      <td>Tài liệu luận giải 64 quẻ Kinh Dịch và ý nghĩa các hào từ, lời quẻ.</td>
     </tr>
     <tr>
       <td><code>bienkhi</code></td>
@@ -90,12 +79,12 @@ Bao gồm các công cụ hỗ trợ gieo quẻ theo 2 phương pháp dựa trê
     <tr>
       <td><code>dothu</code></td>
       <td>Đồ Thư Phi Bàn Độn</td>
-      <td>Công cụ lập <b>Quẻ Đồ Thư Phi Bàn Độn</b> (Hà Đồ tìm Quẻ Thượng, Lạc Thư tìm Quẻ Hạ, xác định Hào Động, Quẻ Biến và Quẻ Hỗ). Tách bạch Model tính toán và View ma trận SVG.</td>
+      <td>Công cụ lập <b>Quẻ Đồ Thư Phi Bàn Độn</b> (Hà Đồ tìm Quẻ Thượng, Lạc Thư tìm Quẻ Hạ, xác định Hào Động, Quẻ Biến và Quẻ Hỗ)</td>
     </tr>
     <tr>
       <td><code>nguling</code></td>
       <td>Quẻ Ngũ Linh</td>
-      <td>Công cụ lập <b>Quẻ Ngũ Linh</b> (bảng 4x4 Đồ Thư Phi Bàn Độn, an Bát Môn, phối Cửu Tinh và giải pháp Hoán Thời Pháp).</td>
+      <td>Công cụ lập <b>Quẻ Ngũ Linh</b> - Gieo quẻ hỏi việc, Hoán Thời Pháp, và Gieo quẻ Đời người.</td>
     </tr>
   </tbody>
 </table>
@@ -167,41 +156,6 @@ Hệ thống tính quẻ cao cấp tích hợp đa phương pháp:
 
 <hr>
 
-## 🏗️ Kiến Trúc Hệ Thống (MVVM & Shared Core)
-
-Dự án đã được tái cấu trúc triệt để, loại bỏ toàn bộ các hàm / bảng tra cứu trùng lặp thành **Tầng dịch vụ dùng chung (`js/core/`)**:
-
-- **`js/core/auth.js` (`KD_AUTH`)**: Quản lý xác thực mật khẩu truy cập, băm SHA-256 + salt, giao diện Gatekeeper bảo mật.
-- **`js/core/util.js` (`KD_UTIL`)**: Các hàm toán học nhị phân/modulo (`mod`), so sánh tọa độ (`coordEq`), chuẩn hóa chuỗi tiếng Việt (`norm`), điều khiển giao diện accordion.
-- **`js/core/data.js` (`KD_DATA`, `KD_DICH`)**: Bảng hằng số Thiên Can, Địa Chi, 60 Hoa Giáp, Bát Quái nhị phân, bảng tra cứu 64 quẻ Kinh Dịch chuẩn mực.
-- **`js/core/grid.js` (`KD_GRID`)**: Bộ dựng hình SVG dùng chung: vẽ ma trận, vẽ đường dịch chuyển hoạt họa (animated paths), vẽ hào âm dương (3 hào / 6 hào / hào động).
-- **`js/core/flyingstar.js` (`KD_FLYINGSTAR`)**: Thuật toán Phi tinh, ma trận Khảm cơ sở, biến đổi ma trận 8 hướng (rot, transpose, flip).
-- **`js/core/interpret.js`**: Hệ thống pop-up tra cứu luận giải quẻ tương tác khi nhấn vào bất kỳ quẻ nào trên màn hình.
-
-<hr>
-
-## 💻 Hướng Dẫn Cài Đặt & Chạy Cục Bộ
-
-### 1. Mở trực tiếp bản đóng gói (Single-File App)
-Chỉ cần nhấp đúp mở file `index.html` hoặc `kinhdich-mobile-ready/kinhdich/dist/kinh-dich-ngu-linh.html` bằng bất kỳ trình duyệt web hiện đại nào (Chrome, Edge, Firefox, Safari). Toàn bộ CSS, JS, Icon và dữ liệu 64 quẻ đã được nhúng sẵn 100%.
-
-### 2. Chạy qua Local HTTP Server (PowerShell)
-```powershell
-# Chạy HTTP Server tích hợp tại cổng 8000
-powershell -ExecutionPolicy Bypass -File kinhdich-mobile-ready/kinhdich/serve.ps1 -Port 8000
-```
-Sau đó truy cập: `http://localhost:8000`
-
-### 3. Đóng gói lại sau khi sửa code (Bundle Script)
-Khi có bất kỳ thay đổi nào trong `js/core/`, `js/modules/`, `html/modules/` hoặc `css/`:
-```powershell
-# Tự động gom toàn bộ modules thành file index.html / dist HTML duy nhất
-powershell -ExecutionPolicy Bypass -File kinhdich-mobile-ready/kinhdich/bundle.ps1
-Copy-Item kinhdich-mobile-ready/kinhdich/dist/kinh-dich-ngu-linh.html index.html -Force
-```
-
-<hr>
-
 <div align="center">
-  <p><i>Thuật toán từng module giữ nguyên bản gốc · Luận giải trích Dịch Học Ngũ Linh — Cao Từ Linh</i></p>
+  <p><i> Luận giải trích Dịch Học Ngũ Linh — Cao Từ Linh</i></p>
 </div>
