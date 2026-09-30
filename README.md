@@ -16,11 +16,12 @@
 
 <hr>
 
-## 🔐 Cơ Chế Bảo Vệ Mật Khẩu (Gatekeeper)
+## 🔐 Cơ Chế Bảo Vệ Mật Khẩu & Mã Hóa Toàn Diện (AES-256 Gatekeeper)
 
-Ứng dụng được trang bị lớp bảo mật Gatekeeper trước khi bất kỳ nội dung nào được hiển thị:
-- **Cơ chế băm bảo mật**: Sử dụng Web Crypto API với thuật toán **SHA-256** kết hợp chuỗi Salt chuyên biệt, không lưu trữ mật khẩu dạng văn bản rõ (plaintext).
-- **Xác thực mỗi lần truy cập**: Mặc định yêu cầu xác thực mỗi khi mở hoặc tải lại trang web để bảo mật dữ liệu học thuật.
+Ứng dụng được bảo vệ toàn diện bằng cơ chế mật mã học trước khi bất kỳ nội dung nào được nạp vào bộ nhớ:
+- **Chuẩn mã hóa AES-256-CBC**: Toàn bộ payload của ứng dụng (HTML, CSS, JavaScript, bộ dữ liệu 64 quẻ và thuật toán) được mã hóa thành bản mã bảo mật với muối (salt) và vector khởi tạo (IV) ngẫu nhiên.
+- **Hàm dẫn xuất khóa PBKDF2**: Sử dụng thuật toán PBKDF2 (100,000 vòng lặp, chuẩn HMAC-SHA-256) từ Web Crypto API để dẫn xuất khóa giải mã trong bộ nhớ RAM từ mật khẩu người dùng.
+- **Xác thực mỗi lần truy cập**: Mặc định yêu cầu xác thực mỗi khi mở hoặc tải lại trang web; dữ liệu giải mã chỉ tồn tại trong bộ nhớ RAM và được dọn dẹp ngay khi đóng/tải lại tab.
 - **Trải nghiệm người dùng**: Giao diện đăng nhập trang nhã với ô nhập mật khẩu bảo mật, hỗ trợ bật/tắt hiển thị mật khẩu (👁), phím tắt Enter, hiệu ứng rung (shake animation) khi nhập sai.
 
 <hr>
@@ -30,45 +31,45 @@
 Hệ thống được chia thành 4 phân hệ chính theo chuẩn kiến trúc phân cấp:
 
 ### 1. Khối Tài Liệu Kiến Thức
-Bao gồm các file tra cứu, luận giải kiến thức nền tảng về Bát Quái, Thần Sát, 64 Quẻ và Biến Khí:
+Bao gồm các tài liệu tra cứu, luận giải kiến thức nền tảng về Bát Quái, Thần Sát, 64 Quẻ và Biến Khí:
 
 <table>
   <thead>
     <tr>
       <th align="left">Mã Module</th>
-      <th align="left">File Độc Lập Gốc</th>
+      <th align="left">Tên Phân Hệ</th>
       <th align="left">Mô Tả Nội Dung Chi Tiết</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>luan8que</code></td>
-      <td><code>00-luan8que.html</code></td>
+      <td>Bát Quái Cơ Bản</td>
       <td>Tài liệu luận giải chi tiết 8 quẻ đơn (Bát Quái: Càn, Đoài, Ly, Chấn, Tốn, Khảm, Cấn, Khôn).</td>
     </tr>
     <tr>
       <td><code>luan10sao</code></td>
-      <td><code>00-luan10sao.html</code></td>
+      <td>Thập Thiên Tinh</td>
       <td>Tài liệu tra cứu và luận giải 10 thiên tinh (Bồng, Nhuế, Xung, Phụ, Cầm, Tâm, Trụ, Nhậm, Anh, Không).</td>
     </tr>
     <tr>
       <td><code>luan64que</code></td>
-      <td><code>00-luan64que.html</code></td>
+      <td>64 Quẻ Dịch</td>
       <td>Tài liệu luận giải 64 quẻ Kinh Dịch, tra cứu theo số hiệu và hào quái.</td>
     </tr>
     <tr>
       <td><code>bienkhi</code></td>
-      <td><code>00-bien_khi.html</code></td>
+      <td>Du Niên Biến Khí</td>
       <td>Kiến thức về du niên biến khí (Sinh Khí, Diên Niên, Thiên Y, Phục Vị, Tuyệt Mệnh, Ngũ Quỷ, Lục Sát, Họa Hại).</td>
     </tr>
     <tr>
       <td><code>luan9sao</code></td>
-      <td><code>00-luan9sao_clndd.html</code></td>
+      <td>Cửu Tinh Độn</td>
       <td>Kiến thức Cửu Tinh trong phương pháp Chân Linh Nhân Đồ Độn.</td>
     </tr>
     <tr>
       <td><code>khiclndd</code></td>
-      <td><code>00-khi_clndd.html</code></td>
+      <td>Khí Chân Linh</td>
       <td>Kiến thức các khí và sự phối hợp của các khí trong Chân Linh Nhân Đồ Độn.</td>
     </tr>
   </tbody>
@@ -81,19 +82,19 @@ Bao gồm các công cụ hỗ trợ gieo quẻ theo 2 phương pháp dựa trê
   <thead>
     <tr>
       <th align="left">Mã Module</th>
-      <th align="left">File Độc Lập Gốc</th>
+      <th align="left">Tên Phân Hệ</th>
       <th align="left">Mô Tả Nội Dung Chi Tiết</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>dothu</code></td>
-      <td><code>01-que_do_thu.html</code></td>
+      <td>Đồ Thư Phi Bàn Độn</td>
       <td>Công cụ lập <b>Quẻ Đồ Thư Phi Bàn Độn</b> (Hà Đồ tìm Quẻ Thượng, Lạc Thư tìm Quẻ Hạ, xác định Hào Động, Quẻ Biến và Quẻ Hỗ). Tách bạch Model tính toán và View ma trận SVG.</td>
     </tr>
     <tr>
       <td><code>nguling</code></td>
-      <td><code>01-que_ngu_linh.html</code></td>
+      <td>Quẻ Ngũ Linh</td>
       <td>Công cụ lập <b>Quẻ Ngũ Linh</b> (bảng 4x4 Đồ Thư Phi Bàn Độn, an Bát Môn, phối Cửu Tinh và giải pháp Hoán Thời Pháp).</td>
     </tr>
   </tbody>
@@ -106,39 +107,39 @@ Các công cụ tính toán mở rộng và ứng dụng thực tiễn trong đ�
   <thead>
     <tr>
       <th align="left">Mã Module</th>
-      <th align="left">File Độc Lập Gốc</th>
+      <th align="left">Tên Phân Hệ</th>
       <th align="left">Mô Tả Nội Dung Chi Tiết</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>maphuong</code></td>
-      <td><code>02-ma_phuong.html</code></td>
+      <td>Ma Phương</td>
       <td>Công cụ tính toán hỗ trợ vẽ <b>Ma Phương</b> và Bảng Sinh Thành Lạc Thư.</td>
     </tr>
     <tr>
       <td><code>cungsinh</code></td>
-      <td><code>02-cung_sinh_cung_phi.html</code></td>
+      <td>Cung Sinh - Cung Phi</td>
       <td>Công cụ tra cứu và tính toán <b>Cung Sinh (giờ sinh) — Cung Phi (năm sinh)</b> cho bản mệnh nam/nữ.</td>
     </tr>
     <tr>
       <td><code>tamtuyet</code></td>
-      <td><code>02-tam_tuyet_phap.html</code></td>
+      <td>Tam Tuyệt Pháp</td>
       <td>Công cụ tính <b>Tam Tuyệt Pháp</b> — ứng dụng xem ngày lành cưới hỏi, phòng tránh hung sát.</td>
     </tr>
     <tr>
       <td><code>tamy</code></td>
-      <td><code>02-tam_y_tam_sinh.html</code></td>
+      <td>Tam Y Tam Sinh</td>
       <td>Công cụ tính tháng và ngày đón <b>Thiên Y / Sinh Khí</b> theo Cung Phi bản mệnh.</td>
     </tr>
     <tr>
       <td><code>tieuvan</code></td>
-      <td><code>02-que_tieu_van.html</code></td>
+      <td>Quẻ Tiểu Vận</td>
       <td>Công cụ tính <b>Quẻ Tiểu Vận</b> dựa trên quẻ Quốc khí vận đồ và niên vận cá nhân.</td>
     </tr>
     <tr>
       <td><code>dichtu</code></td>
-      <td><i>(Tích hợp mới)</i></td>
+      <td>Dịch Tự</td>
       <td>Công cụ tra cứu và đồ họa <b>Dịch Tự</b>, hiển thị SVG đồ họa tượng quẻ & âm dương tự.</td>
     </tr>
   </tbody>
@@ -151,14 +152,14 @@ Hệ thống tính quẻ cao cấp tích hợp đa phương pháp:
   <thead>
     <tr>
       <th align="left">Mã Module</th>
-      <th align="left">File Độc Lập Gốc</th>
+      <th align="left">Tên Phân Hệ</th>
       <th align="left">Mô Tả Nội Dung Chi Tiết</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>chanlinh</code></td>
-      <td><code>03-chan_linh_nhan_do_don.html</code></td>
+      <td>Chân Linh Toàn Diện</td>
       <td>Công cụ tính quẻ và khí theo phương pháp <b>Chân Linh Nhân Đồ Độn</b> toàn diện: 3 Tab tương tác gồm Quẻ Bản Mệnh, Quẻ Niên Vận và Quẻ Tuyển Trạch (chuẩn hóa ma trận Thiên Can theo Nam/Nữ Âm Dương).</td>
     </tr>
   </tbody>
