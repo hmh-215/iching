@@ -28,6 +28,11 @@
     </div>
     <div class="console-actions">
       <div class="presets">
+        <label class="arrow-toggle">
+          <input type="checkbox" id="toggle-arrows" checked>
+          <span class="switch"></span>
+          <span class="toggle-label">Hiện mũi tên</span>
+        </label>
         <button class="preset-btn" data-preset="0">Ví dụ 1</button>
         <button class="preset-btn" data-preset="1">Ví dụ 2</button>
         <button class="preset-btn" data-preset="2">Ví dụ 3</button>
@@ -39,12 +44,6 @@
   <div class="error-msg" id="error-msg"></div>
 
   <div id="result">
-
-    <div class="view-controls">
-      <label class="toggle-label">
-        <input type="checkbox" id="toggle-arrows" checked> Hiển thị đường đi (mũi tên)
-      </label>
-    </div>
 
     <div class="panels">
       <!-- Panel 1: Nap Chi -->
@@ -92,8 +91,15 @@
     </div>
 
     <div class="wide-panel">
-      <div class="step-label gold">Bước 4 · Ma Trận Sinh Thành</div>
-      <h3 class="panel-title">Ma trận gốc (Trung cung = Sinh Thành, Quái = Họ của quẻ)</h3>
+      <div class="panel-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:8px;">
+        <div>
+          <div class="step-label gold">Bước 4 · Ma Trận Sinh Thành</div>
+          <h3 class="panel-title">Ma trận gốc (Trung cung = Sinh Thành, Quái = Họ của quẻ)</h3>
+        </div>
+        <button class="steps-btn" id="steps-btn-matsinhthanh" type="button">
+          <span class="ico">▶</span><span class="txt">Hiển thị các bước</span>
+        </button>
+      </div>
       <p class="panel-desc" id="matsinhthanh-desc" style="min-height:auto;"></p>
       <div class="grid-wrap">
         <svg class="grid-svg" id="svg-matsinhthanh" viewBox="0 0 250 250"></svg>
@@ -104,8 +110,15 @@
     <div class="panels">
       <!-- Panel: Que Thuong matrix -->
       <div class="panel">
-        <div class="step-label gold">Bước 5a · Ma Trận Quẻ Thượng</div>
-        <h3 class="panel-title" id="thuong-title">Ma trận Quẻ Thượng</h3>
+        <div class="panel-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:8px;">
+          <div>
+            <div class="step-label gold">Bước 5a · Ma Trận Quẻ Thượng</div>
+            <h3 class="panel-title" id="thuong-title">Ma trận Quẻ Thượng</h3>
+          </div>
+          <button class="steps-btn" id="steps-btn-thuong" type="button">
+            <span class="ico">▶</span><span class="txt">Hiển thị các bước</span>
+          </button>
+        </div>
         <p class="panel-desc" id="thuong-desc"></p>
         <div class="grid-wrap small">
           <svg class="grid-svg" id="svg-thuong" viewBox="0 0 250 250"></svg>
@@ -115,8 +128,15 @@
 
       <!-- Panel: Que Ha matrix -->
       <div class="panel">
-        <div class="step-label jade">Bước 5b · Ma Trận Quẻ Hạ</div>
-        <h3 class="panel-title" id="ha-title">Ma trận Quẻ Hạ</h3>
+        <div class="panel-head" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:8px;">
+          <div>
+            <div class="step-label jade">Bước 5b · Ma Trận Quẻ Hạ</div>
+            <h3 class="panel-title" id="ha-title">Ma trận Quẻ Hạ</h3>
+          </div>
+          <button class="steps-btn" id="steps-btn-ha" type="button">
+            <span class="ico">▶</span><span class="txt">Hiển thị các bước</span>
+          </button>
+        </div>
         <p class="panel-desc" id="ha-desc"></p>
         <div class="grid-wrap small">
           <svg class="grid-svg" id="svg-ha" viewBox="0 0 250 250"></svg>

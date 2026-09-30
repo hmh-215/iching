@@ -17,11 +17,22 @@ window.KD_MOD["tamy"] = function() {
     toggleStepBox: id => document.getElementById(id)?.classList.toggle('open')
   };
 
-function flyingStarMatrix(gua, centerNumber = 1) {
-  const base = transform(KHAM_BASE, GUA_TRANSFORM[gua]);
-  const shift = centerNumber - 1;
-  return base.map(row => row.map(v => pymod(v - 1 + shift, 9) + 1));
-}
+  const GUA_TRANSFORM = {
+    'Khảm': 'flip_v',
+    'Đoài': 'anti_transpose',
+    'Ly':   'flip_h',
+    'Cấn':  'transpose',
+    'Khôn': 'transpose',
+    'Chấn': 'rot180',
+    'Tốn':  'e',
+    'Càn':  'anti_transpose',
+  };
+
+  function flyingStarMatrix(gua, centerNumber = 1) {
+    const base = transform(KHAM_BASE, GUA_TRANSFORM[gua]);
+    const shift = centerNumber - 1;
+    return base.map(row => row.map(v => pymod(v - 1 + shift, 9) + 1));
+  }
 
 // --- Dữ liệu tham khảo ---
 

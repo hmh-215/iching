@@ -676,7 +676,9 @@ function cast() {
   if (r.binaryCungSinh) renderBars('bars-sinh', r.binaryCungSinh, 'qcs'); else document.getElementById('bars-sinh').innerHTML = '';
 
   document.getElementById('sinhkhac-value').textContent = r.sinhKhacResult.text;
-  document.getElementById('sinhkhac-chip-wrap').innerHTML = `<span class="sinh-khac-chip ${chipClass(r.sinhKhacResult.tag)}">${r.sinhKhacResult.tag.toUpperCase()}</span>`;
+  const tagLabels = { best: 'Rất tốt', good: 'Tốt', neutral: 'Trung bình', bad: 'Xấu', worst: 'Rất xấu', unknown: 'Không rõ' };
+  const chipText = tagLabels[r.sinhKhacResult.tag] || r.sinhKhacResult.tag;
+  document.getElementById('sinhkhac-chip-wrap').innerHTML = `<span class="sinh-khac-chip ${chipClass(r.sinhKhacResult.tag)}">${chipText}</span>`;
 
   if (r.bienKhiResult.bienKhi) {
     document.getElementById('bienkhi-value').textContent = r.bienKhiResult.bienKhi;

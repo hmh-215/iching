@@ -9,6 +9,9 @@
   --gold:#c19a4b; --gold-dim:rgba(193,154,75,0.28);
   --jade:#5b9686; --jade-dim:rgba(91,150,134,0.28);
   --cinnabar:#c24632; --cinnabar-dim:rgba(194,70,50,0.25);
+  --gainsboro:#dcdcdc; --gainsboro-dim:#333333;
+  --royalblue:#4169e1; --royalblue-dim:#101b3b;
+  --amethyst:#a45ee5; --amethyst-dim:#57115e;
   --line:rgba(231,223,201,0.12); --line-strong:rgba(231,223,201,0.22);
   --radius:4px;
   --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(193,154,75,0.06), transparent 60%), #14151a;
@@ -20,6 +23,9 @@
   --gold:#9e7526; --gold-dim:rgba(158,117,38,0.15);
   --jade:#3b7566; --jade-dim:rgba(59,117,102,0.15);
   --cinnabar:#b03420; --cinnabar-dim:rgba(176,52,32,0.15);
+  --gainsboro:#333333; --gainsboro-dim:#f0f0f0;
+  --royalblue:#2243a3; --royalblue-dim:rgba(34,67,163,0.15);
+  --amethyst:#6f2fae; --amethyst-dim:rgba(111,47,174,0.15);
   --line:rgba(0,0,0,0.10); --line-strong:rgba(0,0,0,0.20);
   --radius:4px;
   --bg-gradient: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(158,117,38,0.08), transparent 60%), #f4f1ea;
@@ -292,10 +298,10 @@ a:hover{color:var(--cinnabar);}
   display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px;
   padding:2px 8px; border-radius:2px; background:var(--cinnabar-dim); color:var(--cinnabar); border:1px solid var(--cinnabar);
 }
-.badge-kim{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:rgba(220,220,220,0.12);color:#dcdcdc;border:1px solid #dcdcdc;}
+.badge-kim{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--gainsboro-dim);color:var(--gainsboro);border:1px solid var(--gainsboro);}
 .badge-moc{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--jade-dim);color:var(--jade);border:1px solid var(--jade);}
-.badge-thuy{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:rgba(65,105,225,0.15);color:#4169e1;border:1px solid #4169e1;}
+.badge-thuy{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--royalblue-dim);color:var(--royalblue);border:1px solid var(--royalblue);}
 .badge-hoa{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--cinnabar-dim);color:var(--cinnabar);border:1px solid var(--cinnabar);}
 .badge-tho{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold);}
-.badge-soul{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:rgba(164,94,229,0.18);color:#a45ee5;border:1px solid #a45ee5;}
+.badge-soul{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 8px;border-radius:2px;background:var(--amethyst-dim);color:var(--amethyst);border:1px solid var(--amethyst);}
 

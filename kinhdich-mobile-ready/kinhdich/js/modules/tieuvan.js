@@ -365,7 +365,7 @@ DIA_CHI.forEach(c => selNamTinh.add(new Option(`Năm ${c}`, c)));
 
 const PRESETS = [
   { gender: 'female', year: 1979, month: 9, binary: '101001', namtinh: 'Ngọ' },
-  { gender: 'male', year: 1990, month: 4, binary: '110010', namtinh: 'Tý' },
+  { gender: 'male', year: 1973, month: 7, binary: '110111', namtinh: 'Mùi' },
 ];
 
 document.querySelectorAll('.preset-btn').forEach(btn => {

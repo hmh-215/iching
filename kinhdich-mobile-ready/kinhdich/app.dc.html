@@ -61,9 +61,6 @@
         </div>
       </div>
       <div style="display:flex;gap:8px;flex:0 0 auto;align-items:center;">
-        <button type="button" onClick="{{ lockApp }}" title="Khóa ứng dụng (Yêu cầu mã PIN)" style="background:var(--ink-800);border:1px solid var(--line-strong);color:var(--gold);height:38px;padding:0 10px;border-radius:var(--radius);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12px;display:flex;align-items:center;gap:4px;" style-hover="border-color:var(--gold);">
-          <span>🔒</span> <span>Khóa</span>
-        </button>
         <button type="button" onClick="{{ toggleTheme }}" title="Đổi giao diện Sáng / Tối" style="background:var(--ink-800);border:1px solid var(--line-strong);color:var(--paper);height:38px;padding:0 12px;border-radius:var(--radius);cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12px;display:flex;align-items:center;gap:6px;" style-hover="border-color:var(--gold);">
           <span>{{ themeIcon }}</span> <span>{{ themeText }}</span>
         </button>
@@ -268,12 +265,12 @@ const PATHS = {
 const CAN = ['Giáp','Ất','Bính','Đinh','Mậu','Kỷ','Canh','Tân','Nhâm','Quý'];
 const CHI = ['Tý','Sửu','Dần','Mão','Thìn','Tỵ','Ngọ','Mùi','Thân','Dậu','Tuất','Hợi'];
 
-/* ---------- Danh mục 4 nhóm theo Ảnh 1 ---------- */
+/* ---------- Danh mục 4 nhóm ---------- */
 const CATEGORIES = [
-  { catKey:'cat00', title:'Kiến thức (00-...)' },
-  { catKey:'cat01', title:'Lập quẻ (01-...)' },
-  { catKey:'cat02', title:'Tạp dụng (02-...)' },
-  { catKey:'cat03', title:'Chân linh nhân độn (03-...)' },
+  { catKey:'cat00', title:'Kiến thức' },
+  { catKey:'cat01', title:'Gieo quẻ' },
+  { catKey:'cat02', title:'Tạp dụng' },
+  { catKey:'cat03', title:'Chân linh nhân đồ độn' },
 ];
 
 /* ---------- 14 Module dịch học chuẩn hóa ---------- */

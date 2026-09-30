@@ -22,7 +22,6 @@
 - **Cơ chế băm bảo mật**: Sử dụng Web Crypto API với thuật toán **SHA-256** kết hợp chuỗi Salt chuyên biệt, không lưu trữ mật khẩu dạng văn bản rõ (plaintext).
 - **Xác thực mỗi lần truy cập**: Mặc định yêu cầu xác thực mỗi khi mở hoặc tải lại trang web để bảo mật dữ liệu học thuật.
 - **Trải nghiệm người dùng**: Giao diện đăng nhập trang nhã với ô nhập mật khẩu bảo mật, hỗ trợ bật/tắt hiển thị mật khẩu (👁), phím tắt Enter, hiệu ứng rung (shake animation) khi nhập sai.
-- **Nút Khóa nhanh**: Nút biểu tượng ổ khóa 🔒 trên thanh Header cho phép người dùng chủ động khóa phiên bất kỳ lúc nào.
 
 <hr>
 
@@ -75,7 +74,7 @@ Bao gồm các file tra cứu, luận giải kiến thức nền tảng về Bá
   </tbody>
 </table>
 
-### 2. Khối Công Cụ Lập Quẻ
+### 2. Khối Công Cụ Gieo Quẻ
 Bao gồm các công cụ hỗ trợ gieo quẻ theo 2 phương pháp dựa trên giờ động tâm và chu kỳ Lục Thập Hoa Giáp:
 
 <table>
@@ -100,7 +99,7 @@ Bao gồm các công cụ hỗ trợ gieo quẻ theo 2 phương pháp dựa trê
   </tbody>
 </table>
 
-### 3. Khối Công Cụ Tiện Ích & Ứng Dụng
+### 3. Khối Công Cụ Tạp Dụng
 Các công cụ tính toán mở rộng và ứng dụng thực tiễn trong đời sống:
 
 <table>
@@ -145,7 +144,7 @@ Các công cụ tính toán mở rộng và ứng dụng thực tiễn trong đ�
   </tbody>
 </table>
 
-### 4. Khối Chân Linh Nhân Độn
+### 4. Khối Chân Linh Nhân Đồ Độn
 Hệ thống tính quẻ cao cấp tích hợp đa phương pháp:
 
 <table>

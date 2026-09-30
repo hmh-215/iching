@@ -21,32 +21,32 @@ window.KD_MOD["bienkhi"] = function() {
     }
   }, true);
 
-  // ---- Search functionality ----
+  // ---- Search functionality (optional) ----
   const searchInput = host.querySelector('#search-input');
-  const items = Array.from(host.querySelectorAll('details[name="bien-khi-item"]')).map(el => ({
-    el,
-    text: norm(el.innerText)
-  }));
-  const groups = host.querySelectorAll('details.que-group');
-
-  function applyFilter(rawQuery) {
-    const filter = norm(rawQuery);
-
-    items.forEach(({ el, text }) => {
-      const isMatch = text.includes(filter);
-      el.style.display = isMatch ? '' : 'none';
-      if (!isMatch) el.open = false;
-    });
-
-    groups.forEach((g) => {
-      const visibleItems = g.querySelectorAll('details[name="bien-khi-item"]:not([style*="display: none"])');
-      const hit = visibleItems.length > 0;
-      g.style.display = hit ? '' : 'none';
-      if (filter !== '') g.open = hit;
-    });
-  }
-
   if (searchInput) {
+    const items = Array.from(host.querySelectorAll('details[name="bien-khi-item"]')).map(el => ({
+      el,
+      text: norm(el.innerText)
+    }));
+    const groups = host.querySelectorAll('details.que-group');
+
+    function applyFilter(rawQuery) {
+      const filter = norm(rawQuery);
+
+      items.forEach(({ el, text }) => {
+        const isMatch = text.includes(filter);
+        el.style.display = isMatch ? '' : 'none';
+        if (!isMatch) el.open = false;
+      });
+
+      groups.forEach((g) => {
+        const visibleItems = g.querySelectorAll('details[name="bien-khi-item"]:not([style*="display: none"])');
+        const hit = visibleItems.length > 0;
+        g.style.display = hit ? '' : 'none';
+        if (filter !== '') g.open = hit;
+      });
+    }
+
     searchInput.addEventListener('input', (e) => applyFilter(e.target.value));
   }
 
