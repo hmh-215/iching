@@ -1,0 +1,149 @@
+<div class="wrap">
+
+  <div class="header-bar">
+    <div>
+      <div class="eyebrow">Đổi lịch · Lịch pháp</div>
+      <h1>Đổi lịch Âm ⇄ Dương</h1>
+    </div>
+  </div>
+
+  <p class="subtitle">Đổi Dương lịch ⇄ Âm lịch Việt Nam theo giờ UTC+7, phạm vi 1800–2199. Kèm can chi ngày – tháng – năm – giờ, 24 tiết khí, ngày và giờ hoàng đạo. Sóc và tiết khí tính bằng thiên văn chính xác cao.</p>
+  <div class="rule"></div>
+
+  <!-- ── Đổi ngày ── -->
+  <div class="console">
+    <div class="console-grid">
+      <div class="field">
+        <label for="al-mode">Chiều đổi</label>
+        <select id="al-mode">
+          <option value="s2l">Dương → Âm</option>
+          <option value="l2s">Âm → Dương</option>
+        </select>
+      </div>
+      <div class="field al-wide" data-al-mode="s2l">
+        <label for="al-solar">Ngày dương lịch</label>
+        <input type="date" id="al-solar" min="1800-01-01" max="2199-12-31">
+      </div>
+      <div class="field" data-al-mode="l2s" hidden>
+        <label for="al-lday">Ngày âm</label>
+        <select id="al-lday"></select>
+      </div>
+      <div class="field" data-al-mode="l2s" hidden>
+        <label for="al-lmonth">Tháng âm</label>
+        <select id="al-lmonth"></select>
+      </div>
+      <div class="field" data-al-mode="l2s" hidden>
+        <label for="al-lyear">Năm âm</label>
+        <input type="number" id="al-lyear" min="1800" max="2199" step="1" placeholder="Ví dụ 2026">
+      </div>
+      <div class="field al-check" data-al-mode="l2s" hidden>
+        <label for="al-leap">Tháng nhuận</label>
+        <span class="al-check-row"><input type="checkbox" id="al-leap"> <span id="al-leap-hint" class="al-leap-hint"></span></span>
+      </div>
+    </div>
+    <div class="console-actions">
+      <div class="presets">
+        <button type="button" class="preset-btn" data-al-preset="today">Hôm nay</button>
+        <button type="button" class="preset-btn" data-al-preset="tet">Tết năm nay</button>
+        <button type="button" class="preset-btn" data-al-preset="trungthu">Rằm tháng Tám</button>
+      </div>
+      <button type="button" class="cast-btn" id="cast-btn">Đổi ngày</button>
+    </div>
+  </div>
+
+  <div class="error-msg" id="al-error"></div>
+  <div class="al-result" id="al-result" hidden></div>
+
+  <!-- ── Tờ lịch + lịch tháng ── -->
+  <div class="al-board">
+    <aside class="al-leaf" id="al-leaf" aria-live="polite">
+      <div class="al-leaf-head"><span id="al-lf-month"></span><span class="al-wd" id="al-lf-week"></span></div>
+      <div class="al-leaf-day" id="al-lf-day"></div>
+      <div class="al-leaf-hol" id="al-lf-hol"></div>
+      <div class="al-perf" aria-hidden="true"></div>
+      <div class="al-leaf-lunar">
+        <div class="al-lunar-col">
+          <div class="al-lbl" id="al-lf-lmonth"></div>
+          <div class="al-lunar-day" id="al-lf-lday"></div>
+          <div class="al-lbl" id="al-lf-llen"></div>
+        </div>
+        <dl class="al-canchi">
+          <dt>Năm</dt><dd id="al-cc-year"></dd>
+          <dt>Tháng</dt><dd id="al-cc-month"></dd>
+          <dt>Ngày</dt><dd id="al-cc-day"></dd>
+          <dt>Giờ đầu</dt><dd id="al-cc-hour"></dd>
+        </dl>
+      </div>
+      <p class="al-lunar-text" id="al-lf-text"></p>
+      <div class="al-facts">
+        <div class="al-fact"><span>Tiết khí</span><b id="al-f-term"></b></div>
+        <div class="al-fact"><span>Ngày</span><b id="al-f-than"></b></div>
+      </div>
+      <div>
+        <div class="al-mini-title">Giờ hoàng đạo</div>
+        <ul class="al-hours" id="al-hours"></ul>
+      </div>
+      <div class="al-leaf-nav">
+        <button type="button" class="al-btn" id="al-prev-day" aria-label="Ngày trước">‹</button>
+        <button type="button" class="al-btn al-btn-solid" id="al-today">Hôm nay</button>
+        <button type="button" class="al-btn" id="al-next-day" aria-label="Ngày sau">›</button>
+      </div>
+    </aside>
+
+    <section class="al-month" aria-label="Lịch tháng">
+      <div class="al-mnav">
+        <button type="button" class="al-btn al-icon" id="al-prev-month" aria-label="Tháng trước">‹</button>
+        <div class="al-mtitle">
+          <select id="al-vmonth" aria-label="Tháng dương lịch"></select>
+          <input type="number" id="al-vyear" min="1800" max="2199" aria-label="Năm dương lịch">
+        </div>
+        <button type="button" class="al-btn al-icon" id="al-next-month" aria-label="Tháng sau">›</button>
+      </div>
+      <p class="al-msub" id="al-msub"></p>
+      <div class="al-grid-wrap"><div class="al-grid" id="al-grid" role="grid" aria-label="Các ngày trong tháng"></div></div>
+      <ul class="al-legend">
+        <li><span class="al-lg al-lg-m1">1/9</span> mùng 1 tháng âm</li>
+        <li><span class="al-lg al-lg-hol"></span> ngày lễ</li>
+        <li><span class="al-lg al-lg-hd"></span> ngày hoàng đạo</li>
+        <li><span class="al-lg al-lg-today"></span> hôm nay</li>
+        <li><span class="al-lg al-lg-term">Hàn lộ</span> tiết khí bắt đầu</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- ── Năm âm lịch ── -->
+  <div class="al-year">
+    <div class="al-year-head">
+      <div class="eyebrow" id="al-y-eyebrow">Năm âm lịch</div>
+      <div class="al-year-title" id="al-y-title"></div>
+      <div class="al-year-sub" id="al-y-sub"></div>
+    </div>
+    <div class="al-year-grid">
+      <div class="al-tbl-wrap">
+        <div class="al-mini-title" id="al-t-months-title">Các tháng âm lịch</div>
+        <table class="al-table">
+          <thead><tr><th>Tháng</th><th>Can chi</th><th>Mùng 1</th><th class="al-num">Số ngày</th></tr></thead>
+          <tbody id="al-t-months"></tbody>
+        </table>
+      </div>
+      <div class="al-tbl-wrap">
+        <div class="al-mini-title" id="al-t-terms-title">24 tiết khí</div>
+        <table class="al-table">
+          <thead><tr><th>Tiết khí</th><th class="al-num">Kinh độ</th><th>Thời điểm (UTC+7)</th></tr></thead>
+          <tbody id="al-t-terms"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Diễn giải: vỏ app đưa sang Sổ tay ── -->
+  <details class="steps" open>
+    <summary>Các bước tính âm lịch cho ngày đang chọn</summary>
+    <div class="steps-body" id="al-steps"></div>
+  </details>
+
+  <footer>
+    <span>Âm lịch Việt Nam — quy tắc Hồ Ngọc Đức · Sóc theo Meeus ch.49 · Mặt Trời theo VSOP87D · khớp từng ngày 1800–2199 với lịch chính xác cao sxwnl</span>
+    <span id="input-echo"></span>
+  </footer>
+</div>

@@ -7,7 +7,7 @@ if ([string]::IsNullOrEmpty($root)) { $root = (Get-Location).Path }
 
 $slugs = @(
     'luan8que', 'luan64que', 'luan10sao', 'bienkhi', 'luan9sao', 'khiclndd',
-    'dothu', 'nguling', 'maphuong', 'cungsinh', 'tieuvan', 'tamtuyet', 'tamy', 'dichtu', 'chanlinh'
+    'dothu', 'nguling', 'maphuong', 'cungsinh', 'tieuvan', 'tamtuyet', 'tamy', 'dichtu', 'chanlinh', 'amlich'
 )
 
 $cssFiles = @('css/core/kd.css')

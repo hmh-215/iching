@@ -39,6 +39,8 @@
 <link rel="stylesheet" href="css/modules/dichtu.css">
 <!-- Nhóm 03: Chân linh nhân độn -->
 <link rel="stylesheet" href="css/modules/chanlinh.css">
+<!-- Nhóm 04: Đổi lịch -->
+<link rel="stylesheet" href="css/modules/amlich.css">
 <!-- Core Architecture (MVVM & Shared Services) -->
 <script src="js/core/auth.js"></script>
 <script src="js/core/util.js"></script>
@@ -161,7 +163,7 @@
           </button>
         </div>
 
-        <!-- 4 Nhóm Accordion: Mặc định ban đầu đều collapse theo Ảnh 1 -->
+        <!-- 5 Nhóm Accordion: Mặc định ban đầu đều collapse theo Ảnh 1 -->
         <div style="flex:1;overflow-y:auto;padding:6px 0 30px;">
           <sc-for list="{{ categories }}" as="c">
             <div style="border-bottom:1px solid var(--line);">
@@ -265,12 +267,13 @@ const PATHS = {
 const CAN = ['Giáp','Ất','Bính','Đinh','Mậu','Kỷ','Canh','Tân','Nhâm','Quý'];
 const CHI = ['Tý','Sửu','Dần','Mão','Thìn','Tỵ','Ngọ','Mùi','Thân','Dậu','Tuất','Hợi'];
 
-/* ---------- Danh mục 4 nhóm ---------- */
+/* ---------- Danh mục 5 nhóm ---------- */
 const CATEGORIES = [
   { catKey:'cat00', title:'Kiến thức' },
   { catKey:'cat01', title:'Gieo quẻ' },
   { catKey:'cat02', title:'Tạp dụng' },
   { catKey:'cat03', title:'Chân linh nhân đồ độn' },
+  { catKey:'cat04', title:'Đổi lịch' },
 ];
 
 /* ---------- 14 Module dịch học chuẩn hóa ---------- */
@@ -297,6 +300,9 @@ const MODS = [
 
   // 03- Chân linh nhân độn
   { id:'chanlinh',  name:'Chân linh nhân độn',   cat:'cat03' },
+
+  // 04- Đổi lịch
+  { id:'amlich',    name:'Âm lịch ⇄ Dương lịch', cat:'cat04' },
 ];
 
 const PROFILE_MAP = {
@@ -324,6 +330,7 @@ const PROFILE_MAP = {
   bienkhi: () => ({}),
   luan9sao: () => ({}),
   khiclndd: () => ({}),
+  amlich: () => ({}),
 };
 
 const MOD_HINT = {
@@ -342,6 +349,7 @@ const MOD_HINT = {
   bienkhi:'Tra cứu ý nghĩa Bát khí Ngũ Linh',
   luan9sao:'Tra cứu ý nghĩa Cửu tinh Chân Linh',
   khiclndd:'Tra cứu ý nghĩa Bát khí Chân Linh Nhân Độn',
+  amlich:'Đổi ngày Dương ⇄ Âm — hồ sơ không áp dụng',
 };
 
 const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');

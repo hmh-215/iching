@@ -17,7 +17,7 @@
 
 ## 📚 Danh Mục Module Ứng Dụng
 
-Hệ thống được chia thành 4 phân hệ chính theo chuẩn kiến trúc phân cấp:
+Hệ thống được chia thành 5 phân hệ chính theo chuẩn kiến trúc phân cấp:
 
 ### 1. Khối Tài Liệu Kiến Thức
 Bao gồm các tài liệu tra cứu, luận giải kiến thức nền tảng về Bát Quái, Thần Sát, 64 Quẻ và Biến Khí:
@@ -150,6 +150,26 @@ Hệ thống tính quẻ cao cấp tích hợp đa phương pháp:
       <td><code>chanlinh</code></td>
       <td>Chân Linh Toàn Diện</td>
       <td>Công cụ tính quẻ và khí theo phương pháp <b>Chân Linh Nhân Đồ Độn</b> toàn diện: 3 Tab tương tác gồm Quẻ Bản Mệnh, Quẻ Niên Vận và Quẻ Tuyển Trạch (chuẩn hóa ma trận Thiên Can theo Nam/Nữ Âm Dương).</td>
+    </tr>
+  </tbody>
+</table>
+
+### 5. Khối Đổi Lịch
+Công cụ lịch pháp độc lập, tách riêng khỏi Tạp Dụng:
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Mã Module</th>
+      <th align="left">Tên Phân Hệ</th>
+      <th align="left">Mô Tả Nội Dung Chi Tiết</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>amlich</code></td>
+      <td>Âm Lịch ⇄ Dương Lịch</td>
+      <td>Công cụ <b>đổi Dương lịch ⇄ Âm lịch</b> Việt Nam (UTC+7, 1800–2199): lịch tháng, can chi ngày – tháng – năm – giờ, 24 tiết khí, ngày và giờ hoàng đạo, diễn giải từng bước. Sóc và tiết khí tính bằng thiên văn chính xác cao (Meeus ch.49, VSOP87D), khớp từng ngày với lịch sxwnl.</td>
     </tr>
   </tbody>
 </table>
