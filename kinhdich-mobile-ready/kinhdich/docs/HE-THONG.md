@@ -74,6 +74,26 @@ Sửa đúng 2 chỗ trong script gốc, không đụng thuật toán:
 Sau bước 4 mỗi module còn lại gần như chỉ phần thuật toán riêng, đủ để xem xét
 bỏ hẳn `html/modules/*.frag.html` và viết lại giao diện module bằng chính hệ thống của vỏ app.
 
+## Module độc lập: `amlich` (nhóm Đổi lịch)
+
+`amlich` (đổi Dương ⇄ Âm lịch) nằm trong nhóm riêng `cat04` — **Đổi lịch**, không
+thuộc Tạp dụng. Module cố ý **không** tham gia kế hoạch gỡ trùng ở trên: nó có bảng
+`CAN` / `CHI` / `TIET_KHI` riêng và không đọc `js/core`, không gọi module khác,
+cũng không được module khác gọi tới. Khi gỡ trùng, bỏ qua file này.
+
+- `js/modules/amlich.js` trong repo là bản **đã obfuscate** (javascript-obfuscator,
+  string array base64). Bản đọc được gồm 2 phần trong một closure: thư viện lịch
+  (giống hệt bản gốc `amlich.js` / `amlich.py` có kèm kiểm thử) và giao diện
+  `KD_MOD['amlich']`. Bản đọc được không đưa vào repo; muốn sửa thì sửa bản gốc,
+  chạy kiểm thử, rồi obfuscate lại.
+- Thiên văn chính xác cao (Sóc: Meeus ch.49; Mặt Trời: VSOP87D; ΔT Espenak–Meeus),
+  đã đối chiếu từng ngày 1800–2199 với sxwnl. Công thức rút gọn của amlich.js cổ
+  điển sai 146 tháng trong khoảng này (ví dụ đặt nhuận năm 2023 sau tháng Giêng),
+  nên đừng thay lõi bằng công thức đó.
+- Nối với vỏ app chỉ qua các điểm chuẩn: `#cast-btn` + `#input-echo` (Lịch sử),
+  `window.__KD_CAST` (khôi phục lịch sử, đổi sáng/tối), `details.steps` (Sổ tay).
+  `PROFILE_MAP.amlich` để trống: hồ sơ dùng chung không điền vào module này.
+
 ## Chỗ vỏ app đã thay thế cho module
 
 - nút sáng/tối riêng của từng tool: vẫn còn trong DOM (script gốc cần) nhưng ẩn
