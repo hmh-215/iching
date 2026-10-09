@@ -81,8 +81,8 @@ thuộc Tạp dụng. Module cố ý **không** tham gia kế hoạch gỡ trùn
 `CAN` / `CHI` / `TIET_KHI` riêng và không đọc `js/core`, không gọi module khác,
 cũng không được module khác gọi tới. Khi gỡ trùng, bỏ qua file này.
 
-- `js/modules/amlich.js` trong repo là bản **đã obfuscate** (javascript-obfuscator,
-  string array base64). Bản đọc được gồm 2 phần trong một closure: thư viện lịch
+- `js/modules/amlich.js` trong repo là bản **đã obfuscate** (xem mục "JS trong repo
+  và payload" bên dưới). Bản đọc được gồm 2 phần trong một closure: thư viện lịch
   (giống hệt bản gốc `amlich.js` / `amlich.py` có kèm kiểm thử) và giao diện
   `KD_MOD['amlich']`. Bản đọc được không đưa vào repo; muốn sửa thì sửa bản gốc,
   chạy kiểm thử, rồi obfuscate lại.
@@ -93,6 +93,16 @@ cũng không được module khác gọi tới. Khi gỡ trùng, bỏ qua file n
 - Nối với vỏ app chỉ qua các điểm chuẩn: `#cast-btn` + `#input-echo` (Lịch sử),
   `window.__KD_CAST` (khôi phục lịch sử, đổi sáng/tối), `details.steps` (Sổ tay).
   `PROFILE_MAP.amlich` để trống: hồ sơ dùng chung không điền vào module này.
+
+## JS trong repo và payload
+
+Mọi file `js/runtime/support.js`, `js/core/*.js`, `js/modules/*.js` trong repo đều
+là bản **đã obfuscate** (javascript-obfuscator 4.1.1: string array base64, tên hex,
+`\x` escape, số thành biểu thức; không control-flow flattening). Chúng được sinh từ
+đúng mã nguồn đang chạy trên bản deploy, nên `bundle.ps1` dựng lại đúng app đang
+chạy, kể cả `auth.js` bỏ qua cổng mật khẩu thứ hai khi gatekeeper đã giải mã
+(`window.__KD_ENCRYPTED_AUTH_PASSED`). Payload mã hoá trong `index.html` chứa chính
+các bản obfuscate này.
 
 ## Chỗ vỏ app đã thay thế cho module
 
