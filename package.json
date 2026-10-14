@@ -1,0 +1,15 @@
+{
+  "name": "kinhdich-webapp",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dịch Học Ngũ Linh — đóng gói 1 file HTML",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "build:obf": "node tools/build.mjs --obfuscate"
+  },
+  "devDependencies": {
+    "csso": "5.0.5",
+    "javascript-obfuscator": "5.9.0"
+  }
+}

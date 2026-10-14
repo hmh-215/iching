@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+<iframe id="f" src="kinh-dich-ngu-linh.html" style="width:1000px;height:800px;"></iframe>
+<div id="debug-out"></div>
+<script>
+window.onload = async () => {
+  const debug = document.getElementById('debug-out');
+  const log = msg => { debug.innerHTML += '<div>' + msg + '</div>'; console.log(msg); };
+  
+  try {
+    await new Promise(r => setTimeout(r, 2000));
+    const f = document.getElementById('f');
+    const fwin = f.contentWindow;
+    const fdoc = f.contentDocument;
+
+    log("Step 1: Frame loaded. Title = " + fdoc.title);
+    log("KD_AUTH exists: " + !!fwin.KD_AUTH);
+    
+    // Enter PIN 300703
+    for (const digit of "300703") {
+      const btn = fdoc.querySelector('.kd-auth-btn[data-val="' + digit + '"]');
+      if (btn) btn.click();
+    }
+    await new Promise(r => setTimeout(r, 800));
+
+    log("Overlay visible: " + !!fdoc.getElementById('kd-auth-overlay'));
+    
+    // Check kd-mod host
+    const host = fdoc.querySelector('.kd-mod');
+    log("host found: " + !!host);
+    if (host) {
+      log("host class: " + host.className);
+      log("host data-mod: " + host.getAttribute('data-mod'));
+      log("host innerHTML length: " + host.innerHTML.length);
+      log("host innerHTML snippet: " + host.innerHTML.substring(0, 300));
+    }
+
+    // Check all .kd-mod elements
+    const allMods = fdoc.querySelectorAll('.kd-mod');
+    log("all .kd-mod count: " + allMods.length);
+    allMods.forEach((m, idx) => {
+      log("mod[" + idx + "] data-mod=" + m.getAttribute('data-mod') + " class=" + m.className + " innerHTML len=" + m.innerHTML.length);
+    });
+
+    // Check DarkCore component
+    log("fwin.getDC: " + typeof fwin.getDC);
+    const dcRoot = fdoc.querySelector('[data-dc-root]') || fdoc.getElementById('dc-root') || fdoc.body.firstElementChild;
+    log("dcRoot tag: " + (dcRoot ? dcRoot.tagName : 'null'));
+
+    // Check localStorage
+    log("localStorage kd.settings: " + fwin.localStorage.getItem('kd.settings'));
+    log("localStorage kd.profile: " + fwin.localStorage.getItem('kd.profile'));
+
+    // Check if error in host
+    log("host inner text: " + (host ? host.innerText : 'null'));
+  } catch (err) {
+    log("DIAG ERROR: " + (err.stack || err.message));
+  }
+};
+</script>
+</body>
+</html>

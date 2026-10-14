@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>I Ching Automated Test Suite</title>
+</head>
+<body>
+  <h1>Running tests...</h1>
+  <div id="test-results"></div>
+  <iframe id="app-frame" style="width:1200px;height:900px;border:1px solid #ccc;"></iframe>
+
+  <script>
+    const results = [];
+    function assert(name, condition, extra = '') {
+      results.push({ name, pass: !!condition, extra });
+      console.log((condition ? '[PASS] ' : '[FAIL] ') + name + (extra ? ' - ' + extra : ''));
+    }
+
+    async function wait(ms) {
+      return new Promise(r => setTimeout(r, ms));
+    }
+
+    async function runSuite() {
+      const summaryEl = document.getElementById('test-results');
+      try {
+        const frame = document.getElementById('app-frame');
+        frame.src = 'kinh-dich-ngu-linh.html';
+
+        await new Promise(resolve => { frame.onload = resolve; });
+        await wait(2000);
+
+        const fdoc = frame.contentDocument;
+        const fwin = frame.contentWindow;
+
+        const capturedErrors = [];
+        fwin.addEventListener('error', e => capturedErrors.push(e.message + ' at ' + e.filename + ':' + e.lineno));
+        const origErr = fwin.console.error;
+        fwin.console.error = function(...args) {
+          capturedErrors.push(args.map(a => (a && a.stack) ? a.stack : String(a)).join(' '));
+          origErr.apply(fwin.console, args);
+        };
+
+        // Test 1: Password Modal is displayed
+        const overlay = fdoc.getElementById('kd-auth-overlay');
+        assert('Auth overlay present on start', !!overlay);
+        const title = fdoc.querySelector('.kd-auth-title');
+        assert('Auth modal title exists', !!title);
+
+        // Test 2: Input and controls exist
+        const pwdInput = fdoc.getElementById('kd-auth-input');
+        const eyeBtn = fdoc.getElementById('kd-auth-toggle-eye');
+        const submitBtn = fdoc.getElementById('kd-auth-submit-btn');
+        assert('Password input field exists', !!pwdInput);
+        assert('Eye toggle button exists', !!eyeBtn);
+        assert('Submit button exists', !!submitBtn);
+
+        // Test 3: Enter wrong password "WrongPassword@999"
+        pwdInput.value = 'WrongPassword@999';
+        submitBtn.click();
+        await wait(250);
+
+        const errorMsg = fdoc.getElementById('kd-auth-error-msg');
+        assert('Wrong password shows error', errorMsg && errorMsg.textContent.includes('không chính xác'));
+
+        // Test 4: Enter correct password "Kinhdich@2026"
+        pwdInput.value = 'Kinhdich@2026';
+        submitBtn.click();
+        await wait(450);
+
+        assert('Correct password unlocks overlay', !fdoc.getElementById('kd-auth-overlay') || fdoc.getElementById('kd-auth-overlay').style.opacity === '0');
+        assert('KD_AUTH isAuthorized is true in memory', fwin.KD_AUTH && fwin.KD_AUTH.isAuthorized() === true);
+
+        // Test 5: Verify Header Lock button is removed
+        const headerLockBtn = fdoc.querySelector('header button[title*="Khóa"]');
+        assert('Header lock button removed', !headerLockBtn);
+
+        // Test 6: Verify Categories clean titles (no parentheses)
+        if (fwin.CATEGORIES) {
+          const titles = fwin.CATEGORIES.map(c => c.title);
+          assert('Category titles have no parentheses', titles.every(t => !t.includes('(')), titles.join(', '));
+        }
+
+        // Test 7: Verify KD_CORE services
+        assert('KD_DATA loaded', !!fwin.KD_DATA && !!fwin.KD_DATA.DICH_64_BY_PAIR);
+        assert('KD_DICH loaded', !!fwin.KD_DICH && typeof fwin.KD_DICH.getName === 'function');
+        assert('KD_UTIL loaded', !!fwin.KD_UTIL && typeof fwin.KD_UTIL.mod === 'function');
+        assert('KD_GRID loaded', !!fwin.KD_GRID && typeof fwin.KD_GRID.renderBars === 'function');
+        assert('KD_FLYINGSTAR loaded', !!fwin.KD_FLYINGSTAR && typeof fwin.KD_FLYINGSTAR.transform === 'function');
+
+        // Test 8: Verify 64 Hexagram lookup
+        const queThuanCan = fwin.KD_DICH.getName('Càn', 'Càn');
+        assert('Hexagram name Càn_Càn is Thuần Càn', queThuanCan === 'Thuần Càn');
+        const queDiaThienThai = fwin.KD_DICH.getName('Khôn', 'Càn');
+        assert('Hexagram name Khôn_Càn is Địa Thiên Thái', queDiaThienThai === 'Địa Thiên Thái');
+
+        // Test 9: Verify initial module (Ngũ Linh)
+        const app = fwin.__KD_APP;
+        assert('App instance accessible', !!app);
+
+        if (app && typeof app.load === 'function') {
+          await app.load('nguling');
+          await wait(300);
+        }
+
+        let ngulingHost = null;
+        let castBtn = null;
+        for (let i = 0; i < 25; i++) {
+          ngulingHost = fdoc.querySelector('.kd-mod[data-mod="nguling"]');
+          castBtn = ngulingHost ? ngulingHost.querySelector('#cast-btn') : null;
+          if (castBtn) break;
+          await wait(200);
+        }
+        assert('Ngũ Linh module mounted', !!ngulingHost);
+        const hostSummary = ngulingHost ? ('HTML len: ' + ngulingHost.innerHTML.length + ', errors: ' + capturedErrors.join(' | ')) : 'no host';
+        assert('Ngũ Linh cast button exists', !!castBtn, hostSummary);
+        if (castBtn) {
+          castBtn.click();
+          await wait(400);
+        }
+
+        const ngulingRes = ngulingHost ? ngulingHost.querySelector('#result') : null;
+        assert('Ngũ Linh calculation succeeds', ngulingRes && ngulingRes.style.display !== 'none', 'errors: ' + capturedErrors.join(' | '));
+        const gocFullname = ngulingHost ? ngulingHost.querySelector('#goc-fullname') : null;
+        assert('Ngũ Linh result has hexagram name', !!gocFullname && gocFullname.textContent.trim().length > 0, gocFullname ? gocFullname.textContent : ('errors: ' + capturedErrors.join(' | ')));
+
+        // Test 10: Switch to Đồ Thư module
+        if (app && typeof app.load === 'function') {
+          await app.load('dothu');
+          let dothuHost = null;
+          let dothuCastBtn = null;
+          for (let i = 0; i < 20; i++) {
+            dothuHost = fdoc.querySelector('.kd-mod[data-mod="dothu"]');
+            dothuCastBtn = dothuHost ? dothuHost.querySelector('#cast-btn') : null;
+            if (dothuCastBtn) break;
+            await wait(200);
+          }
+          assert('Đồ Thư module mounted', !!dothuHost);
+          assert('Đồ Thư cast button exists', !!dothuCastBtn);
+          if (dothuCastBtn) {
+            dothuCastBtn.click();
+            await wait(400);
+          }
+
+          const dothuGoc = dothuHost ? (dothuHost.querySelector('#goc-name') || dothuHost.querySelector('#goc-fullname')) : null;
+          const dothuErr = dothuHost ? dothuHost.querySelector('#error-msg') : null;
+          const dothuExtra = (dothuErr ? dothuErr.textContent : '') + ' | ' + capturedErrors.join(' | ');
+          assert('Đồ Thư calculation succeeds', !!dothuGoc && dothuGoc.textContent.trim().length > 0, dothuGoc ? dothuGoc.textContent : dothuExtra);
+
+          const hdVal = dothuHost ? dothuHost.querySelector('#haodong-value') : null;
+          assert('Đồ Thư hao dong is calculated', !!hdVal && hdVal.textContent.includes('Hào'));
+
+          const p1Btn = dothuHost ? dothuHost.querySelector('.preset-btn[data-preset="1"]') : null;
+          if (p1Btn) {
+            p1Btn.click();
+            await wait(300);
+          }
+
+          const dothuGocP1 = dothuHost ? (dothuHost.querySelector('#goc-name') || dothuHost.querySelector('#goc-fullname')) : null;
+          const hdValP1 = dothuHost ? dothuHost.querySelector('#haodong-value') : null;
+          assert('Đồ Thư Preset 1 is Địa Thiên Thái', dothuGocP1 && (dothuGocP1.textContent.includes('Địa Thiên Thái') || dothuGocP1.textContent.includes('Khôn/Càn')), dothuGocP1 ? dothuGocP1.textContent : '');
+          assert('Đồ Thư Preset 1 hao dong is Hào 3', hdValP1 && hdValP1.textContent.includes('Hào 3'), hdValP1 ? hdValP1.textContent : '');
+
+          // Test user case: Giờ Tị, Can Mậu, Ngày 2, Tháng 9 -> Quẻ Cấn (Thuần Cấn)
+          const selGio = dothuHost.querySelector('#sel-gio');
+          const selCan = dothuHost.querySelector('#sel-can');
+          const selNgay = dothuHost.querySelector('#sel-ngay');
+          const selThang = dothuHost.querySelector('#sel-thang');
+          if (selGio && selCan && selNgay && selThang && dothuCastBtn) {
+            const optTi = Array.from(selGio.options).find(o => o.value === 'Tị' || o.value === 'Tỵ');
+            selGio.value = optTi ? optTi.value : 'Tị';
+            selCan.value = 'Mậu';
+            selThang.value = '9';
+            selNgay.value = '2';
+            dothuCastBtn.click();
+            await wait(300);
+            const userGoc = dothuHost.querySelector('#goc-name') || dothuHost.querySelector('#goc-fullname');
+            assert('Đồ Thư Giờ Tỵ Ngày 2 Tháng 9 gives Cấn/Cấn (Thuần Cấn)', userGoc && (userGoc.textContent.includes('Thuần Cấn') || userGoc.textContent.includes('Cấn/Cấn')), userGoc ? userGoc.textContent : '');
+            const allLabels = Array.from(dothuHost.querySelectorAll('#svg-hado text, #svg-lacthu text')).map(t => t.textContent);
+            assert('Đồ Thư does NOT show text Đầu', !allLabels.some(t => t.includes('Đầu')));
+          }
+
+          const stepsBtnThuong = dothuHost ? dothuHost.querySelector('#steps-btn-thuong') : null;
+          const stepsBtnHa = dothuHost ? dothuHost.querySelector('#steps-btn-ha') : null;
+          assert('Đồ Thư step buttons exist', !!stepsBtnThuong && !!stepsBtnHa);
+
+          // Test Đồ Thư: Vẽ đầy đủ 3 quẻ (Gốc, Biến, Hỗ) và hiển thị pop-up luận giải
+          const cardGoc = dothuHost.querySelector('.hexagram-card[data-card-type="goc"]');
+          const cardBien = dothuHost.querySelector('.hexagram-card[data-card-type="bien"]');
+          const cardHo = dothuHost.querySelector('.hexagram-card[data-card-type="ho"]');
+          assert('Đồ Thư Card Quẻ Gốc exists', !!cardGoc);
+          assert('Đồ Thư Card Quẻ Biến exists', !!cardBien);
+          assert('Đồ Thư Card Quẻ Hỗ exists', !!cardHo);
+
+          const barsGoc = dothuHost.querySelectorAll('#bars-goc .bar-row');
+          const barsBien = dothuHost.querySelectorAll('#bars-bien .bar-row');
+          const barsHo = dothuHost.querySelectorAll('#bars-ho .bar-row');
+          assert('Đồ Thư bars-goc has 6 rows', barsGoc.length === 6, 'length=' + barsGoc.length);
+          assert('Đồ Thư bars-bien has 6 rows', barsBien.length === 6, 'length=' + barsBien.length);
+          assert('Đồ Thư bars-ho has 6 rows', barsHo.length === 6, 'length=' + barsHo.length);
+
+          const dynamicRowGoc = dothuHost.querySelector('#bars-goc .bar-row.active, #bars-goc .bar-row.dynamic');
+          assert('Đồ Thư Quẻ Gốc marks active/dynamic hao', !!dynamicRowGoc);
+
+          // Kiểm tra Pop-up Luận Giải Quẻ Gốc
+          if (cardGoc) {
+            cardGoc.click();
+            await wait(250);
+            const interpCardGoc = dothuHost.querySelector('.kd-interp-card');
+            assert('Đồ Thư clicking Card Gốc opens interpretation popup', !!interpCardGoc);
+            const closeBtn = interpCardGoc ? interpCardGoc.querySelector('.kd-interp-close') : null;
+            if (closeBtn) {
+              closeBtn.click();
+              await wait(150);
+              assert('Đồ Thư closing popup restores card display', !dothuHost.querySelector('.kd-interp-card'));
+            }
+          }
+
+          // Kiểm tra Pop-up Luận Giải Quẻ Biến
+          if (cardBien) {
+            cardBien.click();
+            await wait(250);
+            const interpCardBien = dothuHost.querySelector('.kd-interp-card');
+            assert('Đồ Thư clicking Card Biến opens interpretation popup', !!interpCardBien);
+            const closeBtn = interpCardBien ? interpCardBien.querySelector('.kd-interp-close') : null;
+            if (closeBtn) {
+              closeBtn.click();
+              await wait(150);
+            }
+          }
+
+          // Kiểm tra Pop-up Luận Giải Quẻ Hỗ
+          if (cardHo) {
+            cardHo.click();
+            await wait(250);
+            const interpCardHo = dothuHost.querySelector('.kd-interp-card');
+            assert('Đồ Thư clicking Card Hỗ opens interpretation popup', !!interpCardHo);
+            const closeBtn = interpCardHo ? interpCardHo.querySelector('.kd-interp-close') : null;
+            if (closeBtn) {
+              closeBtn.click();
+              await wait(150);
+            }
+          }
+        }
+
+        // Test 11: Switch to Cung Sinh module & verify Vietnamese badge text
+        if (app && typeof app.load === 'function') {
+          await app.load('cungsinh');
+          await wait(600);
+
+          const csHost = fdoc.querySelector('.kd-mod[data-mod="cungsinh"]');
+          assert('Cung Sinh module mounted', !!csHost);
+          const csCastBtn = csHost ? csHost.querySelector('#cast-btn') : null;
+          assert('Cung Sinh cast button exists', !!csCastBtn);
+          if (csCastBtn) {
+            csCastBtn.click();
+            await wait(400);
+            const csRes = csHost.querySelector('#result');
+            assert('Cung Sinh calculation succeeds', csRes && csRes.style.display !== 'none');
+
+            const csChip = csHost.querySelector('.sinh-khac-chip');
+            const validVietnameseTags = ['Tốt', 'Xấu', 'Trung bình', 'Rất tốt', 'Rất xấu'];
+            const chipTxt = csChip ? csChip.textContent.trim() : '';
+            assert('Cung Sinh badge displays in Vietnamese', validVietnameseTags.some(v => chipTxt.includes(v)), 'Actual: ' + chipTxt);
+          }
+        }
+
+        // Test 12: Switch to Ma Phương module & verify switch toggle and pre-render arrows
+        if (app && typeof app.load === 'function') {
+          await app.load('maphuong');
+          await wait(500);
+
+          const mpHost = fdoc.querySelector('.kd-mod[data-mod="maphuong"]');
+          assert('Ma Phương module mounted', !!mpHost);
+          const mpToggle = mpHost ? mpHost.querySelector('.arrow-toggle input#toggle-arrows') : null;
+          assert('Ma Phương switch toggle exists', !!mpToggle);
+
+          const mpCastBtn = mpHost ? mpHost.querySelector('#cast-btn') : null;
+          assert('Ma Phương cast button exists', !!mpCastBtn);
+          if (mpCastBtn) {
+            mpCastBtn.click();
+            await wait(400);
+            const mpRes = mpHost.querySelector('#result');
+            assert('Ma Phương calculation succeeds', mpRes && mpRes.style.display !== 'none');
+
+            const thuongArrows = mpHost.querySelectorAll('#svg-thuong .arrow-layer line');
+            assert('Ma Phương Quẻ Thượng pre-rendered all 9 arrows', thuongArrows.length >= 8, 'Found ' + thuongArrows.length + ' arrows');
+
+            const btnStepsThuong = mpHost.querySelector('#steps-btn-thuong');
+            assert('Ma Phương step button exists', !!btnStepsThuong);
+          }
+        }
+
+        // Test 13: Switch to Tam Ý - Tam Sinh module & verify GUA_TRANSFORM error is fixed
+        if (app && typeof app.load === 'function') {
+          await app.load('tamy');
+          await wait(500);
+
+          const tyHost = fdoc.querySelector('.kd-mod[data-mod="tamy"]');
+          assert('Tam Ý module mounted', !!tyHost);
+          const tyCastBtn = tyHost ? tyHost.querySelector('#cast-btn') : null;
+          assert('Tam Ý cast button exists', !!tyCastBtn);
+          if (tyCastBtn) {
+            tyCastBtn.click();
+            await wait(400);
+            const tyRes = tyHost.querySelector('#result');
+            assert('Tam Ý calculation succeeds without GUA_TRANSFORM error', tyRes && tyRes.style.display !== 'none', 'errors: ' + capturedErrors.slice(-2).join(' | '));
+
+            // Test 13b: Verify automatic calculation of day 1 and removal of manual select
+            const tyDay1Sel = tyHost.querySelector('.day1-select');
+            assert('Tam Ý manual day1 select removed', !tyDay1Sel);
+            const tyChips = tyHost.querySelectorAll('#months-container .day-chip');
+            assert('Tam Ý auto-calculates auspicious days', tyChips.length > 0, 'Found ' + tyChips.length + ' chips');
+          }
+        }
+
+        // Test 14: Switch to Quẻ Tiểu Vận & verify Preset 2
+        if (app && typeof app.load === 'function') {
+          await app.load('tieuvan');
+          await wait(500);
+
+          const tvHost = fdoc.querySelector('.kd-mod[data-mod="tieuvan"]');
+          assert('Tiểu Vận module mounted', !!tvHost);
+          const p2Btn = tvHost ? tvHost.querySelector('.preset-btn[data-preset="1"]') : null;
+          assert('Tiểu Vận Preset 2 button exists', !!p2Btn);
+          if (p2Btn) {
+            p2Btn.click();
+            await wait(300);
+            const selGender = tvHost.querySelector('#sel-gender');
+            const inpYear = tvHost.querySelector('#inp-year');
+            const selMonth = tvHost.querySelector('#sel-month');
+            const inpBinary = tvHost.querySelector('#inp-binary');
+            const selNam = tvHost.querySelector('#sel-namtinh');
+            assert('Tiểu Vận Preset 2 gender is male', selGender && selGender.value === 'male');
+            assert('Tiểu Vận Preset 2 year is 1973', inpYear && inpYear.value === '1973');
+            assert('Tiểu Vận Preset 2 month is 7', selMonth && selMonth.value === '7');
+            assert('Tiểu Vận Preset 2 binary is 110111', inpBinary && inpBinary.value === '110111');
+            assert('Tiểu Vận Preset 2 namtinh is Mùi', selNam && selNam.value === 'Mùi');
+          }
+        }
+
+        // Test 15: Switch to Biến Khí & verify search input is removed
+        if (app && typeof app.load === 'function') {
+          await app.load('bienkhi');
+          await wait(400);
+
+          const bkHost = fdoc.querySelector('.kd-mod[data-mod="bienkhi"]');
+          assert('Biến Khí module mounted', !!bkHost);
+          const bkSearch = bkHost ? bkHost.querySelector('#search-input') : null;
+          assert('Biến Khí search input is removed', !bkSearch);
+        }
+
+        // Test 16: Switch to Dịch Tự module
+        if (app && typeof app.load === 'function') {
+          await app.load('dichtu');
+          await wait(500);
+
+          const dtHost = fdoc.querySelector('.kd-mod[data-mod="dichtu"]');
+          assert('Dịch Tự module mounted', !!dtHost);
+          const dtGlyph = dtHost ? dtHost.querySelector('#glyph') : null;
+          assert('Dịch Tự SVG glyph canvas exists', !!dtGlyph);
+        }
+
+        // Test 17: Switch and verify all remaining modules load without errors
+        const remainingSlugs = [
+          'luan8que', 'luan64que', 'luan10sao', 'luan9sao', 'khiclndd',
+          'tamtuyet', 'chanlinh'
+        ];
+        for (const slug of remainingSlugs) {
+          if (app && typeof app.load === 'function') {
+            await app.load(slug);
+            await wait(300);
+            const mHost = fdoc.querySelector('.kd-mod[data-mod="' + slug + '"]');
+            const hasError = mHost && mHost.textContent.includes('Không nạp được module');
+            assert('Module ' + slug + ' loads cleanly', !!mHost && !hasError && mHost.innerHTML.length > 50, hasError ? (mHost.textContent + ' | errors: ' + capturedErrors.slice(-3).join(' | ')) : '');
+          }
+        }
+
+        // Test 18: Switch to Âm Lịch module & test conversion
+        if (app && typeof app.load === 'function') {
+          await app.load('amlich');
+          await wait(500);
+
+          const alHost = fdoc.querySelector('.kd-mod[data-mod="amlich"]');
+          assert('Âm Lịch module mounted', !!alHost);
+          const alCastBtn = alHost ? alHost.querySelector('#cast-btn') : null;
+          assert('Âm Lịch cast button exists', !!alCastBtn);
+          if (alCastBtn) {
+            alCastBtn.click();
+            await wait(400);
+            const alRes = alHost.querySelector('#al-result');
+            assert('Âm Lịch conversion result rendered', alRes && !alRes.hidden && alRes.innerHTML.length > 20);
+            const alYear = alHost.querySelector('#al-cc-year');
+            assert('Âm Lịch can chi year displayed', alYear && alYear.textContent.trim().length > 0, alYear ? alYear.textContent : '');
+
+            // Test 18b: Verify 11:30 PM converts to next day lunar date (5/1/2002) & 3 columns
+            const alSolar = alHost.querySelector('#al-solar');
+            const alStimeInput = alHost.querySelector('#al-stime');
+            if (alSolar && alStimeInput) {
+              alSolar.value = '2002-02-15';
+              alStimeInput.value = '23:30';
+              alCastBtn.click();
+              await wait(300);
+              const alResCols = alHost.querySelectorAll('#al-result > div');
+              assert('Âm Lịch result has exactly 3 columns', alResCols.length === 3, 'Found: ' + alResCols.length);
+              const resTxt = alHost.querySelector('#al-result') ? alHost.querySelector('#al-result').textContent : '';
+              assert('Âm Lịch post-11PM advances to day 5/1/2002', resTxt.includes('5/1/2002'), 'Actual: ' + resTxt);
+              assert('Âm Lịch post-11PM displays ngày Ất Mão', resTxt.includes('Ất Mão'), 'Actual: ' + resTxt);
+              assert('Âm Lịch post-11PM displays giờ Giáp Tý', resTxt.includes('Giáp Tý'), 'Actual: ' + resTxt);
+            }
+          }
+
+          // Test 19: Hour synchronization (Solar <-> Lunar)
+          const alStime = alHost.querySelector('#al-stime');
+          const alLhour = alHost.querySelector('#al-lhour');
+          assert('Solar time input exists', !!alStime);
+          assert('Lunar hour select exists', !!alLhour);
+          if (alStime && alLhour) {
+            alStime.value = '14:30';
+            alStime.dispatchEvent(new Event('change'));
+            await wait(100);
+            assert('14:30 solar maps to Mùi (index 7)', String(alLhour.value) === '7', 'alLhour.value=' + alLhour.value);
+
+            alLhour.value = '4'; // Thìn
+            alLhour.dispatchEvent(new Event('change'));
+            await wait(100);
+            assert('Lunar Thìn maps to solar default 08:00', alStime.value === '08:00', 'alStime.value=' + alStime.value);
+          }
+
+          // Test 20: Profile sync button & localStorage update
+          const alSyncBtn = alHost.querySelector('#al-sync-profile-btn');
+          const alProfileBox = alHost.querySelector('#al-profile-box');
+          const alToast = alHost.querySelector('#al-sync-toast');
+          assert('Sync to profile button exists', !!alSyncBtn);
+          assert('Profile preview box exists', !!alProfileBox);
+          if (alSyncBtn) {
+            alSyncBtn.click();
+            await wait(200);
+            const profStr = fwin.localStorage.getItem('kd.profile');
+            assert('Profile saved in localStorage', !!profStr);
+            const prof = JSON.parse(profStr || '{}');
+            assert('Profile contains namSinh', typeof prof.namSinh === 'number');
+            assert('Profile contains thangAm', typeof prof.thangAm === 'number');
+            assert('Profile contains ngayAm', typeof prof.ngayAm === 'number');
+            assert('Profile contains canNgay', typeof prof.canNgay === 'string' && prof.canNgay.length > 0);
+            assert('Profile contains chiGio', typeof prof.chiGio === 'string' && prof.chiGio.length > 0);
+            assert('Profile contains canGio', typeof prof.canGio === 'string' && prof.canGio.length > 0);
+            assert('Sync toast displayed', alToast && !alToast.hidden);
+          }
+
+          // Test 21: Switch to dothu module & verify profile values are pre-filled
+          await app.load('dothu');
+          await wait(500);
+          const dtHost = fdoc.querySelector('.kd-mod[data-mod="dothu"]');
+          assert('Đồ Thư module mounted for profile verification', !!dtHost);
+          if (dtHost) {
+            const prof = JSON.parse(fwin.localStorage.getItem('kd.profile') || '{}');
+            const selGio = dtHost.querySelector('#sel-gio');
+            const selThang = dtHost.querySelector('#sel-thang');
+            const selNgay = dtHost.querySelector('#sel-ngay');
+            const selCan = dtHost.querySelector('#sel-can');
+            assert('Đồ Thư sel-gio matches profile chiGio', selGio && selGio.value === prof.chiGio, selGio ? selGio.value + ' vs ' + prof.chiGio : 'null');
+            assert('Đồ Thư sel-thang matches profile thangAm', selThang && selThang.value === String(prof.thangAm), selThang ? selThang.value + ' vs ' + prof.thangAm : 'null');
+            assert('Đồ Thư sel-ngay matches profile ngayAm', selNgay && selNgay.value === String(prof.ngayAm), selNgay ? selNgay.value + ' vs ' + prof.ngayAm : 'null');
+            assert('Đồ Thư sel-can matches profile canNgay', selCan && selCan.value === prof.canNgay, selCan ? selCan.value + ' vs ' + prof.canNgay : 'null');
+          }
+        }
+
+        // Output summary
+        const passedCount = results.filter(r => r.pass).length;
+        const totalCount = results.length;
+        summaryEl.setAttribute('data-passed', passedCount);
+        summaryEl.setAttribute('data-total', totalCount);
+        summaryEl.innerHTML = '<pre>' + JSON.stringify({ passedCount, totalCount, results }, null, 2) + '</pre>';
+      } catch (err) {
+        summaryEl.innerHTML = '<pre>ERROR: ' + (err.stack || err.message) + '</pre>';
+      }
+      window.__TEST_DONE = true;
+    }
+
+    window.addEventListener('DOMContentLoaded', runSuite);
+  </script>
+</body>
+</html>

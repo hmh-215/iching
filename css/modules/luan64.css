@@ -1,0 +1,303 @@
+.kd-luan /* Light mode variables Override */
+  [data-theme="light"]{
+    --ink-900: #f5f2e9;
+    --ink-850: #ffffff;
+    --ink-800: #f0eae1;
+    --ink-750: #e4dcd0;
+    --paper: #222328;
+    --paper-dim: rgba(34,35,40,0.78);
+    --paper-faint: rgba(34,35,40,0.50);
+    --gold: #9e7323;
+    --gold-dim: rgba(158,115,35,0.28);
+    --jade: #2e685a;
+    --jade-dim: rgba(46,104,90,0.28);
+    --line: rgba(34,35,40,0.12);
+    --line-strong: rgba(34,35,40,0.22);
+    --bg-radial: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(158,115,35,0.08), transparent 60%);
+  }
+.kd-luan{
+    background: var(--bg-radial), var(--ink-900);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:56px 20px 100px;
+    line-height:1.5;
+    max-width:none;
+    margin:0;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+.kd-luan .wrap{max-width:880px;margin:0 auto; position: relative;}
+.kd-luan /* ---------- Theme Toggle Button ---------- */
+  .theme-toggle-btn{
+    position: absolute;
+    top: -36px;
+    right: 0;
+    background: var(--ink-800);
+    border: 1px solid var(--line-strong);
+    color: var(--gold);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+.kd-luan .theme-toggle-btn:hover{
+    background: var(--ink-750);
+    border-color: var(--gold);
+  }
+.kd-luan /* ---------- Header ---------- */
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+.kd-luan h1{
+    font-family:'Spectral',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(30px,5vw,46px);
+    margin:0 0 10px;
+    letter-spacing:0.01em;
+    color:var(--paper);
+  }
+.kd-luan h1 span{color:var(--gold) !important;}
+.kd-luan .subtitle{
+    font-size:14.5px;
+    color:var(--paper-dim);
+    max-width:64ch;
+    margin:0 0 28px;
+  }
+.kd-luan .subtitle strong{color:var(--paper);font-weight:600;}
+.kd-luan .rule{
+    height:1px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--line) 40%, transparent 100%);
+    margin:0 0 32px;
+  }
+.kd-luan /* ---------- Search ---------- */
+
+  .search-container{margin-bottom:36px;}
+.kd-luan .search-input{
+    width:100%;
+    background:var(--ink-800);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    padding:13px 16px;
+    box-sizing:border-box;
+    transition:border-color .15s ease, background .15s ease;
+  }
+.kd-luan .search-input::placeholder{color:var(--paper-faint);}
+.kd-luan .search-input:focus{
+    outline:none;
+    border-color:var(--gold);
+    background:var(--ink-850);
+  }
+.kd-luan /* ---------- Kinh groups (Thượng / Hạ) ---------- */
+
+  details.que-group{
+    background:transparent;
+    border:none;
+    border-top:1px solid var(--line-strong);
+    border-radius:0;
+    padding:22px 0 6px;
+    margin-bottom:6px;
+  }
+.kd-luan details.que-group > summary{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    padding:0 0 16px;
+    list-style:none;
+  }
+.kd-luan details.que-group > summary::-webkit-details-marker{display:none;}
+.kd-luan details.que-group > summary::before{
+    content:"▸ ";
+    color:var(--gold);
+  }
+.kd-luan details.que-group[open] > summary::before{content:"▾ ";}
+.kd-luan /* ---------- Quẻ card ---------- */
+
+  details[name="que-item"]{
+    background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    margin-bottom:12px;
+    transition:border-color .15s ease, background .15s ease;
+  }
+.kd-luan details[name="que-item"]:hover{border-color:var(--line-strong);}
+.kd-luan details[name="que-item"][open]{
+    background:var(--ink-850);
+    border-color:var(--gold-dim);
+  }
+.kd-luan details[name="que-item"] > summary{
+    cursor:pointer;
+    outline:none;
+    list-style:none;
+    font-family:'Spectral',serif;
+    font-size:17px;
+    color:var(--paper);
+    padding-right:16px;
+    position:relative;
+  }
+.kd-luan details[name="que-item"] > summary::-webkit-details-marker{display:none;}
+.kd-luan details[name="que-item"] > summary::after{
+    content:"+";
+    position:absolute;
+    right:0;
+    top:0;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:16px;
+    color:var(--gold);
+    transition:transform .15s ease;
+  }
+.kd-luan details[name="que-item"][open] > summary::after{
+    content:"–";
+  }
+.kd-luan details[name="que-item"] > summary strong{
+    font-style:italic;
+    font-weight:600;
+    color:var(--paper);
+  }
+.kd-luan details[name="que-item"] > summary strong::after{
+    content:"";
+  }
+.kd-luan /* ---------- Nested details (hào từ, .kd-luan lời quẻ) ---------- */
+
+  details[name="que-item"] details{
+    background:var(--ink-750);
+    border:1px solid var(--line);
+    border-left:2px solid var(--jade-dim);
+    border-radius:var(--radius);
+    padding:12px 16px;
+    margin:14px 0 0;
+  }
+.kd-luan details[name="que-item"] details > summary{
+    cursor:pointer;
+    outline:none;
+    list-style:none;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--jade);
+  }
+.kd-luan details[name="que-item"] details > summary::-webkit-details-marker{display:none;}
+.kd-luan details[name="que-item"] details > summary::before{content:"› ";}
+.kd-luan details[name="que-item"] details[open] > summary{margin-bottom:4px;}
+.kd-luan /* ---------- Text elements ---------- */
+
+  p{
+    margin:10px 0 0 0;
+    text-align:justify;
+    font-size:14px;
+    color:var(--paper-dim);
+    line-height:1.7;
+  }
+.kd-luan p strong{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-style:normal;
+  }
+.kd-luan ul{
+  margin: 10px 0 0 0; 
+  padding-left: 20px;
+  }
+.kd-luan li{
+    margin-bottom: 7px; 
+    font-size: 14px; 
+    color: var(--paper-dim); 
+    line-height: 1.6; 
+    text-align: justify; /* Justifies main list items */
+  }
+.kd-luan li strong{
+    color: var(--paper); 
+    font-weight: 600; 
+    font-style: normal;
+  }
+.kd-luan li ul{
+    margin-top: 6px;
+  }
+.kd-luan li ul li{
+    font-size: 13px; 
+    color: var(--paper-faint);
+    text-align: justify; /* Justifies nested list items if needed */
+  }
+.kd-luan hr{
+    height:1px;
+    border:none;
+    background:linear-gradient(90deg, var(--gold-dim) 0%, var(--line) 50%, transparent 100%);
+    margin:16px 0;
+  }
+.kd-luan h3{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--jade);
+    margin:18px 0 4px;
+  }
+.kd-luan /* ---------- Hexagram mini (bars for each quẻ) ---------- */
+
+  .hexagram-mini{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin:12px 0 6px;
+    padding:12px 14px;
+    background:var(--ink-750);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+.kd-luan .hexagram-mini .bars{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    width:104px;
+    flex-shrink:0;
+  }
+.kd-luan .hexagram-mini .bar-row{display:flex; align-items:center;}
+.kd-luan .hexagram-mini .bar-track{flex:1; height:7px; display:flex; gap:3px;}
+.kd-luan .hexagram-mini .bar-seg{
+    flex:1;
+    border-radius:1px;
+    background:var(--paper);
+    opacity:0.88;
+  }
+.kd-luan .hexagram-mini .bar-row.thuong .bar-seg{background:var(--gold);}
+.kd-luan .hexagram-mini .bar-row.ha .bar-seg{background:var(--jade);}
+.kd-luan .hexagram-mini-info{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+  }
+.kd-luan .hexagram-mini-info .mini-symbols{
+    font-size:21px;
+    letter-spacing:3px;
+    color:var(--gold);
+  }
+.kd-luan .hexagram-mini-info .mini-binary{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    color:var(--paper-faint);
+  }
+@media (prefers-reduced-motion: reduce){
+
+}

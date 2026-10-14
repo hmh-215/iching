@@ -1,0 +1,234 @@
+.kd-mod[data-mod="luan8que"] * {
+  box-sizing:border-box;
+}
+.kd-mod[data-mod="luan8que"] html, .kd-mod[data-mod="luan8que"] body {
+  margin:0;padding:0;
+}
+.kd-mod[data-mod="luan8que"] body {
+  background: var(--bg-radial), var(--ink-900);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding:56px 20px 100px;
+    line-height:1.5;
+    max-width:none;
+    margin:0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+.kd-mod[data-mod="luan8que"] .wrap {
+  max-width:880px;margin:0 auto; position: relative;
+}
+.kd-mod[data-mod="luan8que"] .theme-toggle-btn {
+  position: absolute;
+    top: -36px;
+    right: 0;
+    background: var(--ink-800);
+    border: 1px solid var(--line-strong);
+    color: var(--gold);
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.kd-mod[data-mod="luan8que"] .theme-toggle-btn:hover {
+  background: var(--ink-750);
+    border-color: var(--gold);
+}
+.kd-mod[data-mod="luan8que"] .eyebrow {
+  font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+}
+.kd-mod[data-mod="luan8que"] h1 {
+  font-family:'Spectral',serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:clamp(28px,4.5vw,42px);
+    margin:0 0 10px;
+    letter-spacing:0.01em;
+    color:var(--paper);
+}
+.kd-mod[data-mod="luan8que"] h1 span {
+  color:var(--gold) !important;
+}
+.kd-mod[data-mod="luan8que"] .subtitle {
+  font-size:14.5px;
+    color:var(--paper-dim);
+    max-width:64ch;
+    margin:0 0 28px;
+}
+.kd-mod[data-mod="luan8que"] .subtitle strong {
+  color:var(--paper);font-weight:600;
+}
+.kd-mod[data-mod="luan8que"] .rule {
+  height:1px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--line) 40%, transparent 100%);
+    margin:0 0 32px;
+}
+.kd-mod[data-mod="luan8que"] details.que-group {
+  background:transparent;
+    border:none;
+    border-top:1px solid var(--line-strong);
+    border-radius:0;
+    padding:22px 0 6px;
+    margin-bottom:6px;
+}
+.kd-mod[data-mod="luan8que"] details.que-group > summary {
+  font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    padding:0 0 16px;
+    list-style:none;
+}
+.kd-mod[data-mod="luan8que"] details.que-group > summary::-webkit-details-marker {
+  display:none;
+}
+.kd-mod[data-mod="luan8que"] details.que-group > summary::before {
+  content:"▸ ";
+    color:var(--gold);
+}
+.kd-mod[data-mod="luan8que"] details.que-group[open] > summary::before {
+  content:"▾ ";
+}
+.kd-mod[data-mod="luan8que"] details[name="que-don-item"] {
+  background:var(--ink-800);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 20px;
+    margin-bottom:12px;
+    transition:border-color .15s ease, background .15s ease;
+}
+.kd-mod[data-mod="luan8que"] details[name="que-don-item"]:hover {
+  border-color:var(--line-strong);
+}
+.kd-mod[data-mod="luan8que"] details[name="que-don-item"][open] {
+  background:var(--ink-850);
+    border-color:var(--gold-dim);
+}
+.kd-mod[data-mod="luan8que"] details[name="que-don-item"] > summary {
+  cursor:pointer;
+    outline:none;
+    list-style:none;
+    font-family:'Spectral',serif;
+    font-size:17px;
+    color:var(--paper);
+    padding-right:16px;
+    position:relative;
+}
+.kd-mod[data-mod="luan8que"] details[name="que-don-item"] > summary::-webkit-details-marker {
+  display:none;
+}
+.kd-mod[data-mod="luan8que"] details[name="que-don-item"] > summary::after {
+  content:"+";
+    position:absolute;
+    right:0;
+    top:0;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:16px;
+    color:var(--gold);
+    transition:transform .15s ease;
+}
+.kd-mod[data-mod="luan8que"] details[name="que-don-item"][open] > summary::after {
+  content:"–";
+}
+.kd-mod[data-mod="luan8que"] details[name="que-don-item"] > summary strong {
+  font-style:italic;
+    font-weight:600;
+    color:var(--paper);
+}
+.kd-mod[data-mod="luan8que"] p {
+  margin:10px 0 0 0;
+    text-align:justify;
+    font-size:14px;
+    color:var(--paper-dim);
+    line-height:1.7;
+}
+.kd-mod[data-mod="luan8que"] p strong {
+  font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-style:normal;
+}
+.kd-mod[data-mod="luan8que"] ul {
+  margin:10px 0 0 0; padding-left:20px;
+}
+.kd-mod[data-mod="luan8que"] li {
+  margin-bottom:7px; font-size:14px; color:var(--paper-dim); line-height:1.6;
+}
+.kd-mod[data-mod="luan8que"] li strong {
+  color:var(--paper); font-weight:600; font-style:normal;
+}
+.kd-mod[data-mod="luan8que"] .badge-kim {
+  display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--gainsboro-dim);
+    color: var(--gainsboro);
+    border: 1px solid var(--gainsboro);
+    margin-left: 8px;
+}
+.kd-mod[data-mod="luan8que"] .badge-moc {
+  display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--jade-dim);
+    color: var(--jade);
+    border: 1px solid var(--jade);
+    margin-left: 8px;
+}
+.kd-mod[data-mod="luan8que"] .badge-thuy {
+  display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--royalblue-dim);
+    color: var(--royalblue);
+    border: 1px solid var(--royalblue);
+    margin-left: 8px;
+}
+.kd-mod[data-mod="luan8que"] .badge-hoa {
+  display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--cinnabar-dim);
+    color: var(--cinnabar);
+    border: 1px solid var(--cinnabar);
+    margin-left: 8px;
+}
+.kd-mod[data-mod="luan8que"] .badge-tho {
+  display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--gold-dim);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    margin-left: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+.kd-mod[data-mod="luan8que"] * {
+  animation-duration:0.001ms !important; transition-duration:0.001ms !important;
+}
+
+}

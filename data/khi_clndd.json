@@ -1,0 +1,296 @@
+﻿[
+    {
+        "badgeClass":  "badge-cat",
+        "name":  "Nguyên cát",
+        "bodyHtml":  "\u003cul\u003e\n        \u003cli\u003e\u003cstrong\u003eCầu tài:\u003c/strong\u003e Có tài nhưng ban đầu khó khăn, sau sẽ thành công (tiền trở hậu cát)\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eChờ tin:\u003c/strong\u003e Bình yên, sẽ trở về\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eXuất hành:\u003c/strong\u003e Xuất hành gặp may mắn, thuận lợi\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eHôn nhân gia đình:\u003c/strong\u003e Cũng có sự cản trở của các bên gia đình nhưng kết quả vẫn thành công tốt đẹp, hôn nhân vẫn được chấp thuận\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eMục đích của người đến gặp:\u003c/strong\u003e Hỏi ý kiến, tham khảo, bàn việc chuyên môn hoặc xin thuốc\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eTin tức thật giả:\u003c/strong\u003e Là tin thật\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eĐi gặp quý nhân (chủ nhà):\u003c/strong\u003e Chủ nhà có nhà\u003c/li\u003e\n      \u003c/ul\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát\u003c/strong\u003e \u003cspan class=\"badge-cat\"\u003eĐại cát\u003c/span\u003e",
+        "badge":  "Đại cát"
+    },
+    {
+        "badgeClass":  "badge-cat",
+        "name":  "Đại an",
+        "bodyHtml":  "\u003cul\u003e\n        \u003cli\u003e\u003cstrong\u003eCầu tài:\u003c/strong\u003e Có tài nhưng ban đầu khó khăn, được rất ít và lại bị khẩu thiệt.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eChờ tin:\u003c/strong\u003e Tuy chưa về nhưng cũng sẽ bình yên trở về (lý do chưa về là vì gặp trở ngại khách quan).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eXuất hành:\u003c/strong\u003e Tốt đẹp nhưng chậm (nếu khí kép ra cung xấu thì giữa đường sẽ bị ốm bệnh).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eHôn nhân gia đình:\u003c/strong\u003e Thành công nhưng bị thị phi khẩu thiệt, hai bên gia đình có thể có sự cãi vã.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eMục đích của người đến gặp:\u003c/strong\u003e Để bàn công việc, để cúng tế hoặc nêu những dự kiến, dự định.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eTin tức thật giả:\u003c/strong\u003e Tin thật nhưng người nói có chủ ý (định làm gì đó sau lưng mình).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eĐi gặp quý nhân (chủ nhà):\u003c/strong\u003e Chủ nhà đi vắng nhưng sắp về.\u003c/li\u003e\n      \u003c/ul\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐại an\u003c/strong\u003e \u003cspan class=\"badge-cat\"\u003eCát\u003c/span\u003e",
+        "badge":  "Cát"
+    },
+    {
+        "badgeClass":  "badge-hung",
+        "name":  "Phá bại",
+        "bodyHtml":  "\u003cul\u003e\n        \u003cli\u003e\u003cstrong\u003eCầu tài:\u003c/strong\u003e Không có tài mà còn gặp tai hoạ vì việc cầu tài đó.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eChờ tin:\u003c/strong\u003e Gặp sự cố bên ngoài (tai nạn, ốm đau).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eXuất hành:\u003c/strong\u003e Gặp sự cố vì vướng mắc không đi được (nếu chưa đi thì cần thay đổi lịch trình).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eHôn nhân gia đình:\u003c/strong\u003e Không thành.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eMục đích của người đến gặp:\u003c/strong\u003e Vì việc mua bán, kinh doanh.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eTin tức thật giả:\u003c/strong\u003e Tin nửa thực nửa hư.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eĐi gặp quý nhân (chủ nhà):\u003c/strong\u003e Chủ nhà có nhà nhưng gặp mặt chưa chắc đã được việc hoặc là họ không tiếp.\u003c/li\u003e\n      \u003c/ul\u003e",
+        "summaryHtml":  "\u003cstrong\u003ePhá bại\u003c/strong\u003e \u003cspan class=\"badge-hung\"\u003eĐại hung\u003c/span\u003e",
+        "badge":  "Đại hung"
+    },
+    {
+        "badgeClass":  "badge-cat",
+        "name":  "Thông thiên",
+        "bodyHtml":  "\u003cul\u003e\n        \u003cli\u003e\u003cstrong\u003eCầu tài:\u003c/strong\u003e Bị thiệt thòi, mất mát ban đầu. Nếu có đầu tư thì không sợ, sau sẽ phát tài.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eChờ tin:\u003c/strong\u003e Chuẩn bị có ý về nhưng chưa về, chưa có phương tiện (ví dụ như đang chờ mua vé).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eXuất hành:\u003c/strong\u003e Đi vui vẻ, gặp bạn (khác giới).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eHôn nhân gia đình:\u003c/strong\u003e Rất tốt đẹp, vui vẻ, hoà thuận.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eMục đích của người đến gặp:\u003c/strong\u003e Để hỏi về văn thư, thông tin giấy tờ hoặc những vấn đề liên quan đến thủ tục.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eTin tức thật giả:\u003c/strong\u003e Tin thật và diễn biến rất nhanh.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eĐi gặp quý nhân (chủ nhà):\u003c/strong\u003e Chủ nhà đi chơi vắng và chưa định về.\u003c/li\u003e\n      \u003c/ul\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThông thiên\u003c/strong\u003e \u003cspan class=\"badge-cat\"\u003eCát\u003c/span\u003e",
+        "badge":  "Cát"
+    },
+    {
+        "badgeClass":  "badge-hung",
+        "name":  "Cô thương",
+        "bodyHtml":  "\u003cul\u003e\n        \u003cli\u003e\u003cstrong\u003eCầu tài:\u003c/strong\u003e Thất tài, bị thương tổn.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eChờ tin:\u003c/strong\u003e Chưa về vì đang gặp tai hoạ.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eXuất hành:\u003c/strong\u003e Đi giữa đường nếu gặp đám ma thì xuất hành yên ổn (nếu không gặp đám ma thì thường hay gặp sự cố, tài hoạ) nhưng thông thường xuất hành giờ này sẽ gặp đám ma. Nếu người sinh vào giờ này thì hay gặp đám ma.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eHôn nhân gia đình:\u003c/strong\u003e Nửa đường đứt gánh (chia tay hoặc chết).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eMục đích của người đến gặp:\u003c/strong\u003e Đến chơi, đến tâm sự hoặc nói chuyện liên quan đến ăn uống, hỏi xin ý kiến, hỏi han chuyện vui buồn (hiếu hỷ).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eTin tức thật giả:\u003c/strong\u003e Tin không thật.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eĐi gặp quý nhân (chủ nhà):\u003c/strong\u003e Chủ nhà có nhà, gặp được nhưng gia đình họ đang có việc bận.\u003c/li\u003e\n      \u003c/ul\u003e",
+        "summaryHtml":  "\u003cstrong\u003eCô thương\u003c/strong\u003e \u003cspan class=\"badge-hung\"\u003eHung\u003c/span\u003e",
+        "badge":  "Hung"
+    },
+    {
+        "badgeClass":  "badge-hung",
+        "name":  "Thụ ám",
+        "bodyHtml":  "\u003cul\u003e\n        \u003cli\u003e\u003cstrong\u003eCầu tài:\u003c/strong\u003e Bị lừa đảo, mất mát thiệt thòi, hao tổn ít.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eChờ tin:\u003c/strong\u003e Không có tin tức gì (cô hư), không biết làm việc gì. Bị nói dối mà mình vẫn tin (che được mắt trời đất).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eXuất hành:\u003c/strong\u003e Đi đường vui vẻ nhưng không khéo thì sự vui vẻ ấy lại sinh ra buồn phiền (vui quá hoá buồn, cần tránh vui vẻ thái quá).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eHôn nhân gia đình:\u003c/strong\u003e Khó thành, có sự lừa dối lẫn nhau.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eMục đích của người đến gặp:\u003c/strong\u003e Có thể đến để cầu hôn, nhưng cũng có thể là vì việc quan sự, kiện cáo, hầu toà.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eTin tức thật giả:\u003c/strong\u003e Có tin nhưng không thật, sai sự thật, lừa dối.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eĐi gặp quý nhân (chủ nhà):\u003c/strong\u003e Chủ nhà có nhà nhưng công việc giao dịch có phần khó hoàn thành (Nếu là đi xin việc thì không ngại, cứ để quà lại, gặp vợ họ lại tốt hơn).\u003c/li\u003e\n      \u003c/ul\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThụ ám\u003c/strong\u003e \u003cspan class=\"badge-hung\"\u003eHung\u003c/span\u003e",
+        "badge":  "Hung"
+    },
+    {
+        "badgeClass":  "badge-cat",
+        "name":  "Địa Lợi",
+        "bodyHtml":  "\u003cul\u003e\n        \u003cli\u003e\u003cstrong\u003eCầu tài:\u003c/strong\u003e Đại phát tài (Khôn là Lộc Tồn), tốt cho việc mở cửa hàng.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eChờ tin:\u003c/strong\u003e Đang về, sắp đến nơi.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eXuất hành:\u003c/strong\u003e Rất tốt đẹp,gặp nhiều may mắn.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eHôn nhân gia đình:\u003c/strong\u003e Tốt đẹp, lại còn được của hồi môn.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eMục đích của người đến gặp:\u003c/strong\u003e Đến để mời mọc, đi chơi, ăn uống. Vui vẻ, tốt đẹp.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eTin tức thật giả:\u003c/strong\u003e Tin có thật.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eĐi gặp quý nhân (chủ nhà):\u003c/strong\u003e Chủ nhà đi vắng.\u003c/li\u003e\n      \u003c/ul\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐịa Lợi\u003c/strong\u003e \u003cspan class=\"badge-cat\"\u003eĐại cát\u003c/span\u003e",
+        "badge":  "Đại cát"
+    },
+    {
+        "badgeClass":  "badge-hung",
+        "name":  "Không vong",
+        "bodyHtml":  "\u003cul\u003e\n        \u003cli\u003e\u003cstrong\u003eCầu tài:\u003c/strong\u003e Không có tài.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eChờ tin:\u003c/strong\u003e Chưa có ý về do gặp nhiều chuyện bên ngoài (Không thể tin được, có chuyện mờ ám, tự ý không muốn về).\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eXuất hành:\u003c/strong\u003e Xuất hành gặp chuyện cãi vã, thị phi, khẩu thiệt.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eHôn nhân gia đình:\u003c/strong\u003e Bị bác, hôn nhân không thành do có sự cản trở.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eMục đích của người đến gặp:\u003c/strong\u003e Đến để thử ta (thử tài, thử nghề, trêu đùa, không thật), hỏi vay mượn.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eTin tức thật giả:\u003c/strong\u003e Có sự lừa đảo, tin tức không thật.\u003c/li\u003e\n        \u003cli\u003e\u003cstrong\u003eĐi gặp quý nhân (chủ nhà):\u003c/strong\u003e Chủ nhà đi vắng.\u003c/li\u003e\n      \u003c/ul\u003e",
+        "summaryHtml":  "\u003cstrong\u003eKhông vong\u003c/strong\u003e \u003cspan class=\"badge-hung\"\u003eĐại hung\u003c/span\u003e",
+        "badge":  "Đại hung"
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Nguyên cát - Nguyên cát",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Đào nguyên hội yến\" (Dự yến tiệc ở đào nguyên)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Vạn sự hanh thông\u003cbr\u003e\n\t\t\tLập chí kiên định\u003cbr\u003e\n\t\t\tĐắc quý nhân phù trợ\u003cbr\u003e\n\t\t\tNhi hậu lai đối lập\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Vạn sự hanh thông\u003cbr\u003e\n\t\t\tLập chí vững chắc\u003cbr\u003e\n\t\t\tCó quý nhân giúp đỡ\u003cbr\u003e\n\t\t\tVề sau có thể có sự đối lập nhau\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát - Nguyên cát\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Nguyên cát - Đại an",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Vũ lý hoa khai\" (Hoa nở trong cơn mưa)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Thuận cảnh tương quá nghịch cảnh lai\u003cbr\u003e\n\t\t\tKhí lượng hiệp tiểu nan thành sự\u003cbr\u003e\n\t\t\tNhược phùng thiên lý tri âm khách\u003cbr\u003e\n\t\t\tThiên lý khai tôn phá tiếu nhan\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Từ thuận cảnh chuyển qua nghịch cảnh\u003cbr\u003e\n\t\t\tKhí lượng hẹp hòi việc khó thành\u003cbr\u003e\n\t\t\tThà gặp người tri âm ở nơi xa ngàn dặm\u003cbr\u003e\n\t\t\tXa xôi mà lại có thể cùng nhau nở nụ cười\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát - Đại an\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Nguyên cát - Phá bại",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Vân tinh đãi lộ\" (Đường mây đợi lối)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nghi tĩnh đãi thời lão vận hanh\u003cbr\u003e\n\t\t\tNguyệt chiếu mai hoa dắc thụ thành\u003cbr\u003e\n\t\t\tTiếu ngạo tự tri thời thế sự\u003cbr\u003e\n\t\t\tTường đầu tu trúc tự thanh thanh\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nên yên tĩnh đợi thời về cuối vận hanh thông\u003cbr\u003e\n\t\t\tKhi trăng chiếu trên hoa mai mọi sự ắt thành\u003cbr\u003e\n\t\t\tHãy vui đùa vì đã biết rõ thời thế\u003cbr\u003e\n\t\t\tBên góc tường cây trúc tự nhiên xanh tươi\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát - Phá bại\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Nguyên cát - Thông thiên",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Hữu tài tiên môn\" (Tài lộc vào cửa)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhất sinh khoái lạc lợi danh toàn\u003cbr\u003e\n\t\t\tTiền hô hậu ủng vạn nhân khan\u003cbr\u003e\n\t\t\tThiên lý giang san thu lãm cận\u003cbr\u003e\n\t\t\tĐăng lâu vọng nguyệt hưởng anh nhàn\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Suốt đời sung sướng danh lợi đầy đủ\u003cbr\u003e\n\t\t\tTiền hô hậu ủng vạn người ngắm\u003cbr\u003e\n\t\t\tTrăm dặm non sông thâu tóm hết\u003cbr\u003e\n\t\t\tLên lầu ngắm trăng hưởng thanh nhàn\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát - Thông thiên\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Nguyên cát - Cô thương",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Thu phong lạc diệp\" (Gió thu làm rụng lá)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Thu lộ lung sơn nhược phù vân\u003cbr\u003e\n\t\t\tMục tiền phú quý bất vi đằng\u003cbr\u003e\n\t\t\tVãn niên đa nạn, nan đối sự\u003cbr\u003e\n\t\t\tViên hạc tương y bất đẳng nhân\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Sương nước mùa thu trên núi nổi như mây\u003cbr\u003e\n\t\t\tGiàu sang trước mắt chưa đủ tin cậy\u003cbr\u003e\n\t\t\tĐến tuổi già gặp nhiều tai nạn khó chống đỡ\u003cbr\u003e\n\t\t\tNên tìm đến nơi vượn hót hạc kêu để hưởng nhàn\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát - Cô thương\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Nguyên cát - Thụ ám",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Lộ nhập bình pha\" (Đường đi bằng phẳng)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Tiền hành tận xứ thuận cảnh\u003cbr\u003e\n\t\t\tTác sự vô căn cố bất năng kỳ cửu\u003cbr\u003e\n\t\t\tKhả vọng tiêu khang nhi bất năng vọng đại phú\u003cbr\u003e\n\t\t\tLập chí bất định nan vọng đại nghiệp\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Công việc ban đầu rất thuận lợi\u003cbr\u003e\n\t\t\tLàm việc thiếu căn bản nên không lâu dài\u003cbr\u003e\n\t\t\tCó hy vọng khá nhưng không thể giàu có lớn được\u003cbr\u003e\n\t\t\tLập chí không vững khó hy vọng sự nghiệp lớn\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát - Thụ ám\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Nguyên cát - Địa lợi",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Thiềm cung chiết quế\" (Bẻ cành quế ở cung trăng)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Phụng các long lâu hữu phận an\u003cbr\u003e\n\t\t\tYêu kim y tử thượng kinh san\u003cbr\u003e\n\t\t\tThiên linh vững mệnh tề tùng bách\u003cbr\u003e\n\t\t\tTứ quý thương thương phong nguyệt nhàn\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Gác phụng lầu rồng phượng đã an\u003cbr\u003e\n\t\t\tÁo gấm đai vàng thượng kinh san\u003cbr\u003e\n\t\t\tTrời cho thọ mệnh như tùng bách\u003cbr\u003e\n\t\t\tNon xanh nhà tàng bốn mùa an\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát - Địa lợi\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Nguyên cát - Không vong",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Long tàng hổ phục\" (Rồng ẩn hổ phục)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Tiên nan hậu dị chỉ sự thành\u003cbr\u003e\n\t\t\tThao thủ kiên cố đại hữu sinh\u003cbr\u003e\n\t\t\tÂn cần cải hoán tầm cơ hội\u003cbr\u003e\n\t\t\tChỉ điểm cơ mưu định khứ trình\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Trước khó sau dễ nhưng sự việc tất thành\u003cbr\u003e\n\t\t\tBản lĩnh vững chắc cơ hội lớn sẽ tới\u003cbr\u003e\n\t\t\tNên biết cách thay đổi hiện tại để tìm cơ hội\u003cbr\u003e\n\t\t\tPhải biết tính toán cơ mưu đường đi rõ ràng\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eNguyên cát - Không vong\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Đại an - Đại an",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Song hoa phổ phát\" (Hai hoa cùng trổ)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Mục tiền hữu trở hung tai sự\u003cbr\u003e\n\t\t\tLang hổ tranh cường cận thủ khai\u003cbr\u003e\n\t\t\tNhất giang yên thuỷ thiên chu trạo\u003cbr\u003e\n\t\t\tVô tình hỷ sự tự nhiên lai\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Trước mắt có cản trở và có việc hung\u003cbr\u003e\n\t\t\tHổ báo tranh đoạt mối nguy mớ ra ngay bên cạnh\u003cbr\u003e\n\t\t\tNhưng hãy như người lái đò bên sông nước lặng cất mái chèo\u003cbr\u003e\n\t\t\tKhông định mà điều mừng tự nhiên đến\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐại an - Đại an\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Đại an - Phá bại",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Nghịch lãng võng lân\" (Thả lưới bắt cá lân ngược sóng)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Truân ư nghịch cảnh nan vọng đắc\u003cbr\u003e\n\t\t\tSơ dục tâm hoài, vân cảnh khan\u003cbr\u003e\n\t\t\tThuỷ trì đương niên đa nguy hiểm\u003cbr\u003e\n\t\t\tNhất trường bất trắc dữ đa sầu\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Vất vả gian nan khó mong cầu\u003cbr\u003e\n\t\t\tƯớc vọng chìm vào đáy biển sâu\u003cbr\u003e\n\t\t\tAi hay năm đó nhiều nguy hiểm\u003cbr\u003e\n\t\t\tBao nhiêu bất trắc bấy nhiêu sầu\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐại an - Phá bại\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Đại an - Thông thiên",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Tạc thạch kiến ngọc\" (Đẽo đá thấy ngọc)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Đáo xứ vi gia thị vị gia\u003cbr\u003e\n\t\t\tNguyệt lạc cô vân trục mộ nha\u003cbr\u003e\n\t\t\tTá thế nhân nhân hành đại sự\u003cbr\u003e\n\t\t\tTrung niên dĩ hậu lộc hoành đa\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nơi đến coi là nhà nhưng chưa phải là nhà\u003cbr\u003e\n\t\t\tTrăng lặn mây đơn như đuổi quạ chiều\u003cbr\u003e\n\t\t\tMượn thế nhờ người mà tiến hành việc lớn\u003cbr\u003e\n\t\t\tĐến tuổi trung niên về sau sẽ hoạnh phát nhiều\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐại an - Thông thiên\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Đại an - Cô thương",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Thiên nhai tẩu mã\" (Ngựa chạy đường trời)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Thiếu niên hoạt bát cảnh ngộ bình bình\u003cbr\u003e\n\t\t\tBộ bộ cao thăng tiệm nhập giai cảnh\u003cbr\u003e\n\t\t\tTrung niên dĩ hậu khả đắc viên mãn chi kết quả\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Thiếu niên tính tình hoạt bát, cảnh ngộ bình thường\u003cbr\u003e\n\t\t\tDần dần lên cao sẽ gặp cảnh tốt đẹp\u003cbr\u003e\n\t\t\tSau tuổi trung niên được hưởng kết quả đầy đủ\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐại an - Cô thương\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Đại an - Thụ ám",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Vật phụ tài phong\" (Tài vật đầy đủ)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Sinh lai bất toại bình sinh chí\u003cbr\u003e\n\t\t\tThất dắc tâm cơ bất thảnh thơi\u003cbr\u003e\n\t\t\tDoanh cầu đa lợi đa thất bại\u003cbr\u003e\n\t\t\tĐường lệ hoa khai phong vũ thời\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Cả đời chẳng được thoả chí bình sinh\u003cbr\u003e\n\t\t\tĐược mất toan tính chẳng lúc nào thảnh thơi\u003cbr\u003e\n\t\t\tKinh doanh được nhiều lợi cũng nhiều thất bại\u003cbr\u003e\n\t\t\tHoa đường lệ sẽ nở lúc mưa to gió lớn\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐại an - Thụ ám\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Đại an - Địa lợi",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Vãng tịch Tương giang\" (Chiều xuống trên sông Tương)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Vãng lai tịch mịch tương giang thượng\u003cbr\u003e\n\t\t\tBạch thủ du du thuỷ toại tâm\u003cbr\u003e\n\t\t\tDuy hữu phùng thời phong thê hảo\u003cbr\u003e\n\t\t\tGiai ư cảnh tức tại mục tiền\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Cảnh chiều tịch mịch trên sông Tương\u003cbr\u003e\n\t\t\tĐầu bạc lơ phơ mới thoả lòng\u003cbr\u003e\n\t\t\tPhải đợi đến thời gió mới mạnh\u003cbr\u003e\n\t\t\tKhi ấy cảnh đẹp mới hiện ra trước mắt\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐại an - Địa lợi\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Đại an - Không vong",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Sa địa tài quỳ\" (Trông hoa trên đất cát)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Căn cơ tuy hảo bất đắc thời\u003cbr\u003e\n\t\t\tThiên chu quả hải mộng ba sinh\u003cbr\u003e\n\t\t\tHảo chí kiên tâm tiến trình sự\u003cbr\u003e\n\t\t\tCập bến trung niên phương tiện hành\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Căn cơ tuy tốt nhưng không gặp thời\u003cbr\u003e\n\t\t\tThuyền nhỏ vượt biển mộng lớn lao\u003cbr\u003e\n\t\t\tCó chí vững tâm với sự việc phía trước\u003cbr\u003e\n\t\t\tĐến tuổi trung niên mới cập bến\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eĐại an - Không vong\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Phá bại - Phá bại",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Bối minh hướng ám\" (Lưng sáng mặt quay về tối)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhất sinh đa nhất ý chi sự\u003cbr\u003e\n\t\t\tNgộ thực tha hương ly biệt xứ\u003cbr\u003e\n\t\t\tUyên ương lưỡng các đối phân chi\u003cbr\u003e\n\t\t\tCánh bồi âm đức phù trì lực\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Một đời gặp toàn chuyện không vừa ý\u003cbr\u003e\n\t\t\tPhải xa quê hương cầu thực\u003cbr\u003e\n\t\t\tPhu phụ đôi ngả chia lìa\u003cbr\u003e\n\t\t\tNên tích âm đức để được sự phù trì\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003ePhá bại - Phá bại\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Phá bại - Thông thiên",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Miên miên bất tuyệt\" (Lâu dài không dứt)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhất sinh hưng phế nhược ba đào\u003cbr\u003e\n\t\t\tKinh qua khổ nạn phương hữu hảo\u003cbr\u003e\n\t\t\tThiếu niên lập đức chí thượng kiên\u003cbr\u003e\n\t\t\tVãn cảnh thư lai ngưu miên thảo\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Một đời trăm lúc suy lúc thịnh\u003cbr\u003e\n\t\t\tTrải qua bao khổ nạn mới gặp điều tốt\u003cbr\u003e\n\t\t\tTuổi trẻ cần phải lập đức và lập chí vững chắc\u003cbr\u003e\n\t\t\tCuối đời mới được thấy cảnh trâu ngủ trong đồng cỏ\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003ePhá bại - Thông thiên\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Phá bại - Cô thương",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Khô mộc khai hoa\" (Cây khô nở hoa)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Phu thê công danh hữu thịnh\u003cbr\u003e\n\t\t\tNhị hựu đa tử tức\u003cbr\u003e\n\t\t\tSự nghiệp thường thường ích tiến\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Vợ chồng công danh vẫn thành\u003cbr\u003e\n\t\t\tMuộn mằn nhưng đông con nhiều cháu\u003cbr\u003e\n\t\t\tSự nghiệp tiến triển bình thường\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003ePhá bại - Cô thương\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Phá bại - Thụ ám",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Hồng nhạn thất quần\" (Hồng nhạn lạc đàn)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Thu thâm nhạn quá giang biên viễn\u003cbr\u003e\n\t\t\tPhượng dực thành song hựu các phi\u003cbr\u003e\n\t\t\tMôn đình hoán cải bôn ba kỳ\u003cbr\u003e\n\t\t\tTích nhật tương y lộc tự kỳ\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Cuối thu nhạn liệng qua sông thẳm\u003cbr\u003e\n\t\t\tSắp hợp thành đôi lại chia lìa\u003cbr\u003e\n\t\t\tNhà cửa dời đổi bôn ba phận\u003cbr\u003e\n\t\t\tNương tựa cùng nhau phúc lộc sinh\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003ePhá bại - Thụ ám\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Phá bại - Địa lợi",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Cao sơn mộ vân\" (Mây chiều trên núi cao)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Tảo tuế an nhàn lai nhật nan\u003cbr\u003e\n\t\t\tToạ sơn hướng thuỷ ổn xứ an\u003cbr\u003e\n\t\t\tTận lực cơ mưu chung hanh thái\u003cbr\u003e\n\t\t\tTể vân ánh nhật phản quan san\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Tuổi trẻ an nhàn sau vất vả\u003cbr\u003e\n\t\t\tToạ sơn hướng thuỷ là nơi sống yên ổn\u003cbr\u003e\n\t\t\tHết sức cơ mưu cuối cùng mới hanh thông\u003cbr\u003e\n\t\t\tÁnh sáng qua mây sẽ soi sáng đường\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003ePhá bại - Địa lợi\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Phá bại - Không vong",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Nhất sinh mê lộ\" (Một đời đường mê)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhất sinh mê lộ sự nghiệp vô\u003cbr\u003e\n\t\t\tHàn giang nguyệt ảnh nhất chu cô\u003cbr\u003e\n\t\t\tCơ đồ phú quý nhi vọng tưởng\u003cbr\u003e\n\t\t\tLãnh thượng bạch vân như hoạ đồ\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Một đời đường mê sự nghiệp không\u003cbr\u003e\n\t\t\tThuyền trăng một mảnh soi sóng lạnh\u003cbr\u003e\n\t\t\tPhú quý cơ đồ bao vọng tưởng\u003cbr\u003e\n\t\t\tChỉ là đám mây trắng trên đỉnh núi như trong tranh vẽ\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003ePhá bại - Không vong\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Thông thiên - Thông thiên",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Vũ lý phù bình\" (Bèo nổi trong cơn mưa)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Đức trọng ân thâm thuỷ cửu trường\u003cbr\u003e\n\t\t\tThu cúc xuân lan hảo tương liên\u003cbr\u003e\n\t\t\tĐăng lâu vọng nguyệt tiệm giai cảnh\u003cbr\u003e\n\t\t\tAn phận thủ kỷ vô ưu phiền\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Có đức nặng ân sâu mới được lâu bền\u003cbr\u003e\n\t\t\tCúc mùa thu lan mùa xuân cùng nhau rất tốt\u003cbr\u003e\n\t\t\tLên lầu ngắm trăng dần tới cảnh đẹp\u003cbr\u003e\n\t\t\tYên phận giữ mình không lo ưu phiền\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThông thiên - Thông thiên\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Thông thiên - Cô thương",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Cách cổ đỉnh tân\" (Thay cũ đổi mới)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Cách cổ đỉnh tân thuỷ kiến thành\u003cbr\u003e\n\t\t\tLợi danh khước hữu lưỡng tam tranh\u003cbr\u003e\n\t\t\tVạn lý giang san quy đáo để\u003cbr\u003e\n\t\t\tLưỡng trùng sơn ngoại thuỷ thành danh\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Thay cũ đổi mới rồi mới thành, hanh thông\u003cbr\u003e\n\t\t\tDanh lợi phải đối ba lần tranh đoạt\u003cbr\u003e\n\t\t\tMuôn dặm non sông sẽ trở lại\u003cbr\u003e\n\t\t\tQua hai tầng núi mới nên danh\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThông thiên - Cô thương\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Thông thiên - Thụ ám",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Bình nội mai hoa\" (Hoa mai trong bình)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Đắc ngộ quý nhân y thực vô ưu\u003cbr\u003e\n\t\t\tBảo thực an cư nhất sinh khoái lạc\u003cbr\u003e\n\t\t\tLập thân thanh khiết bất vong kỳ bản\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Gặp được quý nhân khỏi lo cơm áo\u003cbr\u003e\n\t\t\tCơm no sống yên ổn suốt đời sung sướng\u003cbr\u003e\n\t\t\tGiữ thân trong sạch không quên nguồn gốc\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThông thiên - Thụ ám\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Thông thiên - Địa lợi",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Vĩnh đại cát xương\" (Tốt lành lâu dài)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhân duyên cố kết thị vi viễn\u003cbr\u003e\n\t\t\tTử tôn kế thế chiếm bảng nguyên\u003cbr\u003e\n\t\t\tGia môn tài bạch giai hưng thịnh\u003cbr\u003e\n\t\t\tPhu thê phúc lộc tự như tiên\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhân duyên bền vững thật vẹn tuyền\u003cbr\u003e\n\t\t\tCháu con nối dõi thảy làm nên\u003cbr\u003e\n\t\t\tCửa nhà của cải đều hưng thịnh\u003cbr\u003e\n\t\t\tVợ chồng phúc lộc sướng như tiên\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThông thiên - Địa lợi\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Thông thiên - Không vong",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Hoa lạc thu thâm\" (Hoa rụng cuối thu)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Cô thân viễn xuất đáo hậu quy\u003cbr\u003e\n\t\t\tNhân sự sâm thương mộng đoạn thì\u003cbr\u003e\n\t\t\tÁi xử phồn hoa chi cảnh dã\u003cbr\u003e\n\t\t\tCao sơn lưu thuỷ thiểu nhân tri\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Một thân xa xứ đến già mới trở về\u003cbr\u003e\n\t\t\tNgười xa cách như sao sâm, thương khi dứt mộng\u003cbr\u003e\n\t\t\tThích sống nơi phồn hoa đô thị\u003cbr\u003e\n\t\t\tNúi cao nước chảy ít kẻ tri âm\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThông thiên - Không vong\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Cô thương - Cô thương",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Lưu oanh thiên mộc\" (Chim oanh rời cành)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Duy hữu âm công trương bảo hựu\u003cbr\u003e\n\t\t\tThanh tùng thuỷ trúc khả tương y\u003cbr\u003e\n\t\t\tKỳ phiên mưu toán không lao lực\u003cbr\u003e\n\t\t\tTam biến kinh doanh thuỷ ngộ thì\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhờ có âm đức cùng che chở\u003cbr\u003e\n\t\t\tTùng xanh cúc biếc có thể nương tựa vào nhau\u003cbr\u003e\n\t\t\tBao phen toan tính luống nhọc sức\u003cbr\u003e\n\t\t\tPhải trải qua 3 lần kinh doanh đổ vỡ mới gặp thời\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eCô thương - Cô thương\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Cô thương - Thụ ám",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Canh tàn vọng nguyệt\" (Canh tàn nhìn trăng)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhất sinh phòng hữu ưu hoạn nạn\u003cbr\u003e\n\t\t\tCung khốn chi thời tu dưỡng tâm\u003cbr\u003e\n\t\t\tThâm sơn lưu thuỷ nhân hà tại\u003cbr\u003e\n\t\t\tHoàng đồng bạch phát ngộ tri âm\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Một đời phải đề phòng hoạn nạn\u003cbr\u003e\n\t\t\tGặp lúc cùng khốn càng nên tu dưỡng tâm\u003cbr\u003e\n\t\t\tNon sâu nước xiết không thấy người ở đâu\u003cbr\u003e\n\t\t\tTuổi xanh tóc bạc kết làm bạn tri âm\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eCô thương - Thụ ám\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Cô thương - Địa lợi",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Hoa gian khai yến\" (Bày tiệc dưới hoa)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Kim châu bảo bối các tương sinh\u003cbr\u003e\n\t\t\tCập chí trung niên sự tự phân\u003cbr\u003e\n\t\t\tHữu chí bát phương trùng kiến lập\u003cbr\u003e\n\t\t\tTang du mậu thịnh nguyệt ly vân\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Vàng ngọc của báu đều cùng sinh\u003cbr\u003e\n\t\t\tĐến tuổi trung niên mọi việc tự phân ra\u003cbr\u003e\n\t\t\tNhưng nếu vững chí thì có thể xây dựng lại\u003cbr\u003e\n\t\t\tNhư vườn dâu xanh tươi trăng lìa mây lại sáng\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eCô thương - Địa lợi\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Cô thương - Không vong",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Khuyết nguyệt trùng viên\" (Trăng khuyết lại tròn)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Tiền hung hậu cát nan sự tiên\u003cbr\u003e\n\t\t\tMãn tải nhi quy thị nãi tiền\u003cbr\u003e\n\t\t\tLộc kế thiên chung thu bất tận\u003cbr\u003e\n\t\t\tNhất lôi chấn động hữu lương duyên\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Trước xấu sau tốt khởi sự ban đầu vất vả\u003cbr\u003e\n\t\t\tMột xe chở về đúng là đầy tiền\u003cbr\u003e\n\t\t\tLộc kế ngàn chung dùng không hết\u003cbr\u003e\n\t\t\tMột tiếng sét rền có nhân duyên\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eCô thương - Không vong\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Thụ ám - Thụ ám",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Hàn đàm ngộ võng\" (Đầm lạnh gặp mưa)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhất cổ điệu cầm khước đoạn huyền\u003cbr\u003e\n\t\t\tPhân phi nam bắc tái đoàn viên\u003cbr\u003e\n\t\t\tLưu thuỷ lạc hoa xuân tịch mịch\u003cbr\u003e\n\t\t\tTàn khai hàn lĩnh nhất chi tiên\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Khúc đàn vừa gẩy thì đã đứt dây\u003cbr\u003e\n\t\t\tChia lìa nam bắc rồi lại đoàn viên\u003cbr\u003e\n\t\t\tNước trôi hoa rụng xuân phẳng lặng\u003cbr\u003e\n\t\t\tĐã nở hết chỉ còn lại một bông trên núi lạnh\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThụ ám - Thụ ám\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Thụ ám - Địa lợi",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Vãng tiết hoàng hoa\" (Hoa cúc vào tiết muộn)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Tiền vận hốt ưu hốt hỷ đắc thất vô thường\u003cbr\u003e\n\t\t\tHậu vận thành gia lập nghiệp vãn cảnh ưu du\u003cbr\u003e\n\t\t\tLập mệnh cường ngạch khủng phòng khắc thê\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Tiền vận chợt lo chợt mừng được mất vô thường\u003cbr\u003e\n\t\t\tHậu vận xây dựng được cơ nghiệp cảnh già được thong thả\u003cbr\u003e\n\t\t\tLập mệnh cứng rắn e hình khắc vợ\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThụ ám - Địa lợi\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Thụ ám - Không vong",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Nguyệt ảnh phù vân\" (Trăng chiếu mây nổi)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Sự đa trở ngại hữu chí nan\u003cbr\u003e\n\t\t\tXử thế quy mô yếu phóng khoan\u003cbr\u003e\n\t\t\tDuy hữu âm công tài bồi lực\u003cbr\u003e\n\t\t\tNhân sinh hữu mệnh mạc mai oan\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Việc nhiều trở ngại có chí cũng khó thành\u003cbr\u003e\n\t\t\tXử thế nên cần rộng cái tâm\u003cbr\u003e\n\t\t\tChỉ có âm đức vun đắp hộ trì cho\u003cbr\u003e\n\t\t\tCon người có mệnh đừng oán trách làm gì\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eThụ ám - Không vong\u003c/strong\u003e",
+        "badge":  ""
+    },
+    {
+        "badgeClass":  "",
+        "name":  "Không vong - Không vong",
+        "bodyHtml":  "\u003cp\u003e\u003cstrong\u003eCách\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: left;\"\u003e\"Thạch thượng tài liên\" (Trồng sen trên đá)\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003ePhiên âm\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Nhất sinh tân khổ sở đắc vô\u003cbr\u003e\n\t\t\tLong lâu phượng các bán mê đồ\u003cbr\u003e\n\t\t\tThu lai hoa lạc đa phong vũ\u003cbr\u003e\n\t\t\tThiên biên lưỡng nhạn nhất chích cô\"\u003c/p\u003e\n\t\t\t\u003cp\u003e\u003cstrong\u003eDịch nghĩa\u003c/strong\u003e\u003c/p\u003e\n\t\t\t\u003cp style=\"text-align: center;\"\u003e\"Một đời gian khổ chẳng có gì\u003cbr\u003e\n\t\t\tLầu rồng gác phượng nửa đường mê\u003cbr\u003e\n\t\t\tThu về hoa rụng gặp mưa gió\u003cbr\u003e\n\t\t\tLưng trời đôi chim nhạn một con lẻ loi\"\u003c/p\u003e",
+        "summaryHtml":  "\u003cstrong\u003eKhông vong - Không vong\u003c/strong\u003e",
+        "badge":  ""
+    }
+]
